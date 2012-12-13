@@ -107,12 +107,10 @@ class Controller {
                                           'steps' => array('name', 'module_id', 
                                                             'activities' => array('name', 'start', 'end', 'item_id')), 
                                           'end');
-
         $new_path['user_id'] = $user_id;
         $new_path['start'] = $date; 
-        Session::set('path') = $new_path;
 
-        return Session::set('path') ;
+        Session::set('path', serialize($new_path));
 	}
 
 	// need to test - FHM
