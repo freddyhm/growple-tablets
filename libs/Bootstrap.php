@@ -7,36 +7,17 @@ class Bootstrap
 	private $ctrl_path = 'application/controllers/';
 	private $view_path = 'application/views/';
 
-	public function __construct($login) 
+	public function __construct() 
 	{
 		// extract and trim last '/'' in URL - FHM 
 	    // get url only if it has been set - FHM
 		$url = (isset($_GET['url'])) ? $_GET['url'] : null;
 		$url = rtrim($url, '/');
-		//sanitize URL
-		//$url = filter_var($url, FILTER_SANITIZE_URL);
+		
 		// create array from url - FHM 
 		$url = explode('/', $url);
 
-		if($url[0] == 'convo' || $url[0] == 'butlers'){
-			$this->reroute($url);
-		}else{
-			// base structure
-			if ($login->displayRegisterPage()){
-			        include($this->view_path . 'register.php');
-			} else {
-			    // are we logged in ?
-			    if ($login->isUserLoggedIn()) {
-					if(empty($url[0])){
-						$url = array('accountlist');				
-					}
-					$this->reroute($url);
-			    } else {
-			        // not logged in, showing the login form
-			        include($this->view_path . "login.php");
-			    }
-			}
-		}
+		$this->reroute($url);
 	}
 
 	public function reroute($url)

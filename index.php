@@ -1,7 +1,7 @@
 <?php
 
-// set default timezone to Montreal - FHM
-date_default_timezone_set('');
+// set default timezone - FHM
+// date_default_timezone_set('');
 
 // loading necessary files (order of loading is important!) - FHM
 foreach (glob("config/*.php") as $filename)
@@ -31,6 +31,5 @@ if(!Session::exist())
 {
 	Session::init();
 }
-
-$login = new Login();    
-$app = new Bootstrap($login);
+  
+$app = new Bootstrap();
