@@ -8,33 +8,6 @@ class Seed extends Controller {
 	public function __construct() 
 	{
 	}
- 
-	// resets the current user, starts a new user cycle - FHM
-	public function resetUser(){
-
-		if(Session::exist()){
-			
-			// save path, destroy and create a new session - FHM
-			$this->saveUserPath();
-			Session::destroy();
-			Session::init();
-
-			// create & set new user in session - FHM 
-			$user = new User();
-			$user->name = '';
-			$user->save();
-
-			// save user id, check if session has been reset properly - FHM
-			if(!$user->save()){
-				Session::set('user_id', $user->id);
-				if(count(Session::getSession()) == 1){
-					echo 'Success';
-				};	
-			}else{
-				$this->handleError('danger', 'seed_controller.php', 'Problem saving new user on reset.');
-			}	
-		}	
-	}
 
 	// throws error for proper logging and error notification - FHM
 	public function handleError($level, $filename, $desc){
@@ -64,22 +37,61 @@ class Seed extends Controller {
 		// log error in server - FHM
 		error_log($error);
 	}
+ 
+	// resets the current user, starts a new user cycle - FHM
+	public function resetUser(){
+
+		if(Session::exist()){
+			
+			// save path, destroy and create a new session - FHM
+			$this->saveUserPath();
+			Session::destroy();
+			Session::init();
+
+			// create & set new user in session - FHM 
+			$user = new User();
+			$user->name = '';
+			$user->save();
+
+			// save user id, check if session has been reset properly - FHM
+			if(!$user->save()){
+				Session::set('user_id', $user->id);
+				if(count(Session::getSession()) == 1 && $this->createUserPath($user->id)){
+					echo 'Success';
+				}else{
+					$this->handleError('warning', 'seed_controller.php', 'Problem setting user session variable and/or creating user path.');
+				}	
+			}else{
+				$this->handleError('danger', 'seed_controller.php', 'Problem saving new user on reset.');
+			}	
+		}	
+	}
+
+	
 
 	// analytics captures event/step  - FHM
-	public function logStep($location, $activity){
+	public function logUserStep($location, $activity){
+
+		
+
+	}
+
+	// takes in a user id and kicks-off a new path - FHM
+ 	private function createUserPath($user_id){
 
 		$date = date('m/d/Y h:i:s a', time());
-		$user_id = Session::get('user_id');
 
-		$path['start']['steps'][array][activities]
-		['end'];
-
+		// init the multi-array and partially set it - FHM
 		$new_path = array('user_id', 'start', 
 						  'steps' => array('name', 'module_id', 
 						  				   'activities' => array('name', 'start', 'end', 'item_id')), 
 						  'end');
 
+		$new_path['user_id'] = $user_id;
+		$new_path['start'] = $date; 
 		Session::set('path') = $new_path;
+
+		return Session::set('path') ;
 	}
 
 	public function saveUserPath(){
