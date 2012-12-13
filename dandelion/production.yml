@@ -1,0 +1,12 @@
+    #Required
+    scheme: ftp
+    host: 
+    username: 
+    password: 
+
+    # Optional
+    path: 
+    exclude:
+        - .gitignore
+        - dandelion/
+    revision_file: .revision
