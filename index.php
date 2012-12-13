@@ -3,8 +3,10 @@
 // set default timezone - FHM
 date_default_timezone_set('America/Toronto');
 
+
 // set environment - development / staging / production - FHM
 $environment = 'development'; 
+
 
 // loading necessary files (order of loading is important!) - FHM
 foreach (glob("config/$environment/*.php") as $filename)
@@ -27,6 +29,7 @@ foreach (glob("application/butlers/*.php") as $filename)
 {
     require $filename;
 }
+
 
 // set to output errors according to env - FHM
 if(ENVIRONMENT == 'production'){
