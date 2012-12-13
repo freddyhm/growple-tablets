@@ -4,11 +4,15 @@
 
 class Session
 {
-
 	// initialize session
 	public static function init()
 	{
 		session_start();
+	}
+
+	// return session object
+	public static function getSession(){
+		return $_SESSION;
 	}
 
 	// set the sesssion - FHM

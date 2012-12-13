@@ -1,7 +1,6 @@
 <?php
 
 /* Grab the url and parse so the proper controller is called  - FHM */
-
 class Bootstrap 
 {
 	private $ctrl_path = 'application/controllers/';

@@ -1,4 +1,5 @@
 <?php
+
 /* Base class for all controllers - FHM */
 
 class Controller {
@@ -25,7 +26,4 @@ class Controller {
 	public function custom($view, $subview=null){
 		self::$view->render($view, self::$data, $subview);
 	}
-
-
-
 }
