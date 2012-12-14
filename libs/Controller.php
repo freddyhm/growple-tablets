@@ -85,7 +85,12 @@ class Controller {
 		}	
 	}
 
+	// saves everything the user has bought to database - FHM
 	private function cartCheckout(){
+
+		$user_cart = unserialize(Session::get('user_cart'));
+
+		
 
 	} 
 
