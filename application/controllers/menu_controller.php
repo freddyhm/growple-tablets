@@ -52,20 +52,20 @@ class Menu extends Controller {
 	//need to test - FHM
 	public function addToCart(){
 
-		$user_cart = Session::get('user_cart');
+		$user_carts = Session::get('user_carts');
 
-		if(isset($user_cart)){
-			$user_cart = serialize($user_cart);
+		if(isset($user_carts)){
+			$user_carts = serialize($user_carts);
 		}else{
-			$user_cart = array();
+			$user_carts = array();
 		}
 
-		$user_cart[] = $_POST['cart'];
+		$user_carts[] = $_POST['cart'];
 	
-		if(empty($user_cart)){
+		if(empty($user_carts)){
 			$this->handleError('warning', get_class().'_controller.php', 'Could not add item to cart.');
 		}else{
-			Session::set('user_cart', $user_cart);	
+			Session::set('user_carts', $user_carts);	
 		}		
 	}
 }

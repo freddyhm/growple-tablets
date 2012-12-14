@@ -85,13 +85,39 @@ class Controller {
 		}	
 	}
 
-	// saves everything the user has bought to database - FHM
+	// need to test - FHM
+	// saves everything the user has in his carts to db - FHM
 	private function cartCheckout(){
 
-		$user_cart = unserialize(Session::get('user_cart'));
+		$user_carts = unserialize(Session::get('user_carts'));
+		$failure == 'false';
 
-		
+		if(!empty($user_carts)){
 
+			foreach ($user_carts as $cart) {
+			
+			$cart = new Cart();
+			$cart->date = $cart['date'];
+			$cart->size = $cart['size'];
+			$cart->user_id = Session::get('user_id');
+			$failure = $cart->save() ? $failure : 'true';
+
+			foreach ($cart['items'] as $item) {
+				$cart_item = new CartItem();
+				$cart_item->cart_id = $cart->id;
+				$cart_item->item_id = $item['id'];
+				$failure = $cart_item->save() ? $failure : 'true';
+				}
+			}
+
+			if(!$failure){
+				echo 'Success';				
+			}else{
+				$this->handleError('caution', 'controller.php', 'Problem saving cart and items in cartCheckout()');
+			}
+		}else{
+			$this->handleError('caution', 'controller.php', 'Cart was empty, could be no orders or session error');
+		}
 	} 
 
 	// need to test - and rebuild - FHM
@@ -159,7 +185,6 @@ class Controller {
 						$new_activity->end = $activity['end'];
 						$new_activity->step_id = $new_step->id;
 						$new_activity->item_id = $activity['item_id'];
-						$new_activity->save();
 						$failure = $new_activity->save() ? $failure : 'true';
 					}
 				}

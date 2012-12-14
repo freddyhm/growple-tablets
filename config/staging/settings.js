@@ -1,2 +1,2 @@
 // JS base URL - FHM
-var URL = '';
+var URL = '/growple/meet/';
