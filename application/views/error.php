@@ -2,14 +2,14 @@
 		<div id="page_wrapper">
 		<!-- START CONTAINER -->
 		<div id="container">
-			<img src="images/start_bg1.jpg">
+			<img src="<?php echo URL . 'public/img/start_bg1.jpg'; ?>">
 
 			<!-- START MSG DIV -->
 			<div id ="updatemsg">
-				<div id="warning"><img src="images/warning.png"></div>
+				<div id="warning"><img src="<?php echo URL . 'public/img/warning.png'; ?>"></div>
 				<div id="header_message"> Updating System </div>
 				<div id="content_message"> We are currently updating the system. Please try again later.</div>
-				<div id="btn_errorhome"><a href="home.html"><img src="images/btn_return.png"></a></div>
+				<div id="btn_errorhome"><a href="<?php echo URL . 'home'; ?>"><img src="<?php echo URL . 'public/img/btn_return.png'; ?>"></a></div>
 			</div>
 		</div>
 		<!-- END CONTAINER -->
