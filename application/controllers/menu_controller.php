@@ -1,8 +1,7 @@
 <?php
 
-class Loading extends Controller {
+class Menu extends Controller {
 
-	// create view object
 	public function __construct() 
 	{
 		parent::__construct();

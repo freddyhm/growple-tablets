@@ -19,6 +19,7 @@ class Bootstrap
 		$this->reroute($url);
 	}
 
+
 	public function reroute($url)
 	{    
 		$controller_name = '';

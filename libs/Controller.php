@@ -38,7 +38,7 @@ class Controller {
 		$error = $date.' - '.$error_file.' : '.$error_desc.'-'.$error_action.'-'.$error_level;
 
 		// send txt msg to kevin and freddy - FHM
-		// mail('5199986123@pcs.rogers.com', '', $error, '');
+		mail('5199986123@sms.fido.ca', '', $error, '');
 		mail('2267912634@msg.telus.com', '', $error, '');
 
 		// redirect to temp page and send email msg to kevin and freddy - FHM

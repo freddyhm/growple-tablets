@@ -30,7 +30,6 @@ foreach (glob("application/butlers/*.php") as $filename)
     require $filename;
 }
 
-
 // set to output errors according to env - FHM
 if(ENVIRONMENT == 'production'){
 	error_reporting(0);
@@ -44,5 +43,8 @@ if(!Session::exist())
 {
 	Session::init();
 }
-  
+
+// route to loading screen 
 $app = new Bootstrap();
+//$app->reroute(array('loading'));
+
