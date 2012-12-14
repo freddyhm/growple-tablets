@@ -62,6 +62,7 @@ class Controller {
 			
 			// save path, destroy and create a new session - FHM
 			$this->saveUserPath();
+			$this->cartCheckout();
 			Session::destroy();
 			Session::init();
 
@@ -83,6 +84,10 @@ class Controller {
 			}	
 		}	
 	}
+
+	private function cartCheckout(){
+
+	} 
 
 	// need to test - and rebuild - FHM
 	// analytics captures event/step  - FHM

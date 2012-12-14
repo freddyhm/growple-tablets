@@ -41,7 +41,6 @@ class Menu extends Controller {
 		
 			$info = array('menues' => $menues, 'is_virgin' => $first_time);
 			parent::$data = $info; 
-
 			parent::index();
 
 		}else{
@@ -49,7 +48,24 @@ class Menu extends Controller {
 		}
 	}
 
-	public function cartCheckout(){
+	// gets cart of items from client and adds to array of user carts - FHM
+	//need to test - FHM
+	public function addToCart(){
 
+		$user_cart = Session::get('user_cart');
+
+		if(isset($user_cart)){
+			$user_cart = serialize($user_cart);
+		}else{
+			$user_cart = array();
+		}
+
+		$user_cart[] = $_POST['cart'];
+	
+		if(empty($user_cart)){
+			$this->handleError('warning', get_class().'_controller.php', 'Could not add item to cart.');
+		}else{
+			Session::set('user_cart', $user_cart);	
+		}		
 	}
 }
