@@ -47,8 +47,8 @@ class Controller {
 			mail('freddy.hm@growple.com', '', $error, '');
 			//mail('kevin.kim@growple.com', '', $error, '');
 
-			// redirect to temp page - FHM
-			//header('Location: http://www.google.com/');
+			// redirect to error page - FHM
+			header('Location:' . URL . 'error' );
 		}
 
 		// log error in server - FHM
