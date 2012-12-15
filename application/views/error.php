@@ -1,7 +1,7 @@
 <!-- START PAGE WRAPPER -->
-		<div id="page_wrapper">
+		<div class="playbook">
 		<!-- START CONTAINER -->
-		<div id="container">
+		<div class="content">
 			<img src="<?php echo URL . 'public/img/start_bg1.jpg'; ?>">
 
 			<!-- START MSG DIV -->

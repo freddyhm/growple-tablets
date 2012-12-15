@@ -1,7 +1,7 @@
 		<!-- START PAGE WRAPPER -->
-		<div id="page_wrapper">
+		<div class="playbook">
 		<!-- START CONTAINER -->
-		<div id="container">
+		<div class="content">
 
 			<!-- START COLUMN1 - INTERACTIVE MENU -->
 			<div id="menu_intmenu">

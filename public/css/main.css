@@ -1,20 +1,25 @@
 /*GLOBAL STYLE */
 body
 {
-	/*background-color: black; - This is effing my debugging braattt  - FHM*/ 
+  background-color: black;
+  font-family:'Helvetica';
+  margin: 0;
+  padding: 0
 }
 
-#page_wrapper
+a {text-decoration: none; color:#fff;}
+a:visited {text-decoration: none; color:#fff;}
+
+.playbook
 {
-	text-align: left;
-	margin: 0px auto;
-	padding: 0px;
-	border:0;
-	width: 1024px;
-	height: 600px;
+  width: 1024px;
+  height: 600px;
+  z-index:-3;
+  position: absolute;
 }
 
-#container
+
+.content
 {
 	position: absolute;
 	z-index:100;
@@ -81,7 +86,7 @@ body
 	float: left;
 	width: 341px;
 	height:600px;
-	background-image:url('../img/bg_intmenu.jpg');
+	background-image:url('../images/bg_intmenu.jpg');
 	
 }
 
@@ -95,7 +100,7 @@ body
 	float: left;
 	width: 341px;
 	height:600px;
-	background-image:url('../img/bg_game.jpg');
+	background-image:url('../images/bg_game.jpg');
 }
 
 #btn_games
@@ -110,11 +115,62 @@ body
 	float: right;
 	width: 341px;
 	height:600px;
-	background-image:url('../img/bg_video.jpg');
+	background-image:url('../images/bg_video.jpg');
 
 }
 
 #btn_videos
 {
 	margin-top:250px;
+}
+
+
+/* STYLE FOR VIDEOS */
+
+#video_area
+{
+  width: 1024px;
+  height:600px;
+  position: absolute;
+  z-index: -100;
+}
+
+#video_title
+{
+  color: #FFFFFF;
+    font-family: Helvetica;
+    font-size: 35px;
+    font-weight: bold;
+    margin:-115px 200px;
+    position: absolute;
+    width: 700px;
+    z-index:1;
+}
+
+#video_navbar
+{
+  width: 1024px;
+  height: 120px;
+  background-color: black;
+  margin: -124px 0;
+  opacity: 0.5;
+   position: absolute;
+  z-index: 0;
+}
+
+#btn_video_home
+{
+  position: absolute;
+  z-index:1;
+  float: left;
+  margin:-157px 0px;
+
+}
+
+#btn_video_next
+{
+  position: absolute;
+  z-index:1;
+  float: right;
+  margin:-210px 800px;
 }
