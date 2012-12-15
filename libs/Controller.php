@@ -122,9 +122,34 @@ class Controller {
 
 	// need to test - and rebuild - FHM
 	// analytics captures event/step  - FHM
-	public function logUserStep($location, $status){
+	public function logUserStep($status, $module_id){
 
+		$path = unserialize(Session::get('path'));
+		$date = date('m/d/Y h:i:s a', time()); 
+		$step_module_id = $module_id;
+		$step_status = $status;
+		$step_start = '';
+		$step_end = '';
+
+		end($path);         // move the internal pointer to the end of the array
+		$key = key($path);  // last key 
 		
+		//need to figure out if the last step has closed 
+		if($step_status == 'In'){
+			
+			// create new array with next key
+			$next_key = $key++;
+			$path['steps'][$next_key] = array();
+			$path['steps'][$next_key]['start'] = $date;
+			$path['steps'][$next_key]['name'] = 'In';
+			$path['steps'][$next_key]['module_id'] = $module_id;
+
+		}else if($step_status == 'Out'){
+
+			$path['steps'][$key]['end'] = $date();
+		}
+		
+		Session::set('path', serialize($path));		
 	}
 
 	// need to test - FHM
@@ -138,22 +163,32 @@ class Controller {
 
  		$date = date('m/d/Y h:i:s a', time());
 
-        // init the multi-array and partially set it - FHM
-        $new_path = array('user_id', 'start', 
-                                          'steps' => array('name', 'module_id', 
-                                                            'activities' => array('name', 'start', 'end', 'item_id')), 
-                                          'end');
-        $new_path['user_id'] = $user_id;
-        $new_path['start'] = $date; 
+ 		// create new event with path variables - FHM
+		$event = new Event();
+		$event->name = 'Path started'; // Need to change to unique user ID later - FHM
+		$event->start = $date;
+		$event->user_id = Session::get('user_id');
+		$event->eventcategory_id = 1; // This is 'path' - FHM
+		
+		if($event->save()){
+			 // init the multi-array and partially set it - FHM
+	        $new_path = array('event_id', 'start', 
+	                                          'steps' => array('name', 'module_id', 
+	                                                            'activities' => array('name', 'start', 'end', 'item_id')), 
+	                                          'end');
+	        $new_path['event_id'] = $event->id;
+	        $new_path['start'] = $date; 
 
-        Session::set('path', serialize($new_path));
-        $saved_path = Session::get('path');
+	        Session::set('path', serialize($new_path));
+	        $saved_path = Session::get('path');
 
-        /*
-        if(isset($saved_path)){
-        	return 
-        }
-        */
+	        if(!isset($saved_path)){
+	        	$this->handleError('caution', 'controller.php', 'Problem saving path in session variable in createUserPath()');
+	        }
+
+		}else{
+			$this->handleError('caution', 'controller.php', 'Problem creating event in createUserPath()');
+		}
 	}
 
 	// need to test - FHM
@@ -161,18 +196,15 @@ class Controller {
 
 		// unserialize path variable and use date as user's name for now - FHM 
 		$date = date('m/d/Y h:i:s a', time());
+
 		$path = unserialize(Session::get('path'));
 		$failure == 'false';
 
 		if(!empty($path)){
 
-			// create new event with path variables - FHM
-			$event = new Event();
-			$event->name = $date; // Need to change to unique user ID later - FHM
-			$event->start = $path['start'];
-			$event->end = $path['end'];
-			$event->user_id = Session::get('user_id');
-			$event->eventcategory_id = 1; // This is 'path' - FHM
+			// update current event with end time  - FHM
+			$event = Event::find($path['event_id']);
+			$event->end = $date;
 			$failure = $event->save() ? $failure : 'true';
 
 			// go through inner arrays and and save steps and activities - FHM
@@ -181,6 +213,8 @@ class Controller {
 				$new_step = new Step();
 				$new_step->name = $step['name'];
 				$new_step->event_id = $event->id;
+				$new_step->start = $step['start'];
+				$new_step->end = $step['end'];
 				$new_step->module_id = $step['module_id'];
 				$failure = $new_step->save() ? $failure : 'true';
 
