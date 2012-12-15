@@ -120,40 +120,53 @@ class Controller {
 		}
 	} 
 
-	// need to test - and rebuild - FHM
 	// analytics captures event/step  - FHM
 	public function logUserStep($status, $module_id){
 
 		$path = unserialize(Session::get('path'));
 		$date = date('m/d/Y h:i:s a', time()); 
-		$step_module_id = $module_id;
-		$step_status = $status;
-		$step_start = '';
-		$step_end = '';
 
-		end($path);         // move the internal pointer to the end of the array
-		$key = key($path);  // last key 
-		
-		//need to figure out if the last step has closed 
-		if($step_status == 'In'){
-			
-			// create new array with next key
-			$next_key = $key++;
-			$path['steps'][$next_key] = array();
-			$path['steps'][$next_key]['start'] = $date;
-			$path['steps'][$next_key]['name'] = 'In';
-			$path['steps'][$next_key]['module_id'] = $module_id;
+		// get current key - FHM
+		$current_key = count($path['steps']);
 
-		}else if($step_status == 'Out'){
+		if(is_numeric($current_key) && is_string($status) && is_numeric($module_id)){
 
-			$path['steps'][$key]['end'] = $date();
-		}
-		
-		Session::set('path', serialize($path));		
+			//need to figure out if the last step has finished- FHM
+			if($status == 'in'){
+				
+				// create new array with new key, keep 0 if first - FHM
+				$path['steps'][$current_key] = array();
+				$path['steps'][$current_key]['start'] = $date;
+				$path['steps'][$current_key]['name'] = $status;
+				$path['steps'][$current_key]['module_id'] = $module_id;
+
+			}else if($status == 'out' || $current_key == 0){
+				// get last step through the array's last key - FHM
+				$last_key = $current_key - 1;
+				$path['steps'][$last_key]['end'] = $date;
+			}
+
+			Session::set('path', serialize($path));
+			$saved_path = Session::get('path');
+
+	        if(!isset($saved_path)){
+	        	$this->handleError('caution', 'controller.php', 'Problem saving path in session variable in logUserPath()');
+	        }
+
+		}else{
+			$this->handleError('caution', 'controller.php', 'Problem with inputted variables in logUserStep()');
+		}				
 	}
 
 	// need to test - FHM
 	public function logUserActivity($status){
+
+		/*
+		$new_path = array('event_id' => '', 'start' => '', 
+	                                          'steps' => array('name' => '', 'module_id' => '', 
+	                                                            'activities' => array('name' => '', 'start' => '', 'end' => '', 'item_id' => '')), 
+	                                          'end' => '');
+	                                          */
 
 	}
 
@@ -170,11 +183,10 @@ class Controller {
 		$event->eventcategory_id = 1; // This is 'path' - FHM
 		
 		if($event->save()){
+
 			 // init the multi-array and partially set it - FHM
-	        $new_path = array('event_id', 'start', 
-	                                          'steps' => array('name', 'module_id', 
-	                                                            'activities' => array('name', 'start', 'end', 'item_id')), 
-	                                          'end');
+	        $new_path = array();
+	        $new_path['steps'] = array();
 	        $new_path['event_id'] = $event->id;
 	        $new_path['start'] = $date; 
 
