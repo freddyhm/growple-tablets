@@ -157,9 +157,8 @@ class Controller {
 
 	}
 
-	// need to test - FHM
 	// takes in a user id and kicks-off a new path - FHM
- 	private function createUserPath($user_id){
+ 	public function createUserPath(){
 
  		$date = date('m/d/Y h:i:s a', time());
 
