@@ -55,12 +55,13 @@ class Controller {
 	//	error_log($error);
 	}
  
+ 	// need to test - FHM
 	// resets the current user, starts a new user cycle - FHM
 	public function resetUser(){
 
 		if(Session::exist()){
 			
-			// save path, destroy and create a new session - FHM
+			// save path, carts, and destroy/create a new session - FHM
 			$this->saveUserPath();
 			$this->cartCheckout();
 			Session::destroy();
@@ -120,7 +121,6 @@ class Controller {
 		}
 	} 
 
-	// need to test - FHM
 	// analytics captures step's activity  - FHM
 	public function logUserActivity($status, $action, $item_id){
 
@@ -185,7 +185,6 @@ class Controller {
 				// create new array with new key, keep 0 if first - FHM
 				$path['steps'][$current_key] = array();
 				$path['steps'][$current_key]['start'] = $date;
-				$path['steps'][$current_key]['name'] = $status;
 				$path['steps'][$current_key]['module_id'] = $module_id;
 
 			}else if($status == 'out' || $current_key == 0){
@@ -238,19 +237,19 @@ class Controller {
 		}
 	}
 
-	// need to test - FHM
+	// saves user path in database - FHM
 	public function saveUserPath(){
 
-		// unserialize path variable and use date as user's name for now - FHM 
+		// unserialize path variable and get current time - FHM
 		$date = date('m/d/Y h:i:s a', time());
 
 		$path = unserialize(Session::get('path'));
-		$failure == 'false';
+		$failure = 'false';
 
 		if(!empty($path)){
 
 			// update current event with end time  - FHM
-			$event = Event::find($path['event_id']);
+			$event = Event::find('42');
 			$event->end = $date;
 			$failure = $event->save() ? $failure : 'true';
 
@@ -258,15 +257,15 @@ class Controller {
 			foreach ($path['steps'] as $step) {
 				
 				$new_step = new Step();
-				$new_step->name = $step['name'];
 				$new_step->event_id = $event->id;
 				$new_step->start = $step['start'];
 				$new_step->end = $step['end'];
 				$new_step->module_id = $step['module_id'];
 				$failure = $new_step->save() ? $failure : 'true';
 
-				if(!empty($path['steps']['activities'])){
-					foreach ($path['steps']['activities'] as $activity) {	
+				if(!empty($step['activities'])){
+
+					foreach ($step['activities'] as $activity) {	
 						$new_activity = new Activity();
 						$new_activity->name = $activity['name'];
 						$new_activity->start = $activity['start'];
@@ -275,6 +274,8 @@ class Controller {
 						$new_activity->item_id = $activity['item_id'];
 						$failure = $new_activity->save() ? $failure : 'true';
 					}
+				}else{
+					$this->handleError('caution', 'controller.php', 'Path step activities are empty in saveUserPath()');
 				}
 			}
 

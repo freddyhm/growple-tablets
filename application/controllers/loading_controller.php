@@ -13,11 +13,14 @@ class Loading extends Controller {
 		
 	//	Session::set('user_id', 2);
 	//	$this->createUserPath();
-		$this->logUserStep('out', 1);
+	//	$this->logUserStep('out', 1);
 		//$this->logUserActivity('out', 'watched a video', 1);
 
-		$path = unserialize(Session::get('path'));
-		print_r($path);
+	//	$path = unserialize(Session::get('path'));
+	
+		$this->saveUserPath();
+
+		//print_r($path);
 
 	
 
