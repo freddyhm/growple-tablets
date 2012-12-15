@@ -18,7 +18,7 @@ class Loading extends Controller {
 
 	//	$path = unserialize(Session::get('path'));
 	
-		$this->saveUserPath();
+		//$this->saveUserPath();
 
 		//print_r($path);
 
