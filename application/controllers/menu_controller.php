@@ -32,6 +32,9 @@ class Menu extends Controller {
 				
 				foreach ($item_list as $item) {
 					$menues[$key]['items'][] = $item->to_array(); 
+
+					echo $item->korean_name;
+
 				}
 			}
 
@@ -40,6 +43,8 @@ class Menu extends Controller {
 			$first_time = isset($first_time) ? 'No' : 'Yes'; 
 		
 			$info = array('menues' => $menues, 'is_virgin' => $first_time);
+
+		
 			parent::$data = $info; 
 			parent::index();
 
