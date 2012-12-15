@@ -120,6 +120,54 @@ class Controller {
 		}
 	} 
 
+	// need to test - FHM
+	// analytics captures step's activity  - FHM
+	public function logUserActivity($status, $action, $item_id){
+
+		$path = unserialize(Session::get('path'));
+		$date = date('m/d/Y h:i:s a', time()); 
+
+		// get current key for step - FHM
+		$current_step_key = count($path['steps']) - 1; 
+
+		//check if a step has an activity array, count, if not set set - FHM
+		if(isset($path['steps'][$current_step_key]['activities'])){
+			$current_act_key = count($path['steps'][$current_step_key]['activities']);	
+		}else{
+			$path['steps'][$current_step_key]['activities'] = array();	
+			$current_act_key = 0;
+		}
+		
+		if(is_numeric($current_act_key) && is_numeric($current_step_key) && is_string($status) && is_string($action) && is_numeric($item_id)){
+
+			//need to figure out if the last activiy has finished- FHM
+			if($status == 'in'){
+				
+				// create new array with new key, keep 0 if first - FHM
+				$path['steps'][$current_step_key]['activities'][$current_act_key] = array();
+				$path['steps'][$current_step_key]['activities'][$current_act_key]['start'] = $date;
+				$path['steps'][$current_step_key]['activities'][$current_act_key]['name'] = $action;
+				$path['steps'][$current_step_key]['activities'][$current_act_key]['module_id'] = $item_id;
+
+			}else if($status == 'out'){
+				// get last activity through the array's last key - FHM
+				$last_act_key = $current_act_key - 1;
+				$path['steps'][$current_step_key]['activities'][$last_act_key]['end'] = $date;
+			}
+
+			Session::set('path', serialize($path));
+			$saved_path = Session::get('path');
+
+	        if(!isset($saved_path)){
+	        	$this->handleError('caution', 'controller.php', 'Problem saving path in session variable in logUserPath()');
+	        }
+
+		}else{
+			$this->handleError('caution', 'controller.php', 'Problem with inputted variables in logUserStep()');
+		}
+
+	}
+
 	// analytics captures event/step  - FHM
 	public function logUserStep($status, $module_id){
 
@@ -156,18 +204,6 @@ class Controller {
 		}else{
 			$this->handleError('caution', 'controller.php', 'Problem with inputted variables in logUserStep()');
 		}				
-	}
-
-	// need to test - FHM
-	public function logUserActivity($status){
-
-		/*
-		$new_path = array('event_id' => '', 'start' => '', 
-	                                          'steps' => array('name' => '', 'module_id' => '', 
-	                                                            'activities' => array('name' => '', 'start' => '', 'end' => '', 'item_id' => '')), 
-	                                          'end' => '');
-	                                          */
-
 	}
 
 	// takes in a user id and kicks-off a new path - FHM

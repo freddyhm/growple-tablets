@@ -11,9 +11,10 @@ class Loading extends Controller {
 	// throws error for proper logging and error notification - FHM
 	public function index(){
 		
-		//Session::set('user_id', 2);
-		//$this->createUserPath();
-		$this->logUserStep('out', 2);
+	//	Session::set('user_id', 2);
+	//	$this->createUserPath();
+		$this->logUserStep('out', 1);
+		//$this->logUserActivity('out', 'watched a video', 1);
 
 		$path = unserialize(Session::get('path'));
 		print_r($path);
