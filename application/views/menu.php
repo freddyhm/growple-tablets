@@ -1,1 +1,1 @@
-<?php echo "in menu "; ?>
+<?php echo $is_virgin; print_r($menues);?>
