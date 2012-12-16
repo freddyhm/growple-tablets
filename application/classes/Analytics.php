@@ -1,4 +1,6 @@
-<?php		
+<?php
+
+	if( 1 != 1)	{	
 	$date = date('m/d/Y h:i:s a', time());
 	$sectionmodule_list = SectionModule::find('all');
 
@@ -12,6 +14,7 @@
 
 		$dur_sql = "";
 		$eng_sql = "";
+		$mod_id = $section_module->module_id;
 
 		// list of all queries for our metrics - FHM
 
@@ -48,11 +51,11 @@
 					$dur_sql = $app_dur_query;
 					$eng_sql = '';
 					break;
-				case 'overview'
+				case 'overview':
 					$dur_sql = $mod_dur_query;
 					$eng_sql = $mod_eng_query;
 					break;
-				case 'activity'
+				case 'activity':
 					$dur_sql = $act_dur_query;
 					$eng_sql = $act_eng_query;
 					break;
@@ -63,7 +66,7 @@
 					$dur_sql = $mod_gen_dur_query;
 					$eng_sql = $mod_gen_eng_query;
 					break;
-				case 'activity'
+				case 'activity':
 					$dur_sql = $act_gen_dur_query;
 					$eng_sql = $act_gen_eng_query;
 					break;
@@ -81,8 +84,11 @@
 		$snapshot->report_id = $report->id; 
 		$snapshot->save();
 	}
+}
 ?>
 <?php
+
+	if(1 != 1){
 	$date = date('m/d/Y h:i:s a', time());
 	$sectionmodule_list = SectionModule::find('all');
 
@@ -96,6 +102,7 @@
 	foreach ($sectionmodule_list as $section_module) {
 
 		$pop_sql = "";
+		$mod_id = $section_module->module_id;
 		
 		// list of all queries for our metrics - FHM
 
@@ -115,10 +122,10 @@
 			case 'menu':
 				$pop_sql = $sale_pop_query;
 				break;
-			case 'video'
+			case 'video':
 				$pop_sql = $eng_pop_query;
 				break;
-			case 'game'
+			case 'game':
 				$pop_sql = $eng_pop_query;
 				break;
 		}
@@ -130,4 +137,5 @@
 		$snapshot->report_id = $report->id; 
 		$snapshot->save();
 	}
+}
 ?>
