@@ -78,10 +78,10 @@ class Controller {
 				if(count(Session::getSession()) == 1 && $this->createUserPath($user->id)){
 					echo 'Success';
 				}else{
-					$this->handleError('warning', 'seed_controller.php', 'Problem setting user session variable and/or creating user path.');
+					$this->handleError('warning', 'controller.php', 'Problem setting user session variable and/or creating user path.');
 				}	
 			}else{
-				$this->handleError('danger', 'seed_controller.php', 'Problem saving new user on reset.');
+				$this->handleError('danger', 'controller.php', 'Problem saving new user on reset.');
 			}	
 		}	
 	}
