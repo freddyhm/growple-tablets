@@ -1,1 +1,1 @@
-<?php echo 'in game' ?>
+<?php echo 'in game'; ?>
