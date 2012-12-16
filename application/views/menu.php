@@ -18,7 +18,7 @@
 		<div class="mainMenu"> 
 			<table>
 				<tr>
-					<?php 
+				<?php 
 						foreach($menus as $menu) {
 
 							if($menu['name'] == 'specials')
