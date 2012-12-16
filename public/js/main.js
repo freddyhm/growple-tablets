@@ -1,6 +1,6 @@
 function menu(){
 	// 'special' menu is selected by default - FHM
-	$('#special').addClass('menuSelected');
+	$('#specials').addClass('menuSelected');
 
 	// caching all images by loading them and attaching them to a hidden DOM element - FHM
 	var imageArray = ['assets/img/menu/special/fishandchips.jpg', 
@@ -36,7 +36,7 @@ function menu(){
 
 
 	/* Category */
-	$('#special').click(function(){
+	$('#specials').click(function(){
         $(this).fadeTo(500, 0.3, function()
 		{
 			

@@ -40,7 +40,6 @@ class Menu extends Controller {
 			$first_time = isset($first_time) ? 'No' : 'Yes'; 
 		
 			$info = array('menues' => $menues, 'is_virgin' => $first_time);
-
 		
 			parent::$data = $info; 
 			parent::index();

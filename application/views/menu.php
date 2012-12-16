@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!-- START PAGE WRAPPER -->
 <div class="playbook">
 	<script>
@@ -15,14 +18,17 @@
 		<div class="mainMenu"> 
 			<table>
 				<tr>
-					<td id="special"><span class="btnMenuName">SPECIAL</span></td>
-					<td id="starter">STARTER</td>
-					<td id="poutine">BEER</td>
-					<td id="soup">SOUP + SALAD</td>
-					<td id="wrap">WRAP</td>
-					<td id="burger">BURGER</td>
-					<td id="pasta">PASTA</td>
-					<td id="dessert">DESSERT</td>
+					<?php 
+						foreach($menus as $menu) {
+
+							if($menu['name'] == 'specials')
+							{
+					?>
+					<td id="<?php echo $menu['name']; ?>"><span class="btnMenuName"><?php echo strtoupper($menu['name']); ?></span></td>
+						<?php }else{ ?>
+					<td id="<?php echo $menu['name']; ?>"><?php echo strtoupper($menu['name']); ?></td>
+						<?php } ?>	
+					<?php } ?>
 				</tr>
 			</table> 
 		</div>
