@@ -37,9 +37,10 @@ if(ENVIRONMENT == 'production'){
 	error_reporting(E_ALL);
 }
 
-// init session variable class if session doesn't exist - FHM
-// if calling scripts that start session make sure to add condition to avoid double calls - FHM
-if(!Session::exist())
+$url = explode('/', $_REQUEST['url']);
+
+// init session variable class if session doesn't exist and butlers aren't being called  - FHM
+if(!Session::exist() && $url[0] != 'butlers')
 {
 	Session::init();
 }
