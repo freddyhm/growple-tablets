@@ -1,7 +1,7 @@
-/*GLOBAL STYLE */
+/* START - GLOBAL */
 body
 {
-  background-color: black;
+  /*!!!!!!!!!!!!!!!!!!!! UNCOMMENT AND DIE!!!!!!!!!!!!!!!!!!!!!!!!!! background-color: black;  - FHM */
   font-family:'Helvetica';
   margin: 0;
   padding: 0
@@ -18,14 +18,241 @@ a:visited {text-decoration: none; color:#fff;}
   position: absolute;
 }
 
-
 .content
 {
 	position: absolute;
 	z-index:100;
 }
+/* END - GLOBAL */
 
-/*STYLE FOR ERROR.HTML*/
+/* START - MENU */
+.mainMenu
+{
+  width: 1024px;
+  height: 100px;
+  z-index: 1;
+  margin:480px 0px;
+  position: absolute;
+}
+
+.mainMenu table{
+
+  border-spacing: 29px;  
+}
+
+.mainMenu table td{
+
+  text-align: center;
+  background-color: white;
+  font-weight: bold;
+  color: grey;
+  font-size: 14px;
+  opacity: 0.9;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.mainMenu table td.menuSelected
+{
+  background: rgba(175, 206, 27, 0.9);
+  color: white;
+  -moz-box-shadow: 0px 0px 10px 0px rgba(245, 255, 48, 0.7);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(245, 255, 48, 0.7);
+  -o-box-shadow: 0px 0px 10px 0px rgba(245, 255, 48, 0.7);
+  box-shadow: 0px 0px 10px 0px rgba(245, 255, 48, 0.7);
+}
+
+#mainBkgdMenu{
+  
+  width: 1024px;
+  height: 100px;
+  z-index: -1;
+  margin:500px 0px;
+  position: absolute;
+  background-color: black;
+  opacity: 0.35;
+  left:0px;
+
+}
+
+#selectedItem{
+
+  background-color: grey;
+  opacity: 0.75;
+  left: 1px;
+  width: 135px;
+  position: absolute;
+  z-index: -1;
+  height: 103px;
+  top: 0px;
+}
+
+.mainMenuList
+{
+  position:absolute;
+  z-index:1;
+}
+
+#subBkgdMenu{
+  background-color:black;
+  opacity:0.6;
+  z-index: 1;
+  margin:398px 0px;
+  position: absolute;
+  overflow: hidden;
+  width: 1024px; 
+  height: 105px;
+  color: white;
+  font-weight:bolder;
+  top:-7px;
+}
+
+.subMenu
+{
+  z-index: 1;
+  margin:398px 0px;
+  position: absolute;
+  overflow: hidden;
+  width: 1024px; 
+  height: 105px;
+  color: white;
+  top:-7px;
+}
+
+.subMenuList table td{
+  height:100px;
+  padding-right:8px;
+  width: 200px;
+  text-align: center;
+}
+
+.btnMenuName
+{
+  color:white;
+  font-family:'Helvetica';
+  font-size: 12px;
+  font-weight:bolder;
+  padding: 35px 13px;
+  z-index: 3;
+  text-align: center;
+}
+
+.btnMenuNameNotSelected
+{
+  color:#3e3e3e;
+  font-family:'Helvetica';
+  font-size: 12px;
+  font-weight:bolder;
+  padding: 35px 21px;
+  z-index: 3;
+  text-align: center;
+}
+#special
+{
+  background: rgba(255, 31, 113, 0.9);
+}
+
+#menuSortBy
+{
+  background-color: #2e87cc;
+}
+
+.menuNotSelected_2
+{
+  background-color: white;
+  text-align: center;
+  opacity: 0.9;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.subMenuList
+{
+
+  z-index: 2;
+  position: absolute;
+}
+
+.itemDetailContainer
+{
+  background: rgba(0, 0, 0, 0.51);
+  border: 15px solid rgba(255, 255, 255, 0.85);
+  width: 444px;
+  height: 444px;
+  border-radius: 50%;
+  margin: -96px -23px 4px -88px;
+
+}
+
+#itemInfoWrapper{
+  top: 84px;
+  position: relative;
+  left: 58px;
+}
+
+.itemName
+{
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'Helvetica';
+  width: 278px;
+  position: absolute;
+  margin: 62px 29px;
+  text-align: center;
+  text-shadow: 0px 1px 5px black;
+  color: white;
+}
+
+.itemDescription
+{
+  font-size: 17px;
+  font-style: italic;
+  width: 330px;
+  height: 120px;
+  position: absolute;
+  margin: 171px 24px;
+  opacity: 0.97;
+  color:white;
+}
+
+
+.itemPrice
+{
+  font-size: 24px;
+  color: #FFD200;
+  font-weight: bold;
+  position: absolute;
+  width: 150px;
+  height: 55px;
+  text-align: center;
+  text-shadow: 0px 1px 5px black;
+  margin: 280px 93px;
+
+}
+
+.ratingStar
+{
+  
+  position: absolute;
+  margin: 128px 22px;
+}
+
+
+.ratingInfo
+{
+  position: absolute;
+  font-size: 11px;
+  font-weight:bold;
+  color: #FFD200;
+  opacity: 0.8;
+  width: 200px;
+  margin: 140px 172px;
+}
+/* END - MENU */
+
+/* START - ERROR */
 #updatemsg
 {
   background: rgba(255, 255, 255, 0.6);
@@ -73,14 +300,17 @@ a:visited {text-decoration: none; color:#fff;}
     margin: -175px 250px;
     width: 600px;
 }
-/*STYLE FOR LOADING.HTML*/
+/* END - ERROR */
+
+/* START - LOADING */
 #main_logo
 {
 	 margin: -610px 130px;
 	 position:absolute;
 }
+/* END - LOADING */
 
-/*STYLE FOR HOME.HTML*/
+/* START - HOME */
 #menu_intmenu
 {
 	float: left;
@@ -123,10 +353,9 @@ a:visited {text-decoration: none; color:#fff;}
 {
 	margin-top:250px;
 }
+/* END - HOME */
 
-
-/* STYLE FOR VIDEOS */
-
+/* START - VIDEO */
 #video_area
 {
   width: 1024px;
@@ -174,3 +403,4 @@ a:visited {text-decoration: none; color:#fff;}
   float: right;
   margin:-210px 800px;
 }
+/* END - VIDEO */
