@@ -88,7 +88,7 @@
 				<img id="grabIt" src="<?php echo URL .'public/img/menu/btn_grab.png'; ?>">
 			</div>
 		</div>
-		<img id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>">
+		<a href="<?php echo URL . 'home'; ?>"><img id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>"></a>
 	</div>
 	<!-- END CONTAINER -->
 </div>	
