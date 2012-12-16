@@ -4,7 +4,7 @@
 		<div class="content">
 			<!-- AREA FOR VIDEO -->
 			<div class="video_area">
-			<img src="<?php echo URL . 'public/img/video_area.jpg'; ?>">
+			<img src="<?php echo URL . 'public/img/video/video_area.jpg'; ?>">
 			</div>
 
 			<!-- START VIDEO MENUS -->
@@ -14,11 +14,11 @@
 
 			<div id="btn_video_home">
 		
-				<a href="<?php echo URL . 'home'; ?>"><img src="<?php echo URL . 'public/img/btn_home.png'; ?>"></a>
+				<a href="<?php echo URL . 'home'; ?>"><img src="<?php echo URL . 'public/img/common/btn_home.png'; ?>"></a>
 			</div>
 
 			<div id="btn_video_next">
-				<img src="<?php echo URL . 'public/img/btn_next.png'; ?>">
+				<img src="<?php echo URL . 'public/img/video/btn_next.png'; ?>">
 			</div>
 			
 			<div id ="video_navbar">
