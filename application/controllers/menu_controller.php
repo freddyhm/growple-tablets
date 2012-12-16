@@ -32,9 +32,6 @@ class Menu extends Controller {
 				
 				foreach ($item_list as $item) {
 					$menues[$key]['items'][] = $item->to_array(); 
-
-					echo $item->korean_name;
-
 				}
 			}
 

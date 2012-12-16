@@ -23,7 +23,6 @@
 					<td id="burger">BURGER</td>
 					<td id="pasta">PASTA</td>
 					<td id="dessert">DESSERT</td>
-					<td id="menuSortBy"><span class="btnMenuName">SORT BY</span></td>
 				</tr>
 			</table> 
 		</div>
