@@ -26,6 +26,52 @@ a:visited {text-decoration: none; color:#fff;}
 /* END - GLOBAL */
 
 /* START - MENU */
+
+#tutorial
+{
+  display: none;
+}
+
+.tutorialText
+{
+  position: absolute;
+  color: white;
+  z-index: 3;
+  font-size: 24px;
+  top: 277px;
+}
+
+#tutorialDiscover
+{
+  left: 233px;
+}
+
+#tutorialPlay
+{
+  left: 434px;
+  width: 132px;
+}
+
+#tutorialWatch
+{
+  left: 697px;
+}
+
+#tutorialIcons
+{
+  z-index: 3;
+  position: absolute;
+}
+
+#tutorialBckgd
+{
+  width: 1024px;
+  height: 600px;
+  z-index: 2;
+  background-color: black;
+  position: absolute;
+  opacity: 0.8;
+}
 .mainMenu
 {
   width: 1024px;
@@ -33,37 +79,54 @@ a:visited {text-decoration: none; color:#fff;}
   z-index: 1;
   margin:480px 0px;
   position: absolute;
+  left: 86px;
 }
 
-.mainMenu table{
-
-  border-spacing: 29px;  
+.mainMenu table
+{
+  top: 20px;
+  position: relative;  
 }
 
-.mainMenu table td{
-
+.mainMenu table td
+{
   text-align: center;
-  background-color: white;
+  color: white;
+  width: 130px;
+  height: 96px;
   font-weight: bold;
-  color: grey;
-  font-size: 14px;
-  opacity: 0.9;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .mainMenu table td.menuSelected
 {
-  background: rgba(175, 206, 27, 0.9);
-  color: white;
-  -moz-box-shadow: 0px 0px 10px 0px rgba(245, 255, 48, 0.7);
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(245, 255, 48, 0.7);
-  -o-box-shadow: 0px 0px 10px 0px rgba(245, 255, 48, 0.7);
-  box-shadow: 0px 0px 10px 0px rgba(245, 255, 48, 0.7);
+
 }
 
-#mainBkgdMenu{
+.menuTabs
+{
+  position: relative;
+  bottom: 28px;
+  width: 130px;
+}
+
+#specialTab
+{
+
+}
+
+#selectedTab
+{
+  
+}
+
+#notSelectedTab
+{
+
+}
+
+#mainBkgdMenu
+{
   
   width: 1024px;
   height: 100px;
@@ -76,7 +139,8 @@ a:visited {text-decoration: none; color:#fff;}
 
 }
 
-#selectedItem{
+#selectedItem
+{
 
   background-color: grey;
   opacity: 0.75;
@@ -86,6 +150,15 @@ a:visited {text-decoration: none; color:#fff;}
   z-index: -1;
   height: 103px;
   top: 0px;
+}
+
+#menuHome
+{
+  top: 95px;
+  position: relative;
+  z-index: 1;
+  width: auto;
+  height: 115px;
 }
 
 .mainMenuList
@@ -127,16 +200,6 @@ a:visited {text-decoration: none; color:#fff;}
   text-align: center;
 }
 
-.btnMenuName
-{
-  color:white;
-  font-family:'Helvetica';
-  font-size: 12px;
-  font-weight:bolder;
-  padding: 35px 13px;
-  z-index: 3;
-  text-align: center;
-}
 
 .btnMenuNameNotSelected
 {
@@ -148,9 +211,10 @@ a:visited {text-decoration: none; color:#fff;}
   z-index: 3;
   text-align: center;
 }
+
 #specials
 {
-  background: rgba(255, 31, 113, 0.9);
+  
 }
 
 .menuNotSelected_2
@@ -170,21 +234,24 @@ a:visited {text-decoration: none; color:#fff;}
   position: absolute;
 }
 
-.itemDetailContainer
+#cartTab
 {
-  background: rgba(0, 0, 0, 0.51);
-  border: 15px solid rgba(255, 255, 255, 0.85);
-  width: 444px;
-  height: 444px;
-  border-radius: 50%;
-  margin: -96px -23px 4px -88px;
-
+  left: 544px;
+  opacity: 0.5;
+  position: absolute;
 }
 
-#itemInfoWrapper{
-  top: 84px;
+.itemDetailContainer
+{
+  background-image: url('../img/menu/bg_info.png');
+  width: 444px;
+  height: 390px;
+}
+
+#itemInfoWrapper
+{
+  bottom:34px;
   position: relative;
-  left: 58px;
 }
 
 .itemName
@@ -210,6 +277,13 @@ a:visited {text-decoration: none; color:#fff;}
   margin: 171px 24px;
   opacity: 0.97;
   color:white;
+}
+
+#grabIt
+{
+  top: 328px;
+  left: 57px;
+  position: relative;
 }
 
 
@@ -244,6 +318,55 @@ a:visited {text-decoration: none; color:#fff;}
   opacity: 0.8;
   width: 200px;
   margin: 140px 172px;
+}
+
+#cart
+{
+  background-image: url('../img/menu/cart/bg_cart.png');
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 2;
+  height: 600px;
+  width: 1024px;
+}
+
+#cart
+{
+  display: none;
+}
+
+#addToCart
+{
+  display: none;
+}
+
+#waitForServer
+{
+  display: none;
+}
+
+#waitForServerBckgd
+{
+  background-color: green;
+  opacity: 0.5;
+  height: 458px;
+  top: 3px;
+  position: relative;
+}
+
+#waitForServerWait
+{
+  bottom: 458px;
+  z-index: 1;
+  left: 312px;
+  position: relative;
+}
+
+#waitForServerReady
+{
+  position: relative;
+  left: -19px;
+  bottom: 354px;
 }
 /* END - MENU */
 

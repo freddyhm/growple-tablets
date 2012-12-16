@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!-- START PAGE WRAPPER -->
 <div class="playbook">
 	<script>
@@ -10,23 +7,48 @@
 	</script>
 	<!-- START CONTAINER -->
 	<div class="content">
-		<img src="assets/img/menu/special/fishandchips.jpg"  id="contentImg1"/>
-		<img src="assets/img/menu/special/fishandchips.jpg"  id="contentImg2"/>
+		<div id="tutorial">
+			<img id="tutorialIcons" src="<?php echo URL .'public/img/menu/tutorial/tut_intro.png'; ?>">
+			<span class="tutorialText" id="tutorialDiscover">Discover</span>
+			<span class="tutorialText" id="tutorialPlay">Meet & Play</span>
+			<span class="tutorialText" id="tutorialWatch">Watch</span>
+			<div id="tutorialBckgd"></div>
+		</div>
 		<!-- Main Menu (Bottom) -->
 		<div id="mainBkgdMenu">
+		</div>
+		<div id="cart">
+			<div id="addToCart">
+				<img id="cartReady" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
+			</div>
+			<div id="waitForServer">
+				<img id="waitForServerEdit" src="<?php echo URL .'public/img/menu/cart/btn_edit.png'; ?>">
+				<div id="waitForServerBckgd"></div>
+				<img id="waitForServerWait" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
+				<img id="waitForServerReady" src="<?php echo URL .'public/img/menu/cart/btn_done.png'; ?>">
+			</div>
 		</div>
 		<div class="mainMenu"> 
 			<table>
 				<tr>
 				<?php 
-						foreach($menus as $menu) {
+					foreach($menus as $menu) {
 
-							if($menu['name'] == 'specials')
-							{
+						if($menu['name'] == 'specials')
+						{
 					?>
-					<td id="<?php echo $menu['name']; ?>"><span class="btnMenuName"><?php echo strtoupper($menu['name']); ?></span></td>
+					
+					<!-- <img class="menuTabs" id="selectedTab" src="<?php echo URL .'public/img/menu/header_menu_selected.png'; ?>"> -->
+					<td id="<?php echo $menu['name']; ?>">
+						<img class="menuTabs" id="specialTab" src="<?php echo URL .'public/img/menu/header_menu_special.png'; ?>">
+						<?php echo strtoupper($menu['name']); ?>
+					</td>
 						<?php }else{ ?>
-					<td id="<?php echo $menu['name']; ?>"><?php echo strtoupper($menu['name']); ?></td>
+					
+					<td class="<?php echo $menu['name']; ?>">
+						<img class="menuTabs" class="notSelectedTab" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
+						<?php echo strtoupper($menu['name']); ?>
+					</td>
 						<?php } ?>	
 					<?php } ?>
 				</tr>
@@ -50,6 +72,7 @@
 				</table>
 			</div>	
 		</div>
+		<img id="cartTab" src="<?php echo URL .'public/img/menu/cart_arrow.png'; ?>">
 		<!-- Item Detail -->
 		<div class="itemDetailContainer">
 			<div id="itemInfoWrapper">
@@ -62,8 +85,10 @@
 				<span class="itemPrice">
 					$13.49
 				</span>	
+				<img id="grabIt" src="<?php echo URL .'public/img/menu/btn_grab.png'; ?>">
 			</div>
 		</div>
+		<img id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>">
 	</div>
 	<!-- END CONTAINER -->
 </div>	
