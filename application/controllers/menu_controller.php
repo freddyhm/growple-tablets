@@ -16,13 +16,13 @@ class Menu extends Controller {
 			$this->handleError('danger', get_class().'_controller.php', 'Problem pulling menu info data database, ORM/DB problem.');
 		}
 
-		$menues = array();
+		$menus = array();
 
 		if(!empty($module_list)){
 			// go through list of all items & submodules for menu module - FHM
 			foreach ($module_list as $key => $submodule) {
 				
-				$menues[$key] = $submodule->to_array();
+				$menus[$key] = $submodule->to_array();
 
 				try{
 					$item_list = Item::find_all_by_module_id($submodule->id);	
@@ -31,7 +31,7 @@ class Menu extends Controller {
 				}
 				
 				foreach ($item_list as $item) {
-					$menues[$key]['items'][] = $item->to_array(); 
+					$menus[$key]['items'][] = $item->to_array(); 
 				}
 			}
 
@@ -39,13 +39,13 @@ class Menu extends Controller {
 			$first_time = Session::get('menu_first_time');
 			$first_time = isset($first_time) ? 'No' : 'Yes'; 
 		
-			$info = array('menues' => $menues, 'is_virgin' => $first_time);
+			$info = array('menus' => $menus, 'is_virgin' => $first_time);
 		
 			parent::$data = $info; 
 			parent::index();
 
 		}else{
-			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menues and items.');
+			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
 	}
 
