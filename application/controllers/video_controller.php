@@ -17,7 +17,6 @@ class Video extends Controller {
 			foreach ($video_list as $video) {
 				$videos = $video->to_array();
 			}
-
 			$info = array('videos' => $videos);
 			parent::$data = $info;
 			parent::index();
