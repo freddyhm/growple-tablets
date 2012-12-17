@@ -1,6 +1,36 @@
 function menu(){
+
+	// counter for grabIt function - FHM
+	var cart_status = "hidden";
+
 	// 'special' menu is selected by default - FHM
-	$('#specials').addClass('menuSelected');
+	$("#specials").addClass('menuSelected');
+
+	// Show cart, add item, and close
+	$("#grabIt").click(function(){
+		if(cart_status == "hidden"){
+			$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
+			$("#cart").animate({bottom: "-=140"}, 1000, function(){
+				$("#cart").delay(1000).animate({bottom: "+=140"}, 1000, function(){
+					$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");	
+				});				
+			});
+		}else{
+			// add item
+			$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
+		}
+	});
+
+	$("#cartTab").click(function(event) {
+		if(cart_status == "hidden"){
+			$(this).parent().animate({bottom: "-=140"}, 1000);
+			cart_status = "show";
+		}else if(cart_status == "show"){
+			$(this).parent().animate({bottom: "+=140"}, 1000);
+			cart_status = "hidden";
+		}
+	});
+
 
 	// caching all images by loading them and attaching them to a hidden DOM element - FHM
 	var imageArray = ['assets/img/menu/special/fishandchips.jpg', 

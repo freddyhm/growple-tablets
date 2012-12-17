@@ -238,7 +238,8 @@ a:visited {text-decoration: none; color:#fff;}
 {
   left: 544px;
   opacity: 0.5;
-  position: absolute;
+  top: 142px;
+  position: relative;
 }
 
 .itemDetailContainer
@@ -284,6 +285,7 @@ a:visited {text-decoration: none; color:#fff;}
   top: 328px;
   left: 57px;
   position: relative;
+  z-index:2;
 }
 
 
@@ -320,6 +322,11 @@ a:visited {text-decoration: none; color:#fff;}
   margin: 140px 172px;
 }
 
+.cartAction
+{
+  float:right;
+}
+
 #cart
 {
   background-image: url('../img/menu/cart/bg_cart.png');
@@ -327,17 +334,13 @@ a:visited {text-decoration: none; color:#fff;}
   position: absolute;
   z-index: 2;
   height: 600px;
-  width: 1024px;
-}
-
-#cart
-{
-  display: none;
+  width: 1024px;  
+  bottom: 52px;
 }
 
 #addToCart
 {
-  display: none;
+  
 }
 
 #waitForServer
