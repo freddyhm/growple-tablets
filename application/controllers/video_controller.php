@@ -15,7 +15,7 @@ class Video extends Controller {
 		if(!empty($video_list)){
 
 			foreach ($video_list as $video) {
-				$videos = $video->to_array();
+				$videos[] = $video->to_array();
 			}
 			$info = array('videos' => $videos);
 			parent::$data = $info;

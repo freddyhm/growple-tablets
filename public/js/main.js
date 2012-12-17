@@ -4,7 +4,8 @@ function menu(){
 	var cart_status = "hidden";
 
 	// 'special' menu is selected by default - FHM
-	$("#specials").addClass('menuSelected');
+	//$("#menu1").addClass('menuSelected');
+	$("#menu1 img").attr("src", URL + "public/img/menu/header_menu_special.png");
 
 	// Show cart, add item, and close
 	$("#grabIt").click(function(){
@@ -150,7 +151,7 @@ function menu(){
 */
 
 	/* Category */
-	$('#specials').click(function(){
+	$('#menu1').click(function(){
         $(this).fadeTo(500, 0.3, function()
 		{
 			
@@ -180,7 +181,7 @@ function menu(){
 		}).fadeTo(500, 1);
 	});
 
-	$('#starter').click(function(){
+	$('#menu2').click(function(){
 		$(this).fadeTo(500, 0.3, function()
 		{
 			var current_menu = $('.menuSelected').attr('id');
@@ -206,7 +207,7 @@ function menu(){
 		}).fadeTo(500, 1);
 	});
 
-	$('#poutine').click(function(){
+	$('#menu3').click(function(){
 		$(this).fadeTo(500, 0.3, function()
 		{
 			var current_menu = $('.menuSelected').attr('id');
@@ -232,7 +233,7 @@ function menu(){
 		}).fadeTo(500, 1);
 	});
 
-	$('#soup').click(function(){
+	$('#menu4').click(function(){
 		$(this).fadeTo(500, 0.3, function()
 		{
     		var current_menu = $('.menuSelected').attr('id');
@@ -250,7 +251,7 @@ function menu(){
 		}).fadeTo(500, 1);
 	});
 
-	$('#wrap').click(function(){
+	$('#menu5').click(function(){
 		$(this).fadeTo(500, 0.3, function()
 		{
     		var current_menu = $('.menuSelected').attr('id');
@@ -269,7 +270,7 @@ function menu(){
 		}).fadeTo(500, 1);
 	});
 
-	$('#burger').click(function(){
+	$('#menu6').click(function(){
 		$(this).fadeTo(500, 0.3, function()
 		{
 
@@ -289,7 +290,7 @@ function menu(){
 		}).fadeTo(500, 1);
 	});
 
-	$('#pasta').click(function(){
+	$('#menu7').click(function(){
 		$(this).fadeTo(500, 0.3, function()
 		{
     		var current_menu = $('.menuSelected').attr('id');
@@ -307,7 +308,7 @@ function menu(){
 		}).fadeTo(500, 1);
 	});
 
-	$('#dessert').click(function(){
+	$('#menu8').click(function(){
 		$(this).fadeTo(500, 0.3, function()
 		{
     		var current_menu = $('.menuSelected').attr('id');
@@ -325,6 +326,7 @@ function menu(){
 		}).fadeTo(500, 1);
 	});
 
+	/*
 	$('#menuSortBy').click(function(){
 		$(this).fadeTo(500, 0.3, function()
 		{
@@ -339,6 +341,7 @@ function menu(){
 
 		}).fadeTo(500, 1);
 	});
+*/
 
 	/* Sub-menu */
 
@@ -777,5 +780,37 @@ function menu(){
 	 		$("#contentImg1").attr("src", pic_path);
 			$("#contentImg2").fadeOut(1000);
 	 	}	
+	}
+}
+
+function video(videos){
+
+	var previous_num = 0;
+	
+	showRandomVideo();	
+
+	$("#next").click(function(event) {
+		showRandomVideo();	
+	});
+
+	// displays a random video from list - FHM
+	function showRandomVideo(){
+
+		var random_num = Math.floor(Math.random()*(videos.length));
+
+		// make sure our new random number is not the same as last one
+		while(previous_num == random_num){
+			random_num = Math.floor(Math.random()*(videos.length));
+		}
+
+		previous_num = random_num;
+		
+		var yt_url = "http://www.youtube.com/embed/";
+		var options = "?rel=0&showinfo=0&controls=0&modestbranding=1&iv_load_policy=3";
+		var vid_url = yt_url + videos[random_num].path + options;
+
+		$("#video").attr("src", vid_url);
+		$("#video_name").html(videos[random_num].name);
+		$("#video_author").html(videos[random_num].author);
 	}
 }

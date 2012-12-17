@@ -33,25 +33,36 @@
 			<table>
 				<tr>
 				<?php 
-					foreach($menus as $menu) {
+					foreach($menus as $key => $menu) {	
 
-						if($menu['name'] == 'specials')
-						{
+						$key++;
+//						if($menu['name'] == 'specials')
+//						{
 					?>
-					
-					<!-- <img class="menuTabs" id="selectedTab" src="<?php echo URL .'public/img/menu/header_menu_selected.png'; ?>"> -->
-					<td id="<?php echo $menu['name']; ?>">
-						<img class="menuTabs" id="specialTab" src="<?php echo URL .'public/img/menu/header_menu_special.png'; ?>">
+					<td id="menu<?php echo $key; ?>" class="<?php echo $menu['name']; ?>">
+						<img class="menuTabs notSelectedTab" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
 						<?php echo strtoupper($menu['name']); ?>
 					</td>
-						<?php }else{ ?>
-					
-					<td class="<?php echo $menu['name']; ?>">
-						<img class="menuTabs" class="notSelectedTab" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
-						<?php echo strtoupper($menu['name']); ?>
-					</td>
-						<?php } ?>	
 					<?php } ?>
+					
+					<!--
+					<td id="<?php//echo $menu['name']; ?>">
+						<img class="menuTabs" id="specialTab" src="<?php echo URL .'public/img/menu/header_menu_special.png'; ?>">
+						<?php// echo strtoupper($menu['name']); ?>
+					</td>
+						<?php //}else if($menu['name'] == 'dishes'){ ?>
+					<td class="<?php// echo $menu['name']; ?>">
+						<img class="menuTabs menuSelected" src="<?php echo URL .'public/img/menu/header_menu_selected.png'; ?>">
+						<?php //echo strtoupper($menu['name']); ?>
+					</td>
+							<?php //}else{ ?>
+					<td class="<?php //echo $menu['name']; ?>">
+						<img class="menuTabs" class="notSelectedTab" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
+						<?php //echo strtoupper($menu['name']); ?>
+					</td>
+						<?php// } ?>	
+					<?php //} ?>
+				-->
 				</tr>
 			</table> 
 		</div>

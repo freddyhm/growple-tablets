@@ -98,7 +98,7 @@ a:visited {text-decoration: none; color:#fff;}
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.mainMenu table td.menuSelected
+.menuSelected
 {
 
 }
@@ -375,6 +375,10 @@ a:visited {text-decoration: none; color:#fff;}
 }
 /* END - MENU */
 
+/* START - VIDEO */
+
+/* END - VIDEO */
+
 /* START - ERROR */
 #updatemsg
 {
@@ -497,6 +501,7 @@ a:visited {text-decoration: none; color:#fff;}
     position: absolute;
     width: 700px;
     z-index:1;
+    text-align: center;
 }
 
 #video_navbar
