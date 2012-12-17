@@ -24,8 +24,8 @@
 			<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
 			<div id="waitForServer">
 				<div id="waitForServerBckgd"></div>
-				<img id="waitForServerWaiting" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
-				<img id="waitForServerReady" src="<?php echo URL .'public/img/menu/cart/btn_done.png'; ?>">
+				<img id="waitForServerSign" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
+				<img id="waitForServerDone" src="<?php echo URL .'public/img/menu/cart/btn_done.png'; ?>">
 			</div>
 			<img id="cartTab" src="<?php echo URL .'public/img/menu/cart_arrow.png'; ?>">
 		</div>

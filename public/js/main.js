@@ -45,30 +45,42 @@ function menu(){
 		}
 		*/
 	});
-
+	
+	// add or edit cart - FHM
 	$("#cartAction").click(function(event){
 		
+		// get item count and status of order - FHM
 		var item_count = $("#cartItems td").length;
 		var waiting_for_server = $("#waitForServer").css("display");
 		
 		if(waiting_for_server == "none"){
 			if(item_count != 0){
 				
+				// show "waiting for server"  - FHM
 				$(this).attr("src",URL + "public/img/menu/cart/btn_edit.png");
 				$("#grabIt").css("z-index", "1");
 				$("#cartTab").hide();
 				$("#waitForServer").show();
 
+				// Store cart in session variable - Need to do - FHM
+
 			}else{
 				alert("Uh Oh! You forgot to add an item.");
 			}
 		}else{
-			
+
+			// abort "waiting for server"  - FHM
 			$(this).attr("src",URL + "public/img/menu/cart/btn_cart_ready.png");
 			$("#grabIt").css("z-index", "2");
 			$("#cartTab").show();
 			$("#waitForServer").hide();
+
+			// Delete cart in session variable - Need to do - FHM
 		}
+	});
+
+	$("#waitForServerDone").click(function(event) {
+		
 	});
 
 	$("#cartTab").click(function(event) {

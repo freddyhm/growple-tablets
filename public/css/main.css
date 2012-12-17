@@ -359,7 +359,7 @@ a:visited {text-decoration: none; color:#fff;}
   position: relative;
 }
 
-#waitForServerWaiting
+#waitForServerSign
 {
   bottom: 458px;
   z-index: 1;
@@ -367,7 +367,7 @@ a:visited {text-decoration: none; color:#fff;}
   position: relative;
 }
 
-#waitForServerReady
+#waitForServerDone
 {
   position: relative;
   left: -19px;
