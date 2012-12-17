@@ -11,7 +11,7 @@
 
 			<div id="game_msg">
 
-				<div id="btn_gamehome"><a href="home.html"><img src="<?php echo URL . 'public/img/error/btn_return.png'; ?>"></a></div>
+				<div id="btn_gamehome"><a href="home"><img src="<?php echo URL . 'public/img/error/btn_return.png'; ?>"></a></div>
 			</div>	
 		
 		</div>
