@@ -3,10 +3,11 @@
 	<script>
 		$(document).ready(function() {		
 			
+			// init functions for menu - FHM
 			menu();
 
+			// first time interacting w/the menu, show tutorial - FHM
 			var virgin = "<?php echo $is_virgin; ?>";
-
 			if(virgin == "Yes"){
 
 				$("#tutorial").click(function(event) {
