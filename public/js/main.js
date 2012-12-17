@@ -8,30 +8,42 @@ function menu(){
 
 	// Show cart, add item, and close
 	$("#grabIt").click(function(){
-		if(cart_status == "hidden"){
-			$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
-			$("#cart").animate({bottom: "-=140"}, 1000, function(){
-				
-				addItem(1, function(){
-				$("#cart").delay(1000).animate({bottom: "+=140"}, 1000, function(){
-					$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");	
-					});	
-				});
-							
-			});
-		}else{
 
-			//addItem();
-			
-			$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
+		// btn pressed - FHM
+		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
+
+		if(cart_status == "hidden"){
+			// show cart - FHM
+			$("#cart").animate({bottom: "-=140"}, 1000, function(){
+
+				addItem(1, function(){
+					// hide cart - FHM
+					$("#cart").delay(1000).animate({bottom: "+=140"}, 1000);
+					// unpress button - FHM
+					$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");		
+				});
+
+			});
+		}else if(cart_status == "showing"){
+
+			// need to wait till fix the pics - FHM
+			addItem(1, function(){
+				// hide cart since it's already showing - FHM
+				$("#cart").delay(1000).animate({bottom: "+=140"}, 1000);
+				// unpress button - FHM
+				$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");			
+			});
+
+			//update status - FHM
+			cart_status = "hidden";
 		}
 	});
 
 	$("#cartTab").click(function(event) {
 		if(cart_status == "hidden"){
 			$(this).parent().animate({bottom: "-=140"}, 1000);
-			cart_status = "show";
-		}else if(cart_status == "show"){
+			cart_status = "showing";
+		}else if(cart_status == "showing"){
 			$(this).parent().animate({bottom: "+=140"}, 1000);
 			cart_status = "hidden";
 		}
