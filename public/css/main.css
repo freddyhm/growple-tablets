@@ -322,7 +322,7 @@ a:visited {text-decoration: none; color:#fff;}
   margin: 140px 172px;
 }
 
-.cartAction
+#cartAction
 {
   float:right;
 }
@@ -346,6 +346,8 @@ a:visited {text-decoration: none; color:#fff;}
 #waitForServer
 {
   display: none;
+  top: 138px;
+  position: relative;
 }
 
 #waitForServerBckgd
@@ -357,7 +359,7 @@ a:visited {text-decoration: none; color:#fff;}
   position: relative;
 }
 
-#waitForServerWait
+#waitForServerWaiting
 {
   bottom: 458px;
   z-index: 1;

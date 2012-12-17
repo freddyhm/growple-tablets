@@ -19,16 +19,12 @@
 		</div>
 		<div id="cart">
 			<table id="cartItems">
-				<tr>
-				</tr>
+				<tr></tr>
 			</table>
-			<div id="addToCart">
-				<img class="cartAction" id="cartReady" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
-			</div>
+			<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
 			<div id="waitForServer">
-				<img class="cartAction" id="waitForServerEdit" src="<?php echo URL .'public/img/menu/cart/btn_edit.png'; ?>">
 				<div id="waitForServerBckgd"></div>
-				<img id="waitForServerWait" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
+				<img id="waitForServerWaiting" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
 				<img id="waitForServerReady" src="<?php echo URL .'public/img/menu/cart/btn_done.png'; ?>">
 			</div>
 			<img id="cartTab" src="<?php echo URL .'public/img/menu/cart_arrow.png'; ?>">
