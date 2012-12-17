@@ -62,8 +62,6 @@ function menu(){
 				$("#cartTab").hide();
 				$("#waitForServer").show();
 
-				// Store cart in session variable - Need to do - FHM
-
 			}else{
 				alert("Uh Oh! You forgot to add an item.");
 			}
@@ -74,13 +72,18 @@ function menu(){
 			$("#grabIt").css("z-index", "2");
 			$("#cartTab").show();
 			$("#waitForServer").hide();
-
-			// Delete cart in session variable - Need to do - FHM
 		}
 	});
 
 	$("#waitForServerDone").click(function(event) {
 		
+		// Store cart in session variable - Need to do - FHM
+		var answer = confirm("Finished ordering?");
+
+		// redirect to home page - FHM
+		if(answer == true){
+			window.location = URL + "home";
+		}
 	});
 
 	$("#cartTab").click(function(event) {
