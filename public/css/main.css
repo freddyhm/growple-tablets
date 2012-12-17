@@ -63,6 +63,14 @@ a:visited {text-decoration: none; color:#fff;}
   position: absolute;
 }
 
+#tutorialSign
+{
+  z-index: 3;
+  top: 339px;
+  position: absolute;
+  left: 361px;
+}
+
 #tutorialBckgd
 {
   width: 1024px;

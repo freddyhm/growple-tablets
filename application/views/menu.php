@@ -7,7 +7,7 @@
 
 			var virgin = "<?php echo $is_virgin; ?>";
 
-			if(virgin == "No"){
+			if(virgin == "Yes"){
 
 				$("#tutorial").click(function(event) {
 					$("#tutorial").hide();
@@ -27,6 +27,7 @@
 			<span class="tutorialText" id="tutorialDiscover">Discover</span>
 			<span class="tutorialText" id="tutorialPlay">Meet & Play</span>
 			<span class="tutorialText" id="tutorialWatch">Watch</span>
+			<img id="tutorialSign" src="<?php echo URL .'public/img/menu/tutorial/btn_getstarted.png'; ?>">
 			<div id="tutorialBckgd"></div>
 		</div>
 		<!-- Main Menu (Bottom) -->
