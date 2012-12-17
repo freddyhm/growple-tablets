@@ -1,4 +1,6 @@
-function menu(){
+function menu(is_virgin){
+
+	
 
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";

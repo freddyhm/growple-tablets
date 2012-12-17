@@ -2,7 +2,22 @@
 <div class="playbook">
 	<script>
 		$(document).ready(function() {		
+			
 			menu();
+
+			var virgin = "<?php echo $is_virgin; ?>";
+
+			if(virgin == "No"){
+
+				$("#tutorial").click(function(event) {
+					$("#tutorial").hide();
+					$("#grabIt").css("z-index", "2");
+					<?php Session::set("menu_first_time", "No"); ?>
+				});
+
+				$("#tutorial").show();
+				$("#grabIt").css("z-index", "1");
+			}
 		});
 	</script>
 	<!-- START CONTAINER -->
