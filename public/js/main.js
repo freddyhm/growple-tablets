@@ -60,6 +60,7 @@ function menu(){
 				$(this).attr("src",URL + "public/img/menu/cart/btn_edit.png");
 				$("#grabIt").css("z-index", "1");
 				$("#cartTab").hide();
+				$("#cart").css("z-index", "2");
 				$("#waitForServer").show();
 
 			}else{
@@ -71,6 +72,7 @@ function menu(){
 			$(this).attr("src",URL + "public/img/menu/cart/btn_cart_ready.png");
 			$("#grabIt").css("z-index", "2");
 			$("#cartTab").show();
+			$("#cart").css("z-index", "1");
 			$("#waitForServer").hide();
 		}
 	});
@@ -88,10 +90,11 @@ function menu(){
 
 	$("#cartTab").click(function(event) {
 		if(cart_status == "hidden"){
-			$(this).parent().animate({bottom: "-=140"}, 1000);
+			$("#cart").animate({bottom: "-=140"}, 1000);
 			cart_status = "showing";
 		}else if(cart_status == "showing"){
-			$(this).parent().animate({bottom: "+=140"}, 1000);
+			$("#cart").animate({bottom: "+=140"}, 1000);
+
 			cart_status = "hidden";
 		}
 	});
@@ -111,6 +114,7 @@ function menu(){
 	}
 
 	// caching all images by loading them and attaching them to a hidden DOM element - FHM
+	/*
 	var imageArray = ['assets/img/menu/special/fishandchips.jpg', 
 							  'assets/img/menu/special/chickentender.jpg', 
 							  'assets/img/menu/special/newyorker.jpg', 
@@ -133,15 +137,17 @@ function menu(){
 							  'assets/img/menu/beer/rickards.jpg',
 							  'assets/img/menu/beer/sapporo.jpg'
 				  			];
+				  			*/
  
 	// Add hidden element
-	var hidden = $('body').append('<div id="img-cache" style="display:none" />').children('#img-cache');
+//	var hidden = $('body').append('<div id="img-cache" style="display:none" />').children('#img-cache');
 	 
+	 /*
 	// Add images to hidden element.
 	$.each(imageArray, function (i, val) {
 	  $('<img/>').attr('src', val).appendTo(hidden);
 	});
-
+*/
 
 	/* Category */
 	$('#specials').click(function(){
@@ -338,16 +344,15 @@ function menu(){
 
 
 	$('#item1').click(function(){
-		
-		var opac1 = $("#contentImg1").css('opacity');
-		var opac2 = $("#contentImg2").css('opacity');
 
-		if(opac1 == 1 && opac2 == 1){
+//		if(opac1 == 1 && opac2 == 1){
 
 	  	// get name of current menu - FHM
-	  	 var current_menu = $('.menuSelected').attr('id');
+	//  	 var current_menu = $('.menuSelected').attr('id');
 
 		 // change description based on menu selected - FHM
+
+		 /*
 		 if(current_menu == 'special'){
 
 		 	changePicture('assets/img/menu/special/fishandchips.jpg');
@@ -388,16 +393,16 @@ function menu(){
 			$('.itemDescription').css('margin', '157px 24px');
 			$('.itemPrice').css('margin', '280px 93px');
 		}
-
+*/
 
 		// Anim#1: change picture after item is selected, because need to find what button is selected and then display picture - FHM
-    	$('#selectedItem').animate({
-    		left:'0',
-		  },500);
-		  }		  	 
+    	
+    	$('#selectedItem').animate({ left:'0',},500);
     });
 
 	$('#item2').click(function(){
+
+		/*
 
 		var opac1 = $("#contentImg1").css('opacity');
 		var opac2 = $("#contentImg2").css('opacity');
@@ -448,18 +453,17 @@ function menu(){
 			$('.itemPrice').css('margin', '280px 93px');
 
 		}
-		
+		*/
 		// Anim#2: move selected square and change picture @ same time - FHM
 		 $('#selectedItem').animate({
 		    left: '140',
 		  }, 500);
 
-		}
-
 	});
 
 	$('#item3').click(function(){
 
+		/*
 		var opac1 = $("#contentImg1").css('opacity');
 		var opac2 = $("#contentImg2").css('opacity');
 
@@ -510,15 +514,16 @@ function menu(){
 			$('.itemDescription').css('margin', '194px 24px');
 			$('.itemPrice').css('margin', '280px 93px');
 		}
-
+	*/
 		// Anim#2: move selected square and change picture @ same time - FHM
 		$('#selectedItem').animate({
 		    left: '288',
 		  }, 500);
-	    }
 	});
 
 	$('#item4').click(function(){
+
+		/*
 
 		var opac1 = $("#contentImg1").css('opacity');
 		var opac2 = $("#contentImg2").css('opacity');
@@ -569,17 +574,16 @@ function menu(){
 			$('.itemPrice').css('margin', '280px 93px');
 		}
 
-		    
+		 */   
 		  // Anim#1: change picture after item is selected not during - FHM
 		$('#selectedItem').animate({
 		    left: '434',
 		  }, 500);
-
-		}
 	});
 
 	$('#item5').click(function(){
 
+	/*
 		var opac1 = $("#contentImg1").css('opacity');
 		var opac2 = $("#contentImg2").css('opacity');
 
@@ -628,17 +632,16 @@ function menu(){
 				$('.itemDescription').css('margin', '194px 24px');
 				$('.itemPrice').css('margin', '280px 93px');
 			}
-
+*/
 			// Anim#1: change picture after item is selected not during - FHM
 		$('#selectedItem').animate({
 		    left: '576',
 		  }, 500);
-
-	}
-
 	});
 
 	$('#item6').click(function(){
+
+		/*
 
 		var opac1 = $("#contentImg1").css('opacity');
 		var opac2 = $("#contentImg2").css('opacity');
@@ -687,17 +690,16 @@ function menu(){
 			$('.itemDescription').css('margin', '194px 24px');
 			$('.itemPrice').css('margin', '280px 93px');
 		}
-
+	*/
 		// Anim#1: change picture after item is selected not during - FHM
 		$('#selectedItem').animate({
 		    left: '729',
 		  }, 500);
-
-	}
-		   
 	});
 
 	$('#item7').click(function(){
+
+		/*
 
 		var opac1 = $("#contentImg1").css('opacity');
 		var opac2 = $("#contentImg2").css('opacity');
@@ -745,13 +747,11 @@ function menu(){
 			$('.itemDescription').css('margin', '194px 24px');
 			$('.itemPrice').css('margin', '280px 93px');
 		}
-
+	*/
 		// Anim#1: change picture after item is selected not during - FHM
 		$('#selectedItem').animate({
 		    left: '882'
 		  }, 500);
-
-	}
 	});
 
 	function changePicture(pic_path){
