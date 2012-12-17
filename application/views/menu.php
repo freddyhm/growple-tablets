@@ -18,6 +18,10 @@
 		<div id="mainBkgdMenu">
 		</div>
 		<div id="cart">
+			<table id="cartItems">
+				<tr>
+				</tr>
+			</table>
 			<div id="addToCart">
 				<img class="cartAction" id="cartReady" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
 			</div>

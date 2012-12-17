@@ -338,9 +338,9 @@ a:visited {text-decoration: none; color:#fff;}
   bottom: 52px;
 }
 
-#addToCart
+#cartItems
 {
-  
+  position: absolute;
 }
 
 #waitForServer

@@ -11,12 +11,18 @@ function menu(){
 		if(cart_status == "hidden"){
 			$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
 			$("#cart").animate({bottom: "-=140"}, 1000, function(){
+				
+				addItem(1, function(){
 				$("#cart").delay(1000).animate({bottom: "+=140"}, 1000, function(){
 					$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");	
-				});				
+					});	
+				});
+							
 			});
 		}else{
-			// add item
+
+			//addItem();
+			
 			$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
 		}
 	});
@@ -31,6 +37,19 @@ function menu(){
 		}
 	});
 
+	// inserts item into a user's cart - FHM
+	function addItem(id, callback){
+
+		// take src from cached pic
+		var small_pic = '#smallPicItem-' + id;
+		var small_src = $(small_pic).attr("src");
+		
+		// insert new pic and item - FHM
+		$("#cartItems tr").append("<td><img id='test' style='display:none;' src='public/img/menu/cart/btn_edit.png'></td>");
+		$("#test").fadeIn(1000, function(){
+			callback();	
+		});
+	}
 
 	// caching all images by loading them and attaching them to a hidden DOM element - FHM
 	var imageArray = ['assets/img/menu/special/fishandchips.jpg', 
