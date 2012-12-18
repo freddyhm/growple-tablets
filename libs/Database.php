@@ -7,4 +7,6 @@
         $cfg->set_model_directory(MODEL_DIR);
         $cfg->set_connections(array(
             ENVIRONMENT => DB_TYPE . '://' . DB_USER . ':' . DB_PASS . '@' . DB_HOST . '/' . DB_NAME));
+
+        $cfg->set_default_connection(ENVIRONMENT);
     });
