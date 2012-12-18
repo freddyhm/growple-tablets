@@ -87,6 +87,28 @@ a:visited {text-decoration: none; color:#fff;}
   z-index: 2;
 }
 
+#bckgdImg1
+{
+  z-index: -1;
+  position: absolute;
+  width:1024px;
+  height:600px;
+  margin:-2px 0px;
+  display:inline;
+
+}
+
+#bckgdImg2
+{
+  z-index: -2;
+  position: absolute;
+  width:1024px;
+  height:600px;
+  margin:-2px 0px;
+  display:inline;
+
+}
+
 .mainMenu
 {
   width: 1024px;
@@ -142,7 +164,6 @@ a:visited {text-decoration: none; color:#fff;}
 
 #mainBkgdMenu
 {
-  
   width: 1024px;
   height: 100px;
   z-index: -1;
@@ -151,12 +172,10 @@ a:visited {text-decoration: none; color:#fff;}
   background-color: black;
   opacity: 0.35;
   left:0px;
-
 }
 
 #selectedItem
 {
-
   background-color: grey;
   opacity: 0.75;
   left: 1px;

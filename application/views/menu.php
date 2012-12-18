@@ -8,7 +8,7 @@
 
 			// first time interacting w/the menu, show tutorial - FHM
 			var virgin = "<?php echo $is_virgin; ?>";
-			if(virgin == "No"){
+			if(virgin == "Yes"){
 
 				$("#tutorial").click(function(event) {
 					$("#tutorial").hide();
@@ -23,6 +23,8 @@
 	</script>
 	<!-- START CONTAINER -->
 	<div class="content">
+		<img src="<?php echo URL .'public/img/menu/dishes/01_KamJaTang.jpg'; ?>"  id="bckgdImg1"/>
+		<img src="" id="bckgdImg2"/>
 		<div id="tutorial">
 			<img id="tutorialBckgdImg" src="<?php echo URL .'public/img/menu/tutorial/bg_owl.jpg'; ?>">
 			<img id="tutorialIcons" src="<?php echo URL .'public/img/menu/tutorial/tut_intro.png'; ?>">
