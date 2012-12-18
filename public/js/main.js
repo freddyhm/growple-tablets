@@ -814,7 +814,7 @@ function video(videos){
 		previous_num = random_num;
 		
 		var yt_url = "http://www.youtube.com/embed/";
-		var options = "?rel=0&showinfo=0&controls=0&modestbranding=1&iv_load_policy=3";
+		var options = "?rel=0&showinfo=0&controls=0&modestbranding=1&iv_load_policy=3&autoplay=1";
 		var vid_url = yt_url + videos[random_num].path + options;
 
 		$("#video").attr("src", vid_url);
