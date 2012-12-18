@@ -5,8 +5,8 @@ function menu(is_virgin){
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";
 
-	// 'dishes' menu is selected by default &  put special header on 'special' section - FHM
-	$("#menu2 img").attr("src", URL + "public/img/menu/header_menu_selected.png");
+	// menu2 is selected by default &  put special header on 'special' section - FHM
+	$("#menu2 img").attr("src", URL + "public/img/menu/header_menu_selected.png").parent().addClass("menuSelected");
 	$("#menu1 img").attr("src", URL + "public/img/menu/header_menu_special.png");
 
 	// Show cart, add item, and close
@@ -173,23 +173,29 @@ function menu(is_virgin){
 
 		$(this).click(function(event) {
 
-			alert('d');
-				
+			$(this).fadeTo(200, 0.3, function()
+			{
 				// get id of currently selected menu  FHM
-			var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
+				var current_menu = $('.menuSelected').attr('id');
+				var current_id = '#' + current_menu;
 
-			// deselect menu - FHM
-			$(current_id).removeClass();
-			$(this).addClass('menuSelected');
-
-			$("#menu2 img").attr("src", URL + "public/img/menu/header_menu_selected.png");
+				// deselect current menu and change header - FHM
+				$(current_id).removeClass('menuSelected');
+				$("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
+				$(current_id).css("background-color", "");
+				
+				// select new menu and change header - FHM
+				$(this).addClass('menuSelected');
+				$("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
+				$(this).css("background-color", "rgba(0,0,0,0.8)");
+			}).fadeTo(200, 1);
 		});
 	});
 
 	/* Category */
+	/*
 	$('#menu1').click(function(){
-        $(this).fadeTo(500, 0.3, function()
+        $(this).fadeTo(500, 1, function()
 		{
 			
 			// get id of currently selected menu  FHM
@@ -215,7 +221,7 @@ function menu(is_virgin){
 			$("#item6").html('THE PRIME RIB BURGER');
 			$("#item7").html('BUFFALO CHICKEN WRAP');
 
-		}).fadeTo(500, 1);
+		});
 	});
 
 	$('#menu2').click(function(){
@@ -362,6 +368,7 @@ function menu(is_virgin){
 
 		}).fadeTo(500, 1);
 	});
+*/
 
 	/*
 	$('#menuSortBy').click(function(){

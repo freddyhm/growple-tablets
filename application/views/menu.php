@@ -57,7 +57,7 @@
 						$key++;
 					?>
 					<td class="menuList" id="menu<?php echo $key; ?>" class="<?php echo $menu['name']; ?>">
-						<img class="menuTabs notSelectedTab" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
+						<img class="menuTabs" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
 						<?php echo strtoupper($menu['name']); ?>
 					</td>
 					<?php } ?>
