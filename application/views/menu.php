@@ -8,7 +8,7 @@
 
 			// first time interacting w/the menu, show tutorial - FHM
 			var virgin = "<?php echo $is_virgin; ?>";
-			if(virgin == "Yes"){
+			if(virgin == "No"){
 
 				$("#tutorial").click(function(event) {
 					$("#tutorial").hide();
