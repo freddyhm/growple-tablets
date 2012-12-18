@@ -120,15 +120,24 @@ function menu(is_virgin){
 		}
 	});
 
+	// remove item from cart - FHM
+	$(".cartDeleteItem").live('click', function(event) {
+		var item_id = "#" + $(this).attr("id");
+		$(item_id).parent().remove();		
+	});
+		
 	// inserts item into a user's cart - FHM
 	function addItem(id, callback){
 
 		// take src from cached pic
 		var small_pic = '#smallPicItem-' + id;
 		var small_src = $(small_pic).attr("src");
+
+		var item_img =  "<img id='test' src='public/img/menu/cart/btn_edit.png'>";
+		var del_img = "<img class='cartDeleteItem' id='one' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
 		
 		// insert new pic and item - FHM
-		$("#cartItems tr").append("<td><img id='test' style='display:none;' src='public/img/menu/cart/btn_edit.png'></td>");
+		$("#cartItems tr").append("<td>" + item_img + del_img +"</td>");
 		$("#test").fadeIn(1000, function(){
 			callback();	
 		});

@@ -38,9 +38,11 @@
 		<div id="mainBkgdMenu">
 		</div>
 		<div id="cart">
+			<div id="cartArea">
 			<table id="cartItems">
 				<tr></tr>
 			</table>
+			</div>
 			<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
 			<div id="waitForServer">
 				<div id="waitForServerBckgd"></div>

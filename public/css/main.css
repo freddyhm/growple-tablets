@@ -255,14 +255,6 @@ a:visited {text-decoration: none; color:#fff;}
   position: absolute;
 }
 
-#cartTab
-{
-  left: 500px;
-  opacity: 0.5;
-  top: 142px;
-  position: relative;
-}
-
 .itemDetailContainer
 {
   background-image: url('../img/menu/bg_info.png');
@@ -345,7 +337,24 @@ a:visited {text-decoration: none; color:#fff;}
 
 #cartAction
 {
-  float:right;
+  float: right;
+  position: relative;
+  bottom: 133px;
+}
+
+#cartArea
+{
+  overflow-x: scroll;
+height: 135px;
+width: 867px;
+overflow-y: hidden;
+}
+
+#cartTab
+{
+  left: 500px;
+  opacity: 0.5;
+  position: relative;
 }
 
 #cart
@@ -356,12 +365,19 @@ a:visited {text-decoration: none; color:#fff;}
   z-index: 1;
   height: 600px;
   width: 1024px;  
-  bottom: 76px;
+  bottom: 76px; 
 }
 
 #cartItems
 {
-  position: absolute;
+  position: relative;
+}
+
+.cartDeleteItem
+{
+  position: relative;
+  bottom: 83px;
+  right: 50px;
 }
 
 #waitForServer
