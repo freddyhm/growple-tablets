@@ -203,24 +203,19 @@ a:visited {text-decoration: none; color:#fff;}
   margin: 400px 0px;
   position: absolute;
   overflow-x: scroll;
-  width: 231%;
+  width: 1024px;
   height: 105px;
   color: white;
   top: -7px;
   overflow-y: hidden;
 }
 
-.subMenuList table{
- width: 120%;
-}
-
 .subMenuList table td{
   height: 100px;
-  padding-right: 2%;
-  width: 200px;
   text-align: center;
+  padding-right: 53px;
+  white-space: nowrap;
 }
-
 
 .btnMenuNameNotSelected
 {

@@ -6,6 +6,8 @@
 			// init functions for menu - FHM
 			menu();
 
+			populateSubMenu();
+
 			// first time interacting w/the menu, show tutorial - FHM
 			var virgin = "<?php echo $is_virgin; ?>";
 			if(virgin == "Yes"){
@@ -19,6 +21,27 @@
 				$("#tutorial").show();
 				$("#grabIt").css("z-index", "1");
 			}
+
+			function populateSubMenu(menu_num){
+
+				menu_num = 0;
+				var menus = <?php echo json_encode($menus); ?>;
+				var menu_length = menus[menu_num].items.length - 1;
+
+				for (var i = 0; i <= menu_length; i++) {
+					
+					var name = menus[menu_num].items[i].name;
+					var id = i + 1;
+					var item = "<td id='item" + id + "' class='items'>" + name.toUpperCase() + "</td>";
+
+					$(".subMenuList table tr").append(item);
+				}
+				
+			}
+
+
+			
+
 		});
 	</script>
 	<!-- START CONTAINER -->
@@ -73,13 +96,6 @@
 				<table>
 					<tr>
 						<td id="selectedItem"></td>
-						<td id="item1" class="items">ENGLISH STYLE FISH & CHIPS</td>
-						<td id="item2" class="items">FRESH CHICKEN TENDERS</td>
-						<td id="item3" class="items">CHICKEN STIR FRY</td>
-						<td id="item4" class="items">THE NEW YORKER</td>
-						<td id="item5" class="items">STEAK SANDWICH</td>
-						<td id="item6" class="items">THE PRIME RIB BURGER</td>
-						<td id="item7" class="items">BUFFALO CHICKEN WRAP</td>
 					</tr>
 				</table>
 			</div>	
