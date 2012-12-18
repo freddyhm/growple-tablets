@@ -271,7 +271,7 @@ a:visited {text-decoration: none; color:#fff;}
 
 #cartTab
 {
-  left: 544px;
+  left: 500px;
   opacity: 0.5;
   top: 142px;
   position: relative;
@@ -370,7 +370,7 @@ a:visited {text-decoration: none; color:#fff;}
   z-index: 1;
   height: 600px;
   width: 1024px;  
-  bottom: 52px;
+  bottom: 76px;
 }
 
 #cartItems
