@@ -80,6 +80,13 @@ a:visited {text-decoration: none; color:#fff;}
   position: absolute;
   opacity: 0.8;
 }
+
+#tutorialBckgdImg
+{
+  position: absolute;
+  z-index: 2;
+}
+
 .mainMenu
 {
   width: 1024px;

@@ -24,6 +24,7 @@
 	<!-- START CONTAINER -->
 	<div class="content">
 		<div id="tutorial">
+			<img id="tutorialBckgdImg" src="<?php echo URL .'public/img/menu/tutorial/bg_owl.jpg'; ?>">
 			<img id="tutorialIcons" src="<?php echo URL .'public/img/menu/tutorial/tut_intro.png'; ?>">
 			<span class="tutorialText" id="tutorialDiscover">Discover</span>
 			<span class="tutorialText" id="tutorialPlay">Meet & Play</span>
