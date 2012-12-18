@@ -100,5 +100,3 @@
 		<a href="<?php echo URL . 'home'; ?>"><img id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>"></a>
 	</div>
 	<!-- END CONTAINER -->
-</div>	
-<!-- END PAGE WRAPPER -->

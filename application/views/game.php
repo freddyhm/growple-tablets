@@ -16,8 +16,6 @@
 		
 		</div>
 
-				
-		</div>
 		<!-- END CONTAINER -->
 		</div>	
 		<!-- END PAGE WRAPPER -->
