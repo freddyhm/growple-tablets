@@ -200,18 +200,23 @@ a:visited {text-decoration: none; color:#fff;}
 .subMenu
 {
   z-index: 1;
-  margin:400px 0px;
+  margin: 400px 0px;
   position: absolute;
-  overflow: hidden;
-  width: 1024px; 
+  overflow-x: scroll;
+  width: 231%;
   height: 105px;
   color: white;
-  top:-7px;
+  top: -7px;
+  overflow-y: hidden;
+}
+
+.subMenuList table{
+ width: 120%;
 }
 
 .subMenuList table td{
-  height:100px;
-  padding-right:8px;
+  height: 100px;
+  padding-right: 2%;
   width: 200px;
   text-align: center;
 }
