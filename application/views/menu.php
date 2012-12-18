@@ -4,9 +4,7 @@
 		$(document).ready(function() {		
 			
 			// init functions for menu - FHM
-			menu();
-
-			populateSubMenu();
+			menu(<?php echo json_encode($menus); ?>);
 
 			// first time interacting w/the menu, show tutorial - FHM
 			var virgin = "<?php echo $is_virgin; ?>";
@@ -21,27 +19,6 @@
 				$("#tutorial").show();
 				$("#grabIt").css("z-index", "1");
 			}
-
-			function populateSubMenu(menu_num){
-
-				menu_num = 0;
-				var menus = <?php echo json_encode($menus); ?>;
-				var menu_length = menus[menu_num].items.length - 1;
-
-				for (var i = 0; i <= menu_length; i++) {
-					
-					var name = menus[menu_num].items[i].name;
-					var id = i + 1;
-					var item = "<td id='item" + id + "' class='items'>" + name.toUpperCase() + "</td>";
-
-					$(".subMenuList table tr").append(item);
-				}
-				
-			}
-
-
-			
-
 		});
 	</script>
 	<!-- START CONTAINER -->
