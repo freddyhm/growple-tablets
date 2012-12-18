@@ -124,7 +124,7 @@ class Controller {
 	// analytics captures step's activity  - FHM
 	public function logUserActivity($status, $action, $item_id){
 
-		$path = unserialize(Session::get('path'));
+		$path = Session::get('path');
 		$date = date('m/d/Y h:i:s a', time()); 
 
 		// get current key for step - FHM
@@ -171,11 +171,17 @@ class Controller {
 	// analytics captures event/step  - FHM
 	public function logUserStep($status, $module_id){
 
-		$path = unserialize(Session::get('path'));
+		$old_path = Session::get('path');
+
+		if(!isset($old_path)){
+			$old_path = array();
+		}
+		$new_path = $old_path;
+
 		$date = date('m/d/Y h:i:s a', time()); 
 
 		// get current key - FHM
-		$current_key = count($path['steps']);
+		$current_key = count($old_path['steps']);
 
 		if(is_numeric($current_key) && is_string($status) && is_numeric($module_id)){
 
@@ -183,26 +189,36 @@ class Controller {
 			if($status == 'in'){
 				
 				// create new array with new key, keep 0 if first - FHM
-				$path['steps'][$current_key] = array();
-				$path['steps'][$current_key]['start'] = $date;
-				$path['steps'][$current_key]['module_id'] = $module_id;
+				$new_path['steps'][$current_key]['start'] = $date;
+				$new_path['steps'][$current_key]['module_id'] = $module_id;
 
-			}else if($status == 'out' || $current_key == 0){
+				print_r($new_path);
+
+				echo 'ddddddddd';
+
+				print_r($old_path);
+
+				Session::set('path', $new_path);
+
+				print_r($_SESSION['path']);
+				
+			}else if($status == 'out'){
 				// get last step through the array's last key - FHM
 				$last_key = $current_key - 1;
-				$path['steps'][$last_key]['end'] = $date;
+				$new_path['steps'][$last_key]['end'] = $date;
 			}
+			
 
-			Session::set('path', serialize($path));
-			$saved_path = Session::get('path');
-
+		
 	        if(!isset($saved_path)){
 	        	$this->handleError('caution', 'controller.php', 'Problem saving path in session variable in logUserPath()');
 	        }
 
 		}else{
 			$this->handleError('caution', 'controller.php', 'Problem with inputted variables in logUserStep()');
-		}				
+		}	
+
+
 	}
 
 	// takes in a user id and kicks-off a new path - FHM
@@ -225,7 +241,7 @@ class Controller {
 	        $new_path['event_id'] = $event->id;
 	        $new_path['start'] = $date; 
 
-	        Session::set('path', serialize($new_path));
+	        Session::set('path', $new_path);
 	        $saved_path = Session::get('path');
 
 	        if(!isset($saved_path)){
@@ -235,6 +251,8 @@ class Controller {
 		}else{
 			$this->handleError('caution', 'controller.php', 'Problem creating event in createUserPath()');
 		}
+
+	//	print_r($new_path);
 	}
 
 	// saves user path in database - FHM

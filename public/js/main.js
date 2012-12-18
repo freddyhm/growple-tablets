@@ -1,4 +1,4 @@
-function menu(is_virgin){
+function menu(menus){
 
 	
 
@@ -13,6 +13,8 @@ function menu(is_virgin){
 	// Show cart, add item, and close
 	$("#grabIt").click(function(){
 
+		var selected_item = $(".itemName").attr("value");
+
 		$("#cartTab").animate({opacity: "+=1"}, 500, function(){
 			$(this).animate({opacity: "-=0.50"}, 500);
 			$("#cartTab").animate({opacity: "+=1"}, 500, function(){
@@ -22,7 +24,7 @@ function menu(is_virgin){
 
 		// btn pressed - FHM
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
-			addItem(1, function(){
+			addItem(selected_item, function(){
 				// unpress button - FHM
 				$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");		
 			});
@@ -120,15 +122,24 @@ function menu(is_virgin){
 		}
 	});
 
+	// remove item from cart - FHM
+	$(".cartDeleteItem").live('click', function(event) {
+		var item_id = "#" + $(this).attr("id");
+		$(item_id).parent().remove();		
+	});
+		
 	// inserts item into a user's cart - FHM
 	function addItem(id, callback){
 
 		// take src from cached pic
 		var small_pic = '#smallPicItem-' + id;
 		var small_src = $(small_pic).attr("src");
+
+		var item_img =  "<img id='" + id + "' src='public/img/menu/cart/btn_edit.png'>";
+		var del_img = "<img class='cartDeleteItem' id='" + id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
 		
 		// insert new pic and item - FHM
-		$("#cartItems tr").append("<td><img id='test' style='display:none;' src='public/img/menu/cart/btn_edit.png'></td>");
+		$("#cartItems tr").append("<td>" + item_img + del_img +"</td>");
 		$("#test").fadeIn(1000, function(){
 			callback();	
 		});
@@ -189,208 +200,49 @@ function menu(is_virgin){
 				$(this).addClass('menuSelected');
 				$("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
 				$(this).css("background-color", "rgba(0,0,0,0.8)");
+
+				// get new menu_id and populate submenu - FHM
+				//var new_id = $(this).attr('id').substring(4);
+				var new_id = 0;
+				populateSubMenu(new_id);
+
 			}).fadeTo(200, 1);
 		});
 	});
 
-	/* Category */
-	/*
-	$('#menu1').click(function(){
-        $(this).fadeTo(500, 1, function()
-		{
-			
-			// get id of currently selected menu  FHM
-			var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
+	function populateSubMenu(menu_num){
 
-			// deselect menu - FHM
-			$(current_id).removeClass();
-			$(this).addClass('menuSelected');
+		var menu_length = menus[menu_num].items.length - 1;
+		for (var i = 0; i <= menu_length; i++) {			
+			var name = menus[menu_num].items[i].name;
+			var menu_item_id = menus[menu_num].items[i].id;
+			var id = i + 1;
+			var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'>" + name.toUpperCase() + "</td>";
 
-			//move selected submenu item to first one, and change description - FHM
-			$('#item1').trigger('click');
-			$('#selectedItem').animate({
-    			left:'0',
-		  	}, 1000);
+			$(".subMenuList table tr").append(item);
+		}
+		
+	}
 
-			// change sub-menu content - FHM
-			$("#item1").html('ENGLISH STYLE FISH & CHIPS');
-			$("#item2").html('FRESH CHICK TENDERS');
-			$("#item3").html('CHICKEN STIR FRY');
-			$("#item4").html('THE NEW YORKER');
-			$("#item5").html('STEAK SANDWICH');
-			$("#item6").html('THE PRIME RIB BURGER');
-			$("#item7").html('BUFFALO CHICKEN WRAP');
+	$(".items").live("click", function(){
 
-		});
+		var item_id = $(this).attr("value");
+		//var menu_id = $(".menuSelected").attr("id").substring(4);
+		var menu_id = 0;
+	
+		// change background picture
+		
+		//	changePicture('assets/img/menu/special/fishandchips.jpg');
+
+		// change name and description - FHM
+	 	$('.itemName').html(menus[menu_id].items[item_id].name).attr("value", item_id);
+		$('.itemDescription').html(menus[menu_id].items[item_id].name);
+		$('.itemPrice').html(menus[menu_id].items[item_id].price);
 	});
-
-	$('#menu2').click(function(){
-		$(this).fadeTo(500, 0.3, function()
-		{
-			var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
-
-    		$(current_id).removeClass();
-    		$(this).addClass('menuSelected');
-
-    		//move selected submenu item to first one, and change description - FHM
-			$('#item1').trigger('click');
-			$('#selectedItem').animate({
-    			left:'0',
-		  	}, 1000);
-
-			$("#item1").html('FRONT ROW WINGS');
-			$("#item2").html('PICKLE SPEARS');
-			$("#item3").html('SPICY POPCORN CHICKEN');
-			$("#item4").html('CRISPY YAM FRIES');
-			$("#item5").html('ANTIJITOS');
-			$("#item6").html('FRONT ROW ULTIMATE NACHOS');
-			$("#item7").html('FRESH VEGO SPRING');
-
-		}).fadeTo(500, 1);
-	});
-
-	$('#menu3').click(function(){
-		$(this).fadeTo(500, 0.3, function()
-		{
-			var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
-
-    		$(current_id).removeClass();
-    		$(this).addClass('menuSelected');
-
-    		//move selected submenu item to first one, and change description - FHM
-			$('#item1').trigger('click');
-			$('#selectedItem').animate({
-    			left:'0',
-		  	}, 1000);
-
-    		$("#item1").html('CORONA');
-			$("#item2").html('HEINEKEN');
-			$("#item3").html('MILLER');
-			$("#item4").html("RICKARD'S");
-			$("#item5").html('SAPPORO');
-			$("#item6").html('PILSNER');
-			$("#item7").html('BUDWEISER');
-
-		}).fadeTo(500, 1);
-	});
-
-	$('#menu4').click(function(){
-		$(this).fadeTo(500, 0.3, function()
-		{
-    		var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
-
-    		$(current_id).removeClass();
-    		$(this).addClass('menuSelected');
-
-    		//move selected submenu item to first one, and change description - FHM
-			$('#item1').trigger('click');
-			$('#selectedItem').animate({
-    			left:'0',
-		  	}, 1000);
-
-		}).fadeTo(500, 1);
-	});
-
-	$('#menu5').click(function(){
-		$(this).fadeTo(500, 0.3, function()
-		{
-    		var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
-
-    		$(current_id).removeClass();
-    		$(this).addClass('menuSelected');
-
-    		//move selected submenu item to first one, and change description - FHM
-			$('#item1').trigger('click');
-			$('#selectedItem').animate({
-    			left:'0',
-		  	}, 1000);
+		
 
 
-		}).fadeTo(500, 1);
-	});
-
-	$('#menu6').click(function(){
-		$(this).fadeTo(500, 0.3, function()
-		{
-
-    		var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
-
-    		$(current_id).removeClass();
-    		$(this).addClass('menuSelected');
-
-    		//move selected submenu item to first one, and change description - FHM
-			$('#item1').trigger('click');
-			$('#selectedItem').animate({
-    			left:'0',
-		  	}, 1000);
-
-
-		}).fadeTo(500, 1);
-	});
-
-	$('#menu7').click(function(){
-		$(this).fadeTo(500, 0.3, function()
-		{
-    		var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
-
-    		$(current_id).removeClass();
-    		$(this).addClass('menuSelected');
-
-    		//move selected submenu item to first one, and change description - FHM
-			$('#item1').trigger('click');
-			$('#selectedItem').animate({
-    			left:'0',
-		  	}, 1000);
-
-		}).fadeTo(500, 1);
-	});
-
-	$('#menu8').click(function(){
-		$(this).fadeTo(500, 0.3, function()
-		{
-    		var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
-
-    		$(current_id).removeClass();
-    		$(this).addClass('menuSelected');
-
-    					//move selected submenu item to first one, and change description - FHM
-			$('#item1').trigger('click');
-			$('#selectedItem').animate({
-    			left:'0',
-		  	}, 1000);
-
-		}).fadeTo(500, 1);
-	});
-*/
-
-	/*
-	$('#menuSortBy').click(function(){
-		$(this).fadeTo(500, 0.3, function()
-		{
-    		var current_menu = $('.menuSelected').attr('id');
-			var current_id = '#' + current_menu;
-
-			$(current_id).removeClass();
-			$(this).css('-moz-box-shadow', '0px 0px 10px 0px rgba(245, 255, 48, 0.7)');
-			$(this).css('-webkit-box-shadow', '0px 0px 10px 0px rgba(245, 255, 48, 0.7)');
-			$(this).css('-o-box-shado', ' 0px 0px 10px 0px rgba(245, 255, 48, 0.7)');
-			$(this).css('box-shadow', '0px 0px 10px 0px rgba(245, 255, 48, 0.7)');
-
-		}).fadeTo(500, 1);
-	});
-*/
-
-	/* Sub-menu */
-
-
+	
 	$('#item1').click(function(){
 
 //		if(opac1 == 1 && opac2 == 1){
@@ -837,7 +689,7 @@ function video(videos){
 	$("#next").click(function(event) {
 		showRandomVideo();	
 	});
-
+	
 	// displays a random video from list - FHM
 	function showRandomVideo(){
 

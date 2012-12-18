@@ -4,7 +4,7 @@
 		$(document).ready(function() {		
 			
 			// init functions for menu - FHM
-			menu();
+			menu(<?php echo json_encode($menus); ?>);
 
 			// first time interacting w/the menu, show tutorial - FHM
 			var virgin = "<?php echo $is_virgin; ?>";
@@ -38,9 +38,11 @@
 		<div id="mainBkgdMenu">
 		</div>
 		<div id="cart">
+			<div id="cartArea">
 			<table id="cartItems">
 				<tr></tr>
 			</table>
+			</div>
 			<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
 			<div id="waitForServer">
 				<div id="waitForServerBckgd"></div>
@@ -71,13 +73,6 @@
 				<table>
 					<tr>
 						<td id="selectedItem"></td>
-						<td id="item1" class="items">ENGLISH STYLE FISH & CHIPS</td>
-						<td id="item2" class="items">FRESH CHICKEN TENDERS</td>
-						<td id="item3" class="items">CHICKEN STIR FRY</td>
-						<td id="item4" class="items">THE NEW YORKER</td>
-						<td id="item5" class="items">STEAK SANDWICH</td>
-						<td id="item6" class="items">THE PRIME RIB BURGER</td>
-						<td id="item7" class="items">BUFFALO CHICKEN WRAP</td>
 					</tr>
 				</table>
 			</div>	

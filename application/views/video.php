@@ -2,7 +2,6 @@
 <div class="playbook">
 	<script>
 		$(document).ready(function() {	
-
 			video(<?php echo json_encode($videos); ?>);
 		});
 	</script>
