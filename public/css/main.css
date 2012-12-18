@@ -117,6 +117,7 @@ a:visited {text-decoration: none; color:#fff;}
   margin:480px 0px;
   position: absolute;
   left: 86px;
+  font-size: 18px;
 }
 
 .mainMenu table
@@ -186,7 +187,7 @@ a:visited {text-decoration: none; color:#fff;}
   background-color:black;
   opacity:0.6;
   z-index: 1;
-  margin:398px 0px;
+  margin:400px 0px;
   position: absolute;
   overflow: hidden;
   width: 1024px; 
@@ -199,7 +200,7 @@ a:visited {text-decoration: none; color:#fff;}
 .subMenu
 {
   z-index: 1;
-  margin:398px 0px;
+  margin:400px 0px;
   position: absolute;
   overflow: hidden;
   width: 1024px; 
