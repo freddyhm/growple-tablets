@@ -169,11 +169,12 @@ a:visited {text-decoration: none; color:#fff;}
 
 #menuHome
 {
-  top: 95px;
-  position: relative;
-  z-index: 1;
-  width: auto;
-  height: 115px;
+  height: 140px;
+    left: -7px;
+    position: relative;
+    top: 70px;
+    width: auto;
+    z-index: 1;
 }
 
 .mainMenuList
