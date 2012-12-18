@@ -12,6 +12,13 @@ function menu(is_virgin){
 	// Show cart, add item, and close
 	$("#grabIt").click(function(){
 
+		$("#cartTab").animate({opacity: "+=1"}, 500, function(){
+			$(this).animate({opacity: "-=0.50"}, 500);
+			$("#cartTab").animate({opacity: "+=1"}, 500, function(){
+			$(this).animate({opacity: "-=0.50"}, 500);
+			});
+		});
+
 		// btn pressed - FHM
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
 			addItem(1, function(){
@@ -97,7 +104,6 @@ function menu(is_virgin){
 			cart_status = "showing";
 		}else if(cart_status == "showing"){
 			$("#cart").animate({bottom: "+=140"}, 1000);
-
 			cart_status = "hidden";
 		}
 	});
