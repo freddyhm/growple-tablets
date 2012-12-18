@@ -5,8 +5,8 @@ function menu(is_virgin){
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";
 
-	// 'special' menu is selected by default - FHM
-	//$("#menu1").addClass('menuSelected');
+	// 'dishes' menu is selected by default &  put special header on 'special' section - FHM
+	$("#menu2 img").attr("src", URL + "public/img/menu/header_menu_selected.png");
 	$("#menu1 img").attr("src", URL + "public/img/menu/header_menu_special.png");
 
 	// Show cart, add item, and close
@@ -168,6 +168,24 @@ function menu(is_virgin){
 	  $('<img/>').attr('src', val).appendTo(hidden);
 	});
 */
+
+	$(".menuList").each(function(event) {
+
+		$(this).click(function(event) {
+
+			alert('d');
+				
+				// get id of currently selected menu  FHM
+			var current_menu = $('.menuSelected').attr('id');
+			var current_id = '#' + current_menu;
+
+			// deselect menu - FHM
+			$(current_id).removeClass();
+			$(this).addClass('menuSelected');
+
+			$("#menu2 img").attr("src", URL + "public/img/menu/header_menu_selected.png");
+		});
+	});
 
 	/* Category */
 	$('#menu1').click(function(){

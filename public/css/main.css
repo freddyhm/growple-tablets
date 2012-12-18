@@ -135,31 +135,11 @@ a:visited {text-decoration: none; color:#fff;}
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.menuSelected
-{
-
-}
-
 .menuTabs
 {
   position: relative;
   bottom: 28px;
   width: 130px;
-}
-
-#specialTab
-{
-
-}
-
-#selectedTab
-{
-  
-}
-
-#notSelectedTab
-{
-
 }
 
 #mainBkgdMenu
