@@ -373,11 +373,18 @@ overflow-y: hidden;
   position: relative;
 }
 
+
+#cartItems td
+{
+  width: 199px;
+}
+
+
 .cartDeleteItem
 {
   position: relative;
-  bottom: 83px;
-  right: 50px;
+  bottom: 140px;
+  left: 122px;
 }
 
 #waitForServer
