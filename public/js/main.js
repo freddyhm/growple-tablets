@@ -87,15 +87,26 @@ function menu(is_virgin){
 		}
 	});
 
+	// done button pressed, pops in and out - FHM
 	$("#waitForServerDone").click(function(event) {
 		
-		// Store cart in session variable - Need to do - FHM
-		var answer = confirm("Finished ordering?");
+		$(this).attr("src", URL + "public/img/menu/cart/btn_done_pressed.png");
 
-		// redirect to home page - FHM
-		if(answer == true){
-			window.location = URL + "home";
-		}
+		setTimeout(function()
+		{
+			$("#waitForServerDone").attr("src", URL + "public/img/menu/cart/btn_done.png");
+
+			setTimeout(function(){
+				// Store cart in session variable - Need to do - FHM
+				var answer = confirm("Finished ordering?");
+
+				// redirect to home page - FHM
+				if(answer == true){
+					window.location = URL + "home";
+				}
+			},200);
+
+		}, 200);
 	});
 
 	$("#cartTab").click(function(event) {
