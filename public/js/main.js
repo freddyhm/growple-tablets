@@ -689,7 +689,7 @@ function video(videos){
 	$("#next").click(function(event) {
 		showRandomVideo();	
 	});
-
+	
 	// displays a random video from list - FHM
 	function showRandomVideo(){
 

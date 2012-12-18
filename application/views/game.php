@@ -1,5 +1,25 @@
 <!-- START PAGE WRAPPER -->
 		<div class="playbook">
+		<script>
+			$(document).ready(function() {
+				
+				/*
+				
+				$("#btn_gamehome").click(function(){
+
+					
+
+					var url = URL + 'game/logUserStep/d/out/3';
+					
+					$.post(url, {}, function(data, textStatus, xhr) {
+						 window.location = URL + "home";
+					});
+				});
+
+*/
+			});
+			
+		</script>
 		<!-- START CONTAINER -->
 		<div class="content">
 			<!-- AREA FOR BACKGROUND -->

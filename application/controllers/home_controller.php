@@ -10,6 +10,10 @@ class Home extends Controller {
 	// throws error for proper logging and error notification - FHM
 	public function index(){
 		
+		
+	
+	//	Session::destroy();
+
 		parent::index();
 	}
 }

@@ -9,7 +9,7 @@ class Menu extends Controller {
 
 	// throws error for proper logging and error notification - FHM
 	public function index(){
-		
+
 		try{
 			$module_list = Module::find_all_by_parent_id('1');
 		}catch(Exception $e){
