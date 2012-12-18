@@ -9,10 +9,11 @@
 	<!-- START CONTAINER -->
 	<div class="content">
 		<!-- AREA FOR VIDEO -->
-		<div class="video_area">
-			<iframe id="video" width="1024" height="600" src="" frameborder="0" allowfullscreen></iframe> -->
+		<div id="video_area">
+			<iframe id="video" width="1024" height="650" src="" frameborder="0" allowfullscreen></iframe>
 		</div>
 		<!-- START VIDEO MENUS -->
+		<div id="video_menu">
 		<div id="video_title">
 			<span id="video_name"></span>
 			<br>
@@ -27,6 +28,7 @@
 		</div>
 		<div id ="video_navbar">
 		</div>	
+	</div>
 	</div>
 	<!-- END CONTAINER -->
 </div>	
