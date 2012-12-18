@@ -419,13 +419,16 @@ a:visited {text-decoration: none; color:#fff;}
 
 #warning
 {
-	margin: 18px 30px;
+	  position: relative;
+    top: 0;
+    left:30px;
 }
 
 #btn_errorhome
 {
-	position: absolute;
-	margin: 0 195px;
+	 left: 155px;
+    position: relative;
+    top: -645px;
 }
 #content_message
 {
@@ -434,8 +437,9 @@ a:visited {text-decoration: none; color:#fff;}
     font-size: 20px;
     font-weight: bold;
     height: 300px;
-    margin: -52px 254px;
-    position: absolute;
+    left: 261px;
+    position: relative;
+    top: -374px;
     width: 400px;
 }
 #header_message
@@ -445,7 +449,9 @@ a:visited {text-decoration: none; color:#fff;}
     font-size: 45px;
     font-weight: bolder;
     height: 300px;
-    margin: -175px 250px;
+    left: 260px;
+    position: relative;
+    top: -153px;
     width: 600px;
 }
 /* END - ERROR */
@@ -564,7 +570,7 @@ top:-50px;
 {
   position: absolute;
   z-index: 1;
-  margin: -612px 55px
+  top:0px;
 }
 
 #game_msg
@@ -581,9 +587,10 @@ top:-50px;
 
 #btn_gamehome
 {
-  position: absolute;
-  margin: 122px 195px;
-  height:100px;
+    height: 100px;
+    left: 310px;
+    position: relative;
+    top: -165px;
 
 }
 
