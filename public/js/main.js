@@ -7,6 +7,7 @@ function menu(is_virgin){
 
 	// menu2 is selected by default &  put special header on 'special' section - FHM
 	$("#menu2 img").attr("src", URL + "public/img/menu/header_menu_selected.png").parent().addClass("menuSelected");
+	$("#menu2").css("background-color", "rgba(0,0,0,0.8)");
 	$("#menu1 img").attr("src", URL + "public/img/menu/header_menu_special.png");
 
 	// Show cart, add item, and close
