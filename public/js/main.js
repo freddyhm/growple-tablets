@@ -15,13 +15,13 @@ function sleep(){
 		    alt:  'Sand Castle',
 		    from: '100% 80% 1x',
 		    to:   '100% 0% 1.7x',
-		    time: 4
+		    time: 6
 		  }, {
 		    src: pic2,
 		    alt:  'Sunflower',
 		    from: 'top left',
 		    to:   'bottom right 1.5x',
-		    time: 4
+		    time: 6
 		  }
 		], function(idx, img, idxOut, imgOut) {
 		  if (idxOut == undefined)
@@ -38,7 +38,7 @@ function sleep(){
 	});
 
 	$('#sleepSlideshow').click(function(event) {
-		history.back();
+		window.location = URL + "home";
 	});
 }
 
