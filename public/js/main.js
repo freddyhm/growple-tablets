@@ -1,14 +1,17 @@
 function home(){
 
-	var pic1 = URL +  'public/img/home/bg_intmenu.jpg';
+	var pic1 = URL +  'public/img/home/bg_video.jpg';
 	var pic2 = URL +  'public/img/home/bg_video.jpg';
-	var pic3 = URL +  'public/img/home/bg_game.jpg';
+	var pic3 = URL +  'public/img/home/bg_video.jpg';
 
-	$('.homeSection').each(function(event) {
 
 		var section_id = "#" + $(this).attr("id");
+		var set_from;
+		var set_to;
+		var speed = 30;
 
-		$(section_id).crossSlide({
+
+		$("#menu_intmenu").crossSlide({
 		  fade: 0.1
 		}, [
 		  {
@@ -16,19 +19,19 @@ function home(){
 		    alt:  'Sand Castle',
 		    from: '100% 80% 1x',
 		    to:   '100% 0% 1.7x',
-		    time: 30
+		    time: speed
 		  }, {
 		    src:  pic2,
 		    alt:  'Sunflower',
 		    from: 'top left',
 		    to:   'bottom right 1.5x',
-		    time: 30
+		    time: speed
 		  }, {
 		    src:  pic3,
 		    alt:  'Flip Flops',
 		    from: '100% 80% 1.5x',
 		    to:   '80% 0% 1.1x',
-		    time: 30
+		    time: speed
 		  }
 		], function(idx, img, idxOut, imgOut) {
 		  if (idxOut == undefined)
@@ -43,8 +46,75 @@ function home(){
 		  }
 		});
 
-	});
+		$("#menu_games").crossSlide({
+		  fade: 0.1
+		}, [
+		  {
+		    src:  pic1,
+		    alt:  'Sand Castle',
+		    from: '100% 80% 1x',
+		    to:   '100% 0% 1.7x',
+		    time: speed
+		  }, {
+		    src:  pic2,
+		    alt:  'Sunflower',
+		    from: 'top left',
+		    to:   'bottom right 1.5x',
+		    time: speed
+		  }, {
+		    src:  pic3,
+		    alt:  'Flip Flops',
+		    from: '100% 80% 1.5x',
+		    to:   '80% 0% 1.1x',
+		    time: speed
+		  }
+		], function(idx, img, idxOut, imgOut) {
+		  if (idxOut == undefined)
+		  {
+		    // starting single image phase, put up caption
+		    $('div.caption').text(img.alt).animate({ opacity: .7 })
+		  }
+		  else
+		  {
+		    // starting cross-fade phase, take out caption
+		    $('div.caption').fadeOut()
+		  }
+		});
 
+		$("#menu_videos").crossSlide({
+		  fade: 0.1
+		}, [
+		  {
+		    src:  pic1,
+		    alt:  'Sand Castle',
+		    from: '100% 80% 1x',
+		    to:   '100% 0% 1.7x',
+		    time: speed
+		  }, {
+		    src:  pic2,
+		    alt:  'Sunflower',
+		    from: 'top left',
+		    to:   'bottom right 1.5x',
+		    time: speed
+		  }, {
+		    src:  pic3,
+		    alt:  'Flip Flops',
+		    from: '100% 80% 1.5x',
+		    to:   '80% 0% 1.1x',
+		    time: speed
+		  }
+		], function(idx, img, idxOut, imgOut) {
+		  if (idxOut == undefined)
+		  {
+		    // starting single image phase, put up caption
+		    $('div.caption').text(img.alt).animate({ opacity: .7 })
+		  }
+		  else
+		  {
+		    // starting cross-fade phase, take out caption
+		    $('div.caption').fadeOut()
+		  }
+		});
 }
 
 
