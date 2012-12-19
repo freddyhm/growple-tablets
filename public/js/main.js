@@ -8,35 +8,13 @@ function sleep(){
 	var pic2 = URL + 'public/img/menu/dishes/03.jpg';
 
 	$(function() {
-	
-	$('#sleepSlideshow').crossSlide({
-  fade: 1
-}, [
-  {
-    src:  pic1,
-    alt:  'Sand Castle',
-    from: '100% 80% 1x',
-    to:   '100% 0% 1.7x',
-    time: 3
-  }, {
-    src: pic2,
-    alt:  'Sunflower',
-    from: 'top left',
-    to:   'bottom right 1.5x',
-    time: 2
-  }
-], function(idx, img, idxOut, imgOut) {
-  if (idxOut == undefined)
-  {
-    // starting single image phase, put up caption
-    $('div.caption').text(img.alt).animate({ opacity: .7 })
-  }
-  else
-  {
-    // starting cross-fade phase, take out caption
-    $('div.caption').fadeOut()
-  }
-});
+	    $('#sleepSlideshow').crossSlide({
+	      sleep: 1,
+	      fade: 1
+	    }, [
+	      { src: pic1 },
+	      { src: pic2 }
+	    ])
 	});
 }
 
