@@ -489,6 +489,10 @@ overflow-y: hidden;
 	width: 341px;
 	height:600px;
 	background-image:url('../img/home/bg_intmenu.jpg');
+  -moz-box-shadow: inset 0px 0px 20px 0px #000000;
+  -webkit-box-shadow: inset 0px 0px 20px 0px #000000;
+  -o-box-shadow: inset 0px 0px 20px 0px #000000;
+  box-shadow: inset 0px 0px 20px 0px #000000;
 	
 }
 
@@ -503,6 +507,10 @@ overflow-y: hidden;
 	width: 341px;
 	height:600px;
 	background-image:url('../img/home/bg_game.jpg');
+  -moz-box-shadow: inset 0px 0px 20px 0px #000000;
+  -webkit-box-shadow: inset 0px 0px 20px 0px #000000;
+  -o-box-shadow: inset 0px 0px 20px 0px #000000;
+  box-shadow: inset 0px 0px 20px 0px #000000;
 }
 
 #btn_games
@@ -518,6 +526,10 @@ overflow-y: hidden;
 	width: 341px;
 	height:600px;
 	background-image:url('../img/home/bg_video.jpg');
+  -moz-box-shadow: inset 0px 0px 20px 0px #000000;
+  -webkit-box-shadow: inset 0px 0px 20px 0px #000000;
+  -o-box-shadow: inset 0px 0px 20px 0px #000000;
+  box-shadow: inset 0px 0px 20px 0px #000000;
 
 }
 
