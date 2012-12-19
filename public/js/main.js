@@ -1,4 +1,4 @@
-var sleep_timer = setTimeout(function() {$(".playbook").load("sleep");}, 5000);
+var sleep_timer = setTimeout(function() {$(".playbook").load("sleep");}, 10000);
 
 
 function sleep(){
