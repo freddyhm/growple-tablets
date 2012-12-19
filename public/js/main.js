@@ -7,7 +7,7 @@ function home(){
 
 
 
-$('#slideshow1').crossSlide({
+$('#menu_intmenu').crossSlide({
   fade: 1
 }, [
   {
@@ -15,19 +15,19 @@ $('#slideshow1').crossSlide({
     alt:  'Sand Castle',
     from: '100% 80% 1x',
     to:   '100% 0% 1.7x',
-    time: 3
+    time: 20
   }, {
     src:  pic2,
     alt:  'Sunflower',
     from: 'top left',
     to:   'bottom right 1.5x',
-    time: 2
+    time: 20
   }, {
     src:  pic3,
     alt:  'Flip Flops',
     from: '100% 80% 1.5x',
     to:   '80% 0% 1.1x',
-    time: 2
+    time: 20
   }
 ], function(idx, img, idxOut, imgOut) {
   if (idxOut == undefined)

@@ -4,12 +4,10 @@
 	});
 </script>
 <!-- START COLUMN1 - INTERACTIVE MENU -->
-<div id="slideshow1"></div>
 <div id="menu_intmenu">
 	<div id="btn_intmenu">
 		<a href="<?php echo URL . 'menu' ?>"><img src="<?php echo URL . 'public/img/home/btn_intmenu.png'; ?>"></a>	
 	<!-- SLIDESHOW FOR INTERACTIVE MENU MENU -->	
-		<img class="slideshow" id="pic1" src="<?php echo URL . 'public/img/home/bg_intmenu.jpg' ?>">	
 	</div>	
 </div>	
 <!-- END INTERACTIVE MENU -->
