@@ -8,20 +8,20 @@ function sleep(){
 
 	$(function() {
 		$('#sleepSlideshow').crossSlide({
-		  fade: 7
+		  fade: 0.1
 		}, [
 		  {
 		    src:  pic1,
 		    alt:  'Sand Castle',
 		    from: '100% 80% 1x',
 		    to:   '100% 0% 1.7x',
-		    time: 7
+		    time: 4
 		  }, {
 		    src: pic2,
 		    alt:  'Sunflower',
 		    from: 'top left',
 		    to:   'bottom right 1.5x',
-		    time: 7
+		    time: 4
 		  }
 		], function(idx, img, idxOut, imgOut) {
 		  if (idxOut == undefined)
