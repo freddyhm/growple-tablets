@@ -19,14 +19,23 @@ a:visited {text-decoration: none; color:#fff;}
 
 }
 
-#game{
-  
-}
-
 .content
 {
 	position: absolute;
 	z-index:100;
+}
+
+#sleepSlideshow
+{
+  width: 1024px;
+  height: 600px;
+}
+
+
+#sleepSlideshow img
+{
+  width: 1024px;
+  height: 600px;
 }
 /* END - GLOBAL */
 

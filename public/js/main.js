@@ -1,3 +1,23 @@
+var sleep_timer = setTimeout(function() {$(".playbook").load("sleep");}, 5000);
+
+
+function sleep(){
+
+	clearTimeout(sleep_timer);
+	var pic1 = URL + 'public/img/home/bg_video.jpg';
+	var pic2 = URL + 'public/img/home/bg_game.jpg';
+
+	$(function() {
+	    $('#sleepSlideshow').crossSlide({
+	      sleep: 1,
+	      fade: 1
+	    }, [
+	      { src: pic1 },
+	      { src: pic2 }
+	    ])
+	});
+}
+
 function menu(menus){
 
 	// counter for grabIt function - FHM
