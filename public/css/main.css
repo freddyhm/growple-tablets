@@ -490,17 +490,49 @@ overflow-y: hidden;
 /* END - LOADING */
 
 /* START - HOME */
+
+#slideshow1 {
+  width: 600px;
+  height: 200px;
+}
 #menu_intmenu
 {
 	float: left;
 	width: 341px;
 	height:600px;
-	background-image:url('../img/home/bg_intmenu.jpg');
+	/*
    -moz-box-shadow: inset 0px 0px 250px 0px #000000;
   -webkit-box-shadow: inset 0px 0px 250px 0px #000000;
   -o-box-shadow: inset 0px 0px 250px 0px #000000;
   box-shadow: inset 0px 0px 250px 0px #000000;
-	
+  */
+}
+
+.slideshow
+{
+float: left;
+width: 341px;
+height: 600px;
+position: absolute;
+z-index: -1;
+bottom: 0px;
+display: none;
+  
+}
+
+#pic1
+{
+  display: inline;
+}
+
+#pic2
+{
+
+}
+
+#pic3
+{
+
 }
 
 #btn_intmenu

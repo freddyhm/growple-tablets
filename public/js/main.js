@@ -1,6 +1,51 @@
-function menu(menus){
+function home(){
 
-	
+	var pic1 = URL +  'public/img/home/bg_intmenu.jpg';
+	var pic2 = URL +  'public/img/home/bg_video.jpg';
+	var pic3 = URL +  'public/img/home/bg_game.jpg';
+
+
+
+
+$('#slideshow1').crossSlide({
+  fade: 1
+}, [
+  {
+    src:  pic1,
+    alt:  'Sand Castle',
+    from: '100% 80% 1x',
+    to:   '100% 0% 1.7x',
+    time: 3
+  }, {
+    src:  pic2,
+    alt:  'Sunflower',
+    from: 'top left',
+    to:   'bottom right 1.5x',
+    time: 2
+  }, {
+    src:  pic3,
+    alt:  'Flip Flops',
+    from: '100% 80% 1.5x',
+    to:   '80% 0% 1.1x',
+    time: 2
+  }
+], function(idx, img, idxOut, imgOut) {
+  if (idxOut == undefined)
+  {
+    // starting single image phase, put up caption
+    $('div.caption').text(img.alt).animate({ opacity: .7 })
+  }
+  else
+  {
+    // starting cross-fade phase, take out caption
+    $('div.caption').fadeOut()
+  }
+});
+
+}
+
+
+function menu(menus){
 
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";
