@@ -16,6 +16,11 @@ a:visited {text-decoration: none; color:#fff;}
   height: 600px;
   z-index:-3;
   position: absolute;
+
+}
+
+#game{
+  
 }
 
 .content

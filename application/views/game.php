@@ -1,5 +1,6 @@
 <!-- START PAGE WRAPPER -->
 		<div class="playbook">
+		<div id="game">
 		<script>
 			$(document).ready(function() {
 				
@@ -38,4 +39,5 @@
 
 		<!-- END CONTAINER -->
 		</div>	
+	</div>
 		<!-- END PAGE WRAPPER -->

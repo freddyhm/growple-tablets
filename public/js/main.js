@@ -1,3 +1,49 @@
+
+function home(){
+
+	$("#btn_intmenu").click(function(event) {
+
+
+		$('#menu').load('menu').hide().fadeIn(1000, function(){
+
+				$('#home').remove();
+		});
+		
+
+  
+	});
+	
+}
+
+function loadView(view)
+{
+
+	switch(view)
+	{
+		case 'firstview':
+			$('#mainscreen').load('firstview.php').hide().fadeIn(3000);
+			break;
+		case 'challengeview': 
+			$('#mainscreen').load('challengeview.php').hide().fadeIn(2000);
+			break;
+		case 'demochallengeview':
+			$('#mainscreen').load('demochallengeview.php').hide().fadeIn(2000);
+			break;
+		case 'streamview':
+			$('#mainscreen').load('streamview.php').hide().fadeIn(2000);
+			break;
+		case 'playercardview':
+			$('#mainscreen').load('playercardview.php').hide().fadeIn(2000);
+			break;
+		case 'endview':
+			$('#mainscreen').load('endview.php').hide().fadeIn(2000);
+			break;
+		default:
+
+	}
+}
+
+
 function menu(menus){
 
 	

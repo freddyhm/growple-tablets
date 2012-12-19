@@ -14,7 +14,6 @@ class Game extends Controller {
 		$path = Session::get('path');
 		print_r($path);
 */
-		
 		parent::index();
 	}
 }
