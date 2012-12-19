@@ -1,18 +1,3 @@
-
-function home(){
-
-	$("#btn_intmenu").click(function(event) {
-
-
-		$('#menu').load('menu').hide().fadeIn(399, function(){
-
-				$('#home').remove();
-		});
-	});
-	
-}
-
-
 function menu(menus){
 
 	

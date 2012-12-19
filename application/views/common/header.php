@@ -11,4 +11,6 @@
 	<script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
 </head>	
 <body>
+	<div class="playbook">
+		<div class="content">
 
