@@ -1,21 +1,18 @@
-var sleep_timer = setTimeout(function() { 
+var sleep_timer = setTimeout(function() { sleep();}, 5000);
 
-sleep();
-	
-}, 5000);
-
+//put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
 
 	$('#sleepSlideshow').show(function(){
 
-		var old_timer = sleep_timer;
-		clearTimeout(sleep_timer);
+		 var old_timer = sleep_timer;
+		 clearTimeout(sleep_timer);
 		 var pic1 = URL + 'public/img/menu/Dishes/02.jpg';
 		 var pic2 = URL + 'public/img/menu/Dishes/03.jpg';
 
 		$(function() {
 		    $('#sleepSlideshow').crossSlide({
-		      sleep: 5,
+		      sleep: 2,
 		      fade: 0.1
 		    }, [
 		      { src: pic1 },
@@ -29,7 +26,6 @@ function sleep(){
 		});
 	});
 }
-
 
 function menu(menus){
 
