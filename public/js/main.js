@@ -1,12 +1,14 @@
-var sleep_timer = setTimeout(function() {$(".playbook").load("sleep");}, 10000);
+var sleep_timer = setTimeout(function() {$(".playbook").load("sleep");}, 5000);
 
 
 function sleep(){
 
 	clearTimeout(sleep_timer);
-	var pic1 = URL + 'public/img/menu/dishes/02.jpg';
+	   var pic1 = URL + 'public/img/menu/dishes/02.jpg';
 	var pic2 = URL + 'public/img/menu/dishes/03.jpg';
 
+	$(function() {
+	
 	$('#sleepSlideshow').crossSlide({
   fade: 1
 }, [
@@ -35,6 +37,7 @@ function sleep(){
     $('div.caption').fadeOut()
   }
 });
+	});
 }
 
 function menu(menus){
