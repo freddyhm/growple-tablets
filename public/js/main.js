@@ -707,9 +707,10 @@ function menu(menus){
 	}
 }
 
-function video(){
+function video(videos){
 
 	var previous_num = 0;
+	var count = 0;
 	
 	showRandomVideo();	
 
@@ -730,11 +731,33 @@ function video(){
 
 		previous_num = random_num;
 
-		var vid_url = URL + videos[random_num].path;
+		var vid_url = URL + 'public/vid/' + videos[random_num].path;
 		$("#video").attr("src", vid_url);
-		$("#video_name").html(videos[random_num].name);
-		$("#video_author").html(videos[random_num].author);
+		$("#video_name").html( videos[random_num].name);
+		$("#video_author").html( videos[random_num].author);
+		
+		currentVideo.load();
 
-		myVideo.load();
+		var status = $("#video_menu").css("display");
+
+
+		setTimeout(function() {$("#video_menu").fadeOut();}, 4000);
+
+
 	}
+
+	$("#video").click(function(event) {
+		var currentVideo = document.getElementById("video");
+
+		if(count == 0){
+			currentVideo.pause();
+			$("#video_menu").fadeIn();
+			count++;
+		}else{
+			currentVideo.play();
+			$("#video_menu").fadeOut();
+			count--;
+		}
+
+	});
 }

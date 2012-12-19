@@ -8,7 +8,7 @@ class Video extends Controller {
 	}
 
 	public function index(){
-		/*
+	
 		$video_list = Item::find_all_by_module_id(2);
 		$videos = array();
 		
@@ -23,7 +23,6 @@ class Video extends Controller {
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying videos, list returned empty.');
 		}
-		*/
-		parent::index();
 	}
+
 }
