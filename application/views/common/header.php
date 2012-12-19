@@ -13,6 +13,7 @@
 
 </head>	
 <body>
+	<div id="sleepSlideshow" style="display:none;"></div>
 	<div class="playbook">
 		<div class="content">
 

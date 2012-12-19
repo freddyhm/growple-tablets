@@ -1,46 +1,35 @@
-var sleep_timer = setTimeout(function() {$(".playbook").load("sleep");}, 15000);
+var sleep_timer = setTimeout(function() { 
+
+sleep();
+	
+}, 5000);
 
 function sleep(){
 
-	clearTimeout(sleep_timer);
-	 var pic1 = URL + 'public/img/menu/Dishes/02.jpg';
-	 var pic2 = URL + 'public/img/menu/Dishes/03.jpg';
+	$('#sleepSlideshow').show(function(){
 
-	$(function() {
-		$('#sleepSlideshow').crossSlide({
-		  fade: 0.1
-		}, [
-		  {
-		    src:  pic1,
-		    alt:  'Sand Castle',
-		    from: '100% 80% 1x',
-		    to:   '100% 0% 1.7x',
-		    time: 6
-		  }, {
-		    src: pic2,
-		    alt:  'Sunflower',
-		    from: 'top left',
-		    to:   'bottom right 1.5x',
-		    time: 6
-		  }
-		], function(idx, img, idxOut, imgOut) {
-		  if (idxOut == undefined)
-		  {
-		    // starting single image phase, put up caption
-		    $('div.caption').text(img.alt).animate({ opacity: .7 })
-		  }
-		  else
-		  {
-		    // starting cross-fade phase, take out caption
-		    $('div.caption').fadeOut()
-		  }
+		var old_timer = sleep_timer;
+		clearTimeout(sleep_timer);
+		 var pic1 = URL + 'public/img/menu/Dishes/02.jpg';
+		 var pic2 = URL + 'public/img/menu/Dishes/03.jpg';
+
+		$(function() {
+		    $('#sleepSlideshow').crossSlide({
+		      sleep: 5,
+		      fade: 0.1
+		    }, [
+		      { src: pic1 },
+		      { src: pic2 }
+		    ])
+		});
+
+		$(this).click(function(event) {
+			$(this).hide();	
+			setTimeout(function() { sleep();}, 5000);
 		});
 	});
-
-	$('#sleepSlideshow').click(function(event) {
-		window.location = URL + "home";
-	});
 }
+
 
 function menu(menus){
 
