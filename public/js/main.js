@@ -8,7 +8,7 @@ function home(){
 
 
 $('#menu_intmenu1').crossSlide({
-  fade: 1
+  fade: 0.1
 }, [
   {
     src:  pic1,
@@ -43,7 +43,7 @@ $('#menu_intmenu1').crossSlide({
 });
 
 $('#menu_intmenu2').crossSlide({
-  fade: 1
+  fade: 0.1
 }, [
   {
     src:  pic1,
@@ -78,7 +78,7 @@ $('#menu_intmenu2').crossSlide({
 });
 
 $('#menu_intmenu3').crossSlide({
-  fade: 1
+  fade: 0.1
 }, [
   {
     src:  pic1,
