@@ -447,7 +447,7 @@ overflow-y: hidden;
     left:30px;
 }
 
-#btn_errorhome
+#btn_error
 {
 	 left: 155px;
     position: relative;
@@ -491,72 +491,56 @@ overflow-y: hidden;
 
 /* START - HOME */
 
-#slideshow1 {
-  width: 600px;
-  height: 200px;
-}
-#menu_intmenu1
+#btn_intmenu
 {
-	float: left;
-	width: 341px;
-	height:600px;
-	/*
+  top: 247px;
+}
+
+#btn_videos
+{
+  left: 689px;
+top: 254px;
+}
+
+#btn_games
+{
+  left: 341px;
+top: 250px;
+}
+
+.shadow
+{
+  z-index: 3;
+  width: 341px;
+  height:600px;
+     -moz-box-shadow: inset 0px 0px 250px 0px #000000;
+  -webkit-box-shadow: inset 0px 0px 250px 0px #000000;
+  -o-box-shadow: inset 0px 0px 250px 0px #000000;
+  box-shadow: inset 0px 0px 250px 0px #000000;
+  position: absolute;
+}
+
+#shadowMenu
+{
+    float: left;
+
+}
+
+#menu_intmenu
+{
    -moz-box-shadow: inset 0px 0px 250px 0px #000000;
   -webkit-box-shadow: inset 0px 0px 250px 0px #000000;
   -o-box-shadow: inset 0px 0px 250px 0px #000000;
   box-shadow: inset 0px 0px 250px 0px #000000;
   
-
-  */
 }
 
-#menu_intmenu2
+.sectionLinks
 {
-  float: left;
-  width: 341px;
-  height:600px;
+  z-index: 3;
+  position: absolute;
 }
 
-#menu_intmenu3
-{
-  float: left;
-  width: 341px;
-  height:600px;
-}
-
-
-
-.slideshow
-{
-float: left;
-width: 341px;
-height: 600px;
-position: absolute;
-z-index: -1;
-bottom: 0px;
-display: none;
-  
-}
-
-#pic1
-{
-  display: inline;
-}
-
-#pic2
-{
-
-}
-
-#pic3
-{
-
-}
-
-#btn_intmenu
-{
-	margin-top:250px;
-}
 
 #menu_games
 {
@@ -568,13 +552,6 @@ display: none;
   -webkit-box-shadow: inset 0px 0px 250px 0px #000000;
   -o-box-shadow: inset 0px 0px 250px 0px #000000;
   box-shadow: inset 0px 0px 250px 0px #000000;
-}
-
-#btn_games
-{
-	margin-top:250px;
-
-
 }
 
 #menu_videos
@@ -590,10 +567,9 @@ display: none;
 
 }
 
-#btn_videos
-{
-	margin-top:250px;
-}
+
+
+
 /* END - HOME */
 
 /* START - VIDEO */
@@ -634,14 +610,6 @@ top:-50px;
   z-index: 0;
 }
 
-#btn_video_home
-{
-  position: absolute;
-  z-index:1;
-  float: left;
-  margin:-158px 0px;
-
-}
 
 #btn_video_next
 {
@@ -672,13 +640,5 @@ top:-50px;
     width: 700px;
 }
 
-#btn_gamehome
-{
-    height: 100px;
-    left: 310px;
-    position: relative;
-    top: -165px;
-
-}
 
 /* END - GAME */

@@ -4,113 +4,46 @@ function home(){
 	var pic2 = URL +  'public/img/home/bg_video.jpg';
 	var pic3 = URL +  'public/img/home/bg_game.jpg';
 
+	$('.homeSection').each(function(event) {
 
+		var section_id = "#" + $(this).attr("id");
 
+		$(section_id).crossSlide({
+		  fade: 0.1
+		}, [
+		  {
+		    src:  pic1,
+		    alt:  'Sand Castle',
+		    from: '100% 80% 1x',
+		    to:   '100% 0% 1.7x',
+		    time: 30
+		  }, {
+		    src:  pic2,
+		    alt:  'Sunflower',
+		    from: 'top left',
+		    to:   'bottom right 1.5x',
+		    time: 30
+		  }, {
+		    src:  pic3,
+		    alt:  'Flip Flops',
+		    from: '100% 80% 1.5x',
+		    to:   '80% 0% 1.1x',
+		    time: 30
+		  }
+		], function(idx, img, idxOut, imgOut) {
+		  if (idxOut == undefined)
+		  {
+		    // starting single image phase, put up caption
+		    $('div.caption').text(img.alt).animate({ opacity: .7 })
+		  }
+		  else
+		  {
+		    // starting cross-fade phase, take out caption
+		    $('div.caption').fadeOut()
+		  }
+		});
 
-$('#menu_intmenu1').crossSlide({
-  fade: 0.1
-}, [
-  {
-    src:  pic1,
-    alt:  'Sand Castle',
-    from: '100% 80% 1x',
-    to:   '100% 0% 1.7x',
-    time: 10
-  }, {
-    src:  pic2,
-    alt:  'Sunflower',
-    from: 'top left',
-    to:   'bottom right 1.5x',
-    time: 10
-  }, {
-    src:  pic3,
-    alt:  'Flip Flops',
-    from: '100% 80% 1.5x',
-    to:   '80% 0% 1.1x',
-    time: 10
-  }
-], function(idx, img, idxOut, imgOut) {
-  if (idxOut == undefined)
-  {
-    // starting single image phase, put up caption
-    $('div.caption').text(img.alt).animate({ opacity: .7 })
-  }
-  else
-  {
-    // starting cross-fade phase, take out caption
-    $('div.caption').fadeOut()
-  }
-});
-
-$('#menu_intmenu2').crossSlide({
-  fade: 0.1
-}, [
-  {
-    src:  pic1,
-    alt:  'Sand Castle',
-    from: '100% 80% 1x',
-    to:   '100% 0% 1.7x',
-    time: 10
-  }, {
-    src:  pic2,
-    alt:  'Sunflower',
-    from: 'top left',
-    to:   'bottom right 1.5x',
-    time: 10
-  }, {
-    src:  pic3,
-    alt:  'Flip Flops',
-    from: '100% 80% 1.5x',
-    to:   '80% 0% 1.1x',
-    time: 10
-  }
-], function(idx, img, idxOut, imgOut) {
-  if (idxOut == undefined)
-  {
-    // starting single image phase, put up caption
-    $('div.caption').text(img.alt).animate({ opacity: .7 })
-  }
-  else
-  {
-    // starting cross-fade phase, take out caption
-    $('div.caption').fadeOut()
-  }
-});
-
-$('#menu_intmenu3').crossSlide({
-  fade: 0.1
-}, [
-  {
-    src:  pic1,
-    alt:  'Sand Castle',
-    from: '100% 80% 1x',
-    to:   '100% 0% 1.7x',
-    time: 10
-  }, {
-    src:  pic2,
-    alt:  'Sunflower',
-    from: 'top left',
-    to:   'bottom right 1.5x',
-    time: 10
-  }, {
-    src:  pic3,
-    alt:  'Flip Flops',
-    from: '100% 80% 1.5x',
-    to:   '80% 0% 1.1x',
-    time: 10
-  }
-], function(idx, img, idxOut, imgOut) {
-  if (idxOut == undefined)
-  {
-    // starting single image phase, put up caption
-    $('div.caption').text(img.alt).animate({ opacity: .7 })
-  }
-  else
-  {
-    // starting cross-fade phase, take out caption
-    $('div.caption').fadeOut()
-  }
-});
+	});
 
 }
 
