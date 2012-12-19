@@ -1,4 +1,4 @@
-var sleep_timer = setTimeout(function() { sleep();}, 5000);
+//var sleep_timer = setTimeout(function() { sleep();}, 5000);
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
@@ -720,6 +720,8 @@ function video(videos){
 	// displays a random video from list - FHM
 	function showRandomVideo(){
 
+		/*
+
 		var random_num = Math.floor(Math.random()*(videos.length));
 
 		// make sure our new random number is not the same as last one
@@ -736,5 +738,6 @@ function video(videos){
 		$("#video").attr("src", vid_url);
 		$("#video_name").html(videos[random_num].name);
 		$("#video_author").html(videos[random_num].author);
+		*/
 	}
 }

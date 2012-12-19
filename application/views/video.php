@@ -1,13 +1,16 @@
 <script>
 	$(document).ready(function() {	
-		video(<?php echo json_encode($videos); ?>);
+		//video(<?php echo json_encode($videos); ?>);
 	});
 </script>
 <!-- START CONTAINER -->
 <div class="content">
 	<!-- AREA FOR VIDEO -->
 	<div id="video_area">
-		<iframe id="video" width="1024" height="650" src="" frameborder="0" allowfullscreen></iframe>
+		<video id="video"  width="1024" height="650" controls>
+		  <source src="<?php echo URL . 'public/vid/tree.mp4'; ?>" type="video/mp4">
+		Your browser does not support the video tag.
+		</video>
 	</div>
 	<!-- START VIDEO MENUS -->
 	<div id="video_menu">
