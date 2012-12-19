@@ -495,7 +495,7 @@ overflow-y: hidden;
   width: 600px;
   height: 200px;
 }
-#menu_intmenu
+#menu_intmenu1
 {
 	float: left;
 	width: 341px;
@@ -505,8 +505,26 @@ overflow-y: hidden;
   -webkit-box-shadow: inset 0px 0px 250px 0px #000000;
   -o-box-shadow: inset 0px 0px 250px 0px #000000;
   box-shadow: inset 0px 0px 250px 0px #000000;
+  
+
   */
 }
+
+#menu_intmenu2
+{
+  float: left;
+  width: 341px;
+  height:600px;
+}
+
+#menu_intmenu3
+{
+  float: left;
+  width: 341px;
+  height:600px;
+}
+
+
 
 .slideshow
 {
