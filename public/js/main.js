@@ -707,7 +707,7 @@ function menu(menus){
 	}
 }
 
-function video(videos){
+function video(){
 
 	var previous_num = 0;
 	
@@ -720,8 +720,7 @@ function video(videos){
 	// displays a random video from list - FHM
 	function showRandomVideo(){
 
-		/*
-
+		var currentVideo = document.getElementById("video"); 		
 		var random_num = Math.floor(Math.random()*(videos.length));
 
 		// make sure our new random number is not the same as last one
@@ -730,14 +729,12 @@ function video(videos){
 		}
 
 		previous_num = random_num;
-		
-		var yt_url = "http://www.youtube.com/embed/";
-		var options = "?rel=0&showinfo=0&controls=0&modestbranding=1&iv_load_policy=3&autoplay=1";
-		var vid_url = yt_url + videos[random_num].path + options;
 
+		var vid_url = URL + videos[random_num].path;
 		$("#video").attr("src", vid_url);
 		$("#video_name").html(videos[random_num].name);
 		$("#video_author").html(videos[random_num].author);
-		*/
+
+		myVideo.load();
 	}
 }

@@ -8,7 +8,7 @@
 	<!-- AREA FOR VIDEO -->
 	<div id="video_area">
 		<video id="video"  width="1024" height="650" controls>
-		  <source src="<?php echo URL . 'public/vid/tree.mp4'; ?>" type="video/mp4">
+		  <source id="vid_src" src="<?php echo URL . 'public/vid/tree.mp4'; ?>" type="video/mp4">
 		Your browser does not support the video tag.
 		</video>
 	</div>
