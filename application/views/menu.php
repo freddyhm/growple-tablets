@@ -59,7 +59,7 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 			?>
 			<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
 				<img class="menuTabs" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
-				<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
+				<span class="menuName"><?php echo strtoupper($menu['name']); ?></span
 			</td>
 			<?php } ?>
 		</tr>
@@ -79,13 +79,13 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 <!-- Item Detail -->
 <div class="itemDetailContainer"> 
 	<div id="itemInfoWrapper">
-		<span class="itemName">ENGLISH STYLE FISH & CHIPS</span>
-		<span class="itemKorean"></span>
+		<span class="itemName">BULGOGI</span>
+		<span class="itemKorean">불고기</span>
 		<span class="itemDescription">
-			Two pieces of tempura battered haddock cooked until golden and delicious. Served with fries and our tangy cole slaw
+			Stir-fried beef, some vegetables, noodles with sweet soy sauce on the sizzling plate, rice
 		</span>
 		<span class="itemPrice">
-			$13.49
+			$10.99
 		</span>	
 		<img id="grabIt" src="<?php echo URL .'public/img/menu/btn_grab.png'; ?>">
 	</div>

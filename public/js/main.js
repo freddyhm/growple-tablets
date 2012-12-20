@@ -34,13 +34,63 @@ function menu(menus, cart){
 	var cart_status = "hidden";
 	var user_cart = cart;
 	var basket = new Array();	
+
+	$(".menuList").each(function(event) {
+
+		$(this).click(function(event) {
+
+			$(this).fadeTo(200, 0.3, function()
+			{
+				// get id of currently selected menu  FHM
+				var current_menu = $('.menuSelected').attr('id');
+				var current_id = '#' + current_menu;
+
+				// deselect current menu and change header - FHM
+				$(current_id).removeClass('menuSelected');
+				$("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
+				$(current_id).css("background-color", "");
+				
+				// select new menu and change header - FHM
+				$(this).addClass('menuSelected');
+				$("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
+				$(this).css("background-color", "rgba(0,0,0,0.8)");
+
+				// get new menu_id and populate submenu - FHM
+				var new_id = $(this).attr('id').substring(4);
+				populateSubMenu(new_id);
+
+			}).fadeTo(200, 1);
+		});
+	});
+
+	$(".items").live("click", function(){
+
+		var item_id = $(this).attr("value");
+		var menu_id = $(".menuSelected").attr("id").substring(4);
+		
+		// change background picture
+		
+		//changePicture('assets/img/menu/special/fishandchips.jpg');
+
+		// change name and description - FHM
+
+	 	$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+	 	$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
+		$('.itemDescription').html(menus[menu_id].items[item_id].description);
+		$('.itemPrice').html(menus[menu_id].items[item_id].price);
+
+	});
 	
 	// select default menu and first item - FHM
+	/*
 	$("#menu2 img").attr("src", URL + "public/img/menu/header_menu_selected.png").parent().addClass("menuSelected");
 	$("#menu2").css("background-color", "rgba(0,0,0,0.8)");
 	$("#menu1 img").attr("src", URL + "public/img/menu/header_menu_special.png");
 	populateSubMenu(4);
-	$("#item1").trigger('click');
+	*/
+
+	// display first menu - FHM
+	$("#menu4").trigger('click');
 
 
 	// Show cart, add item, and close
@@ -201,33 +251,7 @@ function menu(menus, cart){
 	}
 
 
-		$(".menuList").each(function(event) {
-
-		$(this).click(function(event) {
-
-			$(this).fadeTo(200, 0.3, function()
-			{
-				// get id of currently selected menu  FHM
-				var current_menu = $('.menuSelected').attr('id');
-				var current_id = '#' + current_menu;
-
-				// deselect current menu and change header - FHM
-				$(current_id).removeClass('menuSelected');
-				$("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
-				$(current_id).css("background-color", "");
-				
-				// select new menu and change header - FHM
-				$(this).addClass('menuSelected');
-				$("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
-				$(this).css("background-color", "rgba(0,0,0,0.8)");
-
-				// get new menu_id and populate submenu - FHM
-				var new_id = $(this).attr('id').substring(4);
-				populateSubMenu(new_id);
-
-			}).fadeTo(200, 1);
-		});
-	});
+	
 
 	function populateSubMenu(menu_num){
 
@@ -253,24 +277,7 @@ function menu(menus, cart){
 			$(".subMenuList table tr").append(item);
 		}
 	}
-
-	$(".items").live("click", function(){
-
-		var item_id = $(this).attr("value");
-		var menu_id = $(".menuSelected").attr("id").substring(4);
-		
-		// change background picture
-		
-		//changePicture('assets/img/menu/special/fishandchips.jpg');
-
-		// change name and description - FHM
-
-	 	$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
-	 	$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
-		$('.itemDescription').html(menus[menu_id].items[item_id].description);
-		$('.itemPrice').html(menus[menu_id].items[item_id].price);
-	});
-		
+	
 
 	// caching all images by loading them and attaching them to a hidden DOM element - FHM
 	/*
