@@ -23,7 +23,8 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 </script>
 <!-- START CONTAINER -->
 <div class="content">
-<img src="<?php echo URL .'public/img/menu/dishes/01_KamJaTang.jpg'; ?>"  id="bckgdImg1"/>
+<img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
+<img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg2"/>
 <img src="" id="bckgdImg2"/>
 <div id="tutorial">
 	<img id="tutorialBckgdImg" src="<?php echo URL .'public/img/menu/tutorial/bg_owl.jpg'; ?>">
@@ -67,7 +68,6 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 </div>
 <!-- Sub Menus -->
 <div id="subBkgdMenu"></div>
-
 <div class="subMenu">
 	<div id="selectedItem"></div>
 	<div class="subMenuList">

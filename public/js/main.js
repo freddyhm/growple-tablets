@@ -71,6 +71,7 @@ function menu(menus, cart){
 
 		var item_id = $(this).attr("value");
 		var menu_id = $(".menuSelected").attr("id").substring(4);
+		var item_pic = URL + 'public/img/menu/dishes/' + menus[menu_id].items[item_id].big_pic;
 		
 		// change background picture
 		
@@ -82,15 +83,65 @@ function menu(menus, cart){
 
 		$('#selectedItem').animate({ left: m.left,},500, function(){
 
-			changePicture('assets/img/menu/beer/corona.jpg');					
+
+			changePicture(item_pic);					
 
 			$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
 	 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
 			$('.itemDescription').html(menus[menu_id].items[item_id].description);
-			$('.itemPrice').html(menus[menu_id].items[item_id].price);
+			$('.itemPrice').html(function changePicture(pic_path){
+
+		var status = $("#contentImg2").css('display');
+	 	if(status == 'none'){
+
+	 		var index = $("#contentImg1").css('z-index');
+	 		var new_index = index - 1;
+
+	 		$("#contentImg2").css("z-index", new_index);
+			$("#contentImg2").css('display', 'inline');
+			$("#contentImg2").attr("src", pic_path);
+			$("#contentImg1").fadeOut(1000);
+		
+	 	}else{
+
+	 		var index = $("#contentImg2").css('z-index');
+	 		var new_index = index - 1;
+
+	 		$("#contentImg1").css("z-index", new_index);
+	 		$("#contentImg1").css('display', 'inline');
+	 		$("#contentImg1").attr("src", pic_path);
+			$("#contentImg2").fadeOut(1000);
+	 	}	
+	});
 		});
 
 	});
+
+	function changePicture(pic_path){
+
+		var status = $("#contentImg2").css('display');
+		
+	 	if(status == 'none'){
+
+	 		var index = $("#contentImg1").css('z-index');
+	 		var new_index = index - 1;
+
+	 		$("#bckgdImg2").css("z-index", new_index);
+			$("#bckgdImg2").css('display', 'inline');
+			$("#bckgdImg2").attr("src", pic_path);
+			$("#bckgdImg1").fadeOut(1000);
+		
+	 	}else{
+
+	 		var index = $("#contentImg2").css('z-index');
+	 		var new_index = index - 1;
+
+	 		$("#bckgdImg1").css("z-index", new_index);
+	 		$("#bckgdImg1").css('display', 'inline');
+	 		$("#bckgdImg1").attr("src", pic_path);
+			$("#bckgdImg2").fadeOut(1000);
+	 	}	
+	}
 
 		function populateSubMenu(menu_num){
 
@@ -699,30 +750,7 @@ function menu(menus, cart){
 		  }, 500);
 	});
 
-	function changePicture(pic_path){
-
-		var status = $("#contentImg2").css('display');
-	 	if(status == 'none'){
-
-	 		var index = $("#contentImg1").css('z-index');
-	 		var new_index = index - 1;
-
-	 		$("#contentImg2").css("z-index", new_index);
-			$("#contentImg2").css('display', 'inline');
-			$("#contentImg2").attr("src", pic_path);
-			$("#contentImg1").fadeOut(1000);
-		
-	 	}else{
-
-	 		var index = $("#contentImg2").css('z-index');
-	 		var new_index = index - 1;
-
-	 		$("#contentImg1").css("z-index", new_index);
-	 		$("#contentImg1").css('display', 'inline');
-	 		$("#contentImg1").attr("src", pic_path);
-			$("#contentImg2").fadeOut(1000);
-	 	}	
-	}
+	
 }
 
 function video(videos){

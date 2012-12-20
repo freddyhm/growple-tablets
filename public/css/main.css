@@ -43,6 +43,27 @@ a:visited {text-decoration: none; color:#fff;}
 
 /* START - MENU */
 
+#bckgdImg1
+{
+    z-index: -1;
+    position: absolute;
+    width:1024px;
+    height:600px;
+    margin:-2px 0px;
+    display:inline;
+}
+
+#bckgdImg2
+{
+   z-index: -2;
+  position: absolute;
+  width:1024px;
+  height:600px;
+  margin:-2px 0px;
+  display:inline;
+
+}
+
 #tutorial
 {
   display: none;
@@ -447,6 +468,8 @@ overflow-y: hidden;
   left: -19px;
   bottom: 354px;
 }
+
+
 /* END - MENU */
 
 /* START - VIDEO */
