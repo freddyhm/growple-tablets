@@ -294,19 +294,20 @@ a:visited {text-decoration: none; color:#fff;}
 
 .itemKorean
 {
-  font-size: 17px;
-  font-style: italic;
-  width: 330px;
-  height: 120px;
+  font-size: 25px;
+  font-style: bold;
+  width: 200px;
+  height: 100px;
   position: absolute;
-  margin: 120px 117px;
+  margin: 120px 70px;
   opacity: 0.97;
   color: white;
+  text-align: center;
 }
 
 .itemDescription
 {
-  font-size: 17px;
+  font-size: 20px;
   font-style: italic;
   width: 330px;
   height: 120px;
