@@ -120,7 +120,7 @@ function menu(menus, cart){
 	function changePicture(pic_path){
 
 		var status = $("#contentImg2").css('display');
-		
+
 	 	if(status == 'none'){
 
 	 		var index = $("#contentImg1").css('z-index');
@@ -185,50 +185,42 @@ function menu(menus, cart){
 
 		var selected_item = $(".itemName").attr("value");
 
+		// animate the cart when btn is pushed - FHM
 		$("#cartTab").animate({opacity: "+=1"}, 500, function(){
 			$(this).animate({opacity: "-=0.50"}, 500);
 			$("#cartTab").animate({opacity: "+=1"}, 500, function(){
 			$(this).animate({opacity: "-=0.50"}, 500);
 			});
-
 		});
 
 		// btn pressed - FHM
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
+		setTimeout(function() { $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");}, 100);
+
 			addItem(selected_item, function(){
 				// unpress button - FHM
-				$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");		
+				
 			});
-
-		/*
-		Only on first time - FHM
-		if(cart_status == "hidden"){
-			// show cart - FHM
-			$("#cart").animate({bottom: "-=140"}, 1000, function(){
-
-				addItem(1, function(){
-					// hide cart - FHM
-					$("#cart").delay(1000).animate({bottom: "+=140"}, 1000);
-					// unpress button - FHM
-					$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");		
-				});
-
-			});
-		}else if(cart_status == "showing"){
-
-			// need to wait till fix the pics - FHM
-			addItem(1, function(){
-				// hide cart since it's already showing - FHM
-				$("#cart").delay(1000).animate({bottom: "+=140"}, 1000);
-				// unpress button - FHM
-				$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");			
-			});
-
-			//update status - FHM
-			cart_status = "hidden";
-		}
-		*/
 	});
+
+	// inserts item into a user's cart - FHM
+	function addItem(id, callback){
+
+		// take src from cached pic
+		var small_pic = '#smallPicItem-' + id;
+		var small_src = $(small_pic).attr("src");
+
+		var item_img =  "<img id='" + id + "' src='public/img/menu/cart/btn_edit.png'>";
+		var del_img = "<img class='cartDeleteItem' id='" + id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
+		
+		// insert new pic and item - FHM
+		$("#cartItems tr").append("<td>" + item_img + del_img +"</td>");
+		$("#test").fadeIn(1000, function(){
+			callback();	
+		});
+
+		basket.push(id);
+	}
 	
 	// add or edit cart - FHM
 	$("#cartAction").click(function(event){
@@ -314,25 +306,6 @@ function menu(menus, cart){
 		});
 	});
 		
-	// inserts item into a user's cart - FHM
-	function addItem(id, callback){
-
-		// take src from cached pic
-		var small_pic = '#smallPicItem-' + id;
-		var small_src = $(small_pic).attr("src");
-
-		var item_img =  "<img id='" + id + "' src='public/img/menu/cart/btn_edit.png'>";
-		var del_img = "<img class='cartDeleteItem' id='" + id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
-		
-		// insert new pic and item - FHM
-		$("#cartItems tr").append("<td>" + item_img + del_img +"</td>");
-		$("#test").fadeIn(1000, function(){
-			callback();	
-		});
-
-		basket.push(id);
-	}
-
 	function removeItem(id, callback){
 		basket.pop(id);
 		callback();
