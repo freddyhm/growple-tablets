@@ -4,18 +4,20 @@ sleep();
 	
 }, 5000);
 
+
+//put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
 
 	$('#sleepSlideshow').show(function(){
 
-		var old_timer = sleep_timer;
-		clearTimeout(sleep_timer);
+		 var old_timer = sleep_timer;
+		 clearTimeout(sleep_timer);
 		 var pic1 = URL + 'public/img/menu/Dishes/02.jpg';
 		 var pic2 = URL + 'public/img/menu/Dishes/03.jpg';
 
 		$(function() {
 		    $('#sleepSlideshow').crossSlide({
-		      sleep: 5,
+		      sleep: 2,
 		      fade: 0.1
 		    }, [
 		      { src: pic1 },
@@ -30,16 +32,20 @@ function sleep(){
 	});
 }
 
-
-function menu(menus){
+function menu(menus, cart){
 
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";
-
-	// menu2 is selected by default &  put special header on 'special' section - FHM
+	var user_cart = cart;
+	var basket = new Array();	
+	
+	// select default menu and first item - FHM
 	$("#menu2 img").attr("src", URL + "public/img/menu/header_menu_selected.png").parent().addClass("menuSelected");
 	$("#menu2").css("background-color", "rgba(0,0,0,0.8)");
 	$("#menu1 img").attr("src", URL + "public/img/menu/header_menu_special.png");
+	populateSubMenu(4);
+	$("#item1").trigger('click');
+
 
 	// Show cart, add item, and close
 	$("#grabIt").click(function(){
@@ -136,8 +142,18 @@ function menu(menus){
 
 				// redirect to home page - FHM
 				if(answer == true){
-					window.location = URL + "home";
+					
+					var url = URL + 'menu/addToCart/d/';
+
+					alert(basket);
+					
+				
+					$.post(url, {cart: basket}, function(data, textStatus, xhr) {
+						alert(data);
+					  	//window.location = URL + "home";
+					});
 				}
+
 			},200);
 
 		}, 200);
@@ -155,8 +171,13 @@ function menu(menus){
 
 	// remove item from cart - FHM
 	$(".cartDeleteItem").live('click', function(event) {
+		
 		var item_id = "#" + $(this).attr("id");
-		$(item_id).parent().remove();		
+
+		removeItem(item_id, function(){
+			
+			$(item_id).parent().remove();	
+		});
 	});
 		
 	// inserts item into a user's cart - FHM
@@ -174,7 +195,84 @@ function menu(menus){
 		$("#test").fadeIn(1000, function(){
 			callback();	
 		});
+
+		basket.push(id);
 	}
+
+	function removeItem(id, callback){
+		basket.pop(id);
+		callback();
+	}
+
+
+		$(".menuList").each(function(event) {
+
+		$(this).click(function(event) {
+
+			$(this).fadeTo(200, 0.3, function()
+			{
+				// get id of currently selected menu  FHM
+				var current_menu = $('.menuSelected').attr('id');
+				var current_id = '#' + current_menu;
+
+				// deselect current menu and change header - FHM
+				$(current_id).removeClass('menuSelected');
+				$("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
+				$(current_id).css("background-color", "");
+				
+				// select new menu and change header - FHM
+				$(this).addClass('menuSelected');
+				$("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
+				$(this).css("background-color", "rgba(0,0,0,0.8)");
+
+				// get new menu_id and populate submenu - FHM
+				var new_id = $(this).attr('id').substring(4);
+				populateSubMenu(new_id);
+
+			}).fadeTo(200, 1);
+		});
+	});
+
+	function populateSubMenu(menu_num){
+
+		// clear menu
+
+		$(".subMenuList table tr td").each(function(event) {
+		     $(this).remove();
+		});
+
+		$(".subMenuList table tr").append(item);
+
+
+		var menu_length = menus[menu_num].items.length - 1;
+		for (var i = 0; i <= menu_length; i++) {			
+			var name = menus[menu_num].items[i].name;
+			var menu_item_id = menus[menu_num].items[i].id;
+			var id = i + 1;
+			var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'>" + name.toUpperCase() + "</td>";
+
+			$(".subMenuList table tr").append(item);
+		}
+		
+	}
+
+	$(".items").live("click", function(){
+
+		var item_id = $(this).attr("value");
+		//var menu_id = $(".menuSelected").attr("id").substring(4);
+		var menu_id = 0;
+	
+		// change background picture
+		
+		//changePicture('assets/img/menu/special/fishandchips.jpg');
+
+		// change name and description - FHM
+	 	$('.itemName').html(menus[menu_id].items[item_id].name).attr("value", item_id);
+	 	$('.itemSpicy').html(menus[menu_id].items[item_id].spicy_level);
+		$('.itemDescription').html(menus[menu_id].items[item_id].name);
+		$('.itemPrice').html(menus[menu_id].items[item_id].price);
+	});
+		
 
 	// caching all images by loading them and attaching them to a hidden DOM element - FHM
 	/*
@@ -212,65 +310,7 @@ function menu(menus){
 	});
 */
 
-	$(".menuList").each(function(event) {
 
-		$(this).click(function(event) {
-
-			$(this).fadeTo(200, 0.3, function()
-			{
-				// get id of currently selected menu  FHM
-				var current_menu = $('.menuSelected').attr('id');
-				var current_id = '#' + current_menu;
-
-				// deselect current menu and change header - FHM
-				$(current_id).removeClass('menuSelected');
-				$("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
-				$(current_id).css("background-color", "");
-				
-				// select new menu and change header - FHM
-				$(this).addClass('menuSelected');
-				$("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
-				$(this).css("background-color", "rgba(0,0,0,0.8)");
-
-				// get new menu_id and populate submenu - FHM
-				//var new_id = $(this).attr('id').substring(4);
-				var new_id = 0;
-				populateSubMenu(new_id);
-
-			}).fadeTo(200, 1);
-		});
-	});
-
-	function populateSubMenu(menu_num){
-
-		var menu_length = menus[menu_num].items.length - 1;
-		for (var i = 0; i <= menu_length; i++) {			
-			var name = menus[menu_num].items[i].name;
-			var menu_item_id = menus[menu_num].items[i].id;
-			var id = i + 1;
-			var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'>" + name.toUpperCase() + "</td>";
-
-			$(".subMenuList table tr").append(item);
-		}
-		
-	}
-
-	$(".items").live("click", function(){
-
-		var item_id = $(this).attr("value");
-		//var menu_id = $(".menuSelected").attr("id").substring(4);
-		var menu_id = 0;
-	
-		// change background picture
-		
-		//	changePicture('assets/img/menu/special/fishandchips.jpg');
-
-		// change name and description - FHM
-	 	$('.itemName').html(menus[menu_id].items[item_id].name).attr("value", item_id);
-		$('.itemDescription').html(menus[menu_id].items[item_id].name);
-		$('.itemPrice').html(menus[menu_id].items[item_id].price);
-	});
-		
 
 
 	
@@ -714,6 +754,7 @@ function menu(menus){
 function video(videos){
 
 	var previous_num = 0;
+	var count = 0;
 	
 	showRandomVideo();	
 
@@ -724,6 +765,7 @@ function video(videos){
 	// displays a random video from list - FHM
 	function showRandomVideo(){
 
+		var currentVideo = document.getElementById("video"); 		
 		var random_num = Math.floor(Math.random()*(videos.length));
 
 		// make sure our new random number is not the same as last one
@@ -732,13 +774,34 @@ function video(videos){
 		}
 
 		previous_num = random_num;
-		
-		var yt_url = "http://www.youtube.com/embed/";
-		var options = "?rel=0&showinfo=0&controls=0&modestbranding=1&iv_load_policy=3&autoplay=1";
-		var vid_url = yt_url + videos[random_num].path + options;
 
+		var vid_url = URL + 'public/vid/' + videos[random_num].path;
 		$("#video").attr("src", vid_url);
-		$("#video_name").html(videos[random_num].name);
-		$("#video_author").html(videos[random_num].author);
+		$("#video_name").html( videos[random_num].name);
+		$("#video_author").html( videos[random_num].author);
+		
+		currentVideo.load();
+
+		var status = $("#video_menu").css("display");
+
+
+		setTimeout(function() {$("#video_menu").fadeOut();}, 4000);
+
+
 	}
+
+	$("#video").click(function(event) {
+		var currentVideo = document.getElementById("video");
+
+		if(count == 0){
+			currentVideo.pause();
+			$("#video_menu").fadeIn();
+			count++;
+		}else{
+			currentVideo.play();
+			$("#video_menu").fadeOut();
+			count--;
+		}
+
+	});
 }

@@ -3,11 +3,12 @@
 		video(<?php echo json_encode($videos); ?>);
 	});
 </script>
-<!-- START CONTAINER -->
-<div class="content">
 	<!-- AREA FOR VIDEO -->
 	<div id="video_area">
-		<iframe id="video" width="1024" height="650" src="" frameborder="0" allowfullscreen></iframe>
+		<video id="video"  width="1024" height="600" autoplay="true">
+		  <source id="vid_src" src="" type="video/mp4">
+		Your browser does not support the video tag.
+		</video>
 	</div>
 	<!-- START VIDEO MENUS -->
 	<div id="video_menu">
@@ -23,7 +24,6 @@
 	<div id="btn_video_next">
 		<img id="next" src="<?php echo URL . 'public/img/video/btn_next.png'; ?>">
 	</div>
-	<div id ="video_navbar">
-	</div>	
+	<div id ="video_navbar"></div>	
 </div>
 

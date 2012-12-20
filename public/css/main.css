@@ -29,6 +29,8 @@ a:visited {text-decoration: none; color:#fff;}
 {
   width: 1024px;
   height: 600px;
+  position: absolute;
+  z-index:99;
 }
 
 
@@ -602,13 +604,15 @@ top: 250px;
 #video
 {
 position: relative;
-top:-50px;
+bottom: 12px;
 }
 
 #video_menu
 {
-	position: relative;
-	top:-50px;
+position: relative;
+bottom: 26px;
+display: inline;
+
 }
 #video_title
 {
@@ -641,6 +645,12 @@ top:-50px;
   z-index:1;
   float: right;
   margin:-213px 800px;
+}
+
+#btn_video_home{
+  position: absolute;
+bottom: 0px;
+z-index: 1;
 }
 /* END - VIDEO */
 
