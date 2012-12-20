@@ -2,7 +2,7 @@
 $(document).ready(function() {		
 	
 	// init functions for menu - FHM
-	menu(<?php echo json_encode($menus); ?>);
+menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 
 	// first time interacting w/the menu, show tutorial - FHM
 	var virgin = "<?php echo $is_virgin; ?>";
@@ -53,10 +53,9 @@ $(document).ready(function() {
 	<table>
 		<tr>
 		<?php 
-			foreach($menus as $key => $menu) {	
-				$key++;
+			foreach($menus as $menu) {	
 			?>
-			<td class="menuList" id="menu<?php echo $key; ?>" class="<?php echo $menu['name']; ?>">
+			<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
 				<img class="menuTabs" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
 				<?php echo strtoupper($menu['name']); ?>
 			</td>
@@ -79,8 +78,7 @@ $(document).ready(function() {
 <div class="itemDetailContainer">
 	<div id="itemInfoWrapper">
 		<span class="itemName">ENGLISH STYLE FISH & CHIPS</span>
-		<span class="ratingStar"></span>
-		<span class="ratingInfo">4/5 Stars   |   110 Ratings</span>
+		<span class="itemSpicy"></span>
 		<span class="itemDescription">
 			Two pieces of tempura battered haddock cooked until golden and delicious. Served with fries and our tangy cole slaw
 		</span>
