@@ -79,7 +79,36 @@ function menu(menus, cart){
 		$('.itemDescription').html(menus[menu_id].items[item_id].description);
 		$('.itemPrice').html(menus[menu_id].items[item_id].price);
 
+		$('#selectedItem').animate({ left:'0',},500);
+
 	});
+
+		function populateSubMenu(menu_num){
+
+		// clear menu
+
+		$(".subMenuList table tr td").each(function(event) {
+		     $(this).remove();
+		});
+
+		var menu_length = menus[menu_num].items.length - 1;
+
+		var m = menus[menu_num].items;
+
+		for (var key in menus[menu_num].items)
+		{
+			var name = menus[menu_num].items[key].name;
+			var menu_item_id = menus[menu_num].items[key].id;
+			var korean_name = menus[menu_num].items[key].korean_name;
+			var id = key + 1;
+			var item_box = "<td id='selectedItem'></td>";
+			var item = item_box + "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + 
+						name.toUpperCase() + "</span><br>" + "<span>" + korean_name + "</span></td>";
+
+			$(".subMenuList table tr").append(item);
+		}
+	}
+	
 	
 	// select default menu and first item - FHM
 	/*
@@ -249,74 +278,6 @@ function menu(menus, cart){
 		basket.pop(id);
 		callback();
 	}
-
-
-	
-
-	function populateSubMenu(menu_num){
-
-		// clear menu
-
-		$(".subMenuList table tr td").each(function(event) {
-		     $(this).remove();
-		});
-
-		var menu_length = menus[menu_num].items.length - 1;
-
-		var m = menus[menu_num].items;
-
-		for (var key in menus[menu_num].items)
-		{
-			var name = menus[menu_num].items[key].name;
-			var menu_item_id = menus[menu_num].items[key].id;
-			var korean_name = menus[menu_num].items[key].korean_name;
-			var id = key + 1;
-			var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + 
-						name.toUpperCase() + "</span><br>" + "<span>" + korean_name + "</span></td>";
-
-			$(".subMenuList table tr").append(item);
-		}
-	}
-	
-
-	// caching all images by loading them and attaching them to a hidden DOM element - FHM
-	/*
-	var imageArray = ['assets/img/menu/special/fishandchips.jpg', 
-							  'assets/img/menu/special/chickentender.jpg', 
-							  'assets/img/menu/special/newyorker.jpg', 
-							  'assets/img/menu/special/ribburger.jpg', 
-							  'assets/img/menu/special/steaksandwich.jpg', 
-							  'assets/img/menu/special/chickenstirfry.jpg',
-							  'assets/img/menu/special/buffalochickenwrap.jpg',
-							  'assets/img/menu/starter/wings.jpg',
-							  'assets/img/menu/starter/antojitos.jpg',
-							  'assets/img/menu/starter/nachos.jpg',
-							  'assets/img/menu/starter/picklespears.jpg',
-							  'assets/img/menu/starter/popcornchicken.jpg',
-							  'assets/img/menu/starter/veggieroll.jpg',
-							  'assets/img/menu/starter/yamfries.jpg',
-							  'assets/img/menu/beer/bud.jpg',
-							  'assets/img/menu/beer/corona.jpg',
-							  'assets/img/menu/beer/heineken.jpg',
-							  'assets/img/menu/beer/miller.jpg',
-							  'assets/img/menu/beer/pilsner.jpg',
-							  'assets/img/menu/beer/rickards.jpg',
-							  'assets/img/menu/beer/sapporo.jpg'
-				  			];
-				  			*/
- 
-	// Add hidden element
-//	var hidden = $('body').append('<div id="img-cache" style="display:none" />').children('#img-cache');
-	 
-	 /*
-	// Add images to hidden element.
-	$.each(imageArray, function (i, val) {
-	  $('<img/>').attr('src', val).appendTo(hidden);
-	});
-*/
-
-
-
 
 	
 	$('#item1').click(function(){
