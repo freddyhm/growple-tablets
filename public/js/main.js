@@ -81,49 +81,27 @@ function menu(menus, cart){
 		var item_padding_left = $(this).css("padding-left");
 		var box_size = parseInt(item_width) + parseInt(item_padding_left) + parseInt(item_padding_right) - 27;
 
+		// fade in the item picture - FHM
+		changePicture(item_pic);						
+
 		// slide the selected item box - FHM
 		$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
-
-			changePicture(item_pic);					
 
 			$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
 	 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
 			$('.itemDescription').html(menus[menu_id].items[item_id].description);
-			$('.itemPrice').html(function changePicture(pic_path){
-
-				var status = $("#contentImg2").css('display');
-			 	if(status == 'none'){
-
-			 		var index = $("#contentImg1").css('z-index');
-			 		var new_index = index - 1;
-
-			 		$("#contentImg2").css("z-index", new_index);
-					$("#contentImg2").css('display', 'inline');
-					$("#contentImg2").attr("src", pic_path);
-					$("#contentImg1").fadeOut(1000);
-				
-			 	}else{
-
-			 		var index = $("#contentImg2").css('z-index');
-			 		var new_index = index - 1;
-
-			 		$("#contentImg1").css("z-index", new_index);
-			 		$("#contentImg1").css('display', 'inline');
-			 		$("#contentImg1").attr("src", pic_path);
-					$("#contentImg2").fadeOut(1000);
-			 	}	
-			});
+			$('.itemPrice').html(menus[menu_id].items[item_id].price);
 		});
 
 	});
 
 	function changePicture(pic_path){
 
-		var status = $("#contentImg2").css('display');
+		var status = $("#bckgdImg2").css('display');
 
 	 	if(status == 'none'){
 
-	 		var index = $("#contentImg1").css('z-index');
+	 		var index = $("#bckgdImg1").css('z-index');
 	 		var new_index = index - 1;
 
 	 		$("#bckgdImg2").css("z-index", new_index);
@@ -133,7 +111,7 @@ function menu(menus, cart){
 		
 	 	}else{
 
-	 		var index = $("#contentImg2").css('z-index');
+	 		var index = $("#bckgdImg2").css('z-index');
 	 		var new_index = index - 1;
 
 	 		$("#bckgdImg1").css("z-index", new_index);
