@@ -245,8 +245,10 @@ function menu(menus, cart){
 		{
 			var name = menus[menu_num].items[key].name;
 			var menu_item_id = menus[menu_num].items[key].id;
+			var korean_name = menus[menu_num].items[key].korean_name;
 			var id = key + 1;
-			var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'>" + name.toUpperCase() + "</td>";
+			var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + 
+						name.toUpperCase() + "</span><br>" + "<span>" + korean_name + "</span></td>";
 
 			$(".subMenuList table tr").append(item);
 		}
