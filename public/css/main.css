@@ -489,10 +489,19 @@ overflow-y: hidden;
 /* END - ERROR */
 
 /* START - LOADING */
+#loading
+{
+ left: 243px;
+    position: absolute;
+    top: 415px;
+    z-index: 10;
+}
+
 #main_logo
 {
 	 margin: -610px 130px;
 	 position:absolute;
+   z-index: 1;
 }
 
 
