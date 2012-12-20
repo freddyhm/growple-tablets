@@ -550,11 +550,10 @@ top: 250px;
 
 #menu_intmenu
 {
-   -moz-box-shadow: inset 0px 0px 250px 0px #000000;
-  -webkit-box-shadow: inset 0px 0px 250px 0px #000000;
-  -o-box-shadow: inset 0px 0px 250px 0px #000000;
-  box-shadow: inset 0px 0px 250px 0px #000000;
-  
+   background-image:url('../img/home/bg_menu.jpg');
+    float: left;
+  width: 341px;
+  height:600px;
 }
 
 .sectionLinks
@@ -570,10 +569,7 @@ top: 250px;
 	width: 341px;
 	height:600px;
 	background-image:url('../img/home/bg_game.jpg');
- -moz-box-shadow: inset 0px 0px 250px 0px #000000;
-  -webkit-box-shadow: inset 0px 0px 250px 0px #000000;
-  -o-box-shadow: inset 0px 0px 250px 0px #000000;
-  box-shadow: inset 0px 0px 250px 0px #000000;
+
 }
 
 #menu_videos
@@ -582,10 +578,7 @@ top: 250px;
 	width: 341px;
 	height:600px;
 	background-image:url('../img/home/bg_video.jpg');
-   -moz-box-shadow: inset 0px 0px 250px 0px #000000;
-  -webkit-box-shadow: inset 0px 0px 250px 0px #000000;
-  -o-box-shadow: inset 0px 0px 250px 0px #000000;
-  box-shadow: inset 0px 0px 250px 0px #000000;
+
 
 }
 
