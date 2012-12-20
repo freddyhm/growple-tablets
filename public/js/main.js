@@ -63,6 +63,7 @@ function menu(menus, cart){
 				var new_id = $(this).attr('id').substring(4);
 				populateSubMenu(new_id);
 
+				// select first item in category - FHM
 				$(".subMenuList tr td:first").trigger('click');
 
 			}).fadeTo(200, 1);
@@ -74,17 +75,14 @@ function menu(menus, cart){
 		var item_id = $(this).attr("value");
 		var menu_id = $(".menuSelected").attr("id").substring(4);
 		var item_pic = URL + 'public/img/menu/dishes/' + menus[menu_id].items[item_id].big_pic;
-		
-		// change background picture
-		
-		//changePicture('assets/img/menu/special/fishandchips.jpg');
+		var item_pos = $(this).position();
+		var item_width = $(this).css("width");
+		var item_padding_right = $(this).css("padding-right");
+		var item_padding_left = $(this).css("padding-left");
+		var box_size = parseInt(item_width) + parseInt(item_padding_left) + parseInt(item_padding_right) - 27;
 
-		// change name and description - FHM
-
-		var m = $(this).position();
-
-		$('#selectedItem').animate({ left: m.left,},500, function(){
-
+		// slide the selected item box - FHM
+		$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
 
 			changePicture(item_pic);					
 
@@ -93,28 +91,28 @@ function menu(menus, cart){
 			$('.itemDescription').html(menus[menu_id].items[item_id].description);
 			$('.itemPrice').html(function changePicture(pic_path){
 
-		var status = $("#contentImg2").css('display');
-	 	if(status == 'none'){
+				var status = $("#contentImg2").css('display');
+			 	if(status == 'none'){
 
-	 		var index = $("#contentImg1").css('z-index');
-	 		var new_index = index - 1;
+			 		var index = $("#contentImg1").css('z-index');
+			 		var new_index = index - 1;
 
-	 		$("#contentImg2").css("z-index", new_index);
-			$("#contentImg2").css('display', 'inline');
-			$("#contentImg2").attr("src", pic_path);
-			$("#contentImg1").fadeOut(1000);
-		
-	 	}else{
+			 		$("#contentImg2").css("z-index", new_index);
+					$("#contentImg2").css('display', 'inline');
+					$("#contentImg2").attr("src", pic_path);
+					$("#contentImg1").fadeOut(1000);
+				
+			 	}else{
 
-	 		var index = $("#contentImg2").css('z-index');
-	 		var new_index = index - 1;
+			 		var index = $("#contentImg2").css('z-index');
+			 		var new_index = index - 1;
 
-	 		$("#contentImg1").css("z-index", new_index);
-	 		$("#contentImg1").css('display', 'inline');
-	 		$("#contentImg1").attr("src", pic_path);
-			$("#contentImg2").fadeOut(1000);
-	 	}	
-	});
+			 		$("#contentImg1").css("z-index", new_index);
+			 		$("#contentImg1").css('display', 'inline');
+			 		$("#contentImg1").attr("src", pic_path);
+					$("#contentImg2").fadeOut(1000);
+			 	}	
+			});
 		});
 
 	});
