@@ -31,7 +31,7 @@ class Menu extends Controller {
 				}
 				
 				foreach ($item_list as $item) {
-					$menus[$submodule->id]['items'][] = $item->to_array(); 
+					$menus[$submodule->id]['items'][$item->id] = $item->to_array(); 
 				}
 			}
 

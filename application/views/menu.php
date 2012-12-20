@@ -1,5 +1,7 @@
 <script>
 $(document).ready(function() {		
+
+
 	
 	// init functions for menu   - FHM
 menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
@@ -78,7 +80,7 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 <div class="itemDetailContainer"> 
 	<div id="itemInfoWrapper">
 		<span class="itemName">ENGLISH STYLE FISH & CHIPS</span>
-		<span class="itemSpicy"></span>
+		<span class="itemKorean"></span>
 		<span class="itemDescription">
 			Two pieces of tempura battered haddock cooked until golden and delicious. Served with fries and our tangy cole slaw
 		</span>

@@ -1,8 +1,4 @@
-//var sleep_timer = setTimeout(function() { 
-
-sleep();
-	
-}, 5000);
+//var sleep_timer = setTimeout(function() { sleep();}, 5000);
 
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -241,35 +237,35 @@ function menu(menus, cart){
 		     $(this).remove();
 		});
 
-		$(".subMenuList table tr").append(item);
-
-
 		var menu_length = menus[menu_num].items.length - 1;
-		for (var i = 0; i <= menu_length; i++) {			
-			var name = menus[menu_num].items[i].name;
-			var menu_item_id = menus[menu_num].items[i].id;
-			var id = i + 1;
+
+		var m = menus[menu_num].items;
+
+		for (var key in menus[menu_num].items)
+		{
+			var name = menus[menu_num].items[key].name;
+			var menu_item_id = menus[menu_num].items[key].id;
+			var id = key + 1;
 			var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'>" + name.toUpperCase() + "</td>";
 
 			$(".subMenuList table tr").append(item);
 		}
-		
 	}
 
 	$(".items").live("click", function(){
 
 		var item_id = $(this).attr("value");
-		//var menu_id = $(".menuSelected").attr("id").substring(4);
-		var menu_id = 0;
-	
+		var menu_id = $(".menuSelected").attr("id").substring(4);
+		
 		// change background picture
 		
 		//changePicture('assets/img/menu/special/fishandchips.jpg');
 
 		// change name and description - FHM
-	 	$('.itemName').html(menus[menu_id].items[item_id].name).attr("value", item_id);
-	 	$('.itemSpicy').html(menus[menu_id].items[item_id].spicy_level);
-		$('.itemDescription').html(menus[menu_id].items[item_id].name);
+
+	 	$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+	 	$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
+		$('.itemDescription').html(menus[menu_id].items[item_id].description);
 		$('.itemPrice').html(menus[menu_id].items[item_id].price);
 	});
 		

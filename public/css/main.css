@@ -292,6 +292,18 @@ a:visited {text-decoration: none; color:#fff;}
   color: white;
 }
 
+.itemKorean
+{
+  font-size: 17px;
+  font-style: italic;
+  width: 330px;
+  height: 120px;
+  position: absolute;
+  margin: 120px 117px;
+  opacity: 0.97;
+  color: white;
+}
+
 .itemDescription
 {
   font-size: 17px;
