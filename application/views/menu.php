@@ -40,8 +40,7 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 <div id="cart">
 	<div id="cartArea">
 	<table id="cartItems">
-		<tr>
-		</tr>
+		<tr></tr>
 	</table>
 	</div>
 	<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
@@ -68,11 +67,12 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 </div>
 <!-- Sub Menus -->
 <div id="subBkgdMenu"></div>
+
 <div class="subMenu">
+	<div id="selectedItem"></div>
 	<div class="subMenuList">
 		<table>
 			<tr>
-				<td id="selectedItem"></td>
 			</tr>
 		</table>
 	</div>	

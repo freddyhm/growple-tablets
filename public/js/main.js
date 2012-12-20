@@ -30,6 +30,10 @@ function sleep(){
 
 function menu(menus, cart){
 
+	$('#selectedItem').click(function(event) {
+		alert('d');
+	});
+
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";
 	var user_cart = cart;
@@ -74,12 +78,17 @@ function menu(menus, cart){
 
 		// change name and description - FHM
 
-	 	$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
-	 	$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
-		$('.itemDescription').html(menus[menu_id].items[item_id].description);
-		$('.itemPrice').html(menus[menu_id].items[item_id].price);
+		var m = $(this).position();
 
-		$('#selectedItem').animate({ left:'0',},500);
+		$('#selectedItem').animate({ left: m.left,},500, function(){
+
+			changePicture('assets/img/menu/beer/corona.jpg');					
+
+			$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+	 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
+			$('.itemDescription').html(menus[menu_id].items[item_id].description);
+			$('.itemPrice').html(menus[menu_id].items[item_id].price);
+		});
 
 	});
 
@@ -87,7 +96,7 @@ function menu(menus, cart){
 
 		// clear menu
 
-		$(".subMenuList table tr td").each(function(event) {
+		$(".items").each(function(event) {
 		     $(this).remove();
 		});
 
@@ -101,14 +110,12 @@ function menu(menus, cart){
 			var menu_item_id = menus[menu_num].items[key].id;
 			var korean_name = menus[menu_num].items[key].korean_name;
 			var id = key + 1;
-			var item_box = "<td id='selectedItem'></td>";
-			var item = item_box + "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + 
+			var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + 
 						name.toUpperCase() + "</span><br>" + "<span>" + korean_name + "</span></td>";
 
 			$(".subMenuList table tr").append(item);
 		}
-	}
-	
+	}	
 	
 	// select default menu and first item - FHM
 	/*
@@ -132,6 +139,7 @@ function menu(menus, cart){
 			$("#cartTab").animate({opacity: "+=1"}, 500, function(){
 			$(this).animate({opacity: "-=0.50"}, 500);
 			});
+
 		});
 
 		// btn pressed - FHM
