@@ -299,7 +299,7 @@ a:visited {text-decoration: none; color:#fff;}
   width: 200px;
   height: 100px;
   position: absolute;
-  margin: 120px 65px;
+  margin: 130px 65px;
   opacity: 0.97;
   color: white;
   text-align: center;
@@ -312,7 +312,7 @@ a:visited {text-decoration: none; color:#fff;}
   width: 330px;
   height: 120px;
   position: absolute;
-  margin: 171px 24px;
+  margin: 180px 24px;
   opacity: 0.9;
   color:white;
 }
@@ -414,7 +414,7 @@ overflow-y: hidden;
 #waitForServer
 {
   display: none;
-  top: 138px;
+  top: 5px;
   position: relative;
 }
 
