@@ -1,7 +1,7 @@
 <script>
 $(document).ready(function() {		
 	
-	// init functions for menu - FHM
+	// init functions for menu   - FHM
 menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 
 	// first time interacting w/the menu, show tutorial - FHM
