@@ -63,6 +63,8 @@ function menu(menus, cart){
 				var new_id = $(this).attr('id').substring(4);
 				populateSubMenu(new_id);
 
+				$(".subMenuList tr td:first").trigger('click');
+
 			}).fadeTo(200, 1);
 		});
 	});
