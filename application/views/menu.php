@@ -59,7 +59,7 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 			?>
 			<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
 				<img class="menuTabs" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
-				<?php echo strtoupper($menu['name']); ?>
+				<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
 			</td>
 			<?php } ?>
 		</tr>
