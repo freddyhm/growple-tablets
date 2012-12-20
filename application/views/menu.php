@@ -75,7 +75,7 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 	</div>	
 </div>
 <!-- Item Detail -->
-<div class="itemDetailContainer">
+<div class="itemDetailContainer"> 
 	<div id="itemInfoWrapper">
 		<span class="itemName">ENGLISH STYLE FISH & CHIPS</span>
 		<span class="itemSpicy"></span>
