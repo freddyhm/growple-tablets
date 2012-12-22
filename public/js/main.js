@@ -184,11 +184,11 @@ function menu(menus, cart){
 	// inserts item into a user's cart - FHM
 	function addItem(id, callback){
 
-		// take src from cached pic
-		var small_pic = '#smallPicItem-' + id;
-		var small_src = $(small_pic).attr("src");
+		if(id < 10){
+			id = "0"+ id;
+		}
 
-		var item_img =  "<img id='" + id + "' src='public/img/menu/cart/btn_edit.png'>";
+		var item_img =  "<img class='smallPicItem' width='158px' height='110px' id='" + id + "' src='public/img/menu/dishes/" + id  + ".jpg'>";
 		var del_img = "<img class='cartDeleteItem' id='" + id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
 		
 		// insert new pic and item - FHM
