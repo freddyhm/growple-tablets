@@ -11,7 +11,7 @@
 
 <div id="menu_games" class="homeSection"></div>	
 <div class="sectionLinks" id="btn_games">
-		<a href="<?php echo URL . 'home'; ?>"><img src="<?php echo URL . 'public/img/home/btn_game.png'; ?>"></a>	
+		<a href="<?php echo URL . 'game'; ?>"><img src="<?php echo URL . 'public/img/home/btn_game.png'; ?>"></a>	
 		<!-- SLIDESHOW FOR GAMES MENU -->	
 		<div id="slideshow_games"></div>	
 	</div>	
