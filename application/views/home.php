@@ -20,7 +20,7 @@
 
 <div id="menu_videos" class="homeSection"></div>
 <div class="sectionLinks" id="btn_videos">
-		<a href="<?php echo URL . 'videos'; ?>" ><img src="<?php echo URL . 'public/img/home/btn_video.png'; ?>"></a>	
+		<a href="<?php echo URL . 'video'; ?>" ><img src="<?php echo URL . 'public/img/home/btn_video.png'; ?>"></a>	
 	<!-- SLIDESHOW FOR VIDEOS MENU -->	
 	<div id="slideshow_videos"></div>	
 </div>		
