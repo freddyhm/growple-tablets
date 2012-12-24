@@ -86,32 +86,32 @@ class Controller {
 		}	
 	}
 
-	// need to test - FHM
 	// saves everything the user has in his carts to db - FHM
-	private function cartCheckout(){
+	public function cartCheckout(){
 
-		$user_carts = unserialize(Session::get('user_carts'));
-		$failure == 'false';
+		$user_carts = Session::get('user_carts');
+		$failure = 'false';
 
 		if(!empty($user_carts)){
 
-			foreach ($user_carts as $cart) {
-			
-			$cart = new Cart();
-			$cart->date = $cart['date'];
-			$cart->size = $cart['size'];
-			$cart->user_id = Session::get('user_id');
-			$failure = $cart->save() ? $failure : 'true';
+			foreach ($user_carts['carts'] as $cart) {
 
-			foreach ($cart['items'] as $item) {
+			$new_cart = new Cart();
+			$new_cart->date = $cart['time'];
+			$new_cart->size = $cart['size'];
+			$new_cart->user_id = Session::get('user_id');
+			$failure = $new_cart->save() ? $failure : 'true';
+
+			foreach ($cart['items'] as $key => $item) {
+
 				$cart_item = new CartItem();
-				$cart_item->cart_id = $cart->id;
-				$cart_item->item_id = $item['id'];
+				$cart_item->cart_id = $new_cart->id;
+				$cart_item->item_id = intval($item);
 				$failure = $cart_item->save() ? $failure : 'true';
 				}
 			}
-
-			if(!$failure){
+			
+			if($failure == 'false'){
 				echo 'Success';				
 			}else{
 				$this->handleError('caution', 'controller.php', 'Problem saving cart and items in cartCheckout()');
@@ -165,7 +165,6 @@ class Controller {
 		}else{
 			$this->handleError('caution', 'controller.php', 'Problem with inputted variables in logUserStep()');
 		}
-
 	}
 
 	// analytics captures event/step  - FHM

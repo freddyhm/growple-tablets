@@ -10,6 +10,7 @@ class Menu extends Controller {
 	// throws error for proper logging and error notification - FHM
 	public function index(){
 
+	
 		try{
 			$module_list = Module::find_all_by_parent_id('1');
 		}catch(Exception $e){
@@ -55,16 +56,12 @@ class Menu extends Controller {
 	// gets cart of items from client and adds to array of user carts - FHM
 	public function addToCart(){
 
-		// get cart from client - FHM
-		$new_cart = $_POST['cart'];
-		$new_cart['time'] = date('h:i:s', time());
+		// get cart from client, set remaning attributes - FHM
+		$new_cart['items'] = $_POST['cart'];
+		$new_cart['time'] = date('m/d/Y h:i:s a', time());
+		$new_cart['size'] = count($new_cart['items']);
 
 		if(!empty($new_cart)){
-
-			if(!isset($_SESSION['user_carts'])){
-				$cart_list = array("user_carts" => array("carts" => array()));
-			}
-			
 			//set new cart - FHM
 			$_SESSION['user_carts']['carts'][] = $new_cart;
 
