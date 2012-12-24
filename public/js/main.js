@@ -179,7 +179,7 @@ function menu(menus, cart){
 			id = "0"+ id;
 		}
 
-		var item_img =  "<img class='smallPicItem' width='158px' height='110px' id='" + id + "' src='public/img/menu/dishes/" + id  + ".jpg'>";
+		var item_img =  "<img class='smallPicItem' width='158px' height='110px' id='" + id + "' src='" + URL + "public/img/menu/dishes/" + id  + ".jpg'>";
 		var del_img = "<img class='cartDeleteItem' id='" + id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
 		
 		// insert new pic and item - FHM
