@@ -37,15 +37,19 @@ if(ENVIRONMENT == 'production'){
 	error_reporting(E_ALL);
 }
 
-$url = explode('/', $_REQUEST['url']);
+if(isset($_REQUEST['url'])){
+	$url = explode('/', $_REQUEST['url']);
+	
+	// init session variable class if session doesn't exist and butlers aren't being called  - FHM
+	if(!Session::exist() && $url[0] != 'butlers'){
+		Session::init();
+	}
 
-// init session variable class if session doesn't exist and butlers aren't being called  - FHM
-if(!Session::exist() && $url[0] != 'butlers')
-{
+}else if(!Session::exist()){
 	Session::init();
 }
 
 // route to loading screen 
 $app = new Bootstrap();
-//$app->reroute(array('loading'));
+
 

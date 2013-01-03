@@ -24,6 +24,7 @@ class Bootstrap
 	{    
 		$controller_name = '';
 		$controller = '';
+		
 
 		// handle case where there is no specific page specified in url -> send to a new index page - FHM
 		if(empty($url[0]))
@@ -197,7 +198,7 @@ class Bootstrap
                 // called from index of controller
 		else
 		{    
-                $controller->index();
+             $controller->index();
 		}
 	}	
 }

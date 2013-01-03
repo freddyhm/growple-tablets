@@ -61,15 +61,20 @@ class Controller {
 
 		if(Session::exist()){
 			
-			// save path, carts, and destroy/create a new session - FHM
+			// save path, carts, and destroy/create a new session, will erase cart and path - FHM
 			$this->saveUserPath();
 			$this->cartCheckout();
 			Session::destroy();
+
+			// start new session and path, lazy loading for cart
 			Session::init();
+			$this->createUserPath();
 
 			// create & set new user in session - FHM 
 			$user = new User();
-			$user->name = '';
+			$user->name = 'JohnJane';
+			$user->venue_id = 1; // need to change depending on venue
+			$user->usertype_id = 3; // need to change depending on login
 			$user->save();
 
 			// save user id, check if session has been reset properly - FHM
@@ -81,7 +86,7 @@ class Controller {
 					$this->handleError('warning', 'controller.php', 'Problem setting user session variable and/or creating user path.');
 				}	
 			}else{
-				$this->handleError('danger', 'controller.php', 'Problem saving new user on reset.');
+				//$this->handleError('danger', 'controller.php', 'Problem saving new user on reset.');
 			}	
 		}	
 	}
@@ -112,7 +117,6 @@ class Controller {
 			}
 			
 			if($failure == 'false'){
-				echo 'Success';				
 			}else{
 				$this->handleError('caution', 'controller.php', 'Problem saving cart and items in cartCheckout()');
 			}
@@ -191,23 +195,13 @@ class Controller {
 				$new_path['steps'][$current_key]['start'] = $date;
 				$new_path['steps'][$current_key]['module_id'] = $module_id;
 
-				print_r($new_path);
-
-				echo 'ddddddddd';
-
-				print_r($old_path);
-
-				Session::set('path', $new_path);
-
-				print_r($_SESSION['path']);
-				
 			}else if($status == 'out'){
 				// get last step through the array's last key - FHM
 				$last_key = $current_key - 1;
 				$new_path['steps'][$last_key]['end'] = $date;
 			}
 			
-
+			Session::set('path', $new_path);
 		
 	        if(!isset($saved_path)){
 	        	$this->handleError('caution', 'controller.php', 'Problem saving path in session variable in logUserPath()');
@@ -216,8 +210,6 @@ class Controller {
 		}else{
 			$this->handleError('caution', 'controller.php', 'Problem with inputted variables in logUserStep()');
 		}	
-
-
 	}
 
 	// takes in a user id and kicks-off a new path - FHM
@@ -229,7 +221,7 @@ class Controller {
 		$event = new Event();
 		$event->name = 'Path started'; // Need to change to unique user ID later - FHM
 		$event->start = $date;
-		$event->user_id = Session::get('user_id');
+		$event->user_id = 2;//Session::get('user_id');
 		$event->eventcategory_id = 1; // This is 'path' - FHM
 		
 		if($event->save()){
@@ -250,8 +242,6 @@ class Controller {
 		}else{
 			$this->handleError('caution', 'controller.php', 'Problem creating event in createUserPath()');
 		}
-
-	//	print_r($new_path);
 	}
 
 	// saves user path in database - FHM
@@ -260,47 +250,60 @@ class Controller {
 		// unserialize path variable and get current time - FHM
 		$date = date('m/d/Y h:i:s a', time());
 
-		$path = unserialize(Session::get('path'));
+		$path = Session::get('path');
 		$failure = 'false';
 
 		if(!empty($path)){
 
 			// update current event with end time  - FHM
-			$event = Event::find('42');
-			$event->end = $date;
-			$failure = $event->save() ? $failure : 'true';
+			$ev_id = $path['event_id'];
+			
+			try{
+				$event = Event::find($ev_id);
+			}catch (Exception $e){
+				$this->handleError('warning', get_class().'_controller.php', 'could not find event in db when saving user path, analytics have been compromised');
+			}
 
-			// go through inner arrays and and save steps and activities - FHM
-			foreach ($path['steps'] as $step) {
-				
-				$new_step = new Step();
-				$new_step->event_id = $event->id;
-				$new_step->start = $step['start'];
-				$new_step->end = $step['end'];
-				$new_step->module_id = $step['module_id'];
-				$failure = $new_step->save() ? $failure : 'true';
+			if(!empty($event)){
 
-				if(!empty($step['activities'])){
+				$event->end = $date;
+				$failure = $event->save() ? $failure : 'true';
 
-					foreach ($step['activities'] as $activity) {	
-						$new_activity = new Activity();
-						$new_activity->name = $activity['name'];
-						$new_activity->start = $activity['start'];
-						$new_activity->end = $activity['end'];
-						$new_activity->step_id = $new_step->id;
-						$new_activity->item_id = $activity['item_id'];
-						$failure = $new_activity->save() ? $failure : 'true';
+				// go through inner arrays and and save steps and activities - FHM
+				foreach ($path['steps'] as $step) {
+					
+					$new_step = new Step();
+					$new_step->event_id = $event->id;
+					$new_step->start = $step['start'];
+					$new_step->end = isset($step['end']) ? $step['end'] : '';
+					$new_step->module_id = $step['module_id'];
+					$failure = $new_step->save() ? $failure : 'true';
+
+					if(!empty($step['activities'])){
+
+						foreach ($step['activities'] as $activity) {	
+							$new_activity = new Activity();
+							$new_activity->name = $activity['name'];
+							$new_activity->start = $activity['start'];
+							$new_activity->end = $activity['end'];
+							$new_activity->step_id = $new_step->id;
+							$new_activity->item_id = $activity['item_id'];
+							$failure = $new_activity->save() ? $failure : 'true';
+						}
+					}else{
+						$this->handleError('caution', 'controller.php', 'Path step activities are empty in saveUserPath()');
 					}
-				}else{
-					$this->handleError('caution', 'controller.php', 'Path step activities are empty in saveUserPath()');
 				}
+
+				if(!$failure){
+					echo 'Success';				
+				}else{
+					$this->handleError('caution', 'controller.php', 'Problem saving user path in saveUserPath()');
+				}
+			}else{
+				$this->handleError('warning', get_class().'_controller.php', 'event is empty');
 			}
 
-			if(!$failure){
-				echo 'Success';				
-			}else{
-				$this->handleError('caution', 'controller.php', 'Problem saving user path in saveUserPath()');
-			}
 		}else{
 			$this->handleError('caution', 'controller.php', 'User path is empty');
 		}

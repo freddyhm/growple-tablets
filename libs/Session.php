@@ -18,12 +18,6 @@ class Session
 	// set the sesssion - FHM
 	public static function set($key, $value)
 	{
-		/*
-		if(isset($_SESSION[$key])){
-			self::erase($key);
-		}
-		*/
-
 		$_SESSION[$key] = $value;
 	}
 
@@ -49,37 +43,7 @@ class Session
 	//erases individual variables- FHM
 	public static function erase($key)
 	{
-		/*
-		// check if variable is object - FHM
-		if(unserialize($_SESSION[$key])){
-			
-			$session_obj = unserialize($_SESSION[$key]);
-
-			if(is_array($session_obj)){
-
-				//print_r($session_obj);
-				//unset($_SESSION['path']['events']);
-
-			//	echo $_SESSION['path']['events']; 
-				
-				foreach ($session_obj as $element => $value) {
-
-					echo $element;
-					print_r($session_obj);
-					unset($_SESSION[$key][$element]);
-				}
-				
-			}
-
-		//	print_r($session_obj);
-			break;
-		}else{
-
-			}
-			*/
-
-
-			unset($key);
+		unset($key);
 		
 	}
 

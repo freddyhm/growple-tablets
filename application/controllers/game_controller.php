@@ -9,11 +9,8 @@ class Game extends Controller {
 
 	public function index(){
 
-/*
-		$this->logUserStep('in', 3);
-		$path = Session::get('path');
-		print_r($path);
-*/
+		//$this->logUserStep('in', 3);
+		
 		parent::index();
 	}
 }
