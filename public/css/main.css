@@ -201,11 +201,13 @@ a:visited {text-decoration: none; color:#fff;}
 {
 background-color: grey;
 opacity: 0.75;
-left: 3px;
+left: 2px;
 position: absolute;
 z-index: 1;
-height: 81px;
+height: 98px;
 bottom: 4px;
+width: 127px;
+
 }
 
 #menuHome
@@ -403,8 +405,9 @@ overflow-y: hidden;
 #cartTab
 {
   left: 500px;
-  opacity: 0.5;
   position: relative;
+  top: 10px;
+  opacity:0.8;
 }
 
 #cart
@@ -421,6 +424,7 @@ overflow-y: hidden;
 #cartItems
 {
   position: relative;
+  margin-top: 12px;
 }
 
 
@@ -433,8 +437,9 @@ overflow-y: hidden;
 .cartDeleteItem
 {
   position: relative;
-  bottom: 140px;
-  left: 122px;
+  bottom: 125px;
+  left: 125px;
+  opacity: 0.9;
 }
 
 #waitForServer
