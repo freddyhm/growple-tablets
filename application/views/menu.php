@@ -1,5 +1,9 @@
 <script>
-$(document).ready(function() {		
+$(document).ready(function() {	
+
+$("#menuHome").click(function(event) {
+			$('body').load('home').fadeIn(3000);
+		});	
 
 
 	
@@ -91,5 +95,5 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
 		<img id="grabIt" src="<?php echo URL .'public/img/menu/btn_grab.png'; ?>">
 	</div>
 </div>
-<a href="<?php echo URL . 'home'; ?>"><img id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>"></a>
+<a href="#"><img id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>"></a>
 <!-- END CONTAINER -->

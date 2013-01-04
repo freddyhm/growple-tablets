@@ -2,7 +2,7 @@
 <script>
 	$(document).ready(function(){
 		$("#one").click(function(event) {
-			$('body').load('menu').hide().fadeIn(3000);
+			$('body').load('menu');
 		});
 	});
 </script>
