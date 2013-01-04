@@ -13,6 +13,7 @@
 
 </head>	
 <body>
+	<div style="display:none;"><video autoplay="autoplay"><source src="" type="video/mp4" /></video ></div>
 	<div id="sleepSlideshow" style="display:none;"></div>
 	<div class="playbook">
 		<div class="content">
