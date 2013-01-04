@@ -7,13 +7,7 @@
 			<div id="header_game">
 				<img src="<?php echo URL . 'public/img/game/games.png'; ?>">
 			</div>	
-
-
-			
-
-				<div id="btn_gamehome"><a href="home"><img src="<?php echo URL . 'public/img/error/btn_return.png'; ?>"></a></div>
-			
-		
+				<div id="btn_gamehome"><img class="homeLink" src="<?php echo URL . 'public/img/error/btn_return.png'; ?>"></div>
 		</div>
 
 		<!-- END CONTAINER -->

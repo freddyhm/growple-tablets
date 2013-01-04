@@ -1,5 +1,27 @@
 //var sleep_timer = setTimeout(function() { sleep();}, 5000);
 
+$(document).ready(function() {
+	$(".homeLink").click(function(){
+		$("body").load("home");
+	});
+});
+
+function home(){
+
+	$("#menuLink").click(function(){
+		$("body").load("menu");
+	});
+
+	$("#gameLink").click(function(){
+		$("body").load("game");
+	});
+
+	$("#videoLink").click(function(){
+		$("body").load("video");
+	});
+
+}
+
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
 
@@ -239,12 +261,8 @@ function menu(menus, cart){
 					
 					var url = URL + 'menu/addToCart/d/';
 
-					alert(basket);
-					
-				
 					$.post(url, {cart: basket}, function(data, textStatus, xhr) {
-						alert(data);
-					  	//window.location = URL + "home";
+					  	$("body").load("home");
 					});
 				}
 

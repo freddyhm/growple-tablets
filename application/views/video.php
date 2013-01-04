@@ -18,7 +18,7 @@
 		<span id="video_author"></span>
 	</div>	
 	<div id="btn_video_home">
-		<a href="<?php echo URL . 'home'; ?>"><img src="<?php echo URL . 'public/img/common/btn_home.png'; ?>"></a>
+		<img class="homeLink" src="<?php echo URL . 'public/img/common/btn_home.png'; ?>">
 	</div>
 
 	<div id="btn_video_next">

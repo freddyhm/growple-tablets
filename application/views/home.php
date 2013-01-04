@@ -1,14 +1,25 @@
-<!-- START COLUMN1 - INTERACTIVE MENU -->
 <script>
-	$(document).ready(function(){
-		$("#one").click(function(event) {
-			$('body').load('menu');
+
+	$(document).ready(function() {	
+		
+		$("#menuLink").click(function(){
+			$("body").load("menu");
+		});
+
+		$("#gameLink").click(function(){
+			$("body").load("game");
+		});
+
+		$("#videoLink").click(function(){
+			$("body").load("video");
 		});
 	});
+
 </script>
+<!-- START COLUMN1 - INTERACTIVE MENU -->
 <div id="menu_intmenu" class="homeSection"></div>	
 <div class="sectionLinks" id="btn_intmenu">
-		<a href="#" id="one"><img src="<?php echo URL . 'public/img/home/btn_intmenu.png'; ?>"></a>	
+		<img id="menuLink" src="<?php echo URL . 'public/img/home/btn_intmenu.png'; ?>">
 		<!-- SLIDESHOW FOR INTERACTIVE MENU MENU -->	
 		<div id="slideshow_intmenu"></div>	
 </div>	
@@ -17,7 +28,7 @@
 
 <div id="menu_games" class="homeSection"></div>	
 <div class="sectionLinks" id="btn_games">
-		<a href="<?php echo URL . 'game'; ?>"><img src="<?php echo URL . 'public/img/home/btn_game.png'; ?>"></a>	
+		<img id="gameLink" src="<?php echo URL . 'public/img/home/btn_game.png'; ?>">	
 		<!-- SLIDESHOW FOR GAMES MENU -->	
 		<div id="slideshow_games"></div>	
 	</div>	
@@ -26,7 +37,7 @@
 
 <div id="menu_videos" class="homeSection"></div>
 <div class="sectionLinks" id="btn_videos">
-		<a href="<?php echo URL . 'video'; ?>" ><img src="<?php echo URL . 'public/img/home/btn_video.png'; ?>"></a>	
+		<img id="videoLink" src="<?php echo URL . 'public/img/home/btn_video.png'; ?>">
 	<!-- SLIDESHOW FOR VIDEOS MENU -->	
 	<div id="slideshow_videos"></div>	
 </div>		
