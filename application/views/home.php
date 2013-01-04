@@ -1,8 +1,14 @@
 <!-- START COLUMN1 - INTERACTIVE MENU -->
-
+<script>
+	$(document).ready(function(){
+		$("#one").click(function(event) {
+			$('body').load('menu').hide().fadeIn(3000);
+		});
+	});
+</script>
 <div id="menu_intmenu" class="homeSection"></div>	
 <div class="sectionLinks" id="btn_intmenu">
-		<a href="<?php echo URL . 'menu'; ?>" ><img src="<?php echo URL . 'public/img/home/btn_intmenu.png'; ?>"></a>	
+		<a href="#" id="one"><img src="<?php echo URL . 'public/img/home/btn_intmenu.png'; ?>"></a>	
 		<!-- SLIDESHOW FOR INTERACTIVE MENU MENU -->	
 		<div id="slideshow_intmenu"></div>	
 </div>	
