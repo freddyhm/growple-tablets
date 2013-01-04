@@ -1,4 +1,16 @@
+<script>
+	$(document).ready(function() {
+
+
+		//if(1 == 1){
+
+			
+//			$(".content").load("home");	
+		//}
+	});
+</script>
 <img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
+<a href="home">fdsafsd</a>
 <!-- START LOGO BUTTON -->
 <div id ="main_logo">
 	<div id="loading">

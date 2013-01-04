@@ -53,3 +53,5 @@ if(isset($_REQUEST['url'])){
 $app = new Bootstrap();
 
 
+//$app->reroute(array('loading'));
+

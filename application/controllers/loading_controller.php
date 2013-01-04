@@ -10,6 +10,7 @@ class Loading extends Controller {
 
 	// throws error for proper logging and error notification - FHM
 	public function index(){
+		
 		parent::index();
 	}
 }

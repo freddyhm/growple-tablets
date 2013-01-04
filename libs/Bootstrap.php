@@ -25,7 +25,6 @@ class Bootstrap
 		$controller_name = '';
 		$controller = '';
 		
-
 		// handle case where there is no specific page specified in url -> send to a new index page - FHM
 		if(empty($url[0]))
 		{
@@ -50,7 +49,6 @@ class Bootstrap
 		}
 
 		// called with 3 arguments, reroute to proper function and pass data ex: /start/add/d/1/2 or /start/add/1/2/3- FHM
-		
 		if(isset($url[5]))
 		{
 			if(method_exists($controller, $url[1]))
@@ -102,7 +100,6 @@ class Bootstrap
 		// called with 2 arguments, reroute to proper function and pass data  ex:/start/add/d/1  or /start/add/1/2 - FHM
 		else if(isset($url[3]))
 		{
-
 			$method_view = $this->view_path . $url[0]. '/' .$url[1] . '.php';
 
 			if(method_exists($controller, $url[1]))
