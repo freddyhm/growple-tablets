@@ -1,11 +1,14 @@
 //var sleep_timer = setTimeout(function() { sleep();}, 5000);
 
+//reset variables
 var touch_count = 0;
 var activate = 0;
+var touch_try = 0;
 
-function reset(touch)
-{
+function reset(touch){
+
 	touch_count += touch;
+	touch_try++;
 
 	if(touch_count == 6){
 		activate++;
@@ -19,10 +22,17 @@ function reset(touch)
 		activate++;
 	}
 
-	if(touch_count == 12 && activate == 3){
-		alert('unlocked');
+	if(touch_try > 3){
+
+		if(touch_count == 12 && activate == 3){
+			alert("unlocked");
+		}else{
+			alert("wrong combo! Try again.");
+		}
+
 		touch_count = 0;
 		activate = 0;
+		touch_try = 0;
 	}
 }
 
@@ -45,7 +55,6 @@ function home(){
 	$("#videoLink").click(function(){
 		$("body").load("video");
 	});
-
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
