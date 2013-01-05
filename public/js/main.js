@@ -1,5 +1,31 @@
 //var sleep_timer = setTimeout(function() { sleep();}, 5000);
 
+var touch_count = 0;
+var activate = 0;
+
+function reset(touch)
+{
+	touch_count += touch;
+
+	if(touch_count == 6){
+		activate++;
+	}
+
+	if(touch_count == 9){
+		activate++;
+	}
+	
+	if(touch_count == 11){
+		activate++;
+	}
+
+	if(touch_count == 12 && activate == 3){
+		alert('unlocked');
+		touch_count = 0;
+		activate = 0;
+	}
+}
+
 $(document).ready(function() {
 	$(".homeLink").click(function(){
 		$("body").load("home");

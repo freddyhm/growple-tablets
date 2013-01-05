@@ -1,7 +1,6 @@
 <script>
 
 	$(document).ready(function() {	
-		
 		$("#menuLink").click(function(){
 			$("body").load("menu");
 		});
@@ -12,6 +11,19 @@
 
 		$("#videoLink").click(function(){
 			$("body").load("video");
+		});
+
+		$("#menu_intmenu").click(function(){
+			reset(3);
+		});
+
+		$("#menu_games").click(function(){
+			reset(6);
+		});
+
+		$("#menu_videos").click(function(){
+			reset(2);
+			reset(1);
 		});
 	});
 
