@@ -727,5 +727,11 @@ z-index: 1;
     width: 700px;
 }
 
+#btn_gamehome
+{
+position: absolute;
+margin: -150px 310px;
+}
+
 
 /* END - GAME */
