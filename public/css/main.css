@@ -448,11 +448,16 @@ overflow-y: hidden;
 
 .cartName
 {
-  position: relative;
-  color: white;
-  bottom: 96px;
-  text-align: center;
-  left: 0px;
+ position: relative;
+color: white;
+bottom: 100px;
+text-align: center;
+vertical-align: middle;
+left: 0px;
+height: 100px;
+background-color: black;
+opacity: 0.8;
+  
 }
 
 
