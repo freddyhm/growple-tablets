@@ -1,8 +1,9 @@
 <script>
 $(document).ready(function() {	
-	
+
+
 	// init functions for menu   - FHM
-menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($cart); ?>);
+menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
 
 	// first time interacting w/the menu, show tutorial - FHM
 	var virgin = "<?php echo $is_virgin; ?>";

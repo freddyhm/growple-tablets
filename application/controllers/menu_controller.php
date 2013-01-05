@@ -42,10 +42,10 @@ class Menu extends Controller {
 			$first_time = Session::get('menu_first_time');
 			$first_time = isset($first_time) ? 'No' : 'Yes'; 
 
-			// get cart - FHM
-			$cart = $this->getCart();
-		
-			$info = array('menus' => $menus, 'is_virgin' => $first_time, 'cart' => $cart);
+			// get basket - FHM
+			$basket = $this->getBasket();
+
+			$info = array('menus' => $menus, 'is_virgin' => $first_time, 'basket' => $basket);
 		
 			parent::$data = $info; 
 			parent::index();
@@ -53,6 +53,45 @@ class Menu extends Controller {
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
+	}
+
+	public function saveBasket(){
+
+		$basket = $_POST['user_basket'];
+
+		if(!empty($basket)){
+
+			$old_basket = Session::get('user_basket');
+
+			print_r($old_basket);
+			
+			
+			if($old_basket){
+
+				foreach ($basket as $item) {
+					$old_basket[] = $item;
+				}
+
+				Session::set('user_basket', $old_basket);
+
+			}else{
+				Session::set('user_basket', $basket);
+			}
+
+		}else{
+			$this->handleError('warning', get_class().'_controller.php', 'Problem saving user basket');
+		}
+	}
+
+	public function getBasket(){
+		
+		$basket = Session::get('user_basket');
+
+		if(!isset($basket)){
+			$basket = "";
+		}
+		
+		return $basket;
 	}
 
 	// gets cart of items from client and adds to array of user carts - FHM

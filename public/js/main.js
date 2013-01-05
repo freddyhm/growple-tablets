@@ -5,6 +5,10 @@ var touch_count = 0;
 var activate = 0;
 var touch_try = 0;
 
+
+var basket = new Array();
+var user_basket = {};
+
 function reset(touch){
 
 	touch_count += touch;
@@ -45,6 +49,13 @@ function reset(touch){
 
 $(document).ready(function() {
 	$(".homeLink").click(function(){
+
+		var link_id = $(this).attr("id");
+
+		if(link_id == 'menuHome'){
+			$.post(URL + 'menu/saveBasket', {basket: basket});
+		}
+
 		$("body").load("home");
 		$.post(URL + 'home/stepOut');
 	});
@@ -92,16 +103,24 @@ function sleep(){
 	});
 }
 
-function menu(menus, cart){
+function menu(menus, user_basket){
 
-	$('#selectedItem').click(function(event) {
-		alert('d');
-	});
 
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";
-	var user_cart = cart;
-	var basket = new Array();	
+
+	if(user_basket != ""){
+    	basket = user_basket;
+    	fillCart(basket);
+    }
+
+
+	function fillCart(basket){
+		basket.forEach(function(entry){
+			
+			addItem(entry, "one");
+		});
+	}
 
 	$(".menuList").each(function(event) {
 
@@ -146,7 +165,7 @@ function menu(menus, cart){
 		}else if (menu_id == 11){
 			folder = '/beer/';
 		}else if (menu_id == 12){
-			folder = '/combos/';
+			folder = '/combo/';
 		}
 
 		var item_pic = URL + 'public/img/menu/' + folder + menus[menu_id].items[item_id].big_pic;
