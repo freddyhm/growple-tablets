@@ -115,9 +115,20 @@ function menu(menus, cart){
 
 	$(".items").live("click", function(){
 
+		var folder = '/dishes/';
 		var item_id = $(this).attr("value");
 		var menu_id = $(".menuSelected").attr("id").substring(4);
-		var item_pic = URL + 'public/img/menu/dishes/' + menus[menu_id].items[item_id].big_pic;
+		
+		// set proper image folder depending on menu - FHM
+		if(menu_id == 10){
+			folder = '/drinks/';
+		}else if (menu_id == 11){
+			folder = '/beer/';
+		}else if (menu_id == 12){
+			folder = '/combos/';
+		}
+
+		var item_pic = URL + 'public/img/menu/' + folder + menus[menu_id].items[item_id].big_pic;
 		var item_pos = $(this).position();
 		var item_width = $(this).css("width");
 		var item_padding_right = $(this).css("padding-right");

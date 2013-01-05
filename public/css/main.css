@@ -48,6 +48,18 @@ a:visited {text-decoration: none; color:#fff;
 }
 /* END - GLOBAL */
 
+#loadPage
+{
+  z-index: 99;
+  position: absolute;
+}
+
+#homePage
+{
+  
+  
+}
+
 /* START - MENU */
 
 #bckgdImg1
