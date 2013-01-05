@@ -22,7 +22,7 @@ function reset(touch){
 		activate++;
 	}
 
-	if(touch_try > 3){
+	if(touch_try == 4){
 
 		if(touch_count == 12 && activate == 3){
 			alert("unlocked");
