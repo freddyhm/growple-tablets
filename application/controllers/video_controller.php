@@ -9,7 +9,8 @@ class Video extends Controller {
 
 	public function index(){
 
-		//$this->logUserStep('in', 2);
+		// log step - FHM
+		$this->logUserStep('in', 2);
 	
 		$video_list = Item::find_all_by_module_id(2);
 		$videos = array();

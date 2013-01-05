@@ -1,6 +1,6 @@
 //var sleep_timer = setTimeout(function() { sleep();}, 5000);
 
-//reset variables
+//reset function variables
 var touch_count = 0;
 var activate = 0;
 var touch_try = 0;
@@ -17,30 +17,51 @@ function reset(touch){
 
 	// after fourth step, check if all activation numbers have been hit - FHM
 	if(touch_try == 3){
+
 		if(touch_count == 11 && activate == 3){
-			alert("unlocked");
+
+			// display loading page - FHM
+			$("#loadPage").show(function(){
+
+				var url = URL + "home/reset/d/";
+
+				// call server to reset user - FHM
+				$.post(url, function(data) {
+				  	$("#load_pic").fadeOut(100, function(){
+				  		$("#start_screen").click(function(event) {
+							$("#loadPage").fadeOut(1000);				  		
+				  		});
+				  	});
+				});
+			});
 		}
+
+		//reset variables
+		touch_count = 0;
+		activate = 0;
+		touch_try = 0;
 	}
 }
 
 $(document).ready(function() {
 	$(".homeLink").click(function(){
 		$("body").load("home");
+		$.post(URL + 'home/stepOut');
 	});
 });
 
 function home(){
 
 	$("#menuLink").click(function(){
-		$("body").load("menu");
+		$("body").load(URL + "menu");
 	});
 
 	$("#gameLink").click(function(){
-		$("body").load("game");
+		$("body").load(URL + "game");
 	});
 
 	$("#videoLink").click(function(){
-		$("body").load("video");
+		$("body").load(URL + "video");
 	});
 }
 

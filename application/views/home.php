@@ -1,8 +1,5 @@
 <script>
-
 	$(document).ready(function() {	
-
-		$("#loadPage").fadeOut(2000);
 
 		$("#menuLink").click(function(){
 			$("body").load("menu");
@@ -28,16 +25,15 @@
 			reset(2);
 		});
 	});
-
 </script>
-<div id="loadPage">
+<div id="loadPage" style="display:none;">
 	<img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
 	<!-- START LOGO BUTTON -->
 	<div id ="main_logo">
 		<div id="loading">
-			<img src="<?php echo URL . 'public/img/common/loading.gif'; ?>">
+			<img id="load_pic" src="<?php echo URL . 'public/img/common/loading.gif'; ?>">
 		</div>	
-		<img src="<?php echo URL . 'public/img/common/start_btn_logo.png'; ?>">
+		<img id="start_screen" src="<?php echo URL . 'public/img/common/start_btn_logo.png'; ?>">
 	</div>
 </div>
 <div id="homePage" style="display:inline;">

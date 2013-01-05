@@ -60,7 +60,7 @@ class Controller {
 	public function resetUser(){
 
 		if(Session::exist()){
-			
+
 			// save path, carts, and destroy/create a new session, will erase cart and path - FHM
 			$this->saveUserPath();
 			$this->cartCheckout();
@@ -68,20 +68,18 @@ class Controller {
 
 			// start new session and path, lazy loading for cart
 			Session::init();
-			$this->createUserPath();
-
+			
 			// create & set new user in session - FHM 
 			$user = new User();
 			$user->name = 'JohnJane';
 			$user->venue_id = 1; // need to change depending on venue
 			$user->usertype_id = 3; // need to change depending on login
-			$user->save();
-
-			// save user id, check if session has been reset properly - FHM
-			if(!$user->save()){
+		
+			// save user id and add to new session, check if session has been reset properly - FHM
+			if($user->save()){
 				Session::set('user_id', $user->id);
 				if(count(Session::getSession()) == 1 && $this->createUserPath($user->id)){
-					echo 'Success';
+					return 'Success';
 				}else{
 					$this->handleError('warning', 'controller.php', 'Problem setting user session variable and/or creating user path.');
 				}	
@@ -213,7 +211,7 @@ class Controller {
 	}
 
 	// takes in a user id and kicks-off a new path - FHM
- 	public function createUserPath(){
+ 	public function createUserPath($user_id){
 
  		$date = date('m/d/Y h:i:s a', time());
 
@@ -221,7 +219,7 @@ class Controller {
 		$event = new Event();
 		$event->name = 'Path started'; // Need to change to unique user ID later - FHM
 		$event->start = $date;
-		$event->user_id = 2;//Session::get('user_id');
+		$event->user_id = $user_id;
 		$event->eventcategory_id = 1; // This is 'path' - FHM
 		
 		if($event->save()){
@@ -238,6 +236,8 @@ class Controller {
 	        if(!isset($saved_path)){
 	        	$this->handleError('caution', 'controller.php', 'Problem saving path in session variable in createUserPath()');
 	        }
+
+	        return $saved_path;
 
 		}else{
 			$this->handleError('caution', 'controller.php', 'Problem creating event in createUserPath()');
