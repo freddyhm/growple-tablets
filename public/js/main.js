@@ -10,29 +10,16 @@ function reset(touch){
 	touch_count += touch;
 	touch_try++;
 
-	if(touch_count == 6){
+	// activation numbers - FHM
+	if(touch_count == 6 || touch_count == 9 || touch_count == 11){
 		activate++;
 	}
 
-	if(touch_count == 9){
-		activate++;
-	}
-	
-	if(touch_count == 11){
-		activate++;
-	}
-
-	if(touch_try == 4){
-
-		if(touch_count == 12 && activate == 3){
+	// after fourth step, check if all activation numbers have been hit - FHM
+	if(touch_try == 3){
+		if(touch_count == 11 && activate == 3){
 			alert("unlocked");
-		}else{
-			alert("wrong combo! Try again.");
 		}
-
-		touch_count = 0;
-		activate = 0;
-		touch_try = 0;
 	}
 }
 
@@ -208,7 +195,8 @@ function menu(menus, cart){
 	// Show cart, add item, and close
 	$("#grabIt").click(function(){
 
-		var selected_item = $(".itemName").attr("value");
+		var selected_item = $(".itemName").val();
+		var selected_item_name = $(".itemName").html();
 
 		// animate the cart when btn is pushed - FHM
 		$("#cartTab").animate({opacity: "+=1"}, 500, function(){
@@ -222,14 +210,14 @@ function menu(menus, cart){
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
 		setTimeout(function() { $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");}, 100);
 
-			addItem(selected_item, function(){
-				// unpress button - FHM
-				
-			});
+		addItem(selected_item, selected_item_name, function(){
+			// unpress button - FHM
+			
+		});
 	});
 
 	// inserts item into a user's cart - FHM
-	function addItem(id, callback){
+	function addItem(id, name, callback){
 
 		if(id < 10){
 			id = "0"+ id;
@@ -237,9 +225,10 @@ function menu(menus, cart){
 
 		var item_img =  "<img class='smallPicItem' width='158px' height='110px' id='" + id + "' src='" + URL + "public/img/menu/dishes/" + id  + ".jpg'>";
 		var del_img = "<img class='cartDeleteItem' id='" + id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
+		var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
 		
 		// insert new pic and item - FHM
-		$("#cartItems tr").append("<td>" + item_img + del_img +"</td>");
+		$("#cartItems tr").append("<td>" + item_img + del_img + item_name + "</td>");
 		$("#test").fadeIn(1000, function(){
 			callback();	
 		});
@@ -335,19 +324,46 @@ function menu(menus, cart){
 
 function video(videos){
 
-	var previous_num = 0;
-	var count = 0;
+	// play random video when video ends, make button clickable and control video with click - FHM
+
+	var currentVideo = document.getElementById("video");
 	
+	$(currentVideo).bind('ended', function(event) {
+		showRandomVideo();
+	});
+  
+	var previous_num = 0;
+	var status = 'play';
+
 	showRandomVideo();	
 
 	$("#next").click(function(event) {
 		showRandomVideo();	
 	});
-	
+
+	$(currentVideo).click(function(event) {
+		if(status == 'play'){
+			currentVideo.pause();
+			$("#video_menu").fadeIn();
+			status = 'stop';
+		}else if(status == 'stop'){
+			currentVideo.play();
+			$("#video_menu").fadeOut();
+			status = 'play';
+		}		
+	});
+
 	// displays a random video from list - FHM
 	function showRandomVideo(){
 
-		var currentVideo = document.getElementById("video"); 		
+		// reset status for new video - FHM
+		status = 'play';
+
+		// show menu if hidden (occurs when playing next video auto) - FHM
+		if($("#video_menu").css("display") != "inline"){
+			$("#video_menu").fadeIn();
+		}
+
 		var random_num = Math.floor(Math.random()*(videos.length));
 
 		// make sure our new random number is not the same as last one
@@ -358,32 +374,11 @@ function video(videos){
 		previous_num = random_num;
 
 		var vid_url = URL + 'public/vid/' + videos[random_num].path;
-		$("#video").attr("src", vid_url);
+
+		$(currentVideo).attr("src", vid_url);
 		$("#video_name").html( videos[random_num].name);
 		$("#video_author").html( videos[random_num].author);
 		
-		currentVideo.load();
-
-		var status = $("#video_menu").css("display");
-
-
 		setTimeout(function() {$("#video_menu").fadeOut();}, 4000);
-
-
 	}
-
-	$("#video").click(function(event) {
-		var currentVideo = document.getElementById("video");
-
-		if(count == 0){
-			currentVideo.pause();
-			$("#video_menu").fadeIn();
-			count++;
-		}else{
-			currentVideo.play();
-			$("#video_menu").fadeOut();
-			count--;
-		}
-
-	});
 }

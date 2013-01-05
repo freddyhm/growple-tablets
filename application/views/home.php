@@ -23,7 +23,6 @@
 
 		$("#menu_videos").click(function(){
 			reset(2);
-			reset(1);
 		});
 	});
 

@@ -5,10 +5,7 @@
 </script>
 	<!-- AREA FOR VIDEO -->
 	<div id="video_area">
-		<video id="video"  width="1024" height="600" autoplay="true">
-		  <source id="vid_src" src="" type="video/mp4">
-		Your browser does not support the video tag.
-		</video>
+		<video id="video"  width="1024" height="600" autoplay="true" src=""></video>
 	</div>
 	<!-- START VIDEO MENUS -->
 	<div id="video_menu">

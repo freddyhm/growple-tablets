@@ -434,10 +434,19 @@ overflow-y: hidden;
   margin-top: 12px;
 }
 
+.cartName
+{
+  position: relative;
+  color: white;
+  bottom: 96px;
+  text-align: center;
+  left: 0px;
+}
+
 
 #cartItems td
 {
-  width: 199px;
+  width: 158px;
 }
 
 
