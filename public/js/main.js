@@ -14,7 +14,6 @@ function home(){
 	var appCache = window.applicationCache;
 	
 	// on checking for both refresh and loading	
-
 	$(appCache).bind('checking', function(event) {
 		$("#loadPage").show();
 	});
@@ -103,17 +102,7 @@ function reset(touch){
 }
 
 $(document).ready(function() {
-	$(".homeLink").click(function(){
-
-		var link_id = $(this).attr("id");
-
-		if(link_id == 'menuHome'){
-			$.post(URL + 'menu/saveBasket', {basket: basket});
-		}
-
-		$("body").load(URL + "home");
-		$.post(URL + 'home/stepOut');
-	});
+	
 });
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -145,6 +134,11 @@ function sleep(){
 
 function menu(menus, user_basket){
 
+	$("#menuHome").click(function(){
+		$.post(URL + 'menu/saveBasket', {basket: basket});
+		$("body").load(URL + "home");
+		$.post(URL + 'home/stepOut');
+	});
 
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";
@@ -428,6 +422,10 @@ function video(videos){
 
 	showRandomVideo();	
 
+	$("#videoHomeLink").click(function(){
+		$("body").load(URL + "home");
+	});
+
 	$("#next").click(function(event) {
 		showRandomVideo();	
 	});
@@ -472,4 +470,12 @@ function video(videos){
 		
 		setTimeout(function() {$("#video_menu").fadeOut();}, 4000);
 	}
+}
+
+function game(){
+
+	$("#gameHomeLink").click(function(){
+		$("body").load(URL + "home");
+	});
+
 }

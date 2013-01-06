@@ -90,5 +90,5 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
 		<img id="grabIt" src="<?php echo URL .'public/img/menu/btn_grab.png'; ?>">
 	</div>
 </div>
-<img class="homeLink" id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>">
+<img id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>">
 <!-- END CONTAINER -->

@@ -1,3 +1,8 @@
+<script>
+	$(document).ready(function($) {
+		game();
+	});
+</script>
 <!-- START PAGE WRAPPER -->
 		<div class="playbook">
 		<!-- START CONTAINER -->
@@ -20,7 +25,7 @@
 			<div id="icon_game">
 				<img src="<?php echo URL . 'public/img/game/game_icon.png'; ?>">
 			</div>	
-				<div id="btn_gamehome"><img class="homeLink" src="<?php echo URL . 'public/img/error/btn_return.png'; ?>"></div>
+				<div id="btn_gamehome"><img id="gameHomeLink" src="<?php echo URL . 'public/img/error/btn_return.png'; ?>"></div>
 		</div>
 
 		<!-- END CONTAINER -->
