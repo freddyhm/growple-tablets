@@ -179,6 +179,9 @@ function menu(menus, user_basket){
 				// select first item in category - FHM
 				$(".subMenuList tr td:first").trigger('click');
 
+				// move scroll bar to first element - FHM
+				$(".subMenu").animate({ scrollLeft: 0 }, "slow");
+
 			}).fadeTo(200, 1);
 		});
 	});
@@ -215,14 +218,13 @@ function menu(menus, user_basket){
 
 			// slide the selected item box - FHM
 			$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
-
+	
 				$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
 		 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
 				$('.itemDescription').html(menus[menu_id].items[item_id].description);
 				$('.itemPrice').html(menus[menu_id].items[item_id].price);
-			});						
+			});				
 		}
-
 	});
 
 	function changePicture(pic_path){
