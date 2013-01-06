@@ -1,24 +1,21 @@
 <script>
-// first time interacting w/the menu, show tutorial - FHM
-	//var virgin = "<?php echo $is_virgin; ?>";
-	//if(virgin == "Yes"){
-
-		$("#menuContent").show();
-		$("#grabIt").css("z-index", "1");
-
-		$("#tutorial").click(function(event) {
-			$("#tutorial").hide();
-			$("#grabIt").css("z-index", "2");
-			<?php Session::set("menu_first_time", "No"); ?>
-		});
-
-		
-//	}
-
 $(document).ready(function() {	
+
+	// first time interacting w/the menu, show tutorial - FHM
+	var virgin = "<?php echo $is_virgin; ?>";
+	
+	if(virgin == "Yes"){
+		$("#tutorial").click(function(event) {
+			<?php Session::set("menu_first_time", "No"); ?>
+			$("#menuContent").show();
+			$("#tutorial").hide();
+		});
+	}else{
+		$("#tutorial").hide();
+		$("#menuContent").show();
+	}
 	// init functions for menu   - FHM
 	menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
-
 });
 </script>
 <!-- START CONTAINER -->
@@ -26,7 +23,7 @@ $(document).ready(function() {
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg2"/>
 <img src="" id="bckgdImg2"/>
-<div id="tutorial" style="display:inline;" >
+<div id="tutorial">
 	<img id="tutorialBckgdImg" src="<?php echo URL .'public/img/menu/tutorial/bg_owl.jpg'; ?>">
 	<img id="tutorialIcons" src="<?php echo URL .'public/img/menu/tutorial/tut_intro.png'; ?>">
 	<span class="tutorialText" id="tutorialDiscover">Discover</span>
@@ -35,7 +32,7 @@ $(document).ready(function() {
 	<img id="tutorialSign" src="<?php echo URL .'public/img/menu/tutorial/btn_getstarted.png'; ?>">
 	<div id="tutorialBckgd"></div>
 </div>
-<div id="menuContent" style="display:none;">
+<div id="menuContent">
 	<!-- Main Menu (Bottom) -->
 	<div id="mainBkgdMenu">
 	</div>

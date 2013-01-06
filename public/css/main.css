@@ -83,11 +83,6 @@ a:visited {text-decoration: none; color:#fff;
 
 }
 
-#tutorial
-{
-  display: none;
-}
-
 .tutorialText
 {
   position: absolute;
@@ -95,6 +90,11 @@ a:visited {text-decoration: none; color:#fff;
   z-index: 3;
   font-size: 24px;
   top: 277px;
+}
+
+#menuContent
+{
+  display: none;
 }
 
 #tutorialDiscover
@@ -369,7 +369,7 @@ width: 127px;
   top: 328px;
   left: 57px;
   position: relative;
-  z-index:2;
+  z-index:1;
 }
 
 
