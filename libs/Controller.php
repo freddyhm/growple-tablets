@@ -177,12 +177,13 @@ class Controller {
 		if(!isset($old_path)){
 			$old_path = array();
 		}
+
 		$new_path = $old_path;
 
 		$date = date('m/d/Y h:i:s a', time()); 
 
 		// get current key - FHM
-		$current_key = count($old_path['steps']);
+		$current_key = isset($old_path['steps']) ? count($old_path['steps']) : 0 ;
 
 		if(is_numeric($current_key) && is_string($status) && is_numeric($module_id)){
 

@@ -49,7 +49,6 @@ function reset(touch){
 
 $(document).ready(function() {
 	$(".homeLink").click(function(){
-		alert('d');
 
 		var link_id = $(this).attr("id");
 
