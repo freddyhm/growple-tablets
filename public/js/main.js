@@ -421,7 +421,8 @@ function video(videos){
 		showRandomVideo();
 	});
   
-	var previous_num = 0;
+	var previous_vid = new Array(0, 0 ,0 ,0 ,0 ,0);
+	var previous_position = 0;
 	var status = 'play';
 
 	showRandomVideo();	
@@ -459,13 +460,22 @@ function video(videos){
 
 		var random_num = Math.floor(Math.random()*(videos.length));
 
-		// make sure our new random number is not the same as last one
-		while(previous_num == random_num){
+		// make sure our new random number is not the same as last five ones - FHM
+		while(previous_vid[0] == random_num || previous_vid[1] == random_num || previous_vid[2] == random_num || previous_vid[3] == random_num || previous_vid[4] == random_num || previous_vid[5] == random_num || previous_vid[6] == random_num){
 			random_num = Math.floor(Math.random()*(videos.length));
 		}
 
-		previous_num = random_num;
+		// assign random num to position of array - FHM
+		// position of videos, starts overwriting from the start when array is full - FHM
+		previous_vid[previous_position] = random_num;
 
+		// make sure previous position stays lower than array indexes - FHM 
+		if(previous_position != previous_vid.length - 1){
+			previous_position++;	
+		}else{
+			previous_position = 0;
+		}
+			
 		var vid_url = URL + 'public/vid/' + videos[random_num].path;
 
 		$(currentVideo).attr("src", vid_url);
