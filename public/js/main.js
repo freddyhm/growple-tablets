@@ -49,6 +49,7 @@ function reset(touch){
 
 $(document).ready(function() {
 	$(".homeLink").click(function(){
+		alert('d');
 
 		var link_id = $(this).attr("id");
 
@@ -56,7 +57,7 @@ $(document).ready(function() {
 			$.post(URL + 'menu/saveBasket', {basket: basket});
 		}
 
-		$("body").load("home");
+		$("body").load(URL + "home");
 		$.post(URL + 'home/stepOut');
 	});
 });
@@ -168,7 +169,7 @@ function menu(menus, user_basket){
 			folder = '/combo/';
 		}
 
-		var item_pic = URL + 'public/img/menu/' + folder + menus[menu_id].items[item_id].big_pic;
+		var item_pic = URL + 'public/img/menu' + folder + menus[menu_id].items[item_id].big_pic;
 		var item_pos = $(this).position();
 		var item_width = $(this).css("width");
 		var item_padding_right = $(this).css("padding-right");
