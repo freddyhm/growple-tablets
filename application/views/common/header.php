@@ -14,7 +14,7 @@
 	<script src="<?php echo URL . 'public/js/kenburns.js';?>"></script>
 </head>	
 <body>
-	<div style="display:none;"><video loop="loop" autoplay="autoplay"><source src="" /></video ></div>
+	<div style="display:none;"><video loop="loop" autoplay="autoplay"><source src="<?php echo URL . 'public/vid/blank.mp4'; ?>" /></video ></div>
 	<div id="sleepSlideshow" style="display:none;"></div>
 	<div class="playbook">
 		<div class="content">
