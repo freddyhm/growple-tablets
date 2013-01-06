@@ -13,8 +13,4 @@ class Home extends Controller {
 	public function reset(){
 		parent::resetUser(); // Need to remove echo - FHM
 	}
-
-	public function stepOut(){
-		$this->logUserStep('out', 3);
-	}
 }

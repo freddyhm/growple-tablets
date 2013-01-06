@@ -2,7 +2,7 @@
  	// Took out document ready since we want the function to trigger before the doc is fully loaded 
 	home();	
 </script>
-<div id="loadPage" style="display:none;">
+<div id="loadPage">
 	<img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
 	<!-- START LOGO BUTTON -->
 	<div id ="main_logo">
@@ -12,7 +12,7 @@
 		<img id="start_screen" src="<?php echo URL . 'public/img/common/start_btn_logo.png'; ?>">
 	</div>
 </div>
-<div id="homePage" style="display:inline;">
+<div id="homePage">
 	<!-- START COLUMN1 - INTERACTIVE MENU -->
 	<div id="menu_intmenu" class="homeSection"></div>	
 	<div class="sectionLinks" id="btn_intmenu">

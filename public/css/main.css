@@ -12,11 +12,6 @@ a {text-decoration: none; color:#fff;}
 a:visited {text-decoration: none; color:#fff;
 }
 
-.home
-{
-  
-}
-
 .playbook
 {
   width: 1024px;
@@ -48,17 +43,18 @@ a:visited {text-decoration: none; color:#fff;
 }
 /* END - GLOBAL */
 
+/* START - HOME */
+
 #loadPage
 {
+  display: none;
   z-index: 99;
   position: absolute;
 }
 
-#homePage
-{
-  
-  
-}
+
+
+/* END - HOME
 
 /* START - MENU */
 
