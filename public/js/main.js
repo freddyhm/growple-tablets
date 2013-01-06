@@ -9,6 +9,60 @@ var touch_try = 0;
 var basket = new Array();
 var user_basket = {};
 
+function home(){
+
+	var appCache = window.applicationCache;
+	
+	// on checking for both refresh and loading
+	$(appCache).bind('checking', function(event) {
+		$("#loadPage").show();
+	});
+
+	// when browser gets refreshed - FHM
+	$(appCache).bind('noupdate', function(event) {
+		$("#load_pic").hide();
+			$("#start_screen").click(function(event) {
+				$("#loadPage").fadeOut(1000);
+		 });
+	});
+
+	// when cache finishes - FHM
+	$(appCache).bind('cached', function(event) {
+		// first load 
+		$("#load_pic").fadeOut(100, function(){
+	  		$("#start_screen").click(function(event) {
+				$("#loadPage").fadeOut(1000);
+	  		});
+		});
+	});
+
+	$(document).ready(function() {	
+		$("#menuLink").click(function(){
+			$("body").load(URL + "menu");
+		});
+
+		$("#gameLink").click(function(){
+			$("body").load(URL + "game");
+		});
+
+		$("#videoLink").click(function(){
+			$("body").load(URL + "video");
+		});
+
+		$("#menu_intmenu").click(function(){
+			reset(3);
+		});
+
+		$("#menu_games").click(function(){
+			reset(6);
+		});
+
+		$("#menu_videos").click(function(){
+			reset(2);
+		});
+	});
+}
+
 function reset(touch){
 
 	touch_count += touch;
@@ -60,21 +114,6 @@ $(document).ready(function() {
 		$.post(URL + 'home/stepOut');
 	});
 });
-
-function home(){
-
-	$("#menuLink").click(function(){
-		$("body").load(URL + "menu");
-	});
-
-	$("#gameLink").click(function(){
-		$("body").load(URL + "game");
-	});
-
-	$("#videoLink").click(function(){
-		$("body").load(URL + "video");
-	});
-}
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){

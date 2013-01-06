@@ -1,30 +1,6 @@
 <script>
-	$(document).ready(function() {	
-
-		$("#menuLink").click(function(){
-			$("body").load("menu");
-		});
-
-		$("#gameLink").click(function(){
-			$("body").load("game");
-		});
-
-		$("#videoLink").click(function(){
-			$("body").load("video");
-		});
-
-		$("#menu_intmenu").click(function(){
-			reset(3);
-		});
-
-		$("#menu_games").click(function(){
-			reset(6);
-		});
-
-		$("#menu_videos").click(function(){
-			reset(2);
-		});
-	});
+ 	// Took out document ready since we want the function to trigger before the doc is fully loaded 
+	home();	
 </script>
 <div id="loadPage" style="display:none;">
 	<img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
