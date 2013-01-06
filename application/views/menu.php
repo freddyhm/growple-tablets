@@ -1,7 +1,7 @@
 <script>
 // first time interacting w/the menu, show tutorial - FHM
-	var virgin = "<?php echo $is_virgin; ?>";
-	if(virgin == "Yes"){
+	//var virgin = "<?php echo $is_virgin; ?>";
+	//if(virgin == "Yes"){
 
 		$("#tutorial").click(function(event) {
 			$("#tutorial").hide();
@@ -11,15 +11,14 @@
 
 		$("#tutorial").show();
 		$("#grabIt").css("z-index", "1");
-	}
-	
+//	}
+
 $(document).ready(function() {	
 
 
 	// init functions for menu   - FHM
-menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
+	menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
 
-	
 });
 </script>
 <!-- START CONTAINER -->
