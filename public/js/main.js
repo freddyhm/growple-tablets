@@ -101,10 +101,6 @@ function reset(touch){
 	}
 }
 
-$(document).ready(function() {
-	
-});
-
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
 
@@ -209,17 +205,23 @@ function menu(menus, user_basket){
 		var item_padding_left = $(this).css("padding-left");
 		var box_size = parseInt(item_width) + parseInt(item_padding_left) + parseInt(item_padding_right) - 27;
 
-		// fade in the item picture - FHM
-		changePicture(item_pic);						
+		var opac1 = $("#bckgdImg1").css('opacity');
+		var opac2 = $("#bckgdImg2").css('opacity');
 
-		// slide the selected item box - FHM
-		$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
+		if(opac1 == 1 && opac2 == 1){
 
-			$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
-	 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
-			$('.itemDescription').html(menus[menu_id].items[item_id].description);
-			$('.itemPrice').html(menus[menu_id].items[item_id].price);
-		});
+			// fade in the item picture - FHM
+			changePicture(item_pic);
+
+			// slide the selected item box - FHM
+			$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
+
+				$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+		 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
+				$('.itemDescription').html(menus[menu_id].items[item_id].description);
+				$('.itemPrice').html(menus[menu_id].items[item_id].price);
+			});						
+		}
 
 	});
 
@@ -235,7 +237,7 @@ function menu(menus, user_basket){
 	 		$("#bckgdImg2").css("z-index", new_index);
 			$("#bckgdImg2").css('display', 'inline');
 			$("#bckgdImg2").attr("src", pic_path);
-			$("#bckgdImg1").fadeOut(1000);
+			$("#bckgdImg1").fadeOut(800);
 		
 	 	}else{
 
@@ -245,7 +247,7 @@ function menu(menus, user_basket){
 	 		$("#bckgdImg1").css("z-index", new_index);
 	 		$("#bckgdImg1").css('display', 'inline');
 	 		$("#bckgdImg1").attr("src", pic_path);
-			$("#bckgdImg2").fadeOut(1000);
+			$("#bckgdImg2").fadeOut(800);
 	 	}	
 	}
 
