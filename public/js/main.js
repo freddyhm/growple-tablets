@@ -13,8 +13,7 @@ function home(){
 
 	var appCache = window.applicationCache;
 	
-	// on checking for both refresh and loading
-	$(appCache).bind('checking', function(event) {
+	// on checking for both refresh and loading	$(appCache).bind('checking', function(event) {
 		$("#loadPage").show();
 	});
 
