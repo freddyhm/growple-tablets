@@ -1,11 +1,5 @@
 <script>
-$(document).ready(function() {	
-
-
-	// init functions for menu   - FHM
-menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
-
-	// first time interacting w/the menu, show tutorial - FHM
+// first time interacting w/the menu, show tutorial - FHM
 	var virgin = "<?php echo $is_virgin; ?>";
 	if(virgin == "Yes"){
 
@@ -18,6 +12,14 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
 		$("#tutorial").show();
 		$("#grabIt").css("z-index", "1");
 	}
+	
+$(document).ready(function() {	
+
+
+	// init functions for menu   - FHM
+menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
+
+	
 });
 </script>
 <!-- START CONTAINER -->
@@ -25,7 +27,7 @@ menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg2"/>
 <img src="" id="bckgdImg2"/>
-<div id="tutorial">
+<div id="tutorial" >
 	<img id="tutorialBckgdImg" src="<?php echo URL .'public/img/menu/tutorial/bg_owl.jpg'; ?>">
 	<img id="tutorialIcons" src="<?php echo URL .'public/img/menu/tutorial/tut_intro.png'; ?>">
 	<span class="tutorialText" id="tutorialDiscover">Discover</span>
