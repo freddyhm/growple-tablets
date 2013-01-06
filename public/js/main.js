@@ -10,7 +10,7 @@ var basket = new Array();
 var user_basket = {};
 
 function home(){
-
+/*
 	var appCache = window.applicationCache;
 	
 	// on checking for both refresh and loading	
@@ -36,7 +36,7 @@ function home(){
 	  		});
 		});
 	});
-
+*/
 	$(document).ready(function() {	
 		$("#menuLink").click(function(){
 			$("body").load(URL + "menu");
