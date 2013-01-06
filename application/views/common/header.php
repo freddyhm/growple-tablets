@@ -10,6 +10,7 @@
 	<script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
 	<script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
 	<script src="<?php echo URL . 'public/js/kenburns.js';?>"></script>
+	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 
 </head>	
 <body>
