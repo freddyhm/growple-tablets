@@ -58,26 +58,23 @@ class Menu extends Controller {
 	public function saveBasket(){
 
 		$basket = $_POST['user_basket'];
+		print_r($basket);
+	
+		$old_basket = Session::get('user_basket');
 
 		if(!empty($basket)){
 
-			$old_basket = Session::get('user_basket');
-
-			print_r($old_basket);
-			
-			
-			if($old_basket){
-
-				foreach ($basket as $item) {
-					$old_basket[] = $item;
-				}
-
-				Session::set('user_basket', $old_basket);
-
-			}else{
-				Session::set('user_basket', $basket);
+			// new basket - FHM
+			if(!$old_basket){
+				$old_basket = array();
 			}
 
+			
+
+			if($old_basket != $basket){
+				$merge = array_merge($old_basket, $basket);
+				Session::set('user_basket', $merge);
+			}
 		}else{
 			$this->handleError('warning', get_class().'_controller.php', 'Problem saving user basket');
 		}

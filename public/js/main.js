@@ -154,7 +154,12 @@ function home(){
 function menu(menus, user_basket){
 
 	$("#menuHome").click(function(){
-		$.post(URL + 'menu/saveBasket', {basket: basket});
+
+		alert(basket);
+		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket}, function(data){
+			alert(data);
+		});
+
 		$("body").load(URL + "home");
 		$.post(URL + 'home/stepOut');
 	});
@@ -169,9 +174,10 @@ function menu(menus, user_basket){
 
 
 	function fillCart(basket){
+		//function addItem(id, name, menu_name, push){
+
 		basket.forEach(function(entry){
-			
-			addItem(entry, "one");
+			addItem(entry, "one", "men_name", "no");
 		});
 	}
 
@@ -324,16 +330,21 @@ function menu(menus, user_basket){
 		setTimeout(function() { $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");}, 100);
 
 
-		addItem(selected_item, selected_item_name, selected_menu_name);
+		addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
 		var last_item = $("#cartItems tr td:last").position();
 		$("#cartArea").animate({ scrollLeft: last_item.left}, "slow");
 	});
 
 	// inserts item into a user's cart - FHM
-	function addItem(id, name, menu_name){
+	function addItem(id, name, menu_name, push){
 
-		if(id < 10){
-			id = "0"+ id;
+		if(push == 'yes'){
+
+			if(id < 10){
+				id = "0"+ id;
+			}
+
+			basket.push(id);
 		}
 
 		if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
@@ -350,7 +361,7 @@ function menu(menus, user_basket){
 			callback();	
 		});
 
-		basket.push(id);
+				
 	}
 	
 	// add or edit cart - FHM

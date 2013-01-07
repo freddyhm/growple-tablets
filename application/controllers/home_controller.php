@@ -11,6 +11,8 @@ class Home extends Controller {
 	}
 
 	public function reset(){
-		parent::resetUser(); // Need to remove echo - FHM
+
+		Session::destroy();
+		//parent::resetUser(); // Need to remove echo - FHM
 	}
 }
