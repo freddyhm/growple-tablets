@@ -19,7 +19,7 @@ document.addEventListener('click', function(e) {
 
 // list of global functions - FHM
 function activateSleepTimer(){
-	sleep_timer = setTimeout(function() {sleep();}, 15000);
+	sleep_timer = setTimeout(function() {sleep();}, 100000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
