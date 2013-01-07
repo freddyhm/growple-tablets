@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 05, 2013 at 11:41 PM
+-- Generation Time: Jan 06, 2013 at 09:57 PM
 -- Server version: 5.5.9
 -- PHP Version: 5.3.6
 
@@ -102,7 +102,7 @@ CREATE TABLE `events` (
   KEY `module_id` (`module_id`),
   KEY `user_id` (`user_id`),
   KEY `eventcategory_id` (`eventcategory_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `events`
@@ -122,6 +122,10 @@ INSERT INTO `events` VALUES(11, 'Path started', '2013-01-05 14:35:03', '0000-00-
 INSERT INTO `events` VALUES(12, 'Path started', '2013-01-05 19:32:19', '0000-00-00 00:00:00', NULL, NULL, 12, 1);
 INSERT INTO `events` VALUES(13, 'Path started', '2013-01-05 21:06:08', '0000-00-00 00:00:00', NULL, NULL, 13, 1);
 INSERT INTO `events` VALUES(14, 'Path started', '2013-01-05 22:33:57', '0000-00-00 00:00:00', NULL, NULL, 14, 1);
+INSERT INTO `events` VALUES(15, 'Path started', '2013-01-06 19:26:44', '2013-01-06 19:27:15', NULL, NULL, 15, 1);
+INSERT INTO `events` VALUES(16, 'Path started', '2013-01-06 19:27:15', '2013-01-06 19:27:37', NULL, NULL, 16, 1);
+INSERT INTO `events` VALUES(17, 'Path started', '2013-01-06 19:27:37', '2013-01-06 19:27:46', NULL, NULL, 17, 1);
+INSERT INTO `events` VALUES(18, 'Path started', '2013-01-06 19:27:46', '0000-00-00 00:00:00', NULL, NULL, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -205,20 +209,20 @@ INSERT INTO `items` VALUES(37, 'shrimp bokeumbap', '새우볶음밥', '$9.99', '
 INSERT INTO `items` VALUES(38, 'bulgogi bokeumbap', '불고기볶음밥', '$9.99', 'Stir-fried beef with vegetables & rice', '38.jpg', '', '', '', '', 0, 4);
 INSERT INTO `items` VALUES(40, 'bulgogi bap', '불고기덮밥', '$9.99', 'Stir-fried beef with vegetables & fried egg on steamed rice', '40.jpg', '', '', '', '', 0, 4);
 INSERT INTO `items` VALUES(41, 'chicken bap', '치킨덮밥', '$9.99', 'Stir-fried chicken with vegetables & fried egg on steamed rice', '41.jpg', '', '', '', '', 0, 4);
-INSERT INTO `items` VALUES(53, 'Pop', '음료수', '1.50', 'Variety of pop/soda drinks - Coke, Sprite, Ginger Ale etc. *Nestea - $1.75', '1.jpg', '', '', '', '', 0, 10);
-INSERT INTO `items` VALUES(54, 'Soju (Alc. 20.1%)', '참이슬', '13.99', 'Distilled beverage native to Korea. ChamIseul is the most popular soju brand in Korea (Alc. 20.1%)', '2.jpg', '', '', '', '', 0, 10);
-INSERT INTO `items` VALUES(55, 'Soju (Alc. 19.5%)', '처음처럼', '13.99', 'Distilled beverage native to Korea. ChuhEumChuhRum is the second most popular soju brand (Alc. 19.5%)', '3.jpg', '', '', '', '', 0, 10);
-INSERT INTO `items` VALUES(56, 'Korean Wine', '백세주', '17.99', 'Rice wine infused with ginseng and eleven other herbs (Alc. 13%)', '4.jpg', '', '', '', '', 0, 10);
-INSERT INTO `items` VALUES(57, 'Makkoli (750ml)', '막걸리', '14.99', 'Milky, sweet alcoholic beverage made from rice - 750ml', '5.jpg', '', '', '', '', 0, 10);
-INSERT INTO `items` VALUES(58, 'Makkoli (1000ml)', '막걸리', '17.99', 'Milky, sweet alcoholic beverage made from rice - 1000ml', '6.jpg', '', '', '', '', 0, 10);
-INSERT INTO `items` VALUES(59, 'Coors Light', '', '3.50', 'Light Beer with the "Cold Certified" label.', '1.jpg', '', '', '', '', 0, 11);
-INSERT INTO `items` VALUES(60, 'Labatt Blue', '', '3.50', 'Clean, refreshing pilsner with a distinctive hoppy aroma, a delicate character, and a slightly sweet aftertaste.', '2.jpg', '', '', '', '', 0, 11);
-INSERT INTO `items` VALUES(61, 'Molson Canadian', '', '3.50', 'Canadian water, prairie barley, and no preservatives. Clean crisp and fresh. Molson Canadian. Made from Canada.', '3.jpg', '', '', '', '', 0, 11);
-INSERT INTO `items` VALUES(62, 'Budweiser', '', '3.50', 'Pale lager produced by Anheuser–Busch InBev. - King of Beers.', '4.jpg', '', '', '', '', 0, 11);
-INSERT INTO `items` VALUES(63, 'Hite', '', '4.00', 'The top-selling beer in Korea. Hite lager is sweet and golden, with thin body and minimal head.', '5.jpg', '', '', '', '', 0, 11);
-INSERT INTO `items` VALUES(64, 'Heineken', '', '4.00', 'Pale lager beer with 5% alcohol by volume produced by the Dutch brewing company Heineken International.', '6.jpg', '', '', '', '', 0, 11);
-INSERT INTO `items` VALUES(65, 'Combo A', '', '27.99', 'Special Combo A - Choose 1 item from the list + 4 Beers or 1 Soju (Korean Wine - Extra $3.00)', '1.jpg', '', '', '', '', 0, 12);
-INSERT INTO `items` VALUES(66, 'Combo B', '', '33.99', 'Special Combo B - Choose 1 item from the list + 4 Beers or 1 Soju (Korean Wine - Extra $3.00)', '2.jpg', '', '', '', '', 0, 12);
+INSERT INTO `items` VALUES(53, 'Pop', '음료수', '1.50', 'Variety of pop/soda drinks - Coke, Sprite, Ginger Ale etc. *Nestea - $1.75', '53.jpg', '', '', '', '', 0, 10);
+INSERT INTO `items` VALUES(54, 'Soju (Alc. 20.1%)', '참이슬', '13.99', 'Distilled beverage native to Korea. ChamIseul is the most popular soju brand in Korea (Alc. 20.1%)', '54.jpg', '', '', '', '', 0, 10);
+INSERT INTO `items` VALUES(55, 'Soju (Alc. 19.5%)', '처음처럼', '13.99', 'Distilled beverage native to Korea. ChuhEumChuhRum is the second most popular soju brand (Alc. 19.5%)', '55.jpg', '', '', '', '', 0, 10);
+INSERT INTO `items` VALUES(56, 'Korean Wine', '백세주', '17.99', 'Rice wine infused with ginseng and eleven other herbs (Alc. 13%)', '56.jpg', '', '', '', '', 0, 10);
+INSERT INTO `items` VALUES(57, 'Makkoli (750ml)', '막걸리', '14.99', 'Milky, sweet alcoholic beverage made from rice - 750ml', '57.jpg', '', '', '', '', 0, 10);
+INSERT INTO `items` VALUES(58, 'Makkoli (1000ml)', '막걸리', '17.99', 'Milky, sweet alcoholic beverage made from rice - 1000ml', '58.jpg', '', '', '', '', 0, 10);
+INSERT INTO `items` VALUES(59, 'Coors Light', '', '3.50', 'Light Beer with the "Cold Certified" label.', '59.jpg', '', '', '', '', 0, 11);
+INSERT INTO `items` VALUES(60, 'Labatt Blue', '', '3.50', 'Clean, refreshing pilsner with a distinctive hoppy aroma, a delicate character, and a slightly sweet aftertaste.', '60.jpg', '', '', '', '', 0, 11);
+INSERT INTO `items` VALUES(61, 'Molson Canadian', '', '3.50', 'Canadian water, prairie barley, and no preservatives. Clean crisp and fresh. Molson Canadian. Made from Canada.', '61.jpg', '', '', '', '', 0, 11);
+INSERT INTO `items` VALUES(62, 'Budweiser', '', '3.50', 'Pale lager produced by Anheuser–Busch InBev. - King of Beers.', '62.jpg', '', '', '', '', 0, 11);
+INSERT INTO `items` VALUES(63, 'Hite', '', '4.00', 'The top-selling beer in Korea. Hite lager is sweet and golden, with thin body and minimal head.', '63.jpg', '', '', '', '', 0, 11);
+INSERT INTO `items` VALUES(64, 'Heineken', '', '4.00', 'Pale lager beer with 5% alcohol by volume produced by the Dutch brewing company Heineken International.', '64.jpg', '', '', '', '', 0, 11);
+INSERT INTO `items` VALUES(65, 'Combo A', '', '27.99', 'Special Combo A - Choose 1 item from the list + 4 Beers or 1 Soju (Korean Wine - Extra $3.00)', '65.jpg', '', '', '', '', 0, 12);
+INSERT INTO `items` VALUES(66, 'Combo B', '', '33.99', 'Special Combo B - Choose 1 item from the list + 4 Beers or 1 Soju (Korean Wine - Extra $3.00)', '66.jpg', '', '', '', '', 0, 12);
 INSERT INTO `items` VALUES(71, 'UFC Best KO 2011 - 2012', '', '', '', '', '', '1.mp4', 'StrikeForce', '', 0, 2);
 INSERT INTO `items` VALUES(72, 'Blake Griffin 3 Pt Fail', '', '', '', '', '', '2.mp4', 'NBA', '', 0, 2);
 INSERT INTO `items` VALUES(73, 'Cheating Boss Prank', '', '', '', '', '', '3.mp4', 'Just for Laughs', '', 0, 2);
@@ -667,7 +671,7 @@ CREATE TABLE `users` (
   KEY `venue_id` (`venue_id`),
   KEY `usertype_id` (`usertype_id`),
   KEY `tablet_id` (`tablet_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `users`
@@ -687,6 +691,10 @@ INSERT INTO `users` VALUES(11, 'JohnJane', 1, 3, NULL);
 INSERT INTO `users` VALUES(12, 'JohnJane', 1, 3, NULL);
 INSERT INTO `users` VALUES(13, 'JohnJane', 1, 3, NULL);
 INSERT INTO `users` VALUES(14, 'JohnJane', 1, 3, NULL);
+INSERT INTO `users` VALUES(15, 'JohnJane', 1, 3, NULL);
+INSERT INTO `users` VALUES(16, 'JohnJane', 1, 3, NULL);
+INSERT INTO `users` VALUES(17, 'JohnJane', 1, 3, NULL);
+INSERT INTO `users` VALUES(18, 'JohnJane', 1, 3, NULL);
 
 -- --------------------------------------------------------
 
