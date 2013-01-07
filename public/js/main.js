@@ -309,6 +309,7 @@ function menu(menus, user_basket){
 
 		var selected_item = $(".itemName").val();
 		var selected_item_name = $(".itemName").html();
+		var selected_menu_name = $(".menuSelected .menuName").html().toLowerCase();
 
 		// animate the cart when btn is pushed - FHM
 		$("#cartTab").animate({opacity: "+=1"}, 500, function(){
@@ -322,20 +323,24 @@ function menu(menus, user_basket){
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
 		setTimeout(function() { $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");}, 100);
 
-		addItem(selected_item, selected_item_name, function(){
-			// unpress button - FHM
-			
-		});
+
+		addItem(selected_item, selected_item_name, selected_menu_name);
+		var last_item = $("#cartItems tr td:last").position();
+		$("#cartArea").animate({ scrollLeft: last_item.left}, "slow");
 	});
 
 	// inserts item into a user's cart - FHM
-	function addItem(id, name, callback){
+	function addItem(id, name, menu_name){
 
 		if(id < 10){
 			id = "0"+ id;
 		}
 
-		var item_img =  "<img class='smallPicItem' width='158px' height='110px' id='" + id + "' src='" + URL + "public/img/menu/dishes/" + id  + ".jpg'>";
+		if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
+			menu_name = 'dishes';
+		}
+
+		var item_img =  "<img class='smallPicItem' width='158px' height='110px' id='" + id + "' src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
 		var del_img = "<img class='cartDeleteItem' id='" + id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
 		var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
 		
