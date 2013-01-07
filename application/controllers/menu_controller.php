@@ -69,11 +69,8 @@ class Menu extends Controller {
 				$old_basket = array();
 			}
 
-			
-
 			if($old_basket != $basket){
-				$merge = array_merge($old_basket, $basket);
-				Session::set('user_basket', $merge);
+				Session::set('user_basket', $basket);
 			}
 		}else{
 			$this->handleError('warning', get_class().'_controller.php', 'Problem saving user basket');
