@@ -157,7 +157,6 @@ function menu(menus, user_basket){
 
 	$("#menuHome").click(function(){
 
-		alert(basket);
 		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket}, function(data){
 			
 		});
@@ -180,8 +179,6 @@ function menu(menus, user_basket){
 		basket.forEach(function(entry){
 			addItem(entry[0], entry[1], entry[2], "no");
 		});
-
-		alert(basket);
 	}
 
 	$(".menuList").each(function(event) {
@@ -371,17 +368,13 @@ function menu(menus, user_basket){
 			
 		});
 
-		alert(basket);
-
 		bask_item_id++;
 
 		// remove item from cart - FHM
 		$(del_id).click(function(){
-			alert('del');
+
 			var item_id = $(this).attr("value");
 			var cart_id = "#" + $(this).attr("id");
-
-			alert(item_id);
 
 			removeItem(item_id);
 
@@ -389,15 +382,10 @@ function menu(menus, user_basket){
 		});
 	}
 
-	
-		
 	function removeItem(id){
 		for (var i = 0; i < basket.length; i++) {
 			if(basket[i][0].indexOf(id) != -1){
-				var ind = basket[i][0].indexOf(id);
-				alert(ind)
-				basket.pop(ind);
-				alert(basket);
+				basket.splice(i,1);
 				break;
 			}
 		};
