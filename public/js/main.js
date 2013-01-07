@@ -157,6 +157,7 @@ function menu(menus, user_basket){
 
 	$("#menuHome").click(function(){
 
+		alert(basket);
 		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket}, function(data){
 			
 		});
@@ -169,8 +170,7 @@ function menu(menus, user_basket){
 	var cart_status = "hidden";
 
 	if(user_basket != ""){
-    	basket = user_basket;
-    	fillCart(basket);
+    	fillCart(user_basket);
     }
 
 
@@ -178,9 +178,10 @@ function menu(menus, user_basket){
 		//function addItem(id, name, menu_name, push){
 
 		basket.forEach(function(entry){
-
 			addItem(entry[0], entry[1], entry[2], "no");
 		});
+
+		alert(basket);
 	}
 
 	$(".menuList").each(function(event) {
@@ -343,52 +344,60 @@ function menu(menus, user_basket){
 			if(id < 10){
 				id = "0"+ id;
 			}
-
-			var item_desc = new Array();
-			item_desc[0] = id;
-			item_desc[1] = name;
-			item_desc[2] = menu_name;
-
-			basket.push(item_desc);
 		}
+
+		var item_desc = new Array();
+		item_desc[0] = id;
+		item_desc[1] = name;
+		item_desc[2] = menu_name;
+
+		basket.push(item_desc);
+
+		var del_id = "cart_" + bask_item_id;
 
 		if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
 			menu_name = 'dishes';
 		}
 
-		var item_img =  "<img class='smallPicItem' width='158px' height='110px' id='cart_" + bask_item_id + "'' src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
-
-		var del_img = "<img class='cartDeleteItem' value='" + id + "' id='cart_" + bask_item_id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
+		var item_img =  "<img class='smallPicItem' width='158px' height='110px'  src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
+		var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
 		var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
+
+		del_id = "#" + del_id;
 		
 		// insert new pic and item - FHM
 		$("#cartItems tr").append("<td>" + item_img + del_img + item_name + "</td>");
 		$("#test").fadeIn(1000, function(){
-			callback();	
+			
 		});
 
+		alert(basket);
+
 		bask_item_id++;
+
+		// remove item from cart - FHM
+		$(del_id).click(function(){
+			alert('del');
+			var item_id = $(this).attr("value");
+			var cart_id = "#" + $(this).attr("id");
+
+			alert(item_id);
+
+			removeItem(item_id);
+
+			$(cart_id).parent("td").remove();
+		});
 	}
 
-	// remove item from cart - FHM
-	$(".cartDeleteItem").live('click', function(event) {
-
-		alert("cart_del click");
-		
-		var item_id = $(this).attr("value");
-		var cart_id = "#" + $(this).attr("id");
-
-		//alert(cart_id);
-
-		removeItem(item_id);
-
-		//$(cart_id).parent("td").remove();
-	});
+	
 		
 	function removeItem(id){
 		for (var i = 0; i < basket.length; i++) {
-			if(basket[i].indexOf(id) != -1){
-				basket.pop(basket[i]);
+			if(basket[i][0].indexOf(id) != -1){
+				var ind = basket[i][0].indexOf(id);
+				alert(ind)
+				basket.pop(ind);
+				alert(basket);
 				break;
 			}
 		};
