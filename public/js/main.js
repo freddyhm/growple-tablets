@@ -1,16 +1,64 @@
+/* GLOGBAL VARIABLES */
 
+var touch_count = 0; // reset global vars
+var activate = 0; 	// reset global vars
+var touch_try = 0; 	// reset global vars
 
-//reset function variables
-var sleep_timer = "";
-var touch_count = 0;
-var activate = 0;
-var touch_try = 0;
+var basket = new Array(); // menu global vars
+var user_basket = {};	// menu global vars
+var sleep_timer = "";	// sleep global vars
 
+//activate timer - FHM
 activateSleepTimer();
 
-var basket = new Array();
-var user_basket = {};
+// click is the main activity to derive idle user time or not so reset timer if click - FHM
+document.addEventListener('click', function(e) {
+	clearTimeout(sleep_timer);
+	activateSleepTimer();
+}, true);
 
+// list of global functions - FHM
+function activateSleepTimer(){
+	sleep_timer = setTimeout(function() {sleep();}, 15000);
+}
+
+//put the app to sleep mode after a certain time has elapsed - FHM
+function sleep(){
+
+	// sleep except for video, has own implementation - FHM
+	if(document.getElementById("video") == null || document.getElementById("video").paused == true){
+	
+		$('#sleepSlideshow').show(function(){
+
+			 var pic1 = URL + 'public/img/sleep/slide1.jpg';
+			 var pic2 = URL + 'public/img/sleep/slide2.jpg';
+			 var pic3 = URL + 'public/img/sleep/slide3.jpg';
+			 var pic4 = URL + 'public/img/sleep/slide4.jpg';
+			 var pic5 = URL + 'public/img/sleep/slide5.jpg';
+
+			$(function() {
+			    $('#sleepSlideshow').crossSlide({
+			      sleep: 4,
+			      fade: 0.1
+			    }, [
+			      { src: pic1 },
+			      { src: pic2 },
+			      { src: pic3 },
+			      { src: pic4 },
+			      { src: pic5 }
+			    ])
+			});
+
+			$(this).click(function(event) {
+				$(this).hide();	
+			});
+		});
+	}else{
+
+	}
+}
+
+// list of functions according to main pages - FHM
 function home(){
 
 	var appCache = window.applicationCache;
@@ -63,82 +111,44 @@ function home(){
 			reset(2);
 		});
 	});
-}
 
-function reset(touch){
+	function reset(touch){
 
-	touch_count += touch;
-	touch_try++;
+		touch_count += touch;
+		touch_try++;
 
-	// activation numbers - FHM
-	if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-		activate++;
-	}
-
-	// after fourth step, check if all activation numbers have been hit - FHM
-	if(touch_try == 3){
-
-		if(touch_count == 11 && activate == 3){
-
-			// display loading page - FHM
-			$("#loadPage").show(function(){
-
-				var url = URL + "home/reset/d/";
-
-				// call server to reset user - FHM
-				$.post(url, function(data) {
-				  	$("#load_pic").fadeOut(100, function(){
-				  		$("#start_screen").click(function(event) {
-							$("#loadPage").fadeOut(30000);				  		
-				  		});
-				  	});
-				});
-			});
+		// activation numbers - FHM
+		if(touch_count == 6 || touch_count == 9 || touch_count == 11){
+			activate++;
 		}
 
-		//reset variables
-		touch_count = 0;
-		activate = 0;
-		touch_try = 0;
+		// after fourth step, check if all activation numbers have been hit - FHM
+		if(touch_try == 3){
+
+			if(touch_count == 11 && activate == 3){
+
+				// display loading page - FHM
+				$("#loadPage").show(function(){
+
+					var url = URL + "home/reset/d/";
+
+					// call server to reset user - FHM
+					$.post(url, function(data) {
+					  	$("#load_pic").fadeOut(100, function(){
+					  		$("#start_screen").click(function(event) {
+								$("#loadPage").fadeOut(1000);				  		
+					  		});
+					  	});
+					});
+				});
+			}
+
+			//reset variables
+			touch_count = 0;
+			activate = 0;
+			touch_try = 0;
+		}
 	}
-}
-
-function activateSleepTimer(){
-	sleep_timer = setTimeout(function() {sleep();}, 15000);
-}
-
-//put the app to sleep mode after a certain time has elapsed - FHM
-function sleep(){
-
-	$('#sleepSlideshow').show(function(){
-
-		 var old_timer = sleep_timer;
-		 clearTimeout(sleep_timer);
-		 var pic1 = URL + 'public/img/sleep/slide1.jpg';
-		 var pic2 = URL + 'public/img/sleep/slide2.jpg';
-		 var pic3 = URL + 'public/img/sleep/slide3.jpg';
-		 var pic4 = URL + 'public/img/sleep/slide4.jpg';
-		 var pic5 = URL + 'public/img/sleep/slide5.jpg';
-
-		$(function() {
-		    $('#sleepSlideshow').crossSlide({
-		      sleep: 4,
-		      fade: 0.1
-		    }, [
-		      { src: pic1 },
-		      { src: pic2 },
-		      { src: pic3 },
-		      { src: pic4 },
-		      { src: pic5 }
-		    ])
-		});
-
-
-		$(this).click(function(event) {
-			$(this).hide();	
-			activateSleepTimer();
-		});
-	});
 }
 
 function menu(menus, user_basket){
@@ -425,9 +435,6 @@ function menu(menus, user_basket){
 }
 
 function video(videos){
-
-	// clear timer - FHM
-	clearTimeout(sleep_timer);
 	
 	// play random video when video ends, make button clickable and control video with click - FHM
 	var currentVideo = document.getElementById("video");
@@ -444,7 +451,6 @@ function video(videos){
 
 	$("#videoHomeLink").click(function(){
 		$("body").load(URL + "home");
-		activateSleepTimer();
 	});
 
 	$("#next").click(function(event) {
@@ -456,7 +462,6 @@ function video(videos){
 			currentVideo.pause();
 			$("#video_menu").fadeIn();
 			status = 'stop';
-			activateSleepTimer();
 		}else if(status == 'stop'){
 			currentVideo.play();
 			$("#video_menu").fadeOut();
