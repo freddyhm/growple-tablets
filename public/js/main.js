@@ -157,10 +157,7 @@ function menu(menus, user_basket){
 
 	$("#menuHome").click(function(){
 
-		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket}, function(data){
-			
-		});
-
+		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket});
 		$("body").load(URL + "home");
 		$.post(URL + 'home/stepOut');
 	});
@@ -441,7 +438,7 @@ function menu(menus, user_basket){
 					var url = URL + 'menu/addToCart/d/';
 
 					$.post(url, {cart: basket}, function(data, textStatus, xhr) {
-					  	$("body").load("home");
+					  	$("body").load(URL + "home");
 					});
 				}
 

@@ -64,7 +64,7 @@ class Menu extends Controller {
 		if(!$old_basket){
 			$old_basket = array();
 		}
-		
+
 		Session::set('user_basket', $basket);
 	}
 
@@ -90,6 +90,7 @@ class Menu extends Controller {
 		if(!empty($new_cart)){
 			//set new cart - FHM
 			$_SESSION['user_carts']['carts'][] = $new_cart;
+			Session::set('user_basket', '');
 
 		}else{
 			$this->handleError('warning', get_class().'_controller.php', 'Could not add cart.');
