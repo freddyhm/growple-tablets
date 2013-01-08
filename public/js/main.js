@@ -15,14 +15,13 @@ activateSleepTimer();
 
 // click is the main activity to derive idle user time or not so reset timer if click - FHM
 document.addEventListener('click', function(e) {
-	alert('d');
 	clearTimeout(sleep_timer);
 	activateSleepTimer();
 }, true);
 
 // list of global functions - FHM
 function activateSleepTimer(){
-	sleep_timer = setTimeout(function() {sleep();}, 60000);
+	//sleep_timer = setTimeout(function() {sleep();}, 60000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
