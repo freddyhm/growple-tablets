@@ -197,7 +197,8 @@ a:visited {text-decoration: none; color:#fff;
 
 .menuName
 {
-
+  bottom: 12px;
+  position: relative;
 }
 
 #mainBkgdMenu
