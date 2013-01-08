@@ -78,13 +78,14 @@ function home(){
 	
 	// on checking for both refresh and loading	
 	$(appCache).bind('checking', function(event) {
+		clearTimeout(sleep_timer);
 		$("#loadPage").show();
 	});
 
 	// when browser gets refreshed - FHM
 	$(appCache).bind('noupdate', function(event) {
 		$("#load_pic").hide();
-			$("#start_screen").click(function(event) {
+		$("#start_screen").click(function(event) {
 				$("#loadPage").fadeOut(1000);
 		 });
 	});
@@ -95,6 +96,7 @@ function home(){
 		$("#load_pic").fadeOut(100, function(){
 	  		$("#start_screen").click(function(event) {
 				$("#loadPage").fadeOut(1000);
+				activateSleepTimer();
 	  		});
 		});
 	});
