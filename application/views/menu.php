@@ -22,7 +22,6 @@ $(document).ready(function() {
 <div class="content">
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg2"/>
-<img src="" id="bckgdImg2"/>
 <div id="tutorial">
 	<img id="tutorialBckgdImg" src="<?php echo URL .'public/img/menu/tutorial/bg_owl.jpg'; ?>">
 	<img id="tutorialIcons" src="<?php echo URL .'public/img/menu/tutorial/tut_intro.png'; ?>">
@@ -33,9 +32,9 @@ $(document).ready(function() {
 	<div id="tutorialBckgd"></div>
 </div>
 <div id="menuContent">
+	<div id="cartTabArea"></div>
 	<!-- Main Menu (Bottom) -->
-	<div id="mainBkgdMenu">
-	</div>
+	<div id="mainBkgdMenu"></div>
 	<div id="cart">
 		<div id="cartArea">
 		<table id="cartItems">
@@ -58,7 +57,7 @@ $(document).ready(function() {
 				?>
 				<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
 					<img class="menuTabs" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
-					<span class="menuName"><?php echo strtoupper($menu['name']); ?></span
+					<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
 				</td>
 				<?php } ?>
 			</tr>

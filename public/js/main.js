@@ -446,7 +446,7 @@ function menu(menus, user_basket){
 
 	// done button pressed, pops in and out - FHM
 	$("#waitForServerDone").click(function(event) {
-		
+
 		$(this).attr("src", URL + "public/img/menu/cart/btn_done_pressed.png");
 
 		setTimeout(function()
@@ -472,16 +472,20 @@ function menu(menus, user_basket){
 		}, 200);
 	});
 
-	$("#cartTab").click(function(event) {
+	// area where cart is activatedcart shows
+	$("#cartTabArea").click(function(event) {
 		if(cart_status == "hidden"){
+			$(this).css("top", "140px");
+			$(this).css("height", "250px");
 			$("#cart").animate({bottom: "-=140"}, 1000);
 			cart_status = "showing";
 		}else if(cart_status == "showing"){
+			$(this).css("top", "8px");
+			$(this).css("height", "382px");
 			$("#cart").animate({bottom: "+=140"}, 1000);
 			cart_status = "hidden";
 		}
 	});
-
 
 }
 
