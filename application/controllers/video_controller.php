@@ -27,5 +27,4 @@ class Video extends Controller {
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying videos, list returned empty.');
 		}
 	}
-
 }

@@ -60,7 +60,6 @@ class Controller {
 	public function resetUser(){
 
 		if(Session::exist()){
-
 			// save path, carts, and destroy/create a new session, will erase cart and path - FHM
 			$this->saveUserPath();
 			$this->cartCheckout();
