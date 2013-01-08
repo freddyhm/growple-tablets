@@ -21,7 +21,7 @@ document.addEventListener('click', function(e) {
 
 // list of global functions - FHM
 function activateSleepTimer(){
-	sleep_timer = setTimeout(function() {sleep();}, 100000);
+	sleep_timer = setTimeout(function() {sleep();}, 3000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -156,7 +156,6 @@ function home(){
 function menu(menus, user_basket){
 
 	$("#menuHome").click(function(){
-
 		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket});
 		$("body").load(URL + "home");
 		$.post(URL + 'home/stepOut');
