@@ -1,5 +1,4 @@
 /* GLOGBAL VARIABLES */
-
 var touch_count = 0; // reset global vars
 var activate = 0; 	// reset global vars
 var touch_try = 0; 	// reset global vars
@@ -537,12 +536,13 @@ function video(videos){
 
 function game(){
 
-	$("#gameHomeLink").click(function(){
-
+	$("#gameHomeLink").click(function(){		
+		$("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
+		
+		// push and unpush - FHM	
 		setTimeout(function() { 
-			$("#gameHomeLink").attr("src", URL  + "public/img/menu/btn_grab.png", function(){
-				$("body").load(URL + "home");
-			});
+			$("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
+			setTimeout(function(){$("body").load(URL + "home");},300); 
 		}, 100);
 	});
 }
