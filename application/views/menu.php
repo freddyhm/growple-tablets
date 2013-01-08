@@ -18,8 +18,6 @@ $(document).ready(function() {
 	menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
 });
 </script>
-<!-- START CONTAINER -->
-<div class="content">
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg2"/>
 <div id="tutorial">
@@ -89,5 +87,3 @@ $(document).ready(function() {
 		</div>
 	</div>
 	<img id="menuHome" src="<?php echo URL .'public/img/common/btn_home.png'; ?>">
-</div>
-<!-- END CONTAINER -->

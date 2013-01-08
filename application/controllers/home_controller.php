@@ -7,6 +7,19 @@ class Home extends Controller {
 	}
 
 	public function index(){
+
+		$new_user = Session::get('new_user');
+
+		if($new_user){
+			Session::set('new_user', 'no');
+		}else{
+			Session::set('new_user', 'yes');
+		}
+		
+		$info = array('is_virgin' => $new_user);
+
+
+		parent::$data = $info;
 		parent::index();
 	}
 

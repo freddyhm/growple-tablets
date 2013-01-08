@@ -12,21 +12,15 @@ var bask_item_id = 0; // basket global var
 //activate timer - FHM
 activateSleepTimer();
 
-// click is the main activity to derive idle user time or not so reset timer if click - FHM
-document.addEventListener('click', function(e) {
-	clearTimeout(sleep_timer);
-	activateSleepTimer();
-}, true);
-
 // list of global functions - FHM
 function activateSleepTimer(){
-	//sleep_timer = setTimeout(function() {sleep();}, 60000);
+	sleep_timer = setTimeout(function() {sleep(); }, 30000);
 }
-
-
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
+
+	clearTimeout(sleep_timer);
 
 	// sleep except for video, has own implementation - FHM
 	if(document.getElementById("video") == null || document.getElementById("video").paused == true){
@@ -42,7 +36,7 @@ function sleep(){
 			$(function() {
 			    $('#sleepSlideshow').crossSlide({
 			      sleep: 5,
-			      fade: 0.1
+			      fade: 0.5
 			    }, [
 			      { src: pic1 },
 			      { src: pic2 },
@@ -54,11 +48,10 @@ function sleep(){
 
 			$(this).click(function(event) {
 				$(this).hide();	
+				activateSleepTimer();
 			});
 		});
 	}
-//	clearTimeout(sleep_timer);
-//	activateSleepTimer();
 }
 
 function error(){
@@ -74,6 +67,12 @@ function error(){
 
 // list of functions according to main pages - FHM
 function home(){
+
+	// click is the main activity to derive idle user time or not so reset timer if click - FHM
+	$(".playbook").click(function() {
+		clearTimeout(sleep_timer);
+		activateSleepTimer();
+	});
 
 	var appCache = window.applicationCache;
 	
@@ -178,6 +177,12 @@ function home(){
 }
 
 function menu(menus, user_basket){
+
+	// click is the main activity to derive idle user time or not so reset timer if click - FHM
+	$(".playbook").click(function() {
+		clearTimeout(sleep_timer);
+		activateSleepTimer();
+	});
 
 
 	$("#menuHome").click(function(){
@@ -490,6 +495,12 @@ function menu(menus, user_basket){
 }
 
 function video(videos){
+
+	// click is the main activity to derive idle user time or not so reset timer if click - FHM
+	$(".playbook").click(function() {
+		clearTimeout(sleep_timer);
+		activateSleepTimer();
+	});
 	
 	// play random video when video ends, make button clickable and control video with click - FHM
 	var currentVideo = document.getElementById("video");
@@ -566,11 +577,17 @@ function video(videos){
 			$("#video_menu").fadeOut(function(){
 				clearTimeout(vid_timer);
 			});
-		}, 2000);
+		}, 3000);
 	}
 }
 
 function game(){
+
+	// click is the main activity to derive idle user time or not so reset timer if click - FHM
+	$(".playbook").click(function() {
+		clearTimeout(sleep_timer);
+		activateSleepTimer();
+	});
 
 	$("#gameHomeLink").click(function(){		
 		$("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
