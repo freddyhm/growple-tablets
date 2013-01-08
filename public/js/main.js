@@ -102,15 +102,27 @@ function home(){
 
 	$(document).ready(function() {	
 		$("#menuLink").click(function(){
-			$("body").load(URL + "menu");
+			$(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
+				// push and unpush - FHM	
+				setTimeout(function() { 
+					setTimeout(function(){$("body").load(URL + "menu");},300); 
+			}, 100);
 		});
 
 		$("#gameLink").click(function(){
-			$("body").load(URL + "game");
+			$(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
+				// push and unpush - FHM	
+				setTimeout(function() { 
+					setTimeout(function(){$("body").load(URL + "game");},300); 
+			}, 100);
 		});
 
 		$("#videoLink").click(function(){
-			$("body").load(URL + "video");
+			$(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
+				// push and unpush - FHM	
+				setTimeout(function() { 
+					setTimeout(function(){$("body").load(URL + "video");},300); 
+			}, 100);
 		});
 
 		$("#menu_intmenu").click(function(){
@@ -166,6 +178,7 @@ function home(){
 }
 
 function menu(menus, user_basket){
+
 
 	$("#menuHome").click(function(){
 		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket});
@@ -476,6 +489,8 @@ function video(videos){
 	
 	// play random video when video ends, make button clickable and control video with click - FHM
 	var currentVideo = document.getElementById("video");
+
+	var vid_timer = "";
 	
 	$(currentVideo).bind('ended', function(event) {
 		showRandomVideo();
@@ -496,15 +511,18 @@ function video(videos){
 	});
 
 	$(currentVideo).click(function(event) {
-		if(status == 'play'){
-			currentVideo.pause();
-			$("#video_menu").fadeIn();
-			status = 'stop';
-		}else if(status == 'stop'){
-			currentVideo.play();
-			$("#video_menu").fadeOut();
-			status = 'play';
-		}		
+		//alert($("#video_menu").attr("display"));
+		if($("#video_menu").attr("display") == "inline"){
+			if(status == 'play'){
+				currentVideo.pause();
+				$("#video_menu").fadeIn();
+				status = 'stop';
+				}else if(status == 'stop'){
+				currentVideo.play();
+				$("#video_menu").fadeOut();
+				status = 'play';
+			}	
+		}	
 	});
 
 	// displays a random video from list - FHM
@@ -542,7 +560,11 @@ function video(videos){
 		$("#video_name").html( videos[random_num].name);
 		$("#video_author").html( videos[random_num].author);
 		
-		setTimeout(function() {$("#video_menu").fadeOut();}, 4000);
+		vid_timer = setTimeout(function() {
+			$("#video_menu").fadeOut(function(){
+				clearTimeout(vid_timer);
+			});
+		}, 2000);
 	}
 }
 

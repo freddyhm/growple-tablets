@@ -17,6 +17,7 @@
 	<div id="menu_intmenu" class="homeSection"></div>	
 	<div class="sectionLinks" id="btn_intmenu">
 		<img id="menuLink" src="<?php echo URL . 'public/img/home/btn_intmenu.png'; ?>">
+		<img id="menuLinkPressed" style="float:left; position:absolute; display:none;" src="<?php echo URL . 'public/img/home/btn_intmenu_pressed.png'; ?>">
 		<!-- SLIDESHOW FOR INTERACTIVE MENU MENU -->	
 		<div id="slideshow_intmenu"></div>	
 	</div>	

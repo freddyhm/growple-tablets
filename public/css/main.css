@@ -423,7 +423,6 @@ overflow-y: hidden;
   left: 500px;
   position: relative;
   top: 10px;
-  opacity:0.8;
 }
 
 #cart
@@ -756,6 +755,8 @@ z-index: 1;
   color:white;
   text-shadow: #000000 0px 1px 5px;
 }
+
+
 #game_msg
 {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.6);
