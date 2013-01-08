@@ -23,6 +23,8 @@ function activateSleepTimer(){
 	//sleep_timer = setTimeout(function() {sleep();}, 60000);
 }
 
+
+
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
 
@@ -55,9 +57,19 @@ function sleep(){
 			});
 		});
 	}
-
 //	clearTimeout(sleep_timer);
 //	activateSleepTimer();
+}
+
+function error(){
+	$("#errorHomeLink").click(function(){		
+		$(this).attr("src", URL  + "public/img/error/btn_return_pressed.png");	
+		// push and unpush - FHM	
+		setTimeout(function() { 
+			$("#errorHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
+			setTimeout(function(){$("body").load(URL + "home");},300); 
+		}, 100);
+	});
 }
 
 // list of functions according to main pages - FHM
