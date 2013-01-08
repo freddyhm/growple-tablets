@@ -510,18 +510,16 @@ function video(videos){
 		showRandomVideo();	
 	});
 
+	// check menu and video status, stop or play accordingly - FHM
 	$(currentVideo).click(function(event) {
-		//alert($("#video_menu").attr("display"));
-		if($("#video_menu").attr("display") == "inline"){
-			if(status == 'play'){
-				currentVideo.pause();
-				$("#video_menu").fadeIn();
-				status = 'stop';
-				}else if(status == 'stop'){
-				currentVideo.play();
-				$("#video_menu").fadeOut();
-				status = 'play';
-			}	
+		if(status == 'play' && $("#video_menu").css("display") == "none"){
+			currentVideo.pause();
+			$("#video_menu").fadeIn();
+			status = 'stop';
+		}else if(status == 'stop' && $("#video_menu").css("display") == "inline"){
+			currentVideo.play();
+			$("#video_menu").fadeOut();
+			status = 'play';
 		}	
 	});
 
