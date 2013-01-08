@@ -318,7 +318,8 @@ function menu(menus, user_basket){
 		$("#cartTab").animate({opacity: "+=1"}, 500, function(){
 			$(this).animate({opacity: "-=0.50"}, 500);
 			$("#cartTab").animate({opacity: "+=1"}, 500, function(){
-			$(this).animate({opacity: "-=0.50"}, 500);
+				$(this).animate({opacity: "-=0.50"}, 500);
+				$("#cartTab").animate({opacity: "+=1"}, 500, function(){});
 			});
 		});
 
@@ -537,7 +538,11 @@ function video(videos){
 function game(){
 
 	$("#gameHomeLink").click(function(){
-		$("body").load(URL + "home");
-	});
 
+		setTimeout(function() { 
+			$("#gameHomeLink").attr("src", URL  + "public/img/menu/btn_grab.png", function(){
+				$("body").load(URL + "home");
+			});
+		}, 100);
+	});
 }
