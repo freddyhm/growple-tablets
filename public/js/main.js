@@ -42,7 +42,7 @@ function sleep(){
 			$(function() {
 			    $('#sleepSlideshow').crossSlide({
 			      sleep: 5,
-			      fade: 0.5
+			      fade: 0.1
 			    }, [
 			      { src: pic1 },
 			      { src: pic2 },
@@ -102,29 +102,42 @@ function home(){
 		});
 	});
 
+	$(appCache).bind('updateready', function(event) {
+		// first load 
+		$("#load_pic").fadeOut(100, function(){
+	  		$("#start_screen").click(function(event) {
+				$("#loadPage").fadeOut(1000);
+				activateSleepTimer();
+	  		});
+		});
+	});
+
 	$(document).ready(function() {	
 		$("#menuLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
-				// push and unpush - FHM	
-				setTimeout(function() { 
-					setTimeout(function(){$("body").load(URL + "menu");},300); 
-			}, 100);
+
+			 setTimeout(function(){ 
+			 	$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
+				$("body").load(URL + "menu");
+			 }, 300);
 		});
 
 		$("#gameLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
-				// push and unpush - FHM	
-				setTimeout(function() { 
-					setTimeout(function(){$("body").load(URL + "game");},300); 
-			}, 100);
+
+			 setTimeout(function(){ 
+			 	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
+				$("body").load(URL + "game");
+			 }, 300);
 		});
 
 		$("#videoLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
-				// push and unpush - FHM	
-				setTimeout(function() { 
-					setTimeout(function(){$("body").load(URL + "video");},300); 
-			}, 100);
+
+			 setTimeout(function(){ 
+			 	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
+				$("body").load(URL + "video");
+			 }, 300);
 		});
 
 		$("#menu_intmenu").click(function(){
@@ -207,8 +220,8 @@ function menu(menus, user_basket){
 
 		$(this).click(function(event) {
 
-			$(this).fadeTo(200, 0.3, function()
-			{
+			//$(this).fadeTo(200, 0.3, function()
+			//{
 				// get id of currently selected menu  FHM
 				var current_menu = $('.menuSelected').attr('id');
 				var current_id = '#' + current_menu;
@@ -233,7 +246,7 @@ function menu(menus, user_basket){
 				// move scroll bar to first element - FHM
 				$(".subMenu").animate({ scrollLeft: 0 }, "slow");
 
-			}).fadeTo(200, 1);
+		//	}).fadeTo(200, 1);
 		});
 	});
 
@@ -251,7 +264,7 @@ function menu(menus, user_basket){
 	 		$("#bckgdImg2").css("z-index", new_index);
 			$("#bckgdImg2").css('display', 'inline');
 			$("#bckgdImg2").attr("src", pic_path);
-			$("#bckgdImg1").fadeOut(800);
+			$("#bckgdImg1").fadeOut(100);
 		
 	 	}else{
 
@@ -261,7 +274,7 @@ function menu(menus, user_basket){
 	 		$("#bckgdImg1").css("z-index", new_index);
 	 		$("#bckgdImg1").css('display', 'inline');
 	 		$("#bckgdImg1").attr("src", pic_path);
-			$("#bckgdImg2").fadeOut(800);
+			$("#bckgdImg2").fadeOut(100);
 	 	}	
 	}
 
@@ -311,12 +324,13 @@ function menu(menus, user_basket){
 			var item_padding_left = $(this).css("padding-left");
 			var box_size = parseInt(item_width) + parseInt(item_padding_left) + parseInt(item_padding_right) - 27;
 
-			var opac1 = $("#bckgdImg1").css('opacity');
-			var opac2 = $("#bckgdImg2").css('opacity');
+		//	var opac1 = $("#bckgdImg1").css('opacity');
+	//		var opac2 = $("#bckgdImg2").css('opacity');
 
-			if(opac1 == 1 && opac2 == 1){
+	//		if(opac1 == 1 && opac2 == 1){
 
 				// fade in the item picture - FHM
+					
 				changePicture(item_pic);
 
 				// slide the selected item box - FHM
@@ -326,8 +340,9 @@ function menu(menus, user_basket){
 			 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
 					$('.itemDescription').html(menus[menu_id].items[item_id].description);
 					$('.itemPrice').html(menus[menu_id].items[item_id].price);
-				});				
-			}
+				});			
+
+			//}
 		});
 	}	
 	
@@ -480,12 +495,12 @@ function menu(menus, user_basket){
 		if(cart_status == "hidden"){
 			$(this).css("top", "140px");
 			$(this).css("height", "250px");
-			$("#cart").animate({bottom: "-=140"}, 1000);
+			$("#cart").animate({bottom: "-=140"}, 1);
 			cart_status = "showing";
 		}else if(cart_status == "showing"){
 			$(this).css("top", "8px");
 			$(this).css("height", "382px");
-			$("#cart").animate({bottom: "+=140"}, 1000);
+			$("#cart").animate({bottom: "+=140"}, 1);
 			cart_status = "hidden";
 		}
 	});
