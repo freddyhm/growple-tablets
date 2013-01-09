@@ -224,14 +224,14 @@ a:visited {text-decoration: none; color:#fff;
 
 #selectedItem
 {
-background-color: grey;
-opacity: 0.75;
-left: 2px;
-position: absolute;
-z-index: 1;
-height: 95px;
-bottom: 4px;
-width: 127px;
+  background-color: grey;
+  opacity: 0.75;
+  left: 2px;
+  position: absolute;
+  z-index: 1;
+  height: 95px;
+  bottom: 4px;
+  width: 127px;
 
 }
 

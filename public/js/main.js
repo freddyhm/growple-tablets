@@ -495,12 +495,12 @@ function menu(menus, user_basket){
 	$("#cartTabArea").click(function(event) {
 		if(cart_status == "hidden"){
 			$(this).css("top", "140px");
-			$(this).css("height", "180px");
+			$(this).css("height", "250px");
 			$("#cart").animate({bottom: "-=140"}, 1);
 			cart_status = "showing";
 		}else if(cart_status == "showing"){
 			$(this).css("top", "8px");
-			$(this).css("height", "310px");
+			$(this).css("height", "382px");
 			$("#cart").animate({bottom: "+=140"}, 1);
 			cart_status = "hidden";
 		}
@@ -519,7 +519,7 @@ function video(videos){
 		showRandomVideo();
 	});
   
-	var previous_vid = new Array(0, 0 ,0 ,0 ,0 ,0,0,0);
+	var previous_vid = new Array(0, 0 ,0 ,0 ,0);
 	var previous_position = 0;
 	var status = 'play';
 
@@ -529,7 +529,7 @@ function video(videos){
 		$("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home_pressed.png");
 		 setTimeout(function(){ 
 		 	$("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
-		 	 setTimeout(function(){ $("body").load(URL + "home");}, 500);
+		 	 setTimeout(function(){ $("body").load(URL + "home");});
 		 }, 300);
 	});
 
@@ -537,7 +537,7 @@ function video(videos){
 		$(this).attr("src", URL  + "public/img/video/btn_next_pressed.png");
 		 setTimeout(function(){ 
 		 	$("#next").attr("src", URL  + "public/img/video/btn_next.png");
-		 	 setTimeout(function(){ showRandomVideo();}, 500);
+		 	 setTimeout(function(){ showRandomVideo();});
 		 }, 300);
 	});
 
@@ -545,11 +545,11 @@ function video(videos){
 	$(currentVideo).click(function(event) {
 		if(status == 'play' && $("#video_menu").css("display") == "none"){
 			currentVideo.pause();
-			$("#video_menu").fadeIn();
+			$("#video_menu").show();
 			status = 'stop';
-		}else if(status == 'stop' && $("#video_menu").css("display") == "inline"){
+		}else if(status == 'stop' && $("#video_menu").css("display") == "inline-block"){
 			currentVideo.play();
-			$("#video_menu").fadeOut();
+			$("#video_menu").hide();
 			status = 'play';
 		}	
 	});
@@ -562,13 +562,13 @@ function video(videos){
 
 		// show menu if hidden (occurs when playing next video auto) - FHM
 		if($("#video_menu").css("display") != "inline"){
-			$("#video_menu").fadeIn();
+			$("#video_menu").show();
 		}
 
 		var random_num = Math.floor(Math.random()*(videos.length));
 
 		// make sure our new random number is not the same as last five ones - FHM
-		while(previous_vid[0] == random_num || previous_vid[1] == random_num || previous_vid[2] == random_num || previous_vid[3] == random_num || previous_vid[4] == random_num || previous_vid[5] == random_num || previous_vid[6] == random_num || previous_vid[7] == random_num || previous_vid[8] == random_num){
+		while(previous_vid[0] == random_num || previous_vid[1] == random_num || previous_vid[2] == random_num || previous_vid[3] == random_num || previous_vid[4] == random_num || previous_vid[5] == random_num || previous_vid[6] == random_num){
 			random_num = Math.floor(Math.random()*(videos.length));
 		}
 
@@ -590,7 +590,7 @@ function video(videos){
 		$("#video_author").html( videos[random_num].author);
 		
 		vid_timer = setTimeout(function() {
-			$("#video_menu").fadeOut(function(){
+			$("#video_menu").hide(function(){
 				clearTimeout(vid_timer);
 			});
 		}, 3000);
@@ -605,7 +605,7 @@ function game(){
 		// push and unpush - FHM	
 		setTimeout(function() { 
 			$("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
-			setTimeout(function(){$("body").load(URL + "home");},300); 
+			setTimeout(function(){$("body").load(URL + "home");}); 
 		}, 100);
 	});
 }
