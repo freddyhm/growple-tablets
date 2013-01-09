@@ -1,6 +1,6 @@
 <script>
  	// Took out document ready since we want the function to trigger before the doc is fully loaded 
-	home("<?php echo $is_virgin ?>");	
+	home();	
 </script>
 <div id="loadPage">
 	<img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">

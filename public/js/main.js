@@ -117,6 +117,16 @@ function home(){
 			 setTimeout(function(){ 
 			 	$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
 				$("body").load(URL + "menu");
+				$.post(URL + "home/stepIn/d/1");
+			 }, 300);
+		});
+
+		$("#videoLink").click(function(){
+			$(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
+			 setTimeout(function(){ 
+			 	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
+				$("body").load(URL + "video");
+				$.post(URL + "home/stepIn/d/2");
 			 }, 300);
 		});
 
@@ -126,14 +136,7 @@ function home(){
 			 setTimeout(function(){ 
 			 	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
 				$("body").load(URL + "game");
-			 }, 300);
-		});
-
-		$("#videoLink").click(function(){
-			$(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
-			 setTimeout(function(){ 
-			 	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
-				$("body").load(URL + "video");
+				$.post(URL + "home/stepIn/d/3");
 			 }, 300);
 		});
 
@@ -198,7 +201,7 @@ function menu(menus, user_basket){
 		 	 setTimeout(function(){ 
 		 	 	$.post(URL + 'menu/saveBasket/d/', {user_basket: basket});
 				$("body").load(URL + "home");
-				$.post(URL + 'home/stepOut');
+				$.post(URL + 'home/stepOut/d/1');
 		 	 });
 		 }, 300);
 	});
@@ -529,7 +532,10 @@ function video(videos){
 		$("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home_pressed.png");
 		 setTimeout(function(){ 
 		 	$("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
-		 	 setTimeout(function(){ $("body").load(URL + "home");});
+		 	 setTimeout(function(){ 
+		 	 	$("body").load(URL + "home");
+		 	 	$.post(URL + 'home/stepOut/d/2');
+		 	 });
 		 }, 300);
 	});
 
@@ -605,7 +611,10 @@ function game(){
 		// push and unpush - FHM	
 		setTimeout(function() { 
 			$("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
-			setTimeout(function(){$("body").load(URL + "home");}); 
+			setTimeout(function(){
+				$("body").load(URL + "home");
+				$.post(URL + 'home/stepOut/d/3');
+			}); 
 		}, 100);
 	});
 }

@@ -8,10 +8,6 @@ class Game extends Controller {
 	}
 
 	public function index(){
-		
-		// log step - FHM
-		$this->logUserStep('in', 3);
-		
 		parent::index();
 	}
 }
