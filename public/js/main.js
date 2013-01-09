@@ -519,7 +519,7 @@ function video(videos){
 		showRandomVideo();
 	});
   
-	var previous_vid = new Array(0, 0 ,0 ,0 ,0 ,0);
+	var previous_vid = new Array(0, 0 ,0 ,0 ,0 ,0,0,0);
 	var previous_position = 0;
 	var status = 'play';
 
@@ -568,7 +568,7 @@ function video(videos){
 		var random_num = Math.floor(Math.random()*(videos.length));
 
 		// make sure our new random number is not the same as last five ones - FHM
-		while(previous_vid[0] == random_num || previous_vid[1] == random_num || previous_vid[2] == random_num || previous_vid[3] == random_num || previous_vid[4] == random_num || previous_vid[5] == random_num || previous_vid[6] == random_num){
+		while(previous_vid[0] == random_num || previous_vid[1] == random_num || previous_vid[2] == random_num || previous_vid[3] == random_num || previous_vid[4] == random_num || previous_vid[5] == random_num || previous_vid[6] == random_num || previous_vid[7] == random_num || previous_vid[8] == random_num){
 			random_num = Math.floor(Math.random()*(videos.length));
 		}
 
