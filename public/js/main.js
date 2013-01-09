@@ -74,6 +74,7 @@ function error(){
 // list of functions according to main pages - FHM
 function home(){
 
+
 	var appCache = window.applicationCache;
 	
 	// on checking for both refresh and loading	
@@ -104,33 +105,26 @@ function home(){
 	$(document).ready(function() {	
 		$("#menuLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
-			 setTimeout(function(){ 
-			 	$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
-			 	 setTimeout(function(){ 
-					$("body").load(URL + "menu");
-			 	 });
-			 }, 300);
+				// push and unpush - FHM	
+				setTimeout(function() { 
+					setTimeout(function(){$("body").load(URL + "menu");},300); 
+			}, 100);
 		});
-
 
 		$("#gameLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
-			 setTimeout(function(){ 
-			 	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
-			 	 setTimeout(function(){ 
-					$("body").load(URL + "game");
-			 	 });
-			 }, 300);
+				// push and unpush - FHM	
+				setTimeout(function() { 
+					setTimeout(function(){$("body").load(URL + "game");},300); 
+			}, 100);
 		});
 
 		$("#videoLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
-			 setTimeout(function(){ 
-			 	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
-			 	 setTimeout(function(){ 
-					$("body").load(URL + "video");
-			 	 });
-			 }, 300);
+				// push and unpush - FHM	
+				setTimeout(function() { 
+					setTimeout(function(){$("body").load(URL + "video");},300); 
+			}, 100);
 		});
 
 		$("#menu_intmenu").click(function(){
@@ -188,15 +182,9 @@ function home(){
 function menu(menus, user_basket){
 
 	$("#menuHome").click(function(){
-		$(this).attr("src", URL  + "public/img/common/btn_home_pressed.png");
-		 setTimeout(function(){ 
-		 	$("#menuHome").attr("src", URL  + "public/img/common/btn_home.png");
-		 	 setTimeout(function(){ 
-		 	 	$.post(URL + 'menu/saveBasket/d/', {user_basket: basket});
-				$("body").load(URL + "home");
-				$.post(URL + 'home/stepOut');
-		 	 });
-		 }, 300);
+		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket});
+		$("body").load(URL + "home");
+		$.post(URL + 'home/stepOut');
 	});
 
 	// counter for grabIt function - FHM
@@ -248,6 +236,8 @@ function menu(menus, user_basket){
 			}).fadeTo(200, 1);
 		});
 	});
+
+	
 
 	function changePicture(pic_path){
 
@@ -520,19 +510,11 @@ function video(videos){
 	showRandomVideo();	
 
 	$("#videoHomeLink").click(function(){
-		$("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home_pressed.png");
-		 setTimeout(function(){ 
-		 	$("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
-		 	 setTimeout(function(){ $("body").load(URL + "home");}, 500);
-		 }, 300);
+		$("body").load(URL + "home");
 	});
 
 	$("#next").click(function(event) {
-		$(this).attr("src", URL  + "public/img/video/btn_next_pressed.png");
-		 setTimeout(function(){ 
-		 	$("#next").attr("src", URL  + "public/img/video/btn_next.png");
-		 	 setTimeout(function(){ showRandomVideo();}, 500);
-		 }, 300);
+		showRandomVideo();	
 	});
 
 	// check menu and video status, stop or play accordingly - FHM
