@@ -14,7 +14,7 @@ activateSleepTimer();
 
 // list of global functions - FHM
 function activateSleepTimer(){
-	sleep_timer = setTimeout(function() {sleep(); }, 1200000);
+	sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
 // click is the main activity to derive idle user time or not so reset timer if click - FHM
