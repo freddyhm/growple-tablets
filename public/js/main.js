@@ -14,8 +14,14 @@ activateSleepTimer();
 
 // list of global functions - FHM
 function activateSleepTimer(){
-	sleep_timer = setTimeout(function() {sleep(); }, 30000);
+	sleep_timer = setTimeout(function() {sleep(); }, 1200000);
 }
+
+// click is the main activity to derive idle user time or not so reset timer if click - FHM
+$(".playbook").click(function() {
+	clearTimeout(sleep_timer);
+	activateSleepTimer();
+});
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
@@ -68,11 +74,6 @@ function error(){
 // list of functions according to main pages - FHM
 function home(){
 
-	// click is the main activity to derive idle user time or not so reset timer if click - FHM
-	$(".playbook").click(function() {
-		clearTimeout(sleep_timer);
-		activateSleepTimer();
-	});
 
 	var appCache = window.applicationCache;
 	
@@ -180,13 +181,6 @@ function home(){
 
 function menu(menus, user_basket){
 
-	// click is the main activity to derive idle user time or not so reset timer if click - FHM
-	$(".playbook").click(function() {
-		clearTimeout(sleep_timer);
-		activateSleepTimer();
-	});
-
-
 	$("#menuHome").click(function(){
 		$.post(URL + 'menu/saveBasket/d/', {user_basket: basket});
 		$("body").load(URL + "home");
@@ -243,46 +237,7 @@ function menu(menus, user_basket){
 		});
 	});
 
-	$(".items").live("click", function(){
-
-		var folder = '/dishes/';
-		var item_id = $(this).attr("value");
-		var menu_id = $(".menuSelected").attr("id").substring(4);
-		
-		// set proper image folder depending on menu - FHM
-		if(menu_id == 10){
-			folder = '/drinks/';
-		}else if (menu_id == 11){
-			folder = '/beer/';
-		}else if (menu_id == 12){
-			folder = '/combo/';
-		}
-
-		var item_pic = URL + 'public/img/menu' + folder + menus[menu_id].items[item_id].big_pic;
-		var item_pos = $(this).position();
-		var item_width = $(this).css("width");
-		var item_padding_right = $(this).css("padding-right");
-		var item_padding_left = $(this).css("padding-left");
-		var box_size = parseInt(item_width) + parseInt(item_padding_left) + parseInt(item_padding_right) - 27;
-
-		var opac1 = $("#bckgdImg1").css('opacity');
-		var opac2 = $("#bckgdImg2").css('opacity');
-
-		if(opac1 == 1 && opac2 == 1){
-
-			// fade in the item picture - FHM
-			changePicture(item_pic);
-
-			// slide the selected item box - FHM
-			$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
 	
-				$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
-		 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
-				$('.itemDescription').html(menus[menu_id].items[item_id].description);
-				$('.itemPrice').html(menus[menu_id].items[item_id].price);
-			});				
-		}
-	});
 
 	function changePicture(pic_path){
 
@@ -332,11 +287,52 @@ function menu(menus, user_basket){
 
 			$(".subMenuList table tr").append(item);
 		}
+
+		// after adding all items, add click behavior to all of them - FHM
+		$(".items").click(function(){
+		
+			var folder = '/dishes/';
+			var item_id = $(this).attr("value");
+			var menu_id = $(".menuSelected").attr("id").substring(4);
+			
+			// set proper image folder depending on menu - FHM
+			if(menu_id == 10){
+				folder = '/drinks/';
+			}else if (menu_id == 11){
+				folder = '/beer/';
+			}else if (menu_id == 12){
+				folder = '/combo/';
+			}
+
+			var item_pic = URL + 'public/img/menu' + folder + menus[menu_id].items[item_id].big_pic;
+			var item_pos = $(this).position();
+			var item_width = $(this).css("width");
+			var item_padding_right = $(this).css("padding-right");
+			var item_padding_left = $(this).css("padding-left");
+			var box_size = parseInt(item_width) + parseInt(item_padding_left) + parseInt(item_padding_right) - 27;
+
+			var opac1 = $("#bckgdImg1").css('opacity');
+			var opac2 = $("#bckgdImg2").css('opacity');
+
+			if(opac1 == 1 && opac2 == 1){
+
+				// fade in the item picture - FHM
+				changePicture(item_pic);
+
+				// slide the selected item box - FHM
+				$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
+		
+					$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+			 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
+					$('.itemDescription').html(menus[menu_id].items[item_id].description);
+					$('.itemPrice').html(menus[menu_id].items[item_id].price);
+				});				
+			}
+		});
 	}	
 	
 	// display first menu - FHM
 	$("#menu4").trigger('click');
-
 
 	// Show cart, add item, and close
 	$("#grabIt").click(function(){
@@ -498,12 +494,6 @@ function menu(menus, user_basket){
 
 function video(videos){
 
-	// click is the main activity to derive idle user time or not so reset timer if click - FHM
-	$(".playbook").click(function() {
-		clearTimeout(sleep_timer);
-		activateSleepTimer();
-	});
-	
 	// play random video when video ends, make button clickable and control video with click - FHM
 	var currentVideo = document.getElementById("video");
 
@@ -584,12 +574,6 @@ function video(videos){
 }
 
 function game(){
-
-	// click is the main activity to derive idle user time or not so reset timer if click - FHM
-	$(".playbook").click(function() {
-		clearTimeout(sleep_timer);
-		activateSleepTimer();
-	});
 
 	$("#gameHomeLink").click(function(){		
 		$("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
