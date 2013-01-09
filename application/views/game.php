@@ -10,7 +10,7 @@
 </div>	
 
 <div id="msg_game">
-	Play with other tables<br><br>
+	Play With Other Tables<br><br>
 	Win Rewards<br><br>
 	Meet New People<br><br>
 	<span id="dev">Developers: <br>Showcase your games on Growple! > hello@growple.com </span>
