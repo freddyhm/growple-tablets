@@ -495,12 +495,12 @@ function menu(menus, user_basket){
 	$("#cartTabArea").click(function(event) {
 		if(cart_status == "hidden"){
 			$(this).css("top", "140px");
-			$(this).css("height", "250px");
+			$(this).css("height", "180px");
 			$("#cart").animate({bottom: "-=140"}, 1);
 			cart_status = "showing";
 		}else if(cart_status == "showing"){
 			$(this).css("top", "8px");
-			$(this).css("height", "382px");
+			$(this).css("height", "310px");
 			$("#cart").animate({bottom: "+=140"}, 1);
 			cart_status = "hidden";
 		}
