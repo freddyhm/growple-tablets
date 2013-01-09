@@ -42,7 +42,7 @@ function sleep(){
 			$(function() {
 			    $('#sleepSlideshow').crossSlide({
 			      sleep: 5,
-			      fade: 0.5
+			      fade: 0.1
 			    }, [
 			      { src: pic1 },
 			      { src: pic2 },
@@ -333,7 +333,7 @@ function menu(menus, user_basket){
 				// fade in the item picture - FHM
 					
 				changePicture(item_pic);
-				
+
 				// slide the selected item box - FHM
 				$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
 		
@@ -342,7 +342,6 @@ function menu(menus, user_basket){
 					$('.itemDescription').html(menus[menu_id].items[item_id].description);
 					$('.itemPrice').html(menus[menu_id].items[item_id].price);
 				});			
-
 
 			//}
 		});
