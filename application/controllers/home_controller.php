@@ -15,11 +15,13 @@ class Home extends Controller {
 		Session::destroy(); // Need to remove echo - FHM
 	}
 
-	public function reset(){		
+	public function reset(){
+		
 		parent::resetUser(); // Need to remove echo - FHM
 	}
 
 	public function step($status, $mod_id){
+
 		$this->logUserStep($status, $mod_id);	
 	}
 

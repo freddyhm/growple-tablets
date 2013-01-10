@@ -524,7 +524,7 @@ function video(videos){
 	
 	$(currentVideo).bind('ended', function(event) {
 		curr_vid_id = $(this).attr("id");
-		$.post(URL + "home/activity/d/in/finished_watching/" + curr_vid_id);
+		$.post(URL + "home/activity/d/out/finished_watching/" + curr_vid_id);
 		finished_watching = "yes";
 		showRandomVideo();
 	});
@@ -554,7 +554,7 @@ function video(videos){
 
 	// check menu and video status, stop or play accordingly - FHM
 	$(currentVideo).click(function(event) {
-		
+
 		if(status == 'play' && $("#video_menu").css("display") == "none"){
 			currentVideo.pause();
 			$("#video_menu").show();
@@ -569,15 +569,8 @@ function video(videos){
 	// displays a random video from list - FHM
 	function showRandomVideo(){
 
-		curr_vid_id = $(currentVideo).attr("id");
-
-		// check if user finished watching current vid and it's not the first page load - FHM
-		if(finished_watching == "no" && curr_vid_id != "video"){
-			// analytic point entry - FHM	
-			$.post(URL + "home/activity/d/out/skipped/" + curr_vid_id);
-		}
+		clearTimeout(vid_timer);
 		
-
 		// reset status for new video - FHM
 		status = 'play';
 
@@ -616,8 +609,6 @@ function video(videos){
 
 		$.post(URL + "home/activity/d/in/started_watching/" + videos[random_num].id);
 		
-		clearTimeout(vid_timer);
-
 		vid_timer = setTimeout(function() {
 			$("#video_menu").hide();
 		}, 3000);

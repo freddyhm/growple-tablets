@@ -145,7 +145,6 @@ class Controller {
 		if(isset($old_path['steps'][$current_step_key]['activities'])){
 			$current_act_key = count($old_path['steps'][$current_step_key]['activities']);	
 		}else{
-			print_r("notseeingactivity");
 			$new_path['steps'][$current_step_key]['activities'] = array();	
 		}
 		
