@@ -297,7 +297,7 @@ class Controller {
 							$new_activity->start = $activity['start'];
 							$new_activity->end = isset($activity['end']) ? $activity['end'] : '';
 							$new_activity->step_id = $new_step->id;
-							$new_activity->item_id = $activity['item_id'];
+							$new_activity->item_id = isset($activity['item_id']) ? $activity['item_id'] : '';
 							$failure = $new_activity->save() ? $failure : 'true';
 						}
 					}else{

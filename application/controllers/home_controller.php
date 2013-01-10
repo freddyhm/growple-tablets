@@ -25,7 +25,7 @@ class Home extends Controller {
 		$this->logUserStep($status, $mod_id);	
 	}
 
-	public function activity($status, $action, $item_id){
+	public function activity($status, $action, $item_id = null){
 		$this->logUserActivity($status, $action, $item_id);
 	}
 }

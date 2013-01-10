@@ -226,33 +226,29 @@ function menu(menus, user_basket){
 
 		$(this).click(function(event) {
 
-			//$(this).fadeTo(200, 0.3, function()
-			//{
-				// get id of currently selected menu  FHM
-				var current_menu = $('.menuSelected').attr('id');
-				var current_id = '#' + current_menu;
+			// get id of currently selected menu  FHM
+			var current_menu = $('.menuSelected').attr('id');
+			var current_id = '#' + current_menu;
 
-				// deselect current menu and change header - FHM
-				$(current_id).removeClass('menuSelected');
-				$("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
-				$(current_id).css("background-color", "");
-				
-				// select new menu and change header - FHM
-				$(this).addClass('menuSelected');
-				$("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
-				$(this).css("background-color", "rgba(0,0,0,0.8)");
+			// deselect current menu and change header - FHM
+			$(current_id).removeClass('menuSelected');
+			$("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
+			$(current_id).css("background-color", "");
+			
+			// select new menu and change header - FHM
+			$(this).addClass('menuSelected');
+			$("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
+			$(this).css("background-color", "rgba(0,0,0,0.8)");
 
-				// get new menu_id and populate submenu - FHM
-				var new_id = $(this).attr('id').substring(4);
-				populateSubMenu(new_id);
+			// get new menu_id and populate submenu - FHM
+			var new_id = $(this).attr('id').substring(4);
+			populateSubMenu(new_id);
 
-				// select first item in category - FHM
-				$(".subMenuList tr td:first").trigger('click');
+			// select first item in category - FHM
+			$(".subMenuList tr td:first").trigger('click');
 
-				// move scroll bar to first element - FHM
-				$(".subMenu").animate({ scrollLeft: 0 }, "slow");
-
-		//	}).fadeTo(200, 1);
+			// move scroll bar to first element - FHM
+			$(".subMenu").animate({ scrollLeft: 0 }, "slow");
 		});
 	});
 
@@ -308,6 +304,14 @@ function menu(menus, user_basket){
 		// after adding all items, add click behavior to all of them - FHM
 		$(".items").click(function(){
 		
+			// get item id of currently selected item - FHM
+			var selected_item = $("#selectedItem").attr("value");
+			
+			// analytic entry point for first item (except at very start) - FHM
+			if(selected_item != undefined){
+				$.post(URL + "home/activity/out/viewed/" + selected_item);
+			}
+			
 			var folder = '/dishes/';
 			var item_id = $(this).attr("value");
 			var menu_id = $(".menuSelected").attr("id").substring(4);
@@ -328,25 +332,21 @@ function menu(menus, user_basket){
 			var item_padding_left = $(this).css("padding-left");
 			var box_size = parseInt(item_width) + parseInt(item_padding_left) + parseInt(item_padding_right) - 27;
 
-		//	var opac1 = $("#bckgdImg1").css('opacity');
-	//		var opac2 = $("#bckgdImg2").css('opacity');
+			changePicture(item_pic);
 
-	//		if(opac1 == 1 && opac2 == 1){
+			// slide the selected item box - FHM
+			$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
+	
+				$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+		 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
+				$('.itemDescription').html(menus[menu_id].items[item_id].description);
+				$('.itemPrice').html(menus[menu_id].items[item_id].price);
 
-				// fade in the item picture - FHM
-					
-				changePicture(item_pic);
+				$(this).attr("value", item_id);
+			});			
 
-				// slide the selected item box - FHM
-				$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
-		
-					$('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
-			 		$('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
-					$('.itemDescription').html(menus[menu_id].items[item_id].description);
-					$('.itemPrice').html(menus[menu_id].items[item_id].price);
-				});			
-
-			//}
+			// analytic exit point - FHM
+			$.post(URL + "home/activity/in/viewing/" + item_id);
 		});
 	}	
 	
@@ -570,7 +570,7 @@ function video(videos){
 	function showRandomVideo(){
 
 		clearTimeout(vid_timer);
-		
+
 		// reset status for new video - FHM
 		status = 'play';
 
