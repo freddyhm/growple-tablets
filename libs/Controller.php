@@ -125,38 +125,48 @@ class Controller {
 	// analytics captures step's activity  - FHM
 	public function logUserActivity($status, $action, $item_id){
 
-		$path = Session::get('path');
+		$current_act_key = 0;
+		$current_step_key = 0;
+
+		$old_path = Session::get('path');
+
+		if(!isset($old_path)){
+			$old_path = array();
+		}
+
+		$new_path = $old_path;
+
 		$date = date('m/d/Y h:i:s a', time()); 
 
-		// get current key for step - FHM
-		$current_step_key = count($path['steps']) - 1; 
+		// get current key for step, minus one taking account zero based index - FHM
+		$current_step_key = isset($old_path['steps']) ? count($old_path['steps']) - 1 : 0 ;
 
 		//check if a step has an activity array, count, if not set set - FHM
-		if(isset($path['steps'][$current_step_key]['activities'])){
-			$current_act_key = count($path['steps'][$current_step_key]['activities']);	
+		if(isset($old_path['steps'][$current_step_key]['activities'])){
+			$current_act_key = count($old_path['steps'][$current_step_key]['activities']);	
 		}else{
-			$path['steps'][$current_step_key]['activities'] = array();	
-			$current_act_key = 0;
+			print_r("notseeingactivity");
+			$new_path['steps'][$current_step_key]['activities'] = array();	
 		}
 		
 		if(is_numeric($current_act_key) && is_numeric($current_step_key) && is_string($status) && is_string($action) && is_numeric($item_id)){
 
 			//need to figure out if the last activiy has finished- FHM
 			if($status == 'in'){
-				
 				// create new array with new key, keep 0 if first - FHM
-				$path['steps'][$current_step_key]['activities'][$current_act_key] = array();
-				$path['steps'][$current_step_key]['activities'][$current_act_key]['start'] = $date;
-				$path['steps'][$current_step_key]['activities'][$current_act_key]['name'] = $action;
-				$path['steps'][$current_step_key]['activities'][$current_act_key]['module_id'] = $item_id;
-
+				$new_path['steps'][$current_step_key]['activities'][$current_act_key] = array();
+				$new_path['steps'][$current_step_key]['activities'][$current_act_key]['start'] = $date;
+				$new_path['steps'][$current_step_key]['activities'][$current_act_key]['step_id'] = $current_step_key + 1;
+				$new_path['steps'][$current_step_key]['activities'][$current_act_key]['name'] = $action;
+				$new_path['steps'][$current_step_key]['activities'][$current_act_key]['item_id'] = $item_id;
 			}else if($status == 'out'){
 				// get last activity through the array's last key - FHM
 				$last_act_key = $current_act_key - 1;
-				$path['steps'][$current_step_key]['activities'][$last_act_key]['end'] = $date;
+				$new_path['steps'][$current_step_key]['activities'][$last_act_key]['end'] = $date;
+				$new_path['steps'][$current_step_key]['activities'][$last_act_key]['name'] = $action;
 			}
 
-			Session::set('path', serialize($path));
+			Session::set('path', $new_path);
 			$saved_path = Session::get('path');
 
 	        if(!isset($saved_path)){
@@ -200,6 +210,7 @@ class Controller {
 			}
 			
 			Session::set('path', $new_path);
+			$saved_path = Session::get('path');
 		
 	        if(!isset($saved_path)){
 	        	$this->handleError('caution', 'controller.php', 'Problem saving path in session variable in logUserPath()');
@@ -285,7 +296,7 @@ class Controller {
 							$new_activity = new Activity();
 							$new_activity->name = $activity['name'];
 							$new_activity->start = $activity['start'];
-							$new_activity->end = $activity['end'];
+							$new_activity->end = isset($activity['end']) ? $activity['end'] : '';
 							$new_activity->step_id = $new_step->id;
 							$new_activity->item_id = $activity['item_id'];
 							$failure = $new_activity->save() ? $failure : 'true';

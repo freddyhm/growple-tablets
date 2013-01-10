@@ -117,7 +117,7 @@ function home(){
 			 setTimeout(function(){ 
 			 	$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
 				$("body").load(URL + "menu");
-				$.post(URL + "home/stepIn/d/1");
+				$.post(URL + "home/step/d/in/1");
 			 }, 300);
 		});
 
@@ -126,7 +126,7 @@ function home(){
 			 setTimeout(function(){ 
 			 	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
 				$("body").load(URL + "video");
-				$.post(URL + "home/stepIn/d/2");
+				$.post(URL + "home/step/d/in/2");
 			 }, 300);
 		});
 
@@ -136,7 +136,7 @@ function home(){
 			 setTimeout(function(){ 
 			 	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
 				$("body").load(URL + "game");
-				$.post(URL + "home/stepIn/d/3");
+				$.post(URL + "home/step/d/in/3");
 			 }, 300);
 		});
 
@@ -201,7 +201,7 @@ function menu(menus, user_basket){
 		 	 setTimeout(function(){ 
 		 	 	$.post(URL + 'menu/saveBasket/d/', {user_basket: basket});
 				$("body").load(URL + "home");
-				$.post(URL + 'home/stepOut/d/1');
+				$.post(URL + 'home/step/d/out/1');
 		 	 });
 		 }, 300);
 	});
@@ -515,16 +515,20 @@ function video(videos){
 
 	// play random video when video ends, make button clickable and control video with click - FHM
 	var currentVideo = document.getElementById("video");
-
-	var vid_timer = "";
-	
-	$(currentVideo).bind('ended', function(event) {
-		showRandomVideo();
-	});
-  
 	var previous_vid = new Array(0, 0 ,0 ,0 ,0);
 	var previous_position = 0;
 	var status = 'play';
+	var vid_timer = "";
+	var curr_vid_id = "";
+	var finished_watching = "no";
+	
+	$(currentVideo).bind('ended', function(event) {
+		// analytic point exit - FHM
+		curr_vid_id = $(this).attr("id");
+		$.post(URL + "home/activity/d/in/finished_watching/" + curr_vid_id);
+		finished_watching = "yes";
+		showRandomVideo();
+	});
 
 	showRandomVideo();	
 
@@ -534,7 +538,7 @@ function video(videos){
 		 	$("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
 		 	 setTimeout(function(){ 
 		 	 	$("body").load(URL + "home");
-		 	 	$.post(URL + 'home/stepOut/d/2');
+		 	 	$.post(URL + 'home/step/d/out/2');
 		 	 });
 		 }, 300);
 	});
@@ -562,6 +566,17 @@ function video(videos){
 
 	// displays a random video from list - FHM
 	function showRandomVideo(){
+
+
+		curr_vid_id = $(currentVideo).attr("id");
+
+		// check if user finished watching current vid and it's not the first page load - FHM
+		if(finished_watching == "no" && curr_vid_id != "video"){
+			// analytic point entry - FHM	
+			$.post(URL + "home/activity/d/out/skipped/" + curr_vid_id);
+			alert("skipped");
+		}
+		
 
 		// reset status for new video - FHM
 		status = 'play';
@@ -592,9 +607,16 @@ function video(videos){
 		var vid_url = URL + 'public/vid/' + videos[random_num].path;
 
 		$(currentVideo).attr("src", vid_url);
+		$(currentVideo).attr("id", videos[random_num].id);
 		$("#video_name").html( videos[random_num].name);
 		$("#video_author").html( videos[random_num].author);
-		
+
+		// reset finished watching var - FHM
+		finished_watching = "no";
+
+		$.post(URL + "home/activity/d/in/started_watching/" + videos[random_num].id);
+		alert("play");
+
 		vid_timer = setTimeout(function() {
 			$("#video_menu").hide(function(){
 				clearTimeout(vid_timer);
@@ -613,7 +635,7 @@ function game(){
 			$("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
 			setTimeout(function(){
 				$("body").load(URL + "home");
-				$.post(URL + 'home/stepOut/d/3');
+				$.post(URL + 'home/step/d/out/3');
 			}); 
 		}, 100);
 	});
