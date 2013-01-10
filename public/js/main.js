@@ -12,16 +12,20 @@ var bask_item_id = 0; // basket global var
 //activate timer - FHM
 activateSleepTimer();
 
+// functions to load when page is loaded - FHM
+$(document).ready(function($) {
+	// click is the main activity to derive idle user time or not so reset timer if click - FHM
+	$(".playbook").click(function() {
+		clearTimeout(sleep_timer);
+		activateSleepTimer();
+	});
+});
+
+
 // list of global functions - FHM
 function activateSleepTimer(){
 	sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
-
-// click is the main activity to derive idle user time or not so reset timer if click - FHM
-$(".playbook").click(function() {
-	clearTimeout(sleep_timer);
-	activateSleepTimer();
-});
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
