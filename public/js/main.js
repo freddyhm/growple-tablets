@@ -303,14 +303,6 @@ function menu(menus, user_basket){
 
 		// after adding all items, add click behavior to all of them - FHM
 		$(".items").click(function(){
-		
-			// get item id of currently selected item - FHM
-			var selected_item = $("#selectedItem").attr("value");
-			
-			// analytic entry point for first item (except at very start) - FHM
-			if(selected_item != undefined){
-				$.post(URL + "home/activity/out/viewed/" + selected_item);
-			}
 			
 			var folder = '/dishes/';
 			var item_id = $(this).attr("value");
@@ -345,8 +337,8 @@ function menu(menus, user_basket){
 				$(this).attr("value", item_id);
 			});			
 
-			// analytic exit point - FHM
-			$.post(URL + "home/activity/in/viewing/" + item_id);
+			// analytic entry (for end time, need to calculate with next point in db) - FHM
+			$.post(URL + "home/activity/in/viewed/" + item_id);
 		});
 	}	
 	
