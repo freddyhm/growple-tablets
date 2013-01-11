@@ -89,31 +89,24 @@ function home(){
 	// when browser gets refreshed - FHM
 	$(appCache).bind('noupdate', function(event) {
 		$("#load_pic").hide();
-		$("#start_screen").click(function(event) {
-				$("#loadPage").fadeOut(1000);
-		 });
 	});
 
 	// when cache finishes - FHM
 	$(appCache).bind('cached', function(event) {
 		// first load 
-		$("#load_pic").fadeOut(100, function(){
-	  		$("#start_screen").click(function(event) {
-				$("#loadPage").fadeOut(1000);
-				activateSleepTimer();
-	  		});
-		});
+		$("#load_pic").hide();
 	});
 
 	$(appCache).bind('updateready', function(event) {
 		// first load 
-		$("#load_pic").fadeOut(100, function(){
-	  		$("#start_screen").click(function(event) {
-				$("#loadPage").fadeOut(1000);
-				activateSleepTimer();
-	  		});
-		});
+		$("#load_pic").hide();
 	});
+
+	// make start button clickable even when loading 
+	$("#start_screen").live('click', function(event) {
+		$("#loadPage").hide();
+		activateSleepTimer();
+	  });
 
 	$(document).ready(function() {	
 		$("#menuLink").click(function(){
@@ -179,11 +172,7 @@ function home(){
 
 					// call server to reset user - FHM
 					$.post(url, function(data) {
-					  	$("#load_pic").fadeOut(100, function(){
-					  		$("#start_screen").click(function(event) {
-								$("#loadPage").fadeOut(1000);				  		
-					  		});
-					  	});
+					  	$("#load_pic").hide();
 					});
 				});
 			}
@@ -318,9 +307,8 @@ function menu(menus, user_basket){
 			}else if (menu_id == 11){
 				folder = '/beer/';
 			}else if (menu_id == 12){
-				folder = '/combo/';
+				folder = '/combos/';
 			}
-
 			var item_pic = URL + 'public/img/menu' + folder + menus[menu_id].items[item_id].big_pic;
 			var item_pos = $(this).position();
 			var item_width = $(this).css("width");
@@ -356,18 +344,10 @@ function menu(menus, user_basket){
 		var selected_item_name = $(".itemName").html();
 		var selected_menu_name = $(".menuSelected .menuName").html().toLowerCase();
 
-		// animate the cart when btn is pushed - FHM
-		$("#cartTab").animate({opacity: "+=1"}, 500, function(){
-			$(this).animate({opacity: "-=0.50"}, 500);
-			$("#cartTab").animate({opacity: "+=1"}, 500, function(){
-				$(this).animate({opacity: "-=0.50"}, 500);
-				$("#cartTab").animate({opacity: "+=1"}, 500, function(){});
-			});
-		});
-
 		// btn pressed - FHM
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
-		setTimeout(function() { $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png");}, 100);
+		setTimeout(function() { $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); }, 100);
+		setTimeout(function(){animateCart();}, 100);
 
 		addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
 		var last_item = $("#cartItems tr td:last").position();
@@ -490,21 +470,37 @@ function menu(menus, user_basket){
 		}, 200);
 	});
 
-	// area where cart is activatedcart shows
+	// area where cart is activated (cart shows/hides)
 	$("#cartTabArea").click(function(event) {
 		if(cart_status == "hidden"){
 			$(this).css("top", "140px");
-			$(this).css("height", "250px");
-			$("#cart").animate({bottom: "-=140"}, 1);
+			$(this).css("height", "199px");
+			$("#cart").animate({bottom: "-64"}, 1);
 			cart_status = "showing";
 		}else if(cart_status == "showing"){
-			$(this).css("top", "8px");
-			$(this).css("height", "382px");
-			$("#cart").animate({bottom: "+=140"}, 1);
+			$(this).css("top", "0px");
+			$(this).css("height", "341px");
+			$("#cart").animate({bottom: "76"}, 1);
 			cart_status = "hidden";
 		}
 	});
 
+	// cart goes down for a bit then goes up (called when adding item) - FHM
+	function animateCart(){
+	
+		$("#cart").animate({bottom: "-64"}, 1, function(){
+			$("#cartTabArea").css("top", "140px");
+			$("#cartTabArea").css("height", "199px");
+			setTimeout(function(){
+				$("#cart").animate({bottom: "76"}, 1);
+				$("#cartTabArea").css("top", "0px");
+				$("#cartTabArea").css("height", "341px");
+
+			}, 2000);
+		});
+	}
+
+	
 }
 
 function video(videos){

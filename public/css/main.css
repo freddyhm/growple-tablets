@@ -88,11 +88,6 @@ a:visited {text-decoration: none; color:#fff;
   top: 277px;
 }
 
-#menuContent
-{
-  display: none;
-}
-
 #tutorialDiscover
 {
   left: 233px;
@@ -164,9 +159,9 @@ a:visited {text-decoration: none; color:#fff;
 #cartTabArea{
   z-index: 2;
   width: 655px;
-  height: 382px;
+  height: 341px;
   position: absolute;
-  top: 8px;
+  top: 0px;
   left: 369px;
 }
 

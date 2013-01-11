@@ -1,12 +1,13 @@
 <script>
 $(document).ready(function() {	
 
+/*
 	// first time interacting w/the menu, show tutorial - FHM
-	var virgin = "<?php echo $is_virgin; ?>";
+	var virgin = "<?php //echo $is_virgin; ?>";
 	
 	if(virgin == "Yes"){
 		$("#tutorial").click(function(event) {
-			<?php Session::set("menu_first_time", "No"); ?>
+			<?php //Session::set("menu_first_time", "No"); ?>
 			$("#menuContent").show();
 			$("#tutorial").hide();
 		});
@@ -14,21 +15,24 @@ $(document).ready(function() {
 		$("#tutorial").hide();
 		$("#menuContent").show();
 	}
+	*/
 	// init functions for menu   - FHM
 	menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
 });
 </script>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg2"/>
+<!-- 
 <div id="tutorial">
-	<img id="tutorialBckgdImg" src="<?php echo URL .'public/img/menu/tutorial/bg_owl.jpg'; ?>">
-	<img id="tutorialIcons" src="<?php echo URL .'public/img/menu/tutorial/tut_intro.png'; ?>">
+	<img id="tutorialBckgdImg" src="<?php // echo URL .'public/img/menu/tutorial/bg_owl.jpg'; ?>">
+	<img id="tutorialIcons" src="<?php //echo URL .'public/img/menu/tutorial/tut_intro.png'; ?>">
 	<span class="tutorialText" id="tutorialDiscover">Discover</span>
 	<span class="tutorialText" id="tutorialPlay">Meet & Play</span>
 	<span class="tutorialText" id="tutorialWatch">Watch</span>
-	<img id="tutorialSign" src="<?php echo URL .'public/img/menu/tutorial/btn_getstarted.png'; ?>">
+	<img id="tutorialSign" src="<?php //echo URL .'public/img/menu/tutorial/btn_getstarted.png'; ?>">
 	<div id="tutorialBckgd"></div>
 </div>
+-->
 <div id="menuContent">
 	<div id="cartTabArea"></div>
 	<!-- Main Menu (Bottom) -->
@@ -45,7 +49,7 @@ $(document).ready(function() {
 			<img id="waitForServerSign" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
 			<img id="waitForServerDone" src="<?php echo URL .'public/img/menu/cart/btn_done.png'; ?>">
 		</div>
-		<img id="cartTab" src="<?php echo URL .'public/img/menu/cart_arrow.png'; ?>">
+		<!-- <img id="cartTab" src="<?php //echo URL .'public/img/menu/cart_arrow.png'; ?>"> -->
 	</div>
 	<div class="mainMenu"> 
 		<table>
