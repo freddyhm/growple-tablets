@@ -29,7 +29,7 @@ $(document).ready(function($) {
 function activateSleepTimer(){
 
 	sleep_timer = clearTimeout(sleep_timer);
-	sleep_timer = setTimeout(function() {sleep(); }, 3000);
+	sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -202,6 +202,8 @@ function menu(menus, user_basket){
 
 	// counter for grabIt function - FHM
 	var cart_status = "hidden";
+	var touched_cart = false;
+	var cart_timer = "";
 
 	if(user_basket != ""){
     	fillCart(user_basket);
@@ -348,8 +350,7 @@ function menu(menus, user_basket){
 		// btn pressed - FHM
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
 		setTimeout(function() { $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); }, 100);
-		setTimeout(function(){animateCart();}, 100);
-
+		setTimeout(function(){ animateCartAddItem(); }, 100);
 		addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
 		var last_item = $("#cartItems tr td:last").position();
 		$("#cartArea").animate({ scrollLeft: last_item.left}, "slow");
@@ -385,14 +386,14 @@ function menu(menus, user_basket){
 		
 		// insert new pic and item - FHM
 		$("#cartItems tr").append("<td>" + item_img + del_img + item_name + "</td>");
-		$("#test").fadeIn(1000, function(){
-			
-		});
-
+		
 		bask_item_id++;
 
 		// remove item from cart - FHM
 		$(del_id).click(function(){
+
+			// flag to stop the cart from going up - FHM
+			touched_cart = true;
 
 			var item_id = $(this).attr("value");
 			var cart_id = "#" + $(this).attr("id");
@@ -420,8 +421,11 @@ function menu(menus, user_basket){
 		var waiting_for_server = $("#waitForServer").css("display");
 		
 		if(waiting_for_server == "none"){
+
+			// clear the timer so cart won't go up - FHM
+			cart_timer = clearTimeout(cart_timer);
+
 			if(item_count != 0){
-				
 				// show "waiting for server"  - FHM
 				$(this).attr("src",URL + "public/img/menu/cart/btn_edit.png");
 				$("#grabIt").css("z-index", "1");
@@ -433,6 +437,9 @@ function menu(menus, user_basket){
 				alert("Uh Oh! You forgot to add an item.");
 			}
 		}else{
+
+			// pulls cart back up after a short interval - FHM 
+			animateCartAddItem();
 
 			// abort "waiting for server"  - FHM
 			$(this).attr("src",URL + "public/img/menu/cart/btn_cart_ready.png");
@@ -473,35 +480,46 @@ function menu(menus, user_basket){
 
 	// area where cart is activated (cart shows/hides)
 	$("#cartTabArea").click(function(event) {
+
 		if(cart_status == "hidden"){
-			$(this).css("top", "140px");
-			$(this).css("height", "199px");
-			$("#cart").animate({bottom: "-64"}, 1);
-			cart_status = "showing";
+			animateCartDown();
 		}else if(cart_status == "showing"){
-			$(this).css("top", "0px");
-			$(this).css("height", "341px");
-			$("#cart").animate({bottom: "76"}, 1);
-			cart_status = "hidden";
+			animateCartUp();			
 		}
 	});
 
-	// cart goes down for a bit then goes up (called when adding item) - FHM
-	function animateCart(){
-	
-		$("#cart").animate({bottom: "-64"}, 1, function(){
-			$("#cartTabArea").css("top", "140px");
-			$("#cartTabArea").css("height", "199px");
-			setTimeout(function(){
-				$("#cart").animate({bottom: "76"}, 1);
-				$("#cartTabArea").css("top", "0px");
-				$("#cartTabArea").css("height", "341px");
-
-			}, 2000);
-		});
+	// make cart and cart area go up and down - FHM
+	function animateCartDown(){
+		$("#cart").animate({bottom: "-64"}, 1);
+		$("#cartTabArea").css("top", "140px");
+		$("#cartTabArea").css("height", "199px");
+		cart_status = "showing";
 	}
 
-	
+	function animateCartUp(){
+		$("#cart").animate({bottom: "76"}, 1);
+		$("#cartTabArea").css("top", "0px");
+		$("#cartTabArea").css("height", "341px");
+		cart_status = "hidden";
+	}
+
+	// don't let cart hide if user deletes an item (activity in cart) - FHM
+	function animateCartAddItem(){
+		animateCartDown();
+
+		if(cart_timer != ""){
+			cart_timer = clearTimeout(cart_timer);	
+		}
+
+		cart_timer = setTimeout(function(){
+			if(!touched_cart){
+				animateCartUp();
+			}
+		}, 2500);
+
+	  touched_cart = false;
+	}
+
 }
 
 function video(videos){
