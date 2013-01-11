@@ -9,28 +9,31 @@ var sleep_timer = "";	// sleep global vars
 
 var bask_item_id = 0; // basket global var
 
-//activate timer - FHM
-activateSleepTimer();
-
 // functions to load when page is loaded - FHM
 $(document).ready(function($) {
+
+	//activate timer - FHM
+	activateSleepTimer();
+
 	// click is the main activity to derive idle user time or not so reset timer if click - FHM
-	$(".playbook").click(function() {
-		clearTimeout(sleep_timer);
-		activateSleepTimer();
+	$(".playbook").click(function(e){ 
+		if(e.target.className != 'navLink'){
+			activateSleepTimer();
+		}else{
+			clearTimeout(sleep_timer);
+		}
 	});
 });
 
-
 // list of global functions - FHM
 function activateSleepTimer(){
-	sleep_timer = setTimeout(function() {sleep(); }, 120000);
+
+	sleep_timer = clearTimeout(sleep_timer);
+	sleep_timer = setTimeout(function() {sleep(); }, 3000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
-
-	clearTimeout(sleep_timer);
 
 	// sleep except for video, has own implementation - FHM
 	if(document.getElementById("video") == null || document.getElementById("video").paused == true){
@@ -129,6 +132,7 @@ function home(){
 
 
 		$("#gameLink").click(function(){
+			clearTimeout(sleep_timer);
 			$(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
 			 setTimeout(function(){ 
 			 	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
@@ -561,7 +565,7 @@ function video(videos){
 	// displays a random video from list - FHM
 	function showRandomVideo(){
 
-		clearTimeout(vid_timer);
+		vid_timer  = clearTimeout(vid_timer);
 
 		// reset status for new video - FHM
 		status = 'play';
