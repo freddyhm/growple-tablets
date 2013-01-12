@@ -111,6 +111,8 @@ function home(){
 	  });
 
 	$(document).ready(function() {	
+
+		// nav links - FHM
 		$("#menuLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
 			 setTimeout(function(){ 
@@ -140,6 +142,7 @@ function home(){
 			 }, 300);
 		});
 
+		// hidden functions for reset - FM
 		$("#menu_intmenu").click(function(){
 			reset(3);
 		});
@@ -152,7 +155,8 @@ function home(){
 			reset(2);
 		});
 	});
-
+	
+	// set new user cycle - FHM
 	function reset(touch){
 
 		touch_count += touch;

@@ -15,9 +15,9 @@ $(document).ready(function() {
 		$("#tutorial").hide();
 		$("#menuContent").show();
 	}
-	*/
-	// init functions for menu   - FHM
-	
+*/
+
+	// check if app is online, get basket from mother, if not ignore  - FHM
 	var online = navigator.onLine;
 	var basket = "";
 

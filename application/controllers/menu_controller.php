@@ -48,6 +48,4 @@ class Menu extends Controller {
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
 	}
-
-
 }

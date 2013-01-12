@@ -54,8 +54,7 @@ class Controller {
 		// log error in server - FHM
 	//	error_log($error);
 	}
- 
- 	// need to test - FHM
+	
 	// resets the current user, starts a new user cycle - FHM
 	public function resetUser(){
 
