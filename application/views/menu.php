@@ -18,11 +18,18 @@ $(document).ready(function() {
 	*/
 	// init functions for menu   - FHM
 	
+	var online = navigator.onLine;
+	var basket = "";
 
-	$.get(URL + 'mother/getBasket/d', function(data, textStatus, xhr) {
-	  	var basket = $.parseJSON(data);
+	if(online == true){
+		$.get(URL + 'mother/getBasket/d', function(data, textStatus, xhr) {
+	  	basket = $.parseJSON(data);
 	  	menu(<?php echo json_encode($menus); ?>, basket);
-	});	
+		});	
+
+	}else{
+		menu(<?php echo json_encode($menus); ?>, basket);
+	}
 });
 </script>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
