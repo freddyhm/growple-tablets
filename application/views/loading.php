@@ -1,16 +1,3 @@
-<script>
-	$(document).ready(function() {
-
-		if(1 == 1){
-			
-			
-				 		
-			//$("body").load("home/finished");
-						
-
-		}
-	});
-</script>
 <img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
 <!-- START LOGO BUTTON -->
 <div id ="main_logo">

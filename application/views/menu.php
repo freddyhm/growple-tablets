@@ -17,7 +17,12 @@ $(document).ready(function() {
 	}
 	*/
 	// init functions for menu   - FHM
-	menu(<?php echo json_encode($menus); ?>, <?php echo json_encode($basket); ?>);
+	
+
+	$.get(URL + 'mother/getBasket/d', function(data, textStatus, xhr) {
+	  	var basket = $.parseJSON(data);
+	  	menu(<?php echo json_encode($menus); ?>, basket);
+	});	
 });
 </script>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
