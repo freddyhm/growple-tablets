@@ -1,12 +1,8 @@
 <?php
 
-class Analytics{
+class Analytics {
 
-	public function __construct(){
-		parent::__construct();
-	}
-
-	private function generateReport($type){
+	public function generateReport($type){
 
 		$date = date('m/d/Y h:i:s a', time());
 		$sectionmodule_list = SectionModule::find('all');
@@ -36,7 +32,7 @@ class Analytics{
 								   events.id = steps.event_id AND steps.module_id != 1 AND users.usertype_id = 2) / COUNT(users.id) AS result 
 								  FROM users WHERE users.usertype_id = 2";
 
-				$act_dur_query = "SELECT AVG(TIMEDIFF(end, start)) / 100 FROM activities";
+				$act_dur_query = "SELECT AVG(TIMEDIFF(end, start)) / 100 AS result FROM activities";
 				$act_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events, activities WHERE events.user_id = users.id AND 
 								  events.id = steps.event_id AND steps.id = activities.step_id AND steps.module_id != 1 AND users.usertype_id = 2) / (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
 								  events.id = steps.event_id AND steps.module_id != 1 AND users.usertype_id = 2) AS result FROM users WHERE users.usertype_id = 2";
@@ -85,11 +81,14 @@ class Analytics{
 
 				//execute query
 				$dur = Snapshot::find_by_sql($dur_sql);
-				$eng = Snapshot::find_by_sql($eng_sql);
+
+				if($eng_sql != ""){
+					$eng = Snapshot::find_by_sql($eng_sql);	
+				}
 
 				$snapshot = new Snapshot();
-				$snapshot->duration = $dur_sql['result'];
-				$snapshot->engagement = $eng_sql['result'];
+				$snapshot->duration = isset($dur[0]->result) ? floatval($dur[0]->result) : "";
+				$snapshot->engagement = isset($eng[0]->result) ? floatval($eng[0]->result) : "";
 				$snapshot->sectionmodule_id = $section_module->id;
 				$snapshot->report_id = $report->id; 
 				$snapshot->save();

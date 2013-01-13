@@ -199,9 +199,18 @@ function menu(menus, user_basket){
 		 setTimeout(function(){ 
 		 	$("#menuHome").attr("src", URL  + "public/img/common/btn_home.png");
 		 	 setTimeout(function(){ 
+
+		 	 	// save current basket - FHM
 		 	 	$.post(URL + 'mother/saveBasket/d/', {user_basket: basket});
-				$("body").load(URL + "home");
+			
+				// step exit point analytic - FHM
 				$.post(URL + 'mother/logStep/d/out/1');
+				
+				// activity exit point analytic  - FHM
+				var last_item = $("#selectedItem").attr("value");
+				$.post(URL + "mother/logActivity/out/exit_while_viewing_menu_item/" + last_item);
+
+				$("body").load(URL + "home");
 		 	 });
 		 }, 300);
 	});
@@ -305,7 +314,7 @@ function menu(menus, user_basket){
 
 		// after adding all items, add click behavior to all of them - FHM
 		$(".items").click(function(){
-			
+
 			var folder = '/dishes/';
 			var item_id = $(this).attr("value");
 			var menu_id = $(".menuSelected").attr("id").substring(4);
@@ -327,6 +336,19 @@ function menu(menus, user_basket){
 
 			changePicture(item_pic);
 
+			var last_item = $("#selectedItem").attr("value");
+			var online = navigator.onLine;
+
+			if(online == true && last_item != undefined){
+				$.post((URL + "mother/logActivity/out/viewed_menu_item/" + last_item), function() {
+				   $.post(URL + "mother/logActivity/in/viewing_menu_item/" + item_id);
+				});
+				
+			}else{
+				// analytic entry (for end time, need to calculate with next point in db) - FHM
+				$.post(URL + "mother/logActivity/in/viewing_menu_item/" + item_id);
+			}
+
 			// slide the selected item box - FHM
 			$('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
 	
@@ -337,9 +359,6 @@ function menu(menus, user_basket){
 
 				$(this).attr("value", item_id);
 			});			
-
-			// analytic entry (for end time, need to calculate with next point in db) - FHM
-			$.post(URL + "mother/logActivity/in/viewed/" + item_id);
 		});
 	}	
 	
@@ -564,8 +583,15 @@ function video(videos){
 		 setTimeout(function(){ 
 		 	$("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
 		 	 setTimeout(function(){ 
-		 	 	$("body").load(URL + "home");
+
+		 	 	// step exit point analytic - FHM
 		 	 	$.post(URL + 'mother/logStep/d/out/2');
+
+		 	 	// activity exit point analytic - FHM
+		 	 	var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
+		 	 	$.post(URL + "mother/logActivity/d/out/exit_while_watching_video/" + curr_vid_id);
+
+		 	 	$("body").load(URL + "home");
 		 	 });
 		 }, 300);
 	});
@@ -624,6 +650,21 @@ function video(videos){
 		}
 			
 		var vid_url = URL + 'public/vid/' + videos[random_num].path;
+		var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
+		var online = navigator.onLine;
+
+		// check if online, send analytic exit point - FHM
+		if(online == true && curr_vid_id != "video"){
+			$.post(URL + "mother/logActivity/d/out/skipped_video/" + curr_vid_id, function(){
+				loadVideo(vid_url, random_num);
+			});
+		}else{
+			loadVideo(vid_url, random_num);
+		}
+	}
+
+	// load url and set name, id, and desc - FHM
+	function loadVideo(vid_url, random_num){
 
 		$(currentVideo).attr("src", vid_url);
 		$(currentVideo).attr("id", videos[random_num].id);
@@ -633,7 +674,7 @@ function video(videos){
 		// reset finished watching var - FHM
 		finished_watching = "no";
 
-		$.post(URL + "mother/logActivity/d/in/started_watching/" + videos[random_num].id);
+		$.post(URL + "mother/logActivity/d/in/started_watching_video/" + videos[random_num].id);
 		
 		vid_timer = setTimeout(function() {
 			$("#video_menu").hide();
