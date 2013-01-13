@@ -74,10 +74,6 @@ class Mother extends Controller {
 		return $new_cart;
 	}
 
-	public function reset(){
-		parent::resetUser(); // Need to remove echo - FHM
-	}
-
 	public function logStep($status, $mod_id){
 
 		$this->logUserStep($status, $mod_id);	
@@ -85,5 +81,13 @@ class Mother extends Controller {
 
 	public function logActivity($status, $action, $item_id = null){
 		$this->logUserActivity($status, $action, $item_id);
+	}
+
+	public function newCycle(){
+		$this->newUserCycle();
+	}
+
+	public function endCycle(){
+		$this->endUserCycle();
 	}
 }

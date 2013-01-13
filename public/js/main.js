@@ -83,7 +83,7 @@ function home(){
 	// on checking for both refresh and loading, reset the app - FHM	
 	$(appCache).bind('checking', function(event) {
 		clearTimeout(sleep_timer);
-		$.post(URL + 'mother/endUserCycle/d/', function(){
+		$.post(URL + 'mother/endCycle/d/', function(){
 			$("#loadPage").show();
 		});
 	});
@@ -106,7 +106,7 @@ function home(){
 
 	// make start button clickable even when loading 
 	$("#start_screen").live('click', function(event) {
-		$.post(URL + 'mother/createUserCycle/d/', function(){
+		$.post(URL + 'mother/newCycle/d/', function(){
 			$("#loadPage").hide();
 			activateSleepTimer();
 		});
@@ -177,7 +177,7 @@ function home(){
 				// display loading page - FHM
 				$("#loadPage").show(function(){
 
-					var url = URL + "mother/reset/d/";
+					var url = URL + "mother/endCycle/d/";
 
 					// call server to reset user - FHM
 					$.post(url, function(data) {
@@ -196,6 +196,8 @@ function home(){
 
 function menu(menus, user_basket){
 
+	var first_item = true;
+
 	$("#menuHome").click(function(){
 		$(this).attr("src", URL  + "public/img/common/btn_home_pressed.png");
 		 setTimeout(function(){ 
@@ -210,7 +212,10 @@ function menu(menus, user_basket){
 				
 				// activity exit point analytic  - FHM
 				var last_item = $("#selectedItem").attr("value");
-				$.post(URL + "mother/logActivity/out/exit_while_viewing_menu_item/" + last_item);
+
+				// check for first item for analytics - FHM
+				var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/exit_while_viewing_menu_item/";
+				$.post(URL + analytic_url + last_item);
 
 				$("body").load(URL + "home");
 		 	 });
@@ -347,8 +352,12 @@ function menu(menus, user_basket){
 			var online = navigator.onLine;
 
 			if(online == true && last_item != undefined){
-				$.post((URL + "mother/logActivity/out/viewed_menu_item/" + last_item), function() {
+
+				// check for first item for analytics - FHM
+				var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/viewed_menu_item/";
+				$.post((URL + analytic_url + last_item), function() {
 				   $.post(URL + "mother/logActivity/in/viewing_menu_item/" + item_id);
+				   first_item = false;
 				});
 				
 			}else{
@@ -568,6 +577,7 @@ function video(videos){
 	var vid_timer = "";
 	var curr_vid_id = "";
 	var finished_watching = "no";
+	var first_vid = true;
 		
 	// analytics exit point when video ends - FHM
 	$(currentVideo).bind('ended', function(event) {
@@ -600,8 +610,11 @@ function video(videos){
 
 		 	 	// activity exit point analytic - FHM
 		 	 	var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
-		 	 	$.post(URL + "mother/logActivity/d/out/exit_while_watching_video/" + curr_vid_id);
 
+		 	 	// check if first video for analytics - FHM
+		 	 	var analytic_url = first_vid == true ? "mother/logActivity/d/out/first/" :  "mother/logActivity/d/out/exit_while_watching_video/";
+		 	 	$.post(URL +  analytic_url + curr_vid_id);
+		 	 
 		 	 	$("body").load(URL + "home");
 		 	 });
 		 }, 300);
@@ -666,8 +679,13 @@ function video(videos){
 
 		// check if online, send analytic exit point - FHM
 		if(online == true && curr_vid_id != "video"){
-			$.post(URL + "mother/logActivity/d/out/skipped_video/" + curr_vid_id, function(){
+
+			// check if first video for analytic - FHM
+			var analytic_url = first_vid == true ? "mother/logActivity/d/out/first/" :  "mother/logActivity/d/out/skipped_video/";
+
+			$.post(URL +  analytic_url + curr_vid_id, function(){
 				loadVideo(vid_url, random_num);
+				first_vid = false;
 			});
 		}else{
 			loadVideo(vid_url, random_num);

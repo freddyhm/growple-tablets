@@ -8,7 +8,6 @@ class Error extends Controller {
 	}
 
 	public function index(){
-		//$this->createUserPath(1);
 		parent::index();
 	}
 }
