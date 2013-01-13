@@ -34,7 +34,7 @@ class Analytics {
 
 				$act_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM activities";
 				$act_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events, activities WHERE events.user_id = users.id AND 
-								  events.id = steps.event_id AND steps.id = activities.step_id AND steps.module_id != 1 AND users.usertype_id = 2) / (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
+								  events.id = steps.event_id AND steps.id = activities.step_id AND steps.module_id != 1 AND users.usertype_id = 2 AND activities.name != 'first') / (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
 								  events.id = steps.event_id AND steps.module_id != 1 AND users.usertype_id = 2) AS result FROM users WHERE users.usertype_id = 2";
 				
 				/* module and activity section queries */
@@ -43,10 +43,10 @@ class Analytics {
 								  	  events.id = steps.event_id AND steps.module_id = $mod_id AND users.usertype_id = 2) / COUNT(users.id) AS result FROM users 
 								  	  WHERE users.usertype_id = 2";
 
-				$act_gen_dur_query = "SELECT AVG(TIMEDIFF(activities.end, activities.start)) / 100 AS result FROM activities, steps 
+				$act_gen_dur_query = "SELECT AVG(TIMEDIFF(activities.end, activities.start)) AS result FROM activities, steps 
 									  WHERE steps.id = activities.step_id AND steps.module_id = $mod_id";
 				$act_gen_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events, activities WHERE events.user_id = users.id AND 
-									  events.id = steps.event_id AND steps.id = activities.step_id AND steps.module_id = $mod_id AND users.usertype_id = 2) / 
+									  events.id = steps.event_id AND steps.id = activities.step_id AND steps.module_id = $mod_id AND users.usertype_id = 2 AND activities.name != 'first') / 
 									  (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
 									  events.id = steps.event_id AND steps.module_id = $mod_id AND users.usertype_id = 2) AS result FROM users WHERE users.usertype_id = 2";
 				
@@ -57,7 +57,7 @@ class Analytics {
 							$dur_sql = $app_dur_query;
 							$eng_sql = '';
 							break;
-						case 'overview':
+						case 'module':
 							$dur_sql = $mod_dur_query;
 							$eng_sql = $mod_eng_query;
 							break;
@@ -68,7 +68,7 @@ class Analytics {
 					}
 				}else{
 					switch ($section_module->section->name) {
-						case 'overview':
+						case 'module':
 							$dur_sql = $mod_gen_dur_query;
 							$eng_sql = $mod_gen_eng_query;
 							break;
@@ -80,7 +80,9 @@ class Analytics {
 				}
 
 				//execute query
-				$dur = Snapshot::find_by_sql($dur_sql);
+				if($dur_sql != ""){
+					$dur = Snapshot::find_by_sql($dur_sql);
+				}
 
 				if($eng_sql != ""){
 					$eng = Snapshot::find_by_sql($eng_sql);	
