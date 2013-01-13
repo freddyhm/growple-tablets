@@ -107,7 +107,7 @@ class Analytics {
 				/* queries derived from engagement and sale  */
 
 				$eng_pop_query = "SELECT activities.item_id, COUNT(activities.id) AS result FROM activities, items, modules 
-								  WHERE activities.item_id = items.id AND items.module_id = modules.id AND modules.id = $mod_id  
+								  WHERE activities.item_id = items.id AND items.module_id = modules.id AND modules.parent_id = $mod_id AND activities.name != 'first'  
 								  GROUP BY item_id ASC";
 
 				$sale_pop_query = "SELECT cart_items.item_id, COUNT(cart_items.item_id) AS result FROM cart_items, items, modules 
@@ -130,7 +130,7 @@ class Analytics {
 
 				// create snapshot - FHM
 				$snapshot = new Snapshot();
-				$snapshot->popularity = $pop_sql['result'];
+				$snapshot->popularity = isset($pop_sql['result']);
 				$snapshot->sectionmodule_id = $section_module->id;
 				$snapshot->report_id = $report->id; 
 				$snapshot->save();

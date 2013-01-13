@@ -108,11 +108,10 @@ class Controller {
 			$new_cart->user_id = Session::get('user_id');
 			$failure = $new_cart->save() ? $failure : 'true';
 
-			foreach ($cart['items'] as $key => $item) {
-
+			foreach ($cart['items'] as $item) {
 				$cart_item = new CartItem();
 				$cart_item->cart_id = $new_cart->id;
-				$cart_item->item_id = intval($item);
+				$cart_item->item_id = intval($item[0]);
 				$failure = $cart_item->save() ? $failure : 'true';
 				}
 			}
