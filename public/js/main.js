@@ -378,11 +378,12 @@ function menu(menus, user_basket){
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
 		setTimeout(function() { 
 			$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
-		}, 100);
-		setTimeout(function(){ 
+			setTimeout(function(){ 
 			animateCartAddItem(); 
 			addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
 		}, 100);
+		}, 100);
+		
 		
 		var last_item = $("#cartItems tr td:last").position();
 		$("#cartArea").animate({ scrollLeft: last_item.left}, "slow");
