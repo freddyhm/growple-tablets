@@ -336,8 +336,13 @@ function menu(menus, user_basket){
 			var item_padding_left = $(this).css("padding-left");
 			var box_size = parseInt(item_width) + parseInt(item_padding_left) + parseInt(item_padding_right) - 27;
 
-			changePicture(item_pic);
+			var opac_img1 = $("#bckgdImg1").css("opacity");
+			var opac_img2 = $("#bckgdImg2").css("opacity");
 
+			if(opac_img1 == 1 && opac_img2 == 1){
+				changePicture(item_pic);	
+			}
+			
 			var last_item = $("#selectedItem").attr("value");
 			var online = navigator.onLine;
 
@@ -378,11 +383,9 @@ function menu(menus, user_basket){
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
 		setTimeout(function() { 
 			$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
-			setTimeout(function(){ 
 			animateCartAddItem(); 
 			addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
-		}, 100);
-		}, 100);
+		}, 150);
 		
 		
 		var last_item = $("#cartItems tr td:last").position();
