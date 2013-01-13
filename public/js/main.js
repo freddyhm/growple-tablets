@@ -83,7 +83,7 @@ function home(){
 	// on checking for both refresh and loading, reset the app - FHM	
 	$(appCache).bind('checking', function(event) {
 		clearTimeout(sleep_timer);
-		$.post(URL + 'mother/reset/d/', function(){
+		$.post(URL + 'mother/endUserCycle/d/', function(){
 			$("#loadPage").show();
 		});
 	});
@@ -106,9 +106,11 @@ function home(){
 
 	// make start button clickable even when loading 
 	$("#start_screen").live('click', function(event) {
-		$("#loadPage").hide();
-		activateSleepTimer();
-	  });
+		$.post(URL + 'mother/createUserCycle/d/', function(){
+			$("#loadPage").hide();
+			activateSleepTimer();
+		});
+	 });
 
 	$(document).ready(function() {	
 
@@ -374,9 +376,14 @@ function menu(menus, user_basket){
 
 		// btn pressed - FHM
 		$(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");	
-		setTimeout(function() { $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); }, 100);
-		setTimeout(function(){ animateCartAddItem(); }, 100);
-		addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
+		setTimeout(function() { 
+			$("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
+		}, 100);
+		setTimeout(function(){ 
+			animateCartAddItem(); 
+			addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
+		}, 100);
+		
 		var last_item = $("#cartItems tr td:last").position();
 		$("#cartArea").animate({ scrollLeft: last_item.left}, "slow");
 	});

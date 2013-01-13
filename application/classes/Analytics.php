@@ -25,20 +25,20 @@ class Analytics {
 				// list of all queries for our metrics - FHM
 
 				/* "overall" section queries */
-				$app_dur_query = "SELECT AVG(TIMEDIFF(end, start)) / 100 AS result FROM events WHERE eventcategory_id = 1";
+				$app_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM events WHERE eventcategory_id = 1";
 
-				$mod_dur_query = "SELECT AVG(TIMEDIFF(end, start)) / 100 AS result FROM steps";
+				$mod_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM steps";
 				$mod_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
 								   events.id = steps.event_id AND steps.module_id != 1 AND users.usertype_id = 2) / COUNT(users.id) AS result 
 								  FROM users WHERE users.usertype_id = 2";
 
-				$act_dur_query = "SELECT AVG(TIMEDIFF(end, start)) / 100 AS result FROM activities";
+				$act_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM activities";
 				$act_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events, activities WHERE events.user_id = users.id AND 
 								  events.id = steps.event_id AND steps.id = activities.step_id AND steps.module_id != 1 AND users.usertype_id = 2) / (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
 								  events.id = steps.event_id AND steps.module_id != 1 AND users.usertype_id = 2) AS result FROM users WHERE users.usertype_id = 2";
 				
 				/* module and activity section queries */
-				$mod_gen_dur_query = "SELECT AVG(TIMEDIFF(end, start)) / 100 AS result FROM steps WHERE module_id = $mod_id";
+				$mod_gen_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM steps WHERE module_id = $mod_id";
 				$mod_gen_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
 								  	  events.id = steps.event_id AND steps.module_id = $mod_id AND users.usertype_id = 2) / COUNT(users.id) AS result FROM users 
 								  	  WHERE users.usertype_id = 2";

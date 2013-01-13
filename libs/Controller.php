@@ -56,22 +56,14 @@ class Controller {
 	}
 	
 	// resets the current user, starts a new user cycle - FHM
-	public function resetUser(){
+	public function newUserCycle(){
 
 		if(Session::exist()){
-			// save path, carts, and destroy/create a new session, will erase cart and path - FHM
-			$this->saveUserPath();
-			$this->cartCheckout();
-			Session::destroy();
-
-			// start new session and path, lazy loading for cart
-			Session::init();
-			
 			// create & set new user in session - FHM 
 			$user = new User();
 			$user->name = 'JohnJane';
 			$user->venue_id = 1; // need to change depending on venue
-			$user->usertype_id = 3; // need to change depending on login
+			$user->usertype_id = 2; // need to change depending on login
 		
 			// save user id and add to new session, check if session has been reset properly - FHM
 			if($user->save()){
@@ -85,6 +77,19 @@ class Controller {
 				//$this->handleError('danger', 'controller.php', 'Problem saving new user on reset.');
 			}	
 		}	
+	}
+
+	public function endUserCycle(){
+
+		if(Session::exist()){
+			// save path, carts, and destroy/create a new session, will erase cart and path - FHM
+			$this->saveUserPath();
+			$this->cartCheckout();
+			Session::destroy();
+
+			// start new session and path, lazy loading for cart
+			Session::init();
+		}
 	}
 
 	// saves everything the user has in his carts to db - FHM
