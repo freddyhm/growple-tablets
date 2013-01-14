@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 11, 2013 at 07:11 PM
+-- Generation Time: Jan 14, 2013 at 02:41 PM
 -- Server version: 5.5.9
 -- PHP Version: 5.3.6
 
@@ -255,37 +255,12 @@ CREATE TABLE `reports` (
   `reporttype_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `reporttype_id` (`reporttype_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=euckr AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB DEFAULT CHARSET=euckr AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `reports`
 --
 
-INSERT INTO `reports` VALUES(1, '2012-12-16 10:15:00', 1);
-INSERT INTO `reports` VALUES(2, '2012-12-16 10:16:13', 1);
-INSERT INTO `reports` VALUES(3, '2012-12-16 10:17:40', 2);
-INSERT INTO `reports` VALUES(4, '2012-12-16 10:17:40', 2);
-INSERT INTO `reports` VALUES(5, '2012-12-16 10:17:40', 2);
-INSERT INTO `reports` VALUES(6, '2012-12-16 10:17:40', 2);
-INSERT INTO `reports` VALUES(7, '2012-12-16 10:17:40', 2);
-INSERT INTO `reports` VALUES(8, '2012-12-16 10:17:40', 2);
-INSERT INTO `reports` VALUES(9, '2012-12-16 10:17:40', 2);
-INSERT INTO `reports` VALUES(10, '2012-12-16 10:17:40', 2);
-INSERT INTO `reports` VALUES(11, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(12, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(13, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(14, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(15, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(16, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(17, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(18, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(19, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(20, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(21, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(22, '2012-12-16 10:17:41', 2);
-INSERT INTO `reports` VALUES(23, '2012-12-16 10:17:42', 2);
-INSERT INTO `reports` VALUES(24, '2012-12-16 10:17:42', 2);
-INSERT INTO `reports` VALUES(25, '2012-12-16 10:17:42', 2);
 
 -- --------------------------------------------------------
 
@@ -323,7 +298,7 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` VALUES(1, 'app');
-INSERT INTO `sections` VALUES(2, 'overview');
+INSERT INTO `sections` VALUES(2, 'module');
 INSERT INTO `sections` VALUES(3, 'activity');
 
 -- --------------------------------------------------------
@@ -363,7 +338,7 @@ INSERT INTO `section_modules` VALUES(10, 3, NULL);
 
 CREATE TABLE `snapshots` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `duration` time NOT NULL,
+  `duration` double(11,2) NOT NULL,
   `engagement` double(11,2) NOT NULL,
   `popularity` varchar(255) CHARACTER SET latin1 NOT NULL,
   `sectionmodule_id` int(11) NOT NULL,
@@ -419,7 +394,7 @@ CREATE TABLE `tablets` (
 INSERT INTO `tablets` VALUES(1, 'Solo');
 INSERT INTO `tablets` VALUES(2, 'Chewie');
 INSERT INTO `tablets` VALUES(3, 'Vader');
-INSERT INTO `tablets` VALUES(4, 'Leia');
+INSERT INTO `tablets` VALUES(4, 'Yoda');
 
 -- --------------------------------------------------------
 
