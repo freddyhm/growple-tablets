@@ -12,6 +12,8 @@
 	<script src="<?php echo URL . 'public/js/kenburns.js';?>"></script>
 	<script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
 	<script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 </head>	
 <body>
 	<div style="display:none;"><video loop="loop" autoplay="autoplay"><source src="<?php echo URL . 'public/vid/nosleep.mp4'; ?>" /></video ></div>

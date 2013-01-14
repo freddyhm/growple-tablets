@@ -501,12 +501,27 @@ function menu(menus, user_basket){
 
 	// done button pressed, pops in and out - FHM
 	$("#waitForServerDone").click(function(event) {
-
+		 $(this).dialog({
+			      resizable: false,
+			      height:140,
+			      modal: true,
+			      buttons: {
+			        "Delete all items": function() {
+			          $( this ).dialog( "close" );
+			        },
+			        Cancel: function() {
+			          $( this ).dialog( "close" );
+			        }
+			      }
+			     }); 
+		 
 		$(this).attr("src", URL + "public/img/menu/cart/btn_done_pressed.png");
 
 		setTimeout(function()
 		{
 			$("#waitForServerDone").attr("src", URL + "public/img/menu/cart/btn_done.png");
+
+	
 
 			setTimeout(function(){
 				// Store cart in session variable - Need to do - FHM
