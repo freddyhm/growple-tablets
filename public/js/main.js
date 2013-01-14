@@ -83,9 +83,11 @@ function home(){
 	// on checking for both refresh and loading, reset the app - FHM	
 	$(appCache).bind('checking', function(event) {
 		clearTimeout(sleep_timer);
-		$.post(URL + 'mother/endCycle/d/', function(){
+
+		$.post(URL + 'mother/endCycle/d/');		
+		//setTimeout(function(){
 			$("#loadPage").show();
-		});
+		//}, 500);
 	});
 
 	// when browser gets refreshed after cached - FHM
@@ -106,10 +108,14 @@ function home(){
 
 	// make start button clickable even when loading 
 	$("#start_screen").live('click', function(event) {
-		$.post(URL + 'mother/newCycle/d/', function(){
+
+		$.post(URL + 'mother/newCycle/d/');
+		
+		setTimeout(function(){
 			$("#loadPage").hide();
 			activateSleepTimer();
-		});
+		}, 500);
+			
 	 });
 
 	$(document).ready(function() {	
@@ -118,18 +124,18 @@ function home(){
 		$("#menuLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
 			 setTimeout(function(){ 
+			 	$.post(URL + "mother/logStep/d/in/1");
 			 	$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
 				$("body").load(URL + "menu");
-				$.post(URL + "mother/logStep/d/in/1");
 			 }, 300);
 		});
 
 		$("#videoLink").click(function(){
 			$(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
 			 setTimeout(function(){ 
+			 	$.post(URL + "mother/logStep/d/in/2");
 			 	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
 				$("body").load(URL + "video");
-				$.post(URL + "mother/logStep/d/in/2");
 			 }, 300);
 		});
 
@@ -138,9 +144,9 @@ function home(){
 			clearTimeout(sleep_timer);
 			$(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
 			 setTimeout(function(){ 
+			 	$.post(URL + "mother/logStep/d/in/3");
 			 	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
 				$("body").load(URL + "game");
-				$.post(URL + "mother/logStep/d/in/3");
 			 }, 300);
 		});
 
@@ -177,12 +183,10 @@ function home(){
 				// display loading page - FHM
 				$("#loadPage").show(function(){
 
-					var url = URL + "mother/endCycle/d/";
-
-					// call server to reset user - FHM
-					$.post(url, function(data) {
-					  	$("#load_pic").hide();
-					});
+					$.post(URL + 'mother/endCycle/d/');		
+					setTimeout(function(){
+						$("#load_pic").hide();
+					}, 500);
 				});
 			}
 
@@ -217,7 +221,7 @@ function menu(menus, user_basket){
 				var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/exit_while_viewing_menu_item/";
 				$.post(URL + analytic_url + last_item);
 
-				$("body").load(URL + "home");
+				setTimeout(function(){$("body").load(URL + "home");}, 500);		
 		 	 });
 		 }, 300);
 	});
@@ -512,10 +516,16 @@ function menu(menus, user_basket){
 				if(answer == true){
 					
 					var url = URL + 'mother/addToCart/d/';
+					$.post(url, {cart: basket});
 
-					$.post(url, {cart: basket}, function(data, textStatus, xhr) {
-					  	$("body").load(URL + "home");
-					});
+					// activity exit point analytic  - FHM
+					var last_item = $("#selectedItem").attr("value");
+
+					// check for first item for analytics - FHM
+					var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/exit_while_viewing_menu_item/";
+					$.post(URL + analytic_url + last_item);
+
+					setTimeout(function(){$("body").load(URL + "home");}, 500);	
 				}
 
 			},200);
