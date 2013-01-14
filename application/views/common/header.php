@@ -7,12 +7,12 @@
 
 	<!-- STYLESHEET-->
 	<link rel="stylesheet" href="<?php echo URL . 'public/css/main.css'; ?>">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"></script>
 	<!-- SCRIPTS -->
-	<script src="<?php echo URL . 'public/js/jquery-1.8.3.min.js'; ?>"></script>
+	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 	<script src="<?php echo URL . 'public/js/kenburns.js';?>"></script>
 	<script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
 	<script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
-	<script src="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"></script>
 	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 </head>	
 <body>

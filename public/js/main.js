@@ -483,7 +483,7 @@ function menu(menus, user_basket){
 				$("#waitForServer").show();
 
 			}else{
-				alert("Uh Oh! You forgot to add an item.");
+				$( "#dialog" ).dialog();
 			}
 		}else{
 
@@ -501,19 +501,7 @@ function menu(menus, user_basket){
 
 	// done button pressed, pops in and out - FHM
 	$("#waitForServerDone").click(function(event) {
-		 $(this).dialog({
-			      resizable: false,
-			      height:140,
-			      modal: true,
-			      buttons: {
-			        "Delete all items": function() {
-			          $( this ).dialog( "close" );
-			        },
-			        Cancel: function() {
-			          $( this ).dialog( "close" );
-			        }
-			      }
-			     }); 
+		 
 		 
 		$(this).attr("src", URL + "public/img/menu/cart/btn_done_pressed.png");
 
@@ -521,29 +509,33 @@ function menu(menus, user_basket){
 		{
 			$("#waitForServerDone").attr("src", URL + "public/img/menu/cart/btn_done.png");
 
-	
-
 			setTimeout(function(){
-				// Store cart in session variable - Need to do - FHM
-				var answer = confirm("Finished ordering?");
+					// Store cart in session variable - Need to do - FHM
+				$("#dialog-confirm").dialog({
+				      resizable: false,
+				      height:210,
+				      modal: true,
+				      buttons: {
+				      	// redirect to home page - FHM
+				        "Done": function() {
+				          $( this ).dialog( "close" );
+							var url = URL + 'mother/addToCart/d/';
+							$.post(url, {cart: basket});
 
-				// redirect to home page - FHM
-				if(answer == true){
-					
-					var url = URL + 'mother/addToCart/d/';
-					$.post(url, {cart: basket});
+							// activity exit point analytic  - FHM
+							var last_item = $("#selectedItem").attr("value");
 
-					// activity exit point analytic  - FHM
-					var last_item = $("#selectedItem").attr("value");
+							// check for first item for analytics - FHM
+							var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/exit_while_viewing_menu_item/";
+							$.post(URL + analytic_url + last_item);
 
-					// check for first item for analytics - FHM
-					var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/exit_while_viewing_menu_item/";
-					$.post(URL + analytic_url + last_item);
-
-					setTimeout(function(){$("body").load(URL + "home");}, 500);	
-				}
-
-			},200);
+							setTimeout(function(){$("body").load(URL + "home");}, 500);	
+				        },
+				        Cancel: function() {
+				          $(this).dialog("close");
+				        }
+				      }
+				    });},200);
 
 		}, 200);
 	});

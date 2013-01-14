@@ -32,6 +32,12 @@ $(document).ready(function() {
 	}
 });
 </script>
+<div id="dialog" title="" style="display:none;">
+  <p>Uh Oh! You forgot to add an item.</p>
+</div>
+<div id="dialog-confirm" title="" style="display:none;">
+  <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Finished Ordering?</p>
+</div>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg2"/>
 <!-- 
