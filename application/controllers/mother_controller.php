@@ -7,6 +7,10 @@ class Mother extends Controller {
 		parent::__construct();
 	}
 
+	public function isOnline(){
+		echo "Success";
+	}
+
 	public function saveBasket(){
 
 		$basket = $_POST['user_basket'];

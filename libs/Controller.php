@@ -38,14 +38,14 @@ class Controller {
 		$error = $date.' - '.$error_file.' : '.$error_desc.'-'.$error_action.'-'.$error_level;
 
 		// send txt msg to kevin and freddy - FHM
-			mail('5199986123@sms.fido.ca', '', $error, '');
-			mail('2267912634@msg.telus.com', '', $error, '');
+		//	mail('5199986123@sms.fido.ca', '', $error, '');
+		//	mail('2267912634@msg.telus.com', '', $error, '');
 
 		// redirect to temp page and send email msg to kevin and freddy - FHM
 		if($error_action == 'quarantine'){
 
-			mail('freddy.hm@growple.com', '', $error, '');
-			mail('kevin.kim@growple.com', '', $error, '');
+	//		mail('freddy.hm@growple.com', '', $error, '');
+	//		mail('kevin.kim@growple.com', '', $error, '');
 
 			// redirect to error page - FHM
 			header('Location:' . URL . 'error' );

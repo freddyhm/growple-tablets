@@ -719,34 +719,14 @@ function game(){
 
 function error(){
 
-     // set new user cycle - FHM
-        function reset(touch){
-
-            touch_count += touch;
-            touch_try++;
-
-            // activation numbers - FHM
-            if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-                    activate++;
-            }
-
-            // after fourth step, check if all activation numbers have been hit - FHM
-            if(touch_try == 3){
-
-                if(touch_count == 11 && activate == 3){
-
-                    // display loading page - FHM
-                    $("#loadPage").show();
-                    $.post(URL + 'mother/endCycle/d/', function(data){
-                            $("#load_pic").hide();
-                    });  
-                }
-
-                //reset variables
-                touch_count = 0;
-                activate = 0;
-                touch_try = 0;
-            }
-        }
-
+	$("#updatemsg").click(function(event) {
+		$.post(URL + 'mother/isOnline/d/', function(data) {
+			$("body").load(URL + "home");	
+		});
+	});
+	
+	$("#updatemsg").ajaxError(function(){
+       alert("yo");
+    });	
+   
 }
