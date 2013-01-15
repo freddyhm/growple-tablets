@@ -84,10 +84,10 @@ class Mother extends Controller {
 	}
 
 	public function newCycle(){
-		$this->newUserCycle();
+		echo $this->newUserCycle();
 	}
 
 	public function endCycle(){
-		$this->endUserCycle();
+		echo $this->endUserCycle();
 	}
 }
