@@ -12,6 +12,10 @@ var bask_item_id = 0; // basket global var
 // functions to load when page is loaded - FHM
 $(document).ready(function($) {
 
+		$(".playbook").ajaxError(function(){
+            window.location = URL + "error";
+        });
+
         //activate timer - FHM
         activateSleepTimer();
 
@@ -105,12 +109,14 @@ function home(){
 
         // make start button clickable even when loading 
         $("#start_screen").live('click', function(event) {
-        	if(one_user == 0){
+        		
+		    	
+        		 setTimeout(function(){
 		    	$.post(URL + 'mother/newCycle/d/', function(data){
 		        	$("#loadPage").hide();
 		            activateSleepTimer();
 		        });
-		        one_user = 1;
+		       },1000)
         	}
          });
 
