@@ -107,65 +107,60 @@ function home(){
             $("#load_pic").hide();
         });
 
-        // make start button clickable even when loading 
-        $("#start_screen").live('click', function(event) {
-        		
-		    	
-        		 setTimeout(function(){
-		    	$.post(URL + 'mother/newCycle/d/', function(data){
-		        	$("#loadPage").hide();
-		            activateSleepTimer();
-		        });
-		       },1000)
-        	}
-         });
-
         $(document).ready(function() {  
 
-                // nav links - FHM
-                $("#menuLink").click(function(){
-                    $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
-                     setTimeout(function(){ 
-                 		$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
-                        $.post(URL + "mother/logStep/d/in/1", function(){
-                        	$("body").load(URL + "menu");
-                        });
-                     }, 300);
+             // make start button clickable 
+            $("#start_screen").click(function(event) {
+                $.post(URL + 'mother/newCycle/d/', function(){
+                    $("#loadPage").hide();
+                    activateSleepTimer();
                 });
+             });
 
-                $("#videoLink").click(function(){
-                    $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
-                     setTimeout(function(){ 
-                     	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
-                        $.post(URL + "mother/logStep/d/in/2", function(){
-                    		$("body").load(URL + "video");
-                        });
-                     }, 300);
-                });
+            // nav links - FHM
+            $("#menuLink").click(function(){
+                $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
+                 setTimeout(function(){ 
+             		$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
+                    $.post(URL + "mother/logStep/d/in/1", function(){
+                    	$("body").load(URL + "menu");
+                    });
+                 }, 300);
+            });
+
+            $("#videoLink").click(function(){
+                $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
+                 setTimeout(function(){ 
+                 	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
+                    $.post(URL + "mother/logStep/d/in/2", function(){
+                		$("body").load(URL + "video");
+                    });
+                 }, 300);
+            });
 
 
-                $("#gameLink").click(function(){
-                    $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
-                     setTimeout(function(){ 
-                     	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
-                        $.post(URL + "mother/logStep/d/in/3", function(){
-                        	$("body").load(URL + "game");
-                        });
-                     }, 300);
-                });
+            $("#gameLink").click(function(){
+                $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
+                 setTimeout(function(){ 
+                 	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
+                    $.post(URL + "mother/logStep/d/in/3", function(){
+                    	$("body").load(URL + "game");
+                    });
+                 }, 300);
+            });
 
-                // hidden functions for reset - FM
-                $("#menu_intmenu").click(function(){
-                    reset(3);
-                });
+            // hidden functions for reset - FM
+            $("#menu_intmenu").click(function(){
+                reset(3);
+            });
 
-                $("#menu_games").click(function(){
-                    reset(6);
-                });
+            $("#menu_games").click(function(){
+                reset(6);
+            });
 
-                $("#menu_videos").click(function(){
-                    reset(2);
-                });
+            $("#menu_videos").click(function(){
+                reset(2);
+            });
         });
         
         // set new user cycle - FHM
@@ -185,11 +180,10 @@ function home(){
                 if(touch_count == 11 && activate == 3){
 
                     // display loading page - FHM
-                    $("#loadPage").show(function(){
-                        $.post(URL + 'mother/endCycle/d/', function(data){
-                        	$("#load_pic").hide();
-                        });             
-                    });
+                    $("#loadPage").show();
+                    $.post(URL + 'mother/endCycle/d/', function(data){
+                            $("#load_pic").hide();
+                    });  
                 }
 
                 //reset variables
