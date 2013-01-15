@@ -38,21 +38,21 @@ class Controller {
 		$error = $date.' - '.$error_file.' : '.$error_desc.'-'.$error_action.'-'.$error_level;
 
 		// send txt msg to kevin and freddy - FHM
-		//	mail('5199986123@sms.fido.ca', '', $error, '');
-		//	mail('2267912634@msg.telus.com', '', $error, '');
+			//mail('5199986123@sms.fido.ca', '', $error, '');
+			mail('2267912634@msg.telus.com', '', $error, '');
 
 		// redirect to temp page and send email msg to kevin and freddy - FHM
 		if($error_action == 'quarantine'){
 
-		//	mail('freddy.hm@growple.com', '', $error, '');
-			//mail('kevin.kim@growple.com', '', $error, '');
+			mail('freddy.hm@growple.com', '', $error, '');
+			mail('kevin.kim@growple.com', '', $error, '');
 
 			// redirect to error page - FHM
 			header('Location:' . URL . 'error' );
 		}
 
 		// log error in server - FHM
-	//	error_log($error);
+		error_log($error);
 	}
 	
 	// resets the current user, starts a new user cycle - FHM
@@ -70,11 +70,9 @@ class Controller {
 				Session::set('user_id', $user->id);
 				if(count(Session::getSession()) == 1 && $this->createUserPath($user->id)){
 					return 'Success';
-				}else{
-					$this->handleError('warning', 'controller.php', 'Problem setting user session variable and/or creating user path.');
-				}	
+				}
 			}else{
-				//$this->handleError('danger', 'controller.php', 'Problem saving new user on reset.');
+				$this->handleError('danger', 'controller.php', 'Problem saving new user on reset.');
 			}	
 		}	
 	}
@@ -120,8 +118,6 @@ class Controller {
 			}else{
 				$this->handleError('caution', 'controller.php', 'Problem saving cart and items in cartCheckout()');
 			}
-		}else{
-			$this->handleError('caution', 'controller.php', 'Cart was empty, could be no orders or session error');
 		}
 	} 
 
@@ -303,12 +299,10 @@ class Controller {
 							$new_activity->item_id = isset($activity['item_id']) ? $activity['item_id'] : '';
 							$failure = $new_activity->save() ? $failure : 'true';
 						}
-					}else{
-						$this->handleError('caution', 'controller.php', 'Path step activities are empty in saveUserPath()');
 					}
 				}
 
-				if(!$failure){
+				if($failure == 'false'){
 					echo 'Success';				
 				}else{
 					$this->handleError('caution', 'controller.php', 'Problem saving user path in saveUserPath()');
