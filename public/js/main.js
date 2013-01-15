@@ -716,14 +716,3 @@ function game(){
         }, 100);
     });
 }
-
-function error(){
-
-	$("#updatemsg").click(function(event) {
-		$.post(URL + 'mother/isOnline/d/', function(data) {
-			if(data == 'Success'){
-				window.location = URL + "home";
-			}
-		});
-	});
-}

@@ -1,6 +1,12 @@
 <script>
 	$(document).ready(function($) {
-		error();
+		$("#updatemsg").click(function(event) {
+			$.post(URL + 'mother/isOnline/d/');
+		});
+
+		$("#updatemsg").ajaxSuccess(function(){
+			window.location.href = URL + 'home';
+		});
 	});
 </script>
 <img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
