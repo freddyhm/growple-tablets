@@ -5,7 +5,7 @@
 		});
 
 		$("#updatemsg").ajaxSuccess(function(){
-			window.location.href = URL + 'home';
+			$("body").load(URL + "home");
 		});
 	});
 </script>
