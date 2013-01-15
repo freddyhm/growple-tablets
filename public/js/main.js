@@ -720,11 +720,10 @@ function game(){
 function error(){
 
 	$("#updatemsg").click(function(event) {
-		
-			$("body").load(URL + "home");	
-		
-	});
-	
-	
-   
+		$.post(URL + 'mother/isOnline/d/', function(data) {
+			if(data == 'Success'){
+				$("body").load(URL + "home");		
+			}
+		});
+	});   
 }
