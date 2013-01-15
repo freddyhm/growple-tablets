@@ -118,51 +118,47 @@ function home(){
 
                 // nav links - FHM
                 $("#menuLink").click(function(){
-                        $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
-                         setTimeout(function(){ 
-                                $.post(URL + "mother/logStep/d/in/1", function(){
-                                	$("body").load(URL + "menu");
-                                });
-
-                                $("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
-                         }, 300);
+                    $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
+                     setTimeout(function(){ 
+                 		$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
+                        $.post(URL + "mother/logStep/d/in/1", function(){
+                        	$("body").load(URL + "menu");
+                        });
+                     }, 300);
                 });
 
                 $("#videoLink").click(function(){
-                        $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
-                         setTimeout(function(){ 
-                                $.post(URL + "mother/logStep/d/in/2", function(){
-                            		$("body").load(URL + "video");
-                                });
-
-                                $("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
-                         }, 300);
+                    $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
+                     setTimeout(function(){ 
+                     	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
+                        $.post(URL + "mother/logStep/d/in/2", function(){
+                    		$("body").load(URL + "video");
+                        });
+                     }, 300);
                 });
 
 
                 $("#gameLink").click(function(){
-                        clearTimeout(sleep_timer);
-                        $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
-                         setTimeout(function(){ 
-                                $.post(URL + "mother/logStep/d/in/3", function(){
-                                	$("body").load(URL + "game");
-                                });
-
-                                $("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
-                         }, 300);
+                    $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
+                     setTimeout(function(){ 
+                     	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
+                        $.post(URL + "mother/logStep/d/in/3", function(){
+                        	$("body").load(URL + "game");
+                        });
+                     }, 300);
                 });
 
                 // hidden functions for reset - FM
                 $("#menu_intmenu").click(function(){
-                        reset(3);
+                    reset(3);
                 });
 
                 $("#menu_games").click(function(){
-                        reset(6);
+                    reset(6);
                 });
 
                 $("#menu_videos").click(function(){
-                        reset(2);
+                    reset(2);
                 });
         });
         
@@ -718,16 +714,14 @@ function video(videos){
 }
 
 function game(){
-
-        $("#gameHomeLink").click(function(){            
-                $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
-                
-                // push and unpush - FHM        
-                setTimeout(function() { 
-                    $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
-       				$.post(URL + 'mother/logStep/d/out/3', function(){
-       					$("body").load(URL + "home");
-       				}); 
-                }, 100);
-        });
+    $("#gameHomeLink").click(function(){            
+        $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
+        // push and unpush - FHM        
+        setTimeout(function() { 
+            $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
+				$.post(URL + 'mother/logStep/d/out/3', function(){
+					$("body").load(URL + "home");
+				}); 
+        }, 100);
+    });
 }
