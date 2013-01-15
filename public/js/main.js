@@ -221,7 +221,7 @@ function menu(menus, user_basket){
                                 var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/exit_while_viewing_menu_item/";
                                 $.post(URL + analytic_url + last_item);
 
-                                setTimeout(function(){$("body").load(URL + "home");}, 500);             
+                                setTimeout(function(){$("body").load(URL + "home");}, 1000);             
                          });
                  }, 300);
         });
@@ -506,29 +506,29 @@ function menu(menus, user_basket){
 
                 setTimeout(function()
                 {
-                        $("#waitForServerDone").attr("src", URL + "public/img/menu/cart/btn_done.png");
+                    $("#waitForServerDone").attr("src", URL + "public/img/menu/cart/btn_done.png");
 
-                        setTimeout(function(){
-                                // Store cart in session variable - Need to do - FHM
-                                var answer = confirm("Finished ordering?");
+                    setTimeout(function(){
+                            // Store cart in session variable - Need to do - FHM
+                            var answer = confirm("Finished ordering?");
 
-                                // redirect to home page - FHM
-                                if(answer == true){
-                                        
-                                        var url = URL + 'mother/addToCart/d/';
-                                        $.post(url, {cart: basket});
+                            // redirect to home page - FHM
+                            if(answer == true){
+                                    
+                                    var url = URL + 'mother/addToCart/d/';
+                                    $.post(url, {cart: basket});
 
-                                        // activity exit point analytic  - FHM
-                                        var last_item = $("#selectedItem").attr("value");
+                                    // activity exit point analytic  - FHM
+                                    var last_item = $("#selectedItem").attr("value");
 
-                                        // check for first item for analytics - FHM
-                                        var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/exit_while_viewing_menu_item/";
-                                        $.post(URL + analytic_url + last_item);
+                                    // check for first item for analytics - FHM
+                                    var analytic_url = first_item == true ? "mother/logActivity/out/first/" : "mother/logActivity/out/exit_while_viewing_menu_item/";
+                                    $.post(URL + analytic_url + last_item);
 
-                                        setTimeout(function(){$("body").load(URL + "home");}, 500);     
-                                }
+                                    setTimeout(function(){$("body").load(URL + "home");}, 500);     
+                            }
 
-                        },200);
+                    },200);
 
                 }, 200);
         });
