@@ -722,8 +722,8 @@ function error(){
 	$("#updatemsg").click(function(event) {
 		$.post(URL + 'mother/isOnline/d/', function(data) {
 			if(data == 'Success'){
-				$("body").load(URL + "home");		
+				window.location = URL + "home";
 			}
 		});
-	});   
+	});
 }
