@@ -79,6 +79,7 @@ function error(){
 function home(){
 
         var appCache = window.applicationCache;
+        var one_user = 0;
         
         // on checking for both refresh and loading, reset the app - FHM        
         $(appCache).bind('checking', function(event) {
@@ -104,10 +105,13 @@ function home(){
 
         // make start button clickable even when loading 
         $("#start_screen").live('click', function(event) {
-            $.post(URL + 'mother/newCycle/d/', function(data){
-            	$("#loadPage").hide();
-                activateSleepTimer();
-            });
+        	if(one_user == 0){
+		    	$.post(URL + 'mother/newCycle/d/', function(data){
+		        	$("#loadPage").hide();
+		            activateSleepTimer();
+		        });
+		        one_user = 1;
+        	}
          });
 
         $(document).ready(function() {  
@@ -165,32 +169,32 @@ function home(){
         // set new user cycle - FHM
         function reset(touch){
 
-                touch_count += touch;
-                touch_try++;
+            touch_count += touch;
+            touch_try++;
 
-                // activation numbers - FHM
-                if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-                        activate++;
+            // activation numbers - FHM
+            if(touch_count == 6 || touch_count == 9 || touch_count == 11){
+                    activate++;
+            }
+
+            // after fourth step, check if all activation numbers have been hit - FHM
+            if(touch_try == 3){
+
+                if(touch_count == 11 && activate == 3){
+
+                    // display loading page - FHM
+                    $("#loadPage").show(function(){
+                        $.post(URL + 'mother/endCycle/d/', function(data){
+                        	$("#load_pic").hide();
+                        });             
+                    });
                 }
 
-                // after fourth step, check if all activation numbers have been hit - FHM
-                if(touch_try == 3){
-
-                    if(touch_count == 11 && activate == 3){
-
-                        // display loading page - FHM
-                        $("#loadPage").show(function(){
-                            $.post(URL + 'mother/endCycle/d/', function(data){
-                            	$("#load_pic").hide();
-                            });             
-                        });
-                    }
-
-                    //reset variables
-                    touch_count = 0;
-                    activate = 0;
-                    touch_try = 0;
-                }
+                //reset variables
+                touch_count = 0;
+                activate = 0;
+                touch_try = 0;
+            }
         }
 }
 
