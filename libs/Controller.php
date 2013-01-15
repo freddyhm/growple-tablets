@@ -38,7 +38,7 @@ class Controller {
 		$error = $date.' - '.$error_file.' : '.$error_desc.'-'.$error_action.'-'.$error_level;
 
 		// send txt msg to kevin and freddy - FHM
-			//mail('5199986123@sms.fido.ca', '', $error, '');
+			mail('5199986123@sms.fido.ca', '', $error, '');
 			mail('2267912634@msg.telus.com', '', $error, '');
 
 		// redirect to temp page and send email msg to kevin and freddy - FHM
@@ -283,8 +283,8 @@ class Controller {
 					
 					$new_step = new Step();
 					$new_step->event_id = $event->id;
-					$new_step->start = $step['start'];
-					$new_step->end = isset($step['end']) ? $step['end'] : '';
+					$new_step->start = isset($step['start']) ? $step['start'] : "";
+					$new_step->end = isset($step['end']) ? $step['end'] : $step['start'];
 					$new_step->module_id = $step['module_id'];
 					$failure = $new_step->save() ? $failure : 'true';
 
@@ -293,8 +293,8 @@ class Controller {
 						foreach ($step['activities'] as $activity) {	
 							$new_activity = new Activity();
 							$new_activity->name = $activity['name'];
-							$new_activity->start = $activity['start'];
-							$new_activity->end = isset($activity['end']) ? $activity['end'] : '';
+							$new_activity->start = isset($activity['start']) ? $activity['start'] : "";
+							$new_activity->end = isset($activity['end']) ? $activity['end'] : $activity['start'];
 							$new_activity->step_id = $new_step->id;
 							$new_activity->item_id = isset($activity['item_id']) ? $activity['item_id'] : '';
 							$failure = $new_activity->save() ? $failure : 'true';

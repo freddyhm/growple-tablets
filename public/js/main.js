@@ -12,21 +12,21 @@ var bask_item_id = 0; // basket global var
 // functions to load when page is loaded - FHM
 $(document).ready(function($) {
 
-		$(".playbook").ajaxError(function(){
-            window.location = URL + "error";
-        });
+    $(".playbook").ajaxError(function(){
+        window.location = URL + "error";
+    });
 
-        //activate timer - FHM
-        activateSleepTimer();
+    //activate timer - FHM
+    activateSleepTimer();
 
-        // click is the main activity to derive idle user time or not so reset timer if click - FHM
-        $(".playbook").click(function(e){ 
-                if(e.target.className != 'navLink'){
-                        activateSleepTimer();
-                }else{
-                        clearTimeout(sleep_timer);
-                }
-        });
+    // click is the main activity to derive idle user time or not so reset timer if click - FHM
+    $(".playbook").click(function(e){ 
+            if(e.target.className != 'navLink'){
+                    activateSleepTimer();
+            }else{
+                    clearTimeout(sleep_timer);
+            }
+    });
 });
 
 // list of global functions - FHM
@@ -68,17 +68,6 @@ function sleep(){
         });
 }
 
-function error(){
-        $("#errorHomeLink").click(function(){           
-                $(this).attr("src", URL  + "public/img/error/btn_return_pressed.png");  
-                // push and unpush - FHM        
-                setTimeout(function() { 
-                        $("#errorHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
-                        $("body").load(URL + "home");
-                }, 100);
-        });
-}
-
 // list of functions according to main pages - FHM
 function home(){
 
@@ -87,8 +76,10 @@ function home(){
         
         // on checking for both refresh and loading, reset the app - FHM        
         $(appCache).bind('checking', function(event) {
-            clearTimeout(sleep_timer);
-            $("#loadPage").show();
+            $.post(URL + 'mother/newCycle/d/', function(){
+                clearTimeout(sleep_timer);
+                $("#loadPage").show();
+            });
         });
 
         // when browser gets refreshed after cached - FHM
@@ -724,4 +715,38 @@ function game(){
 				}); 
         }, 100);
     });
+}
+
+function error(){
+
+     // set new user cycle - FHM
+        function reset(touch){
+
+            touch_count += touch;
+            touch_try++;
+
+            // activation numbers - FHM
+            if(touch_count == 6 || touch_count == 9 || touch_count == 11){
+                    activate++;
+            }
+
+            // after fourth step, check if all activation numbers have been hit - FHM
+            if(touch_try == 3){
+
+                if(touch_count == 11 && activate == 3){
+
+                    // display loading page - FHM
+                    $("#loadPage").show();
+                    $.post(URL + 'mother/endCycle/d/', function(data){
+                            $("#load_pic").hide();
+                    });  
+                }
+
+                //reset variables
+                touch_count = 0;
+                activate = 0;
+                touch_try = 0;
+            }
+        }
+
 }
