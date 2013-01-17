@@ -175,6 +175,8 @@ function home(){
                     $.post(URL + 'mother/endCycle/d/', function(data){
                             $("#load_pic").hide();
                     });  
+                }else{
+                    alert("Wrong combo!");
                 }
 
                 //reset variables
