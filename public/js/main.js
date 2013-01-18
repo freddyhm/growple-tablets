@@ -162,7 +162,7 @@ function home(){
 
             // activation numbers - FHM
             if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-                    activate++;
+                 activate++;
             }
 
             // after fourth step, check if all activation numbers have been hit - FHM
@@ -181,6 +181,8 @@ function home(){
                 touch_count = 0;
                 activate = 0;
                 touch_try = 0;
+
+                alert("Wrong combo!");
             }
         }
 }
