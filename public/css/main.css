@@ -33,6 +33,7 @@ a:visited {text-decoration: none; color:#fff;
   height: 600px;
   position: absolute;
   z-index:99;
+  display: none;
 }
 
 

@@ -22,50 +22,47 @@ $(document).ready(function($) {
     // click is the main activity to derive idle user time or not so reset timer if click - FHM
     $(".playbook").click(function(e){ 
             if(e.target.className != 'navLink'){
-                    activateSleepTimer();
+                activateSleepTimer();
             }else{
-                    clearTimeout(sleep_timer);
+                sleep_timer = clearTimeout(sleep_timer);
             }
+    });
+
+    $("#sleepSlideshow").click(function(event) {
+        $(this).hide();
+         activateSleepTimer(); 
     });
 });
 
 // list of global functions - FHM
 function activateSleepTimer(){
-
         sleep_timer = clearTimeout(sleep_timer);
-        sleep_timer = setTimeout(function() {sleep(); }, 120000);
+        sleep_timer = setTimeout(function() {sleep(); }, 2000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
+    // sleep slideshow - FHM 
+    $('#sleepSlideshow').show(function(){
+         var pic1 = URL + 'public/img/sleep/slide1.jpg';
+         var pic2 = URL + 'public/img/sleep/slide2.jpg';
+         var pic3 = URL + 'public/img/sleep/slide3.jpg';
+         var pic4 = URL + 'public/img/sleep/slide4.jpg';
+         var pic5 = URL + 'public/img/sleep/slide5.jpg';
 
-        // sleep slideshow - FHM 
-        $('#sleepSlideshow').show(function(){
-
-                 var pic1 = URL + 'public/img/sleep/slide1.jpg';
-                 var pic2 = URL + 'public/img/sleep/slide2.jpg';
-                 var pic3 = URL + 'public/img/sleep/slide3.jpg';
-                 var pic4 = URL + 'public/img/sleep/slide4.jpg';
-                 var pic5 = URL + 'public/img/sleep/slide5.jpg';
-
-                $(function() {
-                    $('#sleepSlideshow').crossSlide({
-                      sleep: 5,
-                      fade: 0.1
-                    }, [
-                      { src: pic1 },
-                      { src: pic2 },
-                      { src: pic3 },
-                      { src: pic4 },
-                      { src: pic5 }
-                    ])
-                });
-
-                $(this).click(function(event) {
-                        $(this).hide(); 
-                        activateSleepTimer();
-                });
+        $(function() {
+            $('#sleepSlideshow').crossSlide({
+              sleep: 5,
+              fade: 0.1
+            }, [
+              { src: pic1 },
+              { src: pic2 },
+              { src: pic3 },
+              { src: pic4 },
+              { src: pic5 }
+            ])
         });
+    });
 }
 
 // list of functions according to main pages - FHM
@@ -593,12 +590,7 @@ function video(videos){
 
         // clear sleep timer when video is playing - FHM
         $(currentVideo).bind('play', function(event) {
-                clearTimeout(sleep_timer);
-        });
-
-        // kick offtimer when video is paused - FHM
-        $(currentVideo).bind('pause', function(event) {
-                activateSleepTimer();
+            sleep_timer = clearTimeout(sleep_timer);
         });
 
         showRandomVideo(true);      

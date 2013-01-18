@@ -1,6 +1,6 @@
 <!DOCTYPE html>
- <html> 
-<!--<html manifest="<?php //echo URL . 'config/' . ENVIRONMENT . '/meet.appcache' ?>"> -->
+<!-- <html>  -->
+<html manifest="<?php echo URL . 'config/' . ENVIRONMENT . '/meet.appcache' ?>">
 <head>
 	<!-- Don't ever take this out, never, ever, ever -> this makes the korean symbols magically appear in the browser - FHM -->
 	<meta http-equiv="Content-Type" content="text/html;charset=utf8">
@@ -15,7 +15,7 @@
 </head>	
 <body>
 	<div style="display:none;"><video loop="loop" autoplay="autoplay"><source src="<?php echo URL . 'public/vid/nosleep.mp4'; ?>" /></video ></div>
-	<div id="sleepSlideshow" style="display:none;"></div>
+	<div id="sleepSlideshow"></div>
 	<div class="playbook">
 		<div class="content">
 
