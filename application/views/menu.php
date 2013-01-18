@@ -29,7 +29,7 @@ $(document).ready(function() {
 		<div id="waitForServer">
 			<div id="waitForServerBckgd"></div>
 			<img id="waitForServerSign" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
-			<img id="waitForServerDone" src="<?php echo URL .'public/img/menu/cart/btn_done.png'; ?>">
+		
 		</div>
 	</div>
 	<div class="mainMenu"> 

@@ -175,8 +175,6 @@ function home(){
                     $.post(URL + 'mother/endCycle/d/', function(data){
                             $("#load_pic").hide();
                     });  
-                }else{
-                    alert("Wrong combo!");
                 }
 
                 //reset variables
@@ -493,17 +491,12 @@ function menu(menus, user_basket){
         });
 
         // done button pressed, pops in and out - FHM
-        $("#waitForServerDone").click(function(event) {
+        $("#waitForServerSign").click(function(event) {
 
-                $(this).attr("src", URL + "public/img/menu/cart/btn_done_pressed.png");
+                
 
-                setTimeout(function()
-                {
-                    $("#waitForServerDone").attr("src", URL + "public/img/menu/cart/btn_done.png");
-
-                    setTimeout(function(){
                             // Store cart in session variable - Need to do - FHM
-                            var answer = confirm("Finished ordering?");
+                            var answer = confirm("*WAIT* Did the server take your order?");
 
                             // redirect to home page - FHM
                             if(answer == true){
@@ -528,9 +521,7 @@ function menu(menus, user_basket){
                                 });
                             }
 
-                    },200);
-
-                }, 200);
+              
         });
 
         // area where cart is activated (cart shows/hides)
