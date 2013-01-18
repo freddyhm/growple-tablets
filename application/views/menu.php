@@ -1,10 +1,10 @@
 <script>
 $(document).ready(function() {	
 	// check if app is online, get basket from mother, if not ignore  - FHM
-	$.get(URL + 'mother/getBasket/d', function(data, textStatus, xhr) {
-  	 	var basket = $.parseJSON(data);
+	//$.get(URL + 'mother/getBasket/d', function(data, textStatus, xhr) {
+  	 	var basket = "";//$.parseJSON(data);
   		menu(<?php echo json_encode($menus); ?>, basket);
-	});	
+	//});	
 });
 </script>
 <div id="dialog" title="" style="display:none;">

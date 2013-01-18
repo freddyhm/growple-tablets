@@ -9,6 +9,8 @@ var sleep_timer = "";   // sleep global vars
 
 var bask_item_id = 0; // basket global var
 
+
+
 // functions to load when page is loaded - FHM
 $(document).ready(function($) {
 
@@ -73,10 +75,10 @@ function home(){
         
         // on checking for both refresh and loading, reset the app - FHM        
         $(appCache).bind('checking', function(event) {
-            $.post(URL + 'mother/newCycle/d/', function(){
+           // $.post(URL + 'mother/newCycle/d/', function(){
                 clearTimeout(sleep_timer);
                 $("#loadPage").show();
-            });
+            //});
         });
 
         // when browser gets refreshed after cached - FHM
@@ -99,10 +101,10 @@ function home(){
 
              // make start button clickable 
             $("#start_screen").click(function(event) {
-                $.post(URL + 'mother/newCycle/d/', function(){
+              //  $.post(URL + 'mother/newCycle/d/', function(){
                     $("#loadPage").hide();
                     activateSleepTimer();
-                });
+                //});
              });
 
             // nav links - FHM
@@ -110,9 +112,9 @@ function home(){
                 $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
                  setTimeout(function(){ 
              		$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
-                    $.post(URL + "mother/logStep/d/in/1", function(){
+                   // $.post(URL + "mother/logStep/d/in/1", function(){
                     	$("body").load(URL + "menu");
-                    });
+                    //});
                  }, 300);
             });
 
@@ -120,9 +122,9 @@ function home(){
                 $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
                  setTimeout(function(){ 
                  	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
-                    $.post(URL + "mother/logStep/d/in/2", function(){
+                  //  $.post(URL + "mother/logStep/d/in/2", function(){
                 		$("body").load(URL + "video");
-                    });
+                   // });
                  }, 300);
             });
 
@@ -131,9 +133,9 @@ function home(){
                 $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
                  setTimeout(function(){ 
                  	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
-                    $.post(URL + "mother/logStep/d/in/3", function(){
+                //    $.post(URL + "mother/logStep/d/in/3", function(){
                     	$("body").load(URL + "game");
-                    });
+                //    });
                  }, 300);
             });
 
@@ -169,9 +171,9 @@ function home(){
 
                     // display loading page - FHM
                     $("#loadPage").show();
-                    $.post(URL + 'mother/endCycle/d/', function(data){
+                  //  $.post(URL + 'mother/endCycle/d/', function(data){
                             $("#load_pic").hide();
-                    });  
+                   // });  
                 }
 
                 //reset variables
@@ -205,15 +207,15 @@ function menu(menus, user_basket){
 	            // check for first item for analytics - FHM
 	            var analytic_url = first_item == true ? "mother/logActivity/d/out/first/" : "mother/logActivity/d/out/exit_while_viewing_menu_item/";
                     // save current basket - FHM
-                    $.post(URL + 'mother/saveBasket/d/', {user_basket: basket}, function(){
-                        $.post(URL + analytic_url + last_item, function(){
+                  //  $.post(URL + 'mother/saveBasket/d/', {user_basket: basket}, function(){
+                      //  $.post(URL + analytic_url + last_item, function(){
                         	// step exit point analytic - FHM
-                        	$.post(URL + 'mother/logStep/d/out/1', function(){
+                        //	$.post(URL + 'mother/logStep/d/out/1', function(){
                         		$("body").load(URL + "home");
-                        	});
+                        //	});
 
-                        });
-                    });
+                   //     });
+                    //});
 
              }, 300);
         });
@@ -349,14 +351,14 @@ function menu(menus, user_basket){
 
                                 // check for first item for analytics - FHM
                                 var analytic_url = first_item == true ? "mother/logActivity/d/out/first/" : "mother/logActivity/d/out/viewed_menu_item/";
-                                $.post((URL + analytic_url + last_item), function() {
-                                   $.post(URL + "mother/logActivity/d/in/viewing_menu_item/" + item_id);
+                            //    $.post((URL + analytic_url + last_item), function() {
+                              //    $.post(URL + "mother/logActivity/d/in/viewing_menu_item/" + item_id);
                                    first_item = false;
-                                });
+                              //  });
                                 
                         }else{
                                 // analytic entry (for end time, need to calculate with next point in db) - FHM
-                                $.post(URL + "mother/logActivity/d/in/viewing_menu_item/" + item_id);
+                               // $.post(URL + "mother/logActivity/d/in/viewing_menu_item/" + item_id);
                         }
 
                         // slide the selected item box - FHM
@@ -501,7 +503,7 @@ function menu(menus, user_basket){
                             if(answer == true){
                                     
                                 var url = URL + 'mother/addToCart/d/';
-                                $.post(url, {cart: basket});
+                               // $.post(url, {cart: basket});
 
                                 // activity exit point analytic  - FHM
                                 var last_item = $("#selectedItem").attr("value");
@@ -513,11 +515,11 @@ function menu(menus, user_basket){
                                 // check for first item for analytics - FHM
                                 var analytic_url = first_item == true ? "mother/logActivity/d/out/first/" : "mother/logActivity/d/out/exit_while_viewing_menu_item/";
 
-                                $.post(URL + analytic_url + last_item, function(){
-                                	$.post(URL + 'mother/logStep/d/out/1', function(){
+                               // $.post(URL + analytic_url + last_item, function(){
+                                	//$.post(URL + 'mother/logStep/d/out/1', function(){
                         				$("body").load(URL + "home");
-                        			});
-                                });
+                        			//});
+                                //});
                             }
 
               
@@ -582,10 +584,10 @@ function video(videos){
         // analytics exit point when video ends - FHM
         $(currentVideo).bind('ended', function(event) {
             curr_vid_id = $(this).attr("id");
-            $.post(URL + "mother/logActivity/d/out/finished_watching/" + curr_vid_id, function(){
+           // $.post(URL + "mother/logActivity/d/out/finished_watching/" + curr_vid_id, function(){
             	 finished_watching = "yes";
            		 showRandomVideo();
-            });
+          //  });
         });
 
         // clear sleep timer when video is playing - FHM
@@ -600,15 +602,15 @@ function video(videos){
              setTimeout(function(){ 
                     $("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
                     // step exit point analytic - FHM
-                    $.post(URL + 'mother/logStep/d/out/2', function(){
+                 //  $.post(URL + 'mother/logStep/d/out/2', function(){
                     	// activity exit point analytic - FHM
                         var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
                         // check if first video for analytics - FHM
                         var analytic_url = first_vid == true ? "mother/logActivity/d/out/first/" : "mother/logActivity/d/out/exit_while_watching_video/";
-                        $.post(URL +  analytic_url + curr_vid_id, function(){
+                   //     $.post(URL +  analytic_url + curr_vid_id, function(){
                         	$("body").load(URL + "home");
-                        });
-                    });
+                     //   });
+                 //   });
              }, 300);
         });
 
@@ -621,9 +623,9 @@ function video(videos){
                 // check if first video for analytic - FHM
                 var analytic_url = first_vid == true ? "mother/logActivity/d/out/first/" :  "mother/logActivity/d/out/skipped_video/";
 
-                $.post(URL +  analytic_url + curr_vid_id, function(){
+               // $.post(URL +  analytic_url + curr_vid_id, function(){
                 	showRandomVideo(false);
-                 });
+                 //});
              }, 300);
         });
 
@@ -678,7 +680,7 @@ function video(videos){
                     $("#video_menu").hide();
             }, 3500);
                     
-        	$.post(URL + "mother/logActivity/d/in/started_watching_video/" + videos[random_num].id, function(){
+        	//$.post(URL + "mother/logActivity/d/in/started_watching_video/" + videos[random_num].id, function(){
             	$(currentVideo).attr("src", URL + 'public/vid/' + videos[random_num].path);
                 $(currentVideo).attr("id", videos[random_num].id);
                 $("#video_name").html( videos[random_num].name);
@@ -686,7 +688,7 @@ function video(videos){
 
                 // reset finished watching var - FHM
                 finished_watching = "no";            	
-            });                       
+            //});                       
                 
         }
 }
@@ -697,9 +699,9 @@ function game(){
         // push and unpush - FHM        
         setTimeout(function() { 
             $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
-				$.post(URL + 'mother/logStep/d/out/3', function(){
+				//$.post(URL + 'mother/logStep/d/out/3', function(){
 					$("body").load(URL + "home");
-				}); 
+				//}); 
         }, 100);
     });
 }
