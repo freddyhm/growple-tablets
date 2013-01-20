@@ -50,7 +50,10 @@ function logUserStep(status, module_id, callback){
 
     $.cookie("path", JSON.stringify(new_path));
 
-    callback();
+    
+	 if(callback != undefined){
+	 	callback();
+	 }
 }
 
 function logUserActivity(status, action, item_id, callback){
@@ -62,35 +65,36 @@ function logUserActivity(status, action, item_id, callback){
 	var new_path = old_path;
 	var date = new Date().toString();
 
-	// get current key for step, minus one taking account zero based index - FHM
-	var current_step_key = old_path[0] != undefined ? old_path[0].length - 1: 0;
+	// get current key - FHM
+    var current_step_key = old_path.steps.length - 1;
 
-	
-	//check if a step has an activity array, count, if not set set - FHM
-	if(old_path[0][current_step_key][0] instanceof Array){
-		current_act_key = old_path[0][current_step_key][0].length;	
-	}else{
-		new_path[0][current_step_key][0] = new Array();
-	}
+	if(old_path.steps[current_step_key].activities != undefined){
+       current_act_key = old_path.steps[current_step_key].activities.length;
+    }else{
+    	new_path.steps[current_step_key] = {"activities": []};
+    }
 
 	//need to figure out if the last activiy has finished- FHM
 	if(status == 'in'){
 		// create new array with new key, keep 0 if first - FHM
-		new_path[0][current_step_key][0][current_act_key] = new Array();
-		new_path[0][current_step_key][0][current_act_key][0] = date;
-		new_path[0][current_step_key][0][current_act_key][1] = current_step_key + 1;
-		new_path[0][current_step_key][0][current_act_key][2] = action;
-		new_path[0][current_step_key][0][current_act_key][3] = item_id;
+		new_path.steps[current_step_key].activities[current_act_key] = {"start" : "", "action" : "", "item_id" : "", "end": ""}; 
+		new_path.steps[current_step_key].activities[current_act_key].start = date;
+		new_path.steps[current_step_key].activities[current_act_key].action = action;
+		new_path.steps[current_step_key].activities[current_act_key].item_id = item_id;
+
 	}else if(status == 'out'){
+
 		// get last activity through the array's last key - FHM
 		var last_act_key = current_act_key - 1;
-		new_path[0][current_step_key][0][last_act_key][2] = action;
-		new_path[0][current_step_key][0][last_act_key][4] = date;
+		new_path.steps[current_step_key].activities[last_act_key].action = action 
+		new_path.steps[current_step_key].activities[last_act_key].end = date;
 	}
 
 	 $.cookie("path", JSON.stringify(new_path));
 
-   	 callback();
+	 if(callback != undefined){
+	 	callback();
+	 }
 }
 
 function createUserPath(){

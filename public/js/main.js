@@ -28,9 +28,8 @@ $(document).ready(function($) {
 
 // list of global functions - FHM
 function activateSleepTimer(){
-    alert("D");
-        sleep_timer = clearTimeout(sleep_timer);
-        sleep_timer = setTimeout(function() {sleep(); }, 2000);
+    sleep_timer = clearTimeout(sleep_timer);
+    sleep_timer = setTimeout(function() {sleep(); }, 2000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -191,6 +190,8 @@ function menu(menus, user_basket){
 
     var first_item = true;
 
+    logUserActivity("in", "test", 2);
+
     // click is the main activity to derive idle user time or not so reset timer if click - FHM
     $(".playbook").click(function(e){ 
         if(e.target.className != 'navLink'){
@@ -218,12 +219,12 @@ function menu(menus, user_basket){
             var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
                 // save current basket - FHM
               //  $.post(URL + 'mother/saveBasket/d/', {user_basket: basket}, function(){
-             //      logUserActivity("out", action, last_item, function(){
+                   logUserActivity("out", action, last_item, function(){
                     	// step exit point analytic - FHM
                         logUserStep("out", 1, function(){
                             $("body").load(URL + "home");
                         });
-               //     });
+                   });
                 //});
          }, 300);
     });
