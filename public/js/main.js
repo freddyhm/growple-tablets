@@ -9,27 +9,10 @@ var sleep_timer = "";   // sleep global vars
 
 var bask_item_id = 0; // basket global var
 
-// functions to load when page is loaded - FHM
-$(document).ready(function($) {
-
-/*
-    $(".playbook").ajaxError(function(){
-        window.location = URL + "error";
-    });
-*/
-    //activate timer - FHM
-    activateSleepTimer();
-
-    $("#sleepSlideshow").click(function(event) {
-        $(this).hide();
-         activateSleepTimer(); 
-    });
-});
-
 // list of global functions - FHM
 function activateSleepTimer(){
     sleep_timer = clearTimeout(sleep_timer);
-    sleep_timer = setTimeout(function() {sleep(); }, 2000);
+    sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -60,8 +43,6 @@ function sleep(){
 // list of functions according to main pages - FHM
 function home(){
 
-
-
         var appCache = window.applicationCache;
         var one_user = 0;
         
@@ -91,6 +72,14 @@ function home(){
         });
 
         $(document).ready(function() {  
+
+            $("#sleepSlideshow").click(function(event) {
+                $(this).hide();
+                 activateSleepTimer(); 
+             }); 
+
+             //activate timer - FHM
+            activateSleepTimer(); 
 
             // click is the main activity to derive idle user time or not so reset timer if click - FHM
             $(".playbook").click(function(e){ 
@@ -124,9 +113,9 @@ function home(){
                 $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
                  setTimeout(function(){ 
                  	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
-                  //  $.post(URL + "mother/logStep/d/in/2", function(){
+                    logUserStep("in", 2, function(){
                 		$("body").load(URL + "video");
-                   // });
+                     });
                  }, 300);
             });
 
@@ -135,9 +124,9 @@ function home(){
                 $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
                  setTimeout(function(){ 
                  	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
-                //    $.post(URL + "mother/logStep/d/in/3", function(){
+                    logUserStep("in", 3, function(){
                     	$("body").load(URL + "game");
-                //    });
+                    });
                  }, 300);
             });
 
@@ -170,12 +159,10 @@ function home(){
             if(touch_try == 3){
 
                 if(touch_count == 11 && activate == 3){
-
-                    // display loading page - FHM
-                    $("#loadPage").show();
-                  //  $.post(URL + 'mother/endCycle/d/', function(data){
-                            $("#load_pic").hide();
-                   // });  
+                     $("#loadPage").show();
+                    endCycle(function(){
+                         $("#load_pic").hide();
+                    });
                 }
 
                 //reset variables
@@ -188,9 +175,12 @@ function home(){
 
 function menu(menus, user_basket){
 
-    var first_item = true;
+    $("#sleepSlideshow").click(function(event) {
+            $(this).hide();
+             activateSleepTimer(); 
+        }); 
 
-    logUserActivity("in", "test", 2);
+    activateSleepTimer();
 
     // click is the main activity to derive idle user time or not so reset timer if click - FHM
     $(".playbook").click(function(e){ 
@@ -200,6 +190,8 @@ function menu(menus, user_basket){
             sleep_timer = clearTimeout(sleep_timer);
         }
     });
+
+    var first_item = true;
 
     $("#menuHome").click(function(){
         $(this).attr("src", URL  + "public/img/common/btn_home_pressed.png");
@@ -218,14 +210,14 @@ function menu(menus, user_basket){
             // check for first item for analytics - FHM
             var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
                 // save current basket - FHM
-              //  $.post(URL + 'mother/saveBasket/d/', {user_basket: basket}, function(){
+                saveBasket(basket, function(){
                    logUserActivity("out", action, last_item, function(){
                     	// step exit point analytic - FHM
                         logUserStep("out", 1, function(){
                             $("body").load(URL + "home");
                         });
                    });
-                //});
+                });
          }, 300);
     });
 
@@ -249,32 +241,32 @@ function menu(menus, user_basket){
 
     $(".menuList").each(function(event) {
 
-            $(this).click(function(event) {
+        $(this).click(function(event) {
 
-                    // get id of currently selected menu  FHM
-                    var current_menu = $('.menuSelected').attr('id');
-                    var current_id = '#' + current_menu;
+                // get id of currently selected menu  FHM
+                var current_menu = $('.menuSelected').attr('id');
+                var current_id = '#' + current_menu;
 
-                    // deselect current menu and change header - FHM
-                    $(current_id).removeClass('menuSelected');
-                    $("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
-                    $(current_id).css("background-color", "");
-                    
-                    // select new menu and change header - FHM
-                    $(this).addClass('menuSelected');
-                    $("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
-                    $(this).css("background-color", "rgba(0,0,0,0.8)");
+                // deselect current menu and change header - FHM
+                $(current_id).removeClass('menuSelected');
+                $("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
+                $(current_id).css("background-color", "");
+                
+                // select new menu and change header - FHM
+                $(this).addClass('menuSelected');
+                $("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
+                $(this).css("background-color", "rgba(0,0,0,0.8)");
 
-                    // get new menu_id and populate submenu - FHM
-                    var new_id = $(this).attr('id').substring(4);
-                    populateSubMenu(new_id);
+                // get new menu_id and populate submenu - FHM
+                var new_id = $(this).attr('id').substring(4);
+                populateSubMenu(new_id);
 
-                    // select first item in category - FHM
-                    $(".subMenuList tr td:first").trigger('click');
+                // select first item in category - FHM
+                $(".subMenuList tr td:first").trigger('click');
 
-                    // move scroll bar to first element - FHM
-                    $(".subMenu").animate({ scrollLeft: 0 }, "slow");
-            });
+                // move scroll bar to first element - FHM
+                $(".subMenu").animate({ scrollLeft: 0 }, "slow");
+        });
     });
 
     function changePicture(pic_path){
@@ -358,16 +350,16 @@ function menu(menus, user_basket){
                     var last_item = $("#selectedItem").attr("value");
                     if(last_item != undefined){
 
-                            // check for first item for analytics - FHM
-                            var analytic_url = first_item == true ? "mother/logActivity/d/out/first/" : "mother/logActivity/d/out/viewed_menu_item/";
-                        //    $.post((URL + analytic_url + last_item), function() {
-                          //    $.post(URL + "mother/logActivity/d/in/viewing_menu_item/" + item_id);
-                               first_item = false;
-                          //  });
-                            
+                        // check for first item for analytics - FHM
+                        var action = first_item == true ? "first" : "viewed_menu_item";
+                        logUserActivity("out", action, last_item, function(){
+                            logUserActivity("in", "viewing_menu_item", item_id, function(){
+                                first_item = false;
+                            });
+                        });
                     }else{
-                            // analytic entry (for end time, need to calculate with next point in db) - FHM
-                           // $.post(URL + "mother/logActivity/d/in/viewing_menu_item/" + item_id);
+                        // analytic entry (for end time, need to calculate with next point in db) - FHM
+                        logUserActivity("in", "viewing_menu_item", item_id);
                     }
 
                     // slide the selected item box - FHM
@@ -510,23 +502,26 @@ function menu(menus, user_basket){
         if(answer == true){
                 
             var url = URL + 'mother/addToCart/d/';
-           // $.post(url, {cart: basket});
 
-            // activity exit point analytic  - FHM
-            var last_item = $("#selectedItem").attr("value");
+            // empty the user's basket - FHM
+            saveBasket("");
 
-            if(last_item == undefined){
-    			last_item = 2;
-    		}	
+            // add the basket to the cart - FHM 
+            addToCart(basket, function(){
+                // activity exit point analytic  - FHM
+                var last_item = $("#selectedItem").attr("value");
 
-            // check for first item for analytics - FHM
-            var analytic_url = first_item == true ? "mother/logActivity/d/out/first/" : "mother/logActivity/d/out/exit_while_viewing_menu_item/";
-
-           // $.post(URL + analytic_url + last_item, function(){
-            	//$.post(URL + 'mother/logStep/d/out/1', function(){
-    				$("body").load(URL + "home");
-    			//});
-            //});
+                if(last_item == undefined){
+        			last_item = 2;
+        		}	
+                // check for first item for analytics - FHM
+                var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
+                logUserActivity("out", action, last_item, function(){
+                	logUserStep("out", 1, function(){
+        				$("body").load(URL + "home");
+        			});
+                });
+            });
         } 
     });
 
@@ -575,13 +570,20 @@ function menu(menus, user_basket){
 
 function video(videos){
 
-    // click is the main activity to derive idle user time or not so reset timer if click - FHM
+    $("#sleepSlideshow").click(function(event) {
+            $(this).hide();
+             activateSleepTimer(); 
+    }); 
+
+    activateSleepTimer();
+
+     // click is the main activity to derive idle user time or not so reset timer if click - FHM
     $(".playbook").click(function(e){ 
-        if(e.target.className != 'navLink'){
-            activateSleepTimer();
-        }else{
-            sleep_timer = clearTimeout(sleep_timer);
-        }
+            if(e.target.className != 'navLink'){
+                activateSleepTimer();
+            }else{
+                sleep_timer = clearTimeout(sleep_timer);
+            }
     });
 
     // play random video when video ends, make button clickable and control video with click - FHM
@@ -597,10 +599,10 @@ function video(videos){
     // analytics exit point when video ends - FHM
     $(currentVideo).bind('ended', function(event) {
         curr_vid_id = $(this).attr("id");
-       // $.post(URL + "mother/logActivity/d/out/finished_watching/" + curr_vid_id, function(){
+        logUserActivity("out", "finished_watching", curr_vid_id, function(){
         	 finished_watching = "yes";
        		 showRandomVideo();
-      //  });
+        });
     });
 
     // clear sleep timer when video is playing - FHM
@@ -613,17 +615,17 @@ function video(videos){
     $("#videoHomeLink").click(function(){
         $("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home_pressed.png");
          setTimeout(function(){ 
-                $("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
-                // step exit point analytic - FHM
-             //  $.post(URL + 'mother/logStep/d/out/2', function(){
-                	// activity exit point analytic - FHM
-                    var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
-                    // check if first video for analytics - FHM
-                    var analytic_url = first_vid == true ? "mother/logActivity/d/out/first/" : "mother/logActivity/d/out/exit_while_watching_video/";
-               //     $.post(URL +  analytic_url + curr_vid_id, function(){
+            $("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
+            	// activity exit point analytic - FHM
+                var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
+                // check if first video for analytics - FHM
+                var action = first_vid == true ? "first" : "exit_while_watching_video";
+                 // step exit point analytic - FHM
+                logUserActivity("out", action, curr_vid_id, function(){
+                    logUserStep("out", 2, function(){
                     	$("body").load(URL + "home");
-                 //   });
-             //   });
+                    });
+                });
          }, 300);
     });
 
@@ -634,11 +636,10 @@ function video(videos){
             var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
 
             // check if first video for analytic - FHM
-            var analytic_url = first_vid == true ? "mother/logActivity/d/out/first/" :  "mother/logActivity/d/out/skipped_video/";
-
-           // $.post(URL +  analytic_url + curr_vid_id, function(){
+            var action = first_vid == true ? "first" :  "skipped_video";
+            logUserActivity("out", action, curr_vid_id, function(){
             	showRandomVideo(false);
-             //});
+             });
          }, 300);
     });
 
@@ -692,28 +693,35 @@ function video(videos){
         vid_timer = setTimeout(function() {
                 $("#video_menu").hide();
         }, 3500);
-                
-    	//$.post(URL + "mother/logActivity/d/in/started_watching_video/" + videos[random_num].id, function(){
+            
+        logUserActivity("in", "started_watching_video", videos[random_num].id, function(){
         	$(currentVideo).attr("src", URL + 'public/vid/' + videos[random_num].path);
             $(currentVideo).attr("id", videos[random_num].id);
             $("#video_name").html( videos[random_num].name);
             $("#video_author").html( videos[random_num].author);
-
             // reset finished watching var - FHM
             finished_watching = "no";            	
-        //});                       
+        });                       
             
     }
 }
 
 function game(){
-    // click is the main activity to derive idle user time or not so reset timer if click - FHM
+
+    $("#sleepSlideshow").click(function(event) {
+            $(this).hide();
+             activateSleepTimer(); 
+        }); 
+
+    activateSleepTimer();
+
+     // click is the main activity to derive idle user time or not so reset timer if click - FHM
     $(".playbook").click(function(e){ 
-        if(e.target.className != 'navLink'){
-            activateSleepTimer();
-        }else{
-            sleep_timer = clearTimeout(sleep_timer);
-        }
+            if(e.target.className != 'navLink'){
+                activateSleepTimer();
+            }else{
+                sleep_timer = clearTimeout(sleep_timer);
+            }
     });
 
     $("#gameHomeLink").click(function(){            
@@ -721,9 +729,9 @@ function game(){
         // push and unpush - FHM        
         setTimeout(function() { 
             $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
-				//$.post(URL + 'mother/logStep/d/out/3', function(){
+				logUserStep("out", 3, function(){
 					$("body").load(URL + "home");
-				//}); 
+				}); 
         }, 100);
     });
-}
+}    

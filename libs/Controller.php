@@ -1,6 +1,7 @@
 <?php
 
 /* Base class for all controllers - FHM */
+/* Took out analytic functions and places in Mother and Analytics.js - FHM */
 
 class Controller {
 
@@ -54,6 +55,8 @@ class Controller {
 		// log error in server - FHM
 		error_log($error);
 	}
+
+	/*
 	
 	// resets the current user, starts a new user cycle - FHM
 	public function newUserCycle(){
@@ -120,6 +123,10 @@ class Controller {
 			}
 		}
 	} 
+
+	*/
+
+	/*
 
 	// analytics captures step's activity  - FHM
 	public function logUserActivity($status, $action, $item_id){
@@ -315,4 +322,5 @@ class Controller {
 			$this->handleError('caution', 'controller.php', 'User path is empty');
 		}
 	}
+	*/
 }
