@@ -71,7 +71,11 @@ function home(){
             $("#load_pic").hide();
         });
 
-        $(document).ready(function() {  
+        $(document).ready(function() { 
+            
+            $(".playbook").ajaxError(function(){
+                alert("Could not connect to server, please try again!");
+            }); 
 
             $("#sleepSlideshow").click(function(event) {
                 $(this).hide();
@@ -102,9 +106,9 @@ function home(){
             $("#menuLink").click(function(){
                 $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
                  setTimeout(function(){ 
-             		$("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
+                    $("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
                     logUserStep("in", 1, function(){
-                    	$("body").load(URL + "menu");
+                        $("body").load(URL + "menu");
                     });
                  }, 300);
             });
@@ -112,9 +116,9 @@ function home(){
             $("#videoLink").click(function(){
                 $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
                  setTimeout(function(){ 
-                 	$("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
+                    $("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
                     logUserStep("in", 2, function(){
-                		$("body").load(URL + "video");
+                        $("body").load(URL + "video");
                      });
                  }, 300);
             });
@@ -123,9 +127,9 @@ function home(){
             $("#gameLink").click(function(){
                 $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
                  setTimeout(function(){ 
-                 	$("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
+                    $("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
                     logUserStep("in", 3, function(){
-                    	$("body").load(URL + "game");
+                        $("body").load(URL + "game");
                     });
                  }, 300);
             });
@@ -198,21 +202,21 @@ function menu(menus, user_basket){
         
          setTimeout(function(){ 
 
-         	$("#menuHome").attr("src", URL  + "public/img/common/btn_home.png");
+            $("#menuHome").attr("src", URL  + "public/img/common/btn_home.png");
 
-         	 // activity exit point analytic  - FHM
-        	var last_item = $("#selectedItem").attr("value");
+             // activity exit point analytic  - FHM
+            var last_item = $("#selectedItem").attr("value");
 
-        	if(last_item == undefined){
-        		last_item = 2;
-        	}
+            if(last_item == undefined){
+                last_item = 2;
+            }
 
             // check for first item for analytics - FHM
             var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
                 // save current basket - FHM
                 saveBasket(basket, function(){
                    logUserActivity("out", action, last_item, function(){
-                    	// step exit point analytic - FHM
+                        // step exit point analytic - FHM
                         logUserStep("out", 1, function(){
                             $("body").load(URL + "home");
                         });
@@ -512,14 +516,14 @@ function menu(menus, user_basket){
                 var last_item = $("#selectedItem").attr("value");
 
                 if(last_item == undefined){
-        			last_item = 2;
-        		}	
+                    last_item = 2;
+                }   
                 // check for first item for analytics - FHM
                 var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
                 logUserActivity("out", action, last_item, function(){
-                	logUserStep("out", 1, function(){
-        				$("body").load(URL + "home");
-        			});
+                    logUserStep("out", 1, function(){
+                        $("body").load(URL + "home");
+                    });
                 });
             });
         } 
@@ -600,8 +604,8 @@ function video(videos){
     $(currentVideo).bind('ended', function(event) {
         curr_vid_id = $(this).attr("id");
         logUserActivity("out", "finished_watching", curr_vid_id, function(){
-        	 finished_watching = "yes";
-       		 showRandomVideo();
+             finished_watching = "yes";
+             showRandomVideo();
         });
     });
 
@@ -616,14 +620,14 @@ function video(videos){
         $("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home_pressed.png");
          setTimeout(function(){ 
             $("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
-            	// activity exit point analytic - FHM
+                // activity exit point analytic - FHM
                 var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
                 // check if first video for analytics - FHM
                 var action = first_vid == true ? "first" : "exit_while_watching_video";
                  // step exit point analytic - FHM
                 logUserActivity("out", action, curr_vid_id, function(){
                     logUserStep("out", 2, function(){
-                    	$("body").load(URL + "home");
+                        $("body").load(URL + "home");
                     });
                 });
          }, 300);
@@ -638,7 +642,7 @@ function video(videos){
             // check if first video for analytic - FHM
             var action = first_vid == true ? "first" :  "skipped_video";
             logUserActivity("out", action, curr_vid_id, function(){
-            	showRandomVideo(false);
+                showRandomVideo(false);
              });
          }, 300);
     });
@@ -660,7 +664,7 @@ function video(videos){
     // displays a random video from list - FHM
     function showRandomVideo(position){
 
-    	first_vid = position;
+        first_vid = position;
 
         vid_timer  = clearTimeout(vid_timer);
 
@@ -695,12 +699,12 @@ function video(videos){
         }, 3500);
             
         logUserActivity("in", "started_watching_video", videos[random_num].id, function(){
-        	$(currentVideo).attr("src", URL + 'public/vid/' + videos[random_num].path);
+            $(currentVideo).attr("src", URL + 'public/vid/' + videos[random_num].path);
             $(currentVideo).attr("id", videos[random_num].id);
             $("#video_name").html( videos[random_num].name);
             $("#video_author").html( videos[random_num].author);
             // reset finished watching var - FHM
-            finished_watching = "no";            	
+            finished_watching = "no";               
         });                       
             
     }
@@ -729,9 +733,9 @@ function game(){
         // push and unpush - FHM        
         setTimeout(function() { 
             $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
-				logUserStep("out", 3, function(){
-					$("body").load(URL + "home");
-				}); 
+                logUserStep("out", 3, function(){
+                    $("body").load(URL + "home");
+                }); 
         }, 100);
     });
 }    
