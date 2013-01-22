@@ -14,7 +14,7 @@
 			<td>Major parts of the app</td>
 			<td>Level</td>
 			<td>Avg user time in section (seconds)</td>
-			<td>% of users interacting with the section (excl. menu for overall app)</td>
+			<td># of users / # of users that interacted with section</td>
 		</tr>
 		
 		<?php foreach ($report['snapshots'] as $snapshot) { ?>

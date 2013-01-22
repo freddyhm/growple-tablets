@@ -14,7 +14,7 @@ class ReportList extends Controller {
 		$reports = array();
 
 		foreach ($report_list as $rep_key => $report) {
-			
+
 			$snapshot_list = Snapshot::find_all_by_report_id($report->id);
 			$reports[$rep_key]['name'] = $report->report_type->name;
 			$reports[$rep_key]['date'] = $report->date->format('y/m/d h:m:s');
@@ -22,10 +22,10 @@ class ReportList extends Controller {
 			foreach ($snapshot_list as $snap_key => $snapshot) {
 
 				// section name - FHM
-				$reports[$rep_key]['snapshots'][$snap_key]['section'] = $snapshot->section_module->section->name;
+				$reports[$rep_key]['snapshots'][$snap_key]['section'] = isset($snapshot->section_module->section->name) ? $snapshot->section_module->section->name : "";
 
 				// module name - FHM
-				$reports[$rep_key]['snapshots'][$snap_key]['module'] = isset($snapshot->section_module->module->name) ? $snapshot->section_module->module->name : "" ;
+				$reports[$rep_key]['snapshots'][$snap_key]['module'] = isset($snapshot->section_module->module->name) ? $snapshot->section_module->module->name : "general" ;
 
 				// duration - FHM
 				$reports[$rep_key]['snapshots'][$snap_key]['duration'] = $snapshot->duration;
