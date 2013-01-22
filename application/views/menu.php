@@ -3,7 +3,13 @@ $(document).ready(function() {
 	// get basket - FHM  
  	var basket = getBasket();
 	menu(<?php echo json_encode($menus); ?>, basket);
+
+		$("#menuContent").click(function(){
+			$("#touch").hide();
+		});
 });
+
+
 </script>
 <div id="dialog" title="" style="display:none;">
   <p>Uh Oh! You forgot to add an item.</p>
@@ -26,6 +32,7 @@ $(document).ready(function() {
 		<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
 		<div id="waitForServer">
 			<div id="waitForServerBckgd"></div>
+			<img id="LoadingWaiter" src="<?php echo URL .'public/img/menu/cart/loading_waiter.gif'; ?>">
 			<img id="waitForServerSign" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
 		
 		</div>
@@ -67,6 +74,7 @@ $(document).ready(function() {
 				$10.99
 			</span>	
 			<img id="grabIt" src="<?php echo URL .'public/img/menu/btn_grab.png'; ?>">
+			<img id="touch" src="<?php echo URL .'public/img/menu/btn_touch.png'; ?>">
 		</div>
 	</div>
 	<img id="menuHome" class="navLink" src="<?php echo URL .'public/img/common/btn_home.png'; ?>">

@@ -374,6 +374,13 @@ width: 127px;
   z-index:1;
 }
 
+#touch
+{
+  top: 250px;
+  left: 300px;
+  position: absolute;
+  z-index:9;
+}
 
 .itemPrice
 {
@@ -494,10 +501,18 @@ opacity: 0.8;
 
 #waitForServerSign
 {
-  bottom: 410px;
+  bottom: 430px;
   z-index: 1;
   left: 312px;
   position: relative;
+}
+
+#LoadingWaiter
+{
+ bottom: 580px;
+z-index: 100;
+left: 425px;
+  position: absolute;
 }
 
 #waitForServerDone
