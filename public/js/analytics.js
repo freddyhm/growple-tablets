@@ -12,7 +12,9 @@ function startAnalytics(callback){
 	    $.cookie("path", JSON.stringify(path));   
 	}
 
-	callback();
+	if(callback != undefined){
+	 	callback();
+	 }
 }
 
 function logUserStep(status, module_id, callback){
