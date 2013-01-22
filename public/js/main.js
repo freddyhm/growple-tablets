@@ -72,6 +72,12 @@ function home(){
         });
 
         $(document).ready(function() { 
+
+            // check if analytics are set (when cached) - FHM
+            var is_path = $.cookie("path");
+            if(is_path == null){
+                startAnalytics();
+            }
             
             $(".playbook").ajaxError(function(){
                 alert("Could not connect to server, please try again!");
