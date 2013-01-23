@@ -720,7 +720,7 @@ function video(videos){
             $("#video_author").html( videos[random_num].author);
             // reset finished watching var - FHM
             finished_watching = "no";               
-        });                       
+        });                         
     }
 }
 
