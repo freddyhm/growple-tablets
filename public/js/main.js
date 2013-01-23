@@ -17,21 +17,17 @@ $(function(){
         crossfade: true,
         generatePagination: false
     });
-
-    
 });
 
 // list of global functions - FHM
 function activateSleepTimer(){
     sleep_timer = clearTimeout(sleep_timer);
-    sleep_timer = setTimeout(function() {sleep(); }, 120000);
+    sleep_timer = setTimeout(function() {sleep(); }, 5000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
-
    $("#sleepSlideshow").show();
-
 }
 
 // list of functions according to main pages - FHM
@@ -77,15 +73,29 @@ function home(){
                 alert("Could not connect to server, please try again!");
             }); 
 
-            $(".promoSlide").click(function(event) {
-                logUserStep("in", 1, function(){
-                    $("body").load(URL + "menu");
-                });
-            });
-
             $("#sleepSlideshow").click(function(event) {
-                $(this).hide();
-                 activateSleepTimer(); 
+
+                // get class of image clicked and redirect to menu if promo slide - FHM
+                var is_promo = event.target.className == "promoSlide" ? true : false;
+                if(is_promo == true){
+
+                    var menu_id = "#" + event.target.id.split("#")[0];
+                    var item_id = "#" + event.target.id.split("#")[1];
+
+                    logUserStep("in", 1, function(){
+
+                        $("body").load(URL + "menu", function(){
+                            $(function(){
+                                $(menu_id).trigger("click");
+                                $(item_id).trigger("click");
+                                $("#grabIt").trigger("click");
+                            });
+                        });
+                    });
+                }else{
+                    $(this).hide();
+                    activateSleepTimer(); 
+                }
              }); 
 
              //activate timer - FHM
@@ -408,10 +418,10 @@ function menu(menus, user_basket){
             // btn pressed - FHM
             $(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");     
             setTimeout(function() { 
-                    $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
-                    animateCartAddItem(); 
-                    addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
-            }, 150);
+                $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
+                animateCartAddItem(); 
+                addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
+            }, 1000);
             
             var last_item = $("#cartItems tr td:last").position();
 
