@@ -22,10 +22,10 @@
 	<div id="sleepSlideshow">
         <div class="slides_container">
             <div>
-                <img id="menu9#item1" class="promoSlide" src="<?php echo URL . 'public/img/sleep/slide6.jpg'?>"></a>;
+                <img id="1#kamjatang#dishes" class="promoSlide" src="<?php echo URL . 'public/img/sleep/slide6.jpg'?>"></a>
             </div>
             <div>
-                <img id="menu4#item21" class="promoSlide" src="<?php echo URL . 'public/img/sleep/slide7.jpg'?>">;
+                <img id="21#cutlet(kasu)#dishes" class="promoSlide" src="<?php echo URL . 'public/img/sleep/slide7.jpg'?>">;
             </div>
             <div>
                 <img src="<?php echo URL . 'public/img/sleep/slide1.jpg'?>">;

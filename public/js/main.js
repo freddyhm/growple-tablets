@@ -79,16 +79,18 @@ function home(){
                 var is_promo = event.target.className == "promoSlide" ? true : false;
                 if(is_promo == true){
 
-                    var menu_id = "#" + event.target.id.split("#")[0];
-                    var item_id = "#" + event.target.id.split("#")[1];
+                    var item_id = event.target.id.split("#")[0];
+                    var item_name = event.target.id.split("#")[1];
+                    var item_menu = event.target.id.split("#")[2];
+
+                    var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
+                    $.cookie("promo_item", JSON.stringify(promo_item));
 
                     logUserStep("in", 1, function(){
-
                         $("body").load(URL + "menu", function(){
                             $(function(){
-                                $(menu_id).trigger("click");
-                                $(item_id).trigger("click");
-                                $("#grabIt").trigger("click");
+                                $("#touch").hide();
+                                $("#hiddenPromo").trigger("click");
                             });
                         });
                     });
@@ -195,10 +197,40 @@ function home(){
 
 function menu(menus, user_basket){
 
+    $("#hiddenPromo").click(function(event) {
+        var promo_item  = $.parseJSON($.cookie("promo_item"));              
+        addItem(promo_item.id, promo_item.name, promo_item.menu, 'yes');
+        animateCartDown();
+        var last_item = $("#cartItems tr td:last").position();
+
+        // position on first load when there is no last item - FHM
+        if(last_item != undefined){
+            $("#cartArea").animate({ scrollLeft: last_item.left}, "slow");    
+        }
+
+        $.removeCookie("promo_item");
+    });
+    
+
     $("#sleepSlideshow").click(function(event) {
-            $(this).hide();
-             activateSleepTimer(); 
-        }); 
+        // get class of image clicked and redirect to menu if promo slide - FHM
+        var is_promo = event.target.className == "promoSlide" ? true : false;
+        if(is_promo == true){
+
+            var item_id = event.target.id.split("#")[0];
+            var item_name = event.target.id.split("#")[1];
+            var item_menu = event.target.id.split("#")[2];
+
+            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
+            $.cookie("promo_item", JSON.stringify(promo_item));
+            $("#hiddenPromo").trigger("click");
+        }else{
+            activateSleepTimer(); 
+        }
+        
+        $("#touch").hide();
+        $(this).hide();
+    });
 
     activateSleepTimer();
 
@@ -411,33 +443,34 @@ function menu(menus, user_basket){
     // Show cart, add item, and close
     $("#grabIt").click(function(){
 
-            var selected_item = $(".itemName").val();
-            var selected_item_name = $(".itemName").html();
-            var selected_menu_name = $(".menuSelected .menuName").html().toLowerCase();
+        var selected_item = $(".itemName").val();
+        var selected_item_name = $(".itemName").html();
+        var selected_menu_name = $(".menuSelected .menuName").html().toLowerCase();
 
-            // btn pressed - FHM
-            $(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");     
-            setTimeout(function() { 
-                $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
-                animateCartAddItem(); 
-                addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
-            }, 1000);
-            
-            var last_item = $("#cartItems tr td:last").position();
+        // btn pressed - FHM
+        $(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");     
+        setTimeout(function() { 
+            $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
+            animateCartAddItem(); 
+            addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
+        }, 1000);
+        
+        var last_item = $("#cartItems tr td:last").position();
 
-            // position on first load when there is no last item - FHM
-            if(last_item != undefined){
-                $("#cartArea").animate({ scrollLeft: last_item.left}, "slow");    
-            }
+        // position on first load when there is no last item - FHM
+        if(last_item != undefined){
+            $("#cartArea").animate({ scrollLeft: last_item.left}, "slow");    
+        }
     });
+
 
     // inserts item into a user's cart - FHM
     function addItem(id, name, menu_name, push){
 
         if(push == 'yes'){
-                if(id < 10){
-                        id = "0"+ id;
-                }
+            if(id < 10){
+                id = "0"+ id;
+            }
         }
 
         var item_desc = new Array();
@@ -450,7 +483,7 @@ function menu(menus, user_basket){
         var del_id = "cart_" + bask_item_id;
 
         if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
-                menu_name = 'dishes';
+            menu_name = 'dishes';
         }
 
         var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
