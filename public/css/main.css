@@ -430,13 +430,13 @@ width: 127px;
 {
   float: right;
   position: relative;
-  bottom: 133px;
+  bottom: 170px;
 }
 
 #cartArea
 {
   overflow-x: scroll;
-height: 135px;
+height: 174px;
 width: 867px;
 overflow-y: hidden;
 }
@@ -507,21 +507,22 @@ opacity: 0.8;
   background-color: green;
   opacity: 0.5;
   height: 400px;
-  top: 59px;
+  top: 20px;
   position: relative;
 }
 
 #waitForServerSign
 {
-  bottom: 430px;
+  bottom: 382px;
   z-index: 1;
   left: 312px;
   position: relative;
+
 }
 
 #LoadingWaiter
 {
- bottom: 580px;
+ bottom: 530px;
 z-index: 100;
 left: 425px;
   position: absolute;

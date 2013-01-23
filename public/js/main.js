@@ -24,7 +24,7 @@ $(function(){
 // list of global functions - FHM
 function activateSleepTimer(){
     sleep_timer = clearTimeout(sleep_timer);
-    sleep_timer = setTimeout(function() {sleep(); }, 5000);
+    sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -516,7 +516,7 @@ function menu(menus, user_basket){
     });
 
     // done button pressed, pops in and out - FHM
-    $("#waitForServerSign").click(function(event) {
+    $("#waitForServer").click(function(event) {
 
         // Store cart in session variable - Need to do - FHM
         var answer = confirm("*WAIT* Did the server take your order?");
