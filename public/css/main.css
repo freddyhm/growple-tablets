@@ -27,6 +27,17 @@ a:visited {text-decoration: none; color:#fff;
   z-index:100;
 }
 
+.slides_container {
+  width: 1024px;
+  height: 600px;
+}
+
+.slides_container div {
+  width: 1024px;
+  height: 600px;
+  display:block;
+}
+
 #sleepSlideshow
 {
   width: 1024px;
@@ -34,8 +45,8 @@ a:visited {text-decoration: none; color:#fff;
   position: absolute;
   z-index:99;
   display: none;
+  
 }
-
 
 #sleepSlideshow img
 {

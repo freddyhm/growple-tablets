@@ -1,43 +1,39 @@
 /* GLOGBAL VARIABLES */
-var touch_count = 0; // reset global vars
-var activate = 0;       // reset global vars
-var touch_try = 0;      // reset global vars
+var touch_count = 0; // reset global vars - FHM
+var activate = 0;       // reset global vars - FHM
+var touch_try = 0;      // reset global vars - FHM
 
-var basket = new Array(); // menu global vars
-var user_basket = {};   // menu global vars
-var sleep_timer = "";   // sleep global vars
+var basket = new Array(); // menu global vars - FHM
+var user_basket = {};   // menu global vars - FHM
+var sleep_timer = "";   // sleep global vars - FHM
 
-var bask_item_id = 0; // basket global var
+var bask_item_id = 0; // basket global var - FHM
+
+// functions to be executed when page is loaded - FHM
+$(function(){
+    $("#sleepSlideshow").slides({
+        play: 7000,
+        effect: 'slide',
+        crossfade: true,
+        generatePagination: false
+    });
+
+    $(".promoSlide").click(function(event) {
+        alert("d");
+    });
+});
 
 // list of global functions - FHM
 function activateSleepTimer(){
     sleep_timer = clearTimeout(sleep_timer);
-    sleep_timer = setTimeout(function() {sleep(); }, 120000);
+    sleep_timer = setTimeout(function() {sleep(); }, 5000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
-    // sleep slideshow - FHM 
-    $('#sleepSlideshow').show(function(){
-         var pic1 = URL + 'public/img/sleep/slide1.jpg';
-         var pic2 = URL + 'public/img/sleep/slide2.jpg';
-         var pic3 = URL + 'public/img/sleep/slide3.jpg';
-         var pic4 = URL + 'public/img/sleep/slide4.jpg';
-         var pic5 = URL + 'public/img/sleep/slide5.jpg';
 
-        $(function() {
-            $('#sleepSlideshow').crossSlide({
-              sleep: 5,
-              fade: 0.1
-            }, [
-              { src: pic1 },
-              { src: pic2 },
-              { src: pic3 },
-              { src: pic4 },
-              { src: pic5 }
-            ])
-        });
-    });
+   $("#sleepSlideshow").show();
+
 }
 
 // list of functions according to main pages - FHM
@@ -358,6 +354,7 @@ function menu(menus, user_basket){
                     }
                     
                     var last_item = $("#selectedItem").attr("value");
+
                     if(last_item != undefined){
 
                         // check for first item for analytics - FHM
@@ -365,23 +362,32 @@ function menu(menus, user_basket){
                         logUserActivity("out", action, last_item, function(){
                             logUserActivity("in", "viewing_menu_item", item_id, function(){
                                 first_item = false;
+                                // slide the selected item box AFTER analytics has finished (make sure there's no gaps) - FHM
+                                $('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
+
+                                        $('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+                                        $('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
+                                        $('.itemDescription').html(menus[menu_id].items[item_id].description);
+                                        $('.itemPrice').html(menus[menu_id].items[item_id].price);
+
+                                        $(this).attr("value", item_id);
+                                }); 
                             });
                         });
                     }else{
                         // analytic entry (for end time, need to calculate with next point in db) - FHM
-                        logUserActivity("in", "viewing_menu_item", item_id);
-                    }
+                        logUserActivity("in", "viewing_menu_item", item_id, function(){
+                                 // slide the selected item box AFTER analytics has finished (make sure there's no gaps) - FHM
+                            $('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
+                                $('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+                                $('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
+                                $('.itemDescription').html(menus[menu_id].items[item_id].description);
+                                $('.itemPrice').html(menus[menu_id].items[item_id].price);
 
-                    // slide the selected item box - FHM
-                    $('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
-    
-                            $('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
-                            $('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
-                            $('.itemDescription').html(menus[menu_id].items[item_id].description);
-                            $('.itemPrice').html(menus[menu_id].items[item_id].price);
-
-                            $(this).attr("value", item_id);
-                    });                     
+                                $(this).attr("value", item_id);
+                            });  
+                        });
+                    }                   
             });
     }       
     
@@ -403,9 +409,12 @@ function menu(menus, user_basket){
                     addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
             }, 150);
             
-            
             var last_item = $("#cartItems tr td:last").position();
-            $("#cartArea").animate({ scrollLeft: last_item.left}, "slow");
+
+            // position on first load when there is no last item - FHM
+            if(last_item != undefined){
+                $("#cartArea").animate({ scrollLeft: last_item.left}, "slow");    
+            }
     });
 
     // inserts item into a user's cart - FHM
@@ -712,7 +721,6 @@ function video(videos){
             // reset finished watching var - FHM
             finished_watching = "no";               
         });                       
-            
     }
 }
 
