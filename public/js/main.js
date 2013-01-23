@@ -430,7 +430,7 @@ function menu(menus, user_basket){
                 menu_name = 'dishes';
         }
 
-        var item_img =  "<img class='smallPicItem' width='158px' height='110px'  src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
+        var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
         var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
         var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
 
@@ -554,7 +554,7 @@ function menu(menus, user_basket){
     }
 
     function animateCartUp(){
-            $("#cart").animate({bottom: "76"}, 1);
+            $("#cart").animate({bottom: "180"}, 1);
             $("#cartTabArea").css("top", "0px");
             $("#cartTabArea").css("height", "341px");
             cart_status = "hidden";
