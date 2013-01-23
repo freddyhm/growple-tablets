@@ -456,7 +456,8 @@ overflow-y: hidden;
   z-index: 1;
   height: 600px;
   width: 1024px;  
-  bottom: 76px; 
+  bottom: 130px; 
+  background-size: 140%
 }
 
 #cartItems
@@ -469,7 +470,7 @@ overflow-y: hidden;
 {
  position: relative;
 color: white;
-bottom: 100px;
+bottom: 50px;
 text-align: center;
 vertical-align: middle;
 left: 0px;
@@ -489,8 +490,8 @@ opacity: 0.8;
 .cartDeleteItem
 {
   position: relative;
-  bottom: 125px;
-  left: 125px;
+  bottom: 145px;
+  left: 170px;
   opacity: 0.9;
 }
 
@@ -505,8 +506,8 @@ opacity: 0.8;
 {
   background-color: green;
   opacity: 0.5;
-  height: 458px;
-  top: 3px;
+  height: 400px;
+  top: 59px;
   position: relative;
 }
 
