@@ -3,12 +3,11 @@
 
 function startAnalytics(callback){
 
-	var path = $.parseJSON($.cookie("path"));
-	var path_list = $.parseJSON($.cookie("path_list"));
+	var path = $.parseJSON($.jStorage.get("path"));
 
 	if(path == undefined){
 	    path = createUserPath();
-	    $.cookie("path", JSON.stringify(path));   
+	    $.jStorage.set("path", JSON.stringify(path));   
 	}
 
 	if(callback != undefined){
@@ -18,8 +17,8 @@ function startAnalytics(callback){
 
 function logUserStep(status, module_id, callback){
 
-    // get path in cookie
-    var old_path = $.parseJSON($.cookie("path"));
+    // get path in localstorage
+    var old_path = $.parseJSON($.jStorage.get("path"));
     var new_path = old_path;
     var date = new Date().toString();
 
@@ -39,9 +38,8 @@ function logUserStep(status, module_id, callback){
        new_path.steps[last_key].end = date;
     }
 
-    $.cookie("path", JSON.stringify(new_path));
+    $.jStorage.set("path", JSON.stringify(new_path));
 
-    
 	 if(callback != undefined){
 	 	callback();
 	 }
@@ -49,21 +47,16 @@ function logUserStep(status, module_id, callback){
 
 function logUserActivity(status, action, item_id, callback){
 
-
-
 	var current_act_key = 0;
 	var current_step_key = 0;
 
-	var old_path = $.parseJSON($.cookie("path"));
+	var old_path = $.parseJSON($.jStorage.get("path"));
 	var new_path = old_path;
 	var date = new Date().toString();
 
-	// get current key - FHM
-    var current_step_key = old_path.steps.length - 1;
-
-	if(old_path.steps[current_step_key].activities != undefined){
-       current_act_key = old_path.steps[current_step_key].activities.length;
-    }
+	// get current step and activity key based on lengths - FHM
+    current_step_key = old_path.steps.length - 1;
+    current_act_key = old_path.steps[current_step_key].activities.length;
 
 	//need to figure out if the last activiy has finished- FHM
 	if(status == 'in'){
@@ -74,11 +67,13 @@ function logUserActivity(status, action, item_id, callback){
 		new_path.steps[current_step_key].activities[current_act_key].item_id = item_id;
 	}else if(status == 'out'){
 
-		// in case activity loses it's 'in', we re-init the activity object - FHM
-		if(new_path.steps[current_step_key].activities == undefined){
+		// in case activity loses it's 'in' (when clicking really fast, in and out of module), we re-init the activity object - FHM
+		if(new_path.steps[current_step_key].activities == ""){
 			new_path.steps[current_step_key].activities[current_act_key] = {"start" : "", "action" : "", "item_id" : "", "end": ""}; 
 			new_path.steps[current_step_key].activities[current_act_key].start = date;
 			new_path.steps[current_step_key].activities[current_act_key].item_id = item_id;
+
+			current_act_key = old_path.steps[current_step_key].activities.length;
 		};
 
 		// get last activity through the array's last key - FHM
@@ -87,7 +82,7 @@ function logUserActivity(status, action, item_id, callback){
 		new_path.steps[current_step_key].activities[last_act_key].end = date;
 	}
 	
-	 $.cookie("path", JSON.stringify(new_path));
+	 $.jStorage.set("path", JSON.stringify(new_path));
 
 	 if(callback != undefined){
 	 	callback();
@@ -105,15 +100,15 @@ function createUserPath(){
 function saveUserPath(){
 
     var date = new Date().toString();
-    var path = $.parseJSON($.cookie("path"));
+    var path = $.parseJSON($.jStorage.get("path"));
     path.end = date;
-    $.cookie("path", JSON.stringify(path));
+    $.jStorage.set("path", JSON.stringify(path));
 }
 
 function saveBasket(user_basket, callback){
 
 	var basket = user_basket;
-	$.cookie('user_basket', JSON.stringify(basket));
+	$.jStorage.set('user_basket', JSON.stringify(basket));
 
 	if(callback != undefined){
 	 	callback();
@@ -122,7 +117,7 @@ function saveBasket(user_basket, callback){
 
 function getBasket(){
 
-	var basket = $.parseJSON($.cookie("user_basket"));
+	var basket = $.parseJSON($.jStorage.get("user_basket"));
 
 	if(!basket){
 		basket = "";
@@ -137,7 +132,7 @@ function addToCart(cart, callback){
 	var new_cart = {"items": cart, "time" : date, "size" : cart.length};
 
 	// add cart and set it - FHM
-	var user_carts = $.parseJSON($.cookie("user_carts"));
+	var user_carts = $.parseJSON($.jStorage.get("user_carts"));
 
 	// if cart is empty (first user cycle), init carts - FHM
 	if(user_carts == null){
@@ -146,7 +141,7 @@ function addToCart(cart, callback){
 
 	// push new cart and set it - FHM
 	user_carts.carts.push(new_cart); 
-	$.cookie("user_carts", JSON.stringify(user_carts));
+	$.jStorage.set("user_carts", JSON.stringify(user_carts));
 
 	if(callback != undefined){
 	 	callback();
@@ -155,8 +150,8 @@ function addToCart(cart, callback){
 
 function sendToServer(callback){
 
-	var path = $.parseJSON($.cookie("path"));
-	var carts = $.parseJSON($.cookie("user_carts"));
+	var path = $.parseJSON($.jStorage.get("path"));
+	var carts = $.parseJSON($.jStorage.get("user_carts"));
 
 	$.post( URL + "mother/saveAnalytics/d/", {user_path: path, user_carts : carts}, function(data){
 		callback();
@@ -164,9 +159,9 @@ function sendToServer(callback){
 }
 
 function resetAnalytics(){
-	$.removeCookie("path");
-	$.removeCookie("user_carts");
-	$.removeCookie("user_basket");
+	$.jStorage.deleteKey("path");
+	$.jStorage.deleteKey("user_carts");
+	$.jStorage.deleteKey("user_basket");
 }
 
 function newCycle(callback){

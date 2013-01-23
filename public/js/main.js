@@ -11,12 +11,14 @@ var bask_item_id = 0; // basket global var - FHM
 
 // functions to be executed when page is loaded - FHM
 $(function(){
+    /*
     $("#sleepSlideshow").slides({
         play: 7000,
         effect: 'slide',
         crossfade: true,
         generatePagination: false
     });
+*/
 });
 
 // list of global functions - FHM
@@ -27,178 +29,178 @@ function activateSleepTimer(){
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
-   $("#sleepSlideshow").show();
+ //  $("#sleepSlideshow").show();
 }
 
 // list of functions according to main pages - FHM
 function home(){
 
-        var appCache = window.applicationCache;
-        var one_user = 0;
+    var appCache = window.applicationCache;
+    var one_user = 0;
+    
+    // on checking for both refresh and loading, reset the app - FHM        
+    $(appCache).bind('checking', function(event) {
+        // kick-start analytics
+        startAnalytics(function(){
+            clearTimeout(sleep_timer);
+            $("#loadPage").show();
+        });  
+    });
+
+    // when browser gets refreshed after cached - FHM
+    $(appCache).bind('noupdate', function(event) {
+        $("#load_pic").hide();
+    });
+
+    // when cache finishes - FHM
+    $(appCache).bind('cached', function(event) {
+        // first load 
+        $("#load_pic").hide();
+    });
+
+    $(appCache).bind('updateready', function(event) {
+        // load when manifest changes
+        $("#load_pic").hide();
+    });
+
+    $(document).ready(function() { 
+
+        // check if analytics are set (when cached) - FHM
+        var is_path = $.jStorage.get("path");
+        if(is_path == null){
+            startAnalytics();
+        }
         
-        // on checking for both refresh and loading, reset the app - FHM        
-        $(appCache).bind('checking', function(event) {
-            // kick-start analytics
-            startAnalytics(function(){
-                clearTimeout(sleep_timer);
-                $("#loadPage").show();
-            });  
-        });
+        $(".playbook").ajaxError(function(){
+            alert("Could not connect to server, please try again!");
+        }); 
 
-        // when browser gets refreshed after cached - FHM
-        $(appCache).bind('noupdate', function(event) {
-            $("#load_pic").hide();
-        });
+        $("#sleepSlideshow").click(function(event) {
 
-        // when cache finishes - FHM
-        $(appCache).bind('cached', function(event) {
-            // first load 
-            $("#load_pic").hide();
-        });
+            // get class of image clicked and redirect to menu if promo slide - FHM
+            var is_promo = event.target.className == "promoSlide" ? true : false;
+            if(is_promo == true){
 
-        $(appCache).bind('updateready', function(event) {
-            // load when manifest changes
-            $("#load_pic").hide();
-        });
+                var item_id = event.target.id.split("#")[0];
+                var item_name = event.target.id.split("#")[1];
+                var item_menu = event.target.id.split("#")[2];
 
-        $(document).ready(function() { 
+                var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
+                $.jStorage.set("promo_item", JSON.stringify(promo_item));
 
-            // check if analytics are set (when cached) - FHM
-            var is_path = $.cookie("path");
-            if(is_path == null){
-                startAnalytics();
-            }
-            
-            $(".playbook").ajaxError(function(){
-                alert("Could not connect to server, please try again!");
-            }); 
-
-            $("#sleepSlideshow").click(function(event) {
-
-                // get class of image clicked and redirect to menu if promo slide - FHM
-                var is_promo = event.target.className == "promoSlide" ? true : false;
-                if(is_promo == true){
-
-                    var item_id = event.target.id.split("#")[0];
-                    var item_name = event.target.id.split("#")[1];
-                    var item_menu = event.target.id.split("#")[2];
-
-                    var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
-                    $.cookie("promo_item", JSON.stringify(promo_item));
-
-                    logUserStep("in", 1, function(){
-                        $("body").load(URL + "menu", function(){
-                            $(function(){
-                                $("#touch").hide();
-                                $("#hiddenPromo").trigger("click");
-                            });
+                logUserStep("in", 1, function(){
+                    $("body").load(URL + "menu", function(){
+                        $(function(){
+                            $("#touch").hide();
+                            $("#hiddenPromo").trigger("click");
                         });
                     });
-                }else{
-                    $(this).hide();
-                    activateSleepTimer(); 
-                }
-             }); 
+                });
+            }else{
+                $(this).hide();
+                activateSleepTimer(); 
+            }
+         }); 
 
-             //activate timer - FHM
-            activateSleepTimer(); 
+         //activate timer - FHM
+        activateSleepTimer(); 
 
-            // click is the main activity to derive idle user time or not so reset timer if click - FHM
-            $(".playbook").click(function(e){ 
-                    if(e.target.className != 'navLink'){
-                        activateSleepTimer();
-                    }else{
-                        sleep_timer = clearTimeout(sleep_timer);
-                    }
-            });
-
-             // make start button clickable 
-            $("#start_screen").click(function(event) {
-              startAnalytics(function(){
-                    $("#loadPage").hide();
+        // click is the main activity to derive idle user time or not so reset timer if click - FHM
+        $(".playbook").click(function(e){ 
+                if(e.target.className != 'navLink'){
                     activateSleepTimer();
-               });
-             });
-
-            // nav links - FHM
-            $("#menuLink").click(function(){
-                $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
-                 setTimeout(function(){ 
-                    $("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
-                    logUserStep("in", 1, function(){
-                        $("body").load(URL + "menu");
-                    });
-                 }, 300);
-            });
-
-            $("#videoLink").click(function(){
-                $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
-                 setTimeout(function(){ 
-                    $("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
-                    logUserStep("in", 2, function(){
-                        $("body").load(URL + "video");
-                     });
-                 }, 300);
-            });
-
-
-            $("#gameLink").click(function(){
-                $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
-                 setTimeout(function(){ 
-                    $("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
-                    logUserStep("in", 3, function(){
-                        $("body").load(URL + "game");
-                    });
-                 }, 300);
-            });
-
-            // hidden functions for reset - FM
-            $("#menu_intmenu").click(function(){
-                reset(3);
-            });
-
-            $("#menu_games").click(function(){
-                reset(6);
-            });
-
-            $("#menu_videos").click(function(){
-                reset(2);
-            });
-        });
-        
-        // set new user cycle - FHM
-        function reset(touch){
-
-            touch_count += touch;
-            touch_try++;
-
-            // activation numbers - FHM
-            if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-                 activate++;
-            }
-
-            // after fourth step, check if all activation numbers have been hit - FHM
-            if(touch_try == 3){
-
-                if(touch_count == 11 && activate == 3){
-                     $("#loadPage").show();
-                    endCycle(function(){
-                         $("#load_pic").hide();
-                    });
+                }else{
+                    sleep_timer = clearTimeout(sleep_timer);
                 }
+        });
 
-                //reset variables
-                touch_count = 0;
-                activate = 0;
-                touch_try = 0;  
-            }
+         // make start button clickable 
+        $("#start_screen").click(function(event) {
+          startAnalytics(function(){
+                $("#loadPage").hide();
+                activateSleepTimer();
+           });
+         });
+
+        // nav links - FHM
+        $("#menuLink").click(function(){
+            $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
+             setTimeout(function(){ 
+                $("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
+                logUserStep("in", 1, function(){
+                    $("body").load(URL + "menu");
+                });
+             }, 300);
+        });
+
+        $("#videoLink").click(function(){
+            $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
+             setTimeout(function(){ 
+                $("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
+                logUserStep("in", 2, function(){
+                    $("body").load(URL + "video");
+                 });
+             }, 300);
+        });
+
+
+        $("#gameLink").click(function(){
+            $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
+             setTimeout(function(){ 
+                $("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
+                logUserStep("in", 3, function(){
+                    $("body").load(URL + "game");
+                });
+             }, 300);
+        });
+
+        // hidden functions for reset - FM
+        $("#menu_intmenu").click(function(){
+            reset(3);
+        });
+
+        $("#menu_games").click(function(){
+            reset(6);
+        });
+
+        $("#menu_videos").click(function(){
+            reset(2);
+        });
+    });
+    
+    // set new user cycle - FHM
+    function reset(touch){
+
+        touch_count += touch;
+        touch_try++;
+
+        // activation numbers - FHM
+        if(touch_count == 6 || touch_count == 9 || touch_count == 11){
+             activate++;
         }
+
+        // after fourth step, check if all activation numbers have been hit - FHM
+        if(touch_try == 3){
+
+            if(touch_count == 11 && activate == 3){
+                 $("#loadPage").show();
+                endCycle(function(){
+                     $("#load_pic").hide();
+                });
+            }
+
+            //reset variables
+            touch_count = 0;
+            activate = 0;
+            touch_try = 0;  
+        }
+    }
 }
 
 function menu(menus, user_basket){
 
     $("#hiddenPromo").click(function(event) {
-        var promo_item  = $.parseJSON($.cookie("promo_item"));              
+        var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
         addItem(promo_item.id, promo_item.name, promo_item.menu, 'yes');
         animateCartDown();
         var last_item = $("#cartItems tr td:last").position();
@@ -208,7 +210,7 @@ function menu(menus, user_basket){
             $("#cartArea").animate({ scrollLeft: last_item.left}, "slow");    
         }
 
-        $.removeCookie("promo_item");
+        $.jStorage.deleteKey("promo_item");
     });
     
 
@@ -222,12 +224,12 @@ function menu(menus, user_basket){
             var item_menu = event.target.id.split("#")[2];
 
             var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
-            $.cookie("promo_item", JSON.stringify(promo_item));
+            $.jStorage.set("promo_item", JSON.stringify(promo_item));
             $("#hiddenPromo").trigger("click");
         }else{
             activateSleepTimer(); 
         }
-        
+
         $("#touch").hide();
         $(this).hide();
     });
