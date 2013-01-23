@@ -1,4 +1,3 @@
-
 // Analytic Functions: track cart items, store user baskets, and save paths - FHM
 // * Replaces server-side tracking * - FHM
 
@@ -50,6 +49,8 @@ function logUserStep(status, module_id, callback){
 
 function logUserActivity(status, action, item_id, callback){
 
+
+
 	var current_act_key = 0;
 	var current_step_key = 0;
 
@@ -72,6 +73,13 @@ function logUserActivity(status, action, item_id, callback){
 		new_path.steps[current_step_key].activities[current_act_key].action = action;
 		new_path.steps[current_step_key].activities[current_act_key].item_id = item_id;
 	}else if(status == 'out'){
+
+		// in case activity loses it's 'in', we re-init the activity object - FHM
+		if(new_path.steps[current_step_key].activities == undefined){
+			new_path.steps[current_step_key].activities[current_act_key] = {"start" : "", "action" : "", "item_id" : "", "end": ""}; 
+			new_path.steps[current_step_key].activities[current_act_key].start = date;
+			new_path.steps[current_step_key].activities[current_act_key].item_id = item_id;
+		};
 
 		// get last activity through the array's last key - FHM
 		var last_act_key = current_act_key - 1;
@@ -105,13 +113,6 @@ function saveUserPath(){
 function saveBasket(user_basket, callback){
 
 	var basket = user_basket;
-	var old_basket = $.parseJSON($.cookie("user_basket"));
-	
-	// in case of new basket - FHM
-	if(old_basket == undefined){
-		basket = new Array();
-	}
-
 	$.cookie('user_basket', JSON.stringify(basket));
 
 	if(callback != undefined){
@@ -165,6 +166,7 @@ function sendToServer(callback){
 function resetAnalytics(){
 	$.removeCookie("path");
 	$.removeCookie("user_carts");
+	$.removeCookie("user_basket");
 }
 
 function newCycle(callback){

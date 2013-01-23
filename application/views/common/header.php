@@ -12,14 +12,37 @@
     <!-- SCRIPTS -->
     <script src="<?php echo URL . 'public/js/jquery-1.8.3.min.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/jquery.cookie.js'; ?>"></script>
-    <script src="<?php echo URL . 'public/js/kenburns.js';?>"></script>
+    <script src="<?php echo URL . 'public/js/slides.min.jquery.js';?>"></script>
     <script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/analytics.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
 </head>	
 <body>
 	<div style="display:none;"><video loop="loop" autoplay="autoplay"><source src="<?php echo URL . 'public/vid/nosleep.mp4'; ?>" /></video ></div>
-	<div id="sleepSlideshow"></div>
+	<div id="sleepSlideshow">
+        <div class="slides_container">
+            <div>
+                <img id="hot#1" class="promoSlide" src="<?php echo URL . 'public/img/sleep/slide6.jpg'?>"></a>;
+            </div>
+            <div>
+                <img id="hot#21" class="promoSlide" src="<?php echo URL . 'public/img/sleep/slide7.jpg'?>">;
+            </div>
+            <div>
+                <img src="<?php echo URL . 'public/img/sleep/slide1.jpg'?>">;
+            </div>
+            <div>
+                <img src="<?php echo URL . 'public/img/sleep/slide2.jpg'?>">;
+            </div>
+            <div>
+                <img src="<?php echo URL . 'public/img/sleep/slide3.jpg'?>">;
+            </div>
+            <div>
+                <img src="<?php echo URL . 'public/img/sleep/slide4.jpg'?>">;
+            </div>
+            <div>
+                <img src="<?php echo URL . 'public/img/sleep/slide5.jpg'?>">;
+            </div>
+        </div>
+    </div>
 	<div class="playbook">
 		<div class="content">
-
