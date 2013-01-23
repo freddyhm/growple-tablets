@@ -18,9 +18,7 @@ $(function(){
         generatePagination: false
     });
 
-    $(".promoSlide").click(function(event) {
-        alert("d");
-    });
+    
 });
 
 // list of global functions - FHM
@@ -78,6 +76,12 @@ function home(){
             $(".playbook").ajaxError(function(){
                 alert("Could not connect to server, please try again!");
             }); 
+
+            $(".promoSlide").click(function(event) {
+                logUserStep("in", 1, function(){
+                    $("body").load(URL + "menu");
+                });
+            });
 
             $("#sleepSlideshow").click(function(event) {
                 $(this).hide();
