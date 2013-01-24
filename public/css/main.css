@@ -436,9 +436,9 @@ width: 127px;
 #cartArea
 {
   overflow-x: scroll;
-height: 174px;
-width: 867px;
-overflow-y: hidden;
+  height: 174px;
+  width: 800px;
+  overflow-y: hidden;
 }
 
 #cartTab
