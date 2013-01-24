@@ -1,3 +1,4 @@
 config/
 dandelion/
 index.php
+application/views/common/header.php

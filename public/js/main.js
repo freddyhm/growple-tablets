@@ -12,12 +12,20 @@ var bask_item_id = 0; // basket global var - FHM
 // list of global functions - FHM
 function activateSleepTimer(){
     sleep_timer = clearTimeout(sleep_timer);
-    sleep_timer = setTimeout(function() {sleep(); }, 2000);
+    sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
- //  $("#sleepSlideshow").show();
+   // init slideshow  - FHM
+    $("#sleepSlideshow").slides({
+        play: 5000,
+        effect: 'slide',
+        crossfade: true,
+        generatePagination: false
+    });
+
+   $("#sleepSlideshow").show();
 }
 
 //init binding events for sleep functions - FHM
@@ -34,15 +42,6 @@ function startSleep(){
         }
     });
 
-    /*
-
-     $("#sleepSlideshow").slides({
-        play: 7000,
-        effect: 'slide',
-        crossfade: true,
-        generatePagination: false
-    });
-*/
     $("#sleepSlideshow").click(function(event) {
 
         // get class of image clicked and redirect to menu if promo slide - FHM
@@ -67,7 +66,14 @@ function startSleep(){
                 });
             });
         }else{
+
+            // hide the slideshow - FHM
             $(this).hide();
+
+            // remove slide control class (stop the slideshow) - FHM
+            var cnt = $(".slides_control").contents();
+            $(".slides_control").replaceWith(cnt);
+
             activateSleepTimer(); 
         }
     });  
