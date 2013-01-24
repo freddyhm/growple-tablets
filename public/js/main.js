@@ -460,7 +460,7 @@ function menu(menus, user_basket){
             $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
             animateCartAddItem(); 
             addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
-        }, 1000);
+        }, 100);
         
         var last_item = $("#cartItems tr td:last").position();
 
