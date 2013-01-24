@@ -8,27 +8,16 @@ var sleep_timer = "";   // sleep global vars - FHM
 
 var bask_item_id = 0; // basket global var - FHM
 
-// functions to be executed when page is loaded - FHM
-$(function(){
-    /*
-    $("#sleepSlideshow").slides({
-        play: 7000,
-        effect: 'slide',
-        crossfade: true,
-        generatePagination: false
-    });
-*/
-});
 
 // list of global functions - FHM
 function activateSleepTimer(){
     sleep_timer = clearTimeout(sleep_timer);
-    sleep_timer = setTimeout(function() {sleep(); }, 5000);
+    sleep_timer = setTimeout(function() {sleep(); }, 2000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
- //  $("#sleepSlideshow").show();
+   $("#sleepSlideshow").show();
 }
 
 // list of functions according to main pages - FHM
@@ -64,6 +53,13 @@ function home(){
     });
 
     $(document).ready(function() { 
+
+        $("#sleepSlideshow").slides({
+            play: 7000,
+            effect: 'slide',
+            crossfade: true,
+            generatePagination: false
+        });
 
         // check if analytics are set (when cached) - FHM
         var is_path = $.jStorage.get("path");
@@ -199,7 +195,12 @@ function home(){
 
 function menu(menus, user_basket){
 
-    /*
+     $("#sleepSlideshow").slides({
+            play: 7000,
+            effect: 'slide',
+            crossfade: true,
+            generatePagination: false
+        });
 
     $("#hiddenPromo").click(function(event) {
         var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
@@ -215,9 +216,6 @@ function menu(menus, user_basket){
         $.jStorage.deleteKey("promo_item");
     });
 
-*/
-    
-/*
     $("#sleepSlideshow").click(function(event) {
         // get class of image clicked and redirect to menu if promo slide - FHM
         var is_promo = event.target.className == "promoSlide" ? true : false;
@@ -237,7 +235,6 @@ function menu(menus, user_basket){
         $("#touch").hide();
         $(this).hide();
     });
-*/
 
     activateSleepTimer();
 
@@ -293,8 +290,6 @@ function menu(menus, user_basket){
 
 
     function fillCart(basket){
-        
-        //
 
         //function addItem(id, name, menu_name, push){
         basket.forEach(function(entry){
@@ -645,9 +640,38 @@ function menu(menus, user_basket){
 
 function video(videos){
 
-    $("#sleepSlideshow").click(function(event) {
+     $("#sleepSlideshow").slides({
+            play: 7000,
+            effect: 'slide',
+            crossfade: true,
+            generatePagination: false
+        });
+
+     $("#sleepSlideshow").click(function(event) {
+
+        // get class of image clicked and redirect to menu if promo slide - FHM
+        var is_promo = event.target.className == "promoSlide" ? true : false;
+        if(is_promo == true){
+
+            var item_id = event.target.id.split("#")[0];
+            var item_name = event.target.id.split("#")[1];
+            var item_menu = event.target.id.split("#")[2];
+
+            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
+            $.jStorage.set("promo_item", JSON.stringify(promo_item));
+
+            logUserStep("in", 1, function(){
+                $("body").load(URL + "menu", function(){
+                    $(function(){
+                        $("#touch").hide();
+                        $("#hiddenPromo").trigger("click");
+                    });
+                });
+            });
+        }else{
             $(this).hide();
-             activateSleepTimer(); 
+            activateSleepTimer(); 
+        }
     }); 
 
     activateSleepTimer();
@@ -782,10 +806,39 @@ function video(videos){
 
 function game(){
 
+     $("#sleepSlideshow").slides({
+        play: 7000,
+        effect: 'slide',
+        crossfade: true,
+        generatePagination: false
+    });
+
     $("#sleepSlideshow").click(function(event) {
+
+        // get class of image clicked and redirect to menu if promo slide - FHM
+        var is_promo = event.target.className == "promoSlide" ? true : false;
+        if(is_promo == true){
+
+            var item_id = event.target.id.split("#")[0];
+            var item_name = event.target.id.split("#")[1];
+            var item_menu = event.target.id.split("#")[2];
+
+            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
+            $.jStorage.set("promo_item", JSON.stringify(promo_item));
+
+            logUserStep("in", 1, function(){
+                $("body").load(URL + "menu", function(){
+                    $(function(){
+                        $("#touch").hide();
+                        $("#hiddenPromo").trigger("click");
+                    });
+                });
+            });
+        }else{
             $(this).hide();
-             activateSleepTimer(); 
-        }); 
+            activateSleepTimer(); 
+        }
+    });  
 
     activateSleepTimer();
 
