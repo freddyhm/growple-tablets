@@ -1,7 +1,6 @@
 /* GLOGBAL VARIABLES */
 var touch_count = 0; // reset global vars - FHM
 var activate = 0;       // reset global vars - FHM
-var touch_try = 0;      // reset global vars - FHM
 
 var basket = new Array(); // menu global vars - FHM
 var user_basket = {};   // menu global vars - FHM
@@ -37,6 +36,7 @@ function home(){
 
     var appCache = window.applicationCache;
     var one_user = 0;
+    var touch_try = 0;   // count for reset function - FHM
     
     // on checking for both refresh and loading, reset the app - FHM        
     $(appCache).bind('checking', function(event) {
