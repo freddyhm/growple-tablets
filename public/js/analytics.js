@@ -54,7 +54,7 @@ function logUserActivity(status, action, item_id, callback){
 	var date = new Date().toString();
 
 	// get current step and activity key based on lengths - FHM
-    current_step_key = old_path.steps.length - 1;
+    current_step_key = old_path.steps.length == 0 ? 0: old_path.steps.length - 1;
     current_act_key = old_path.steps[current_step_key].activities.length;
 
 	//need to figure out if the last activiy has finished- FHM

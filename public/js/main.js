@@ -20,6 +20,81 @@ function sleep(){
    $("#sleepSlideshow").show();
 }
 
+//init binding events for sleep functions - FHM
+function startSleep(){
+
+    activateSleepTimer();
+
+     // click is the main activity to derive idle user time or not so reset timer if click - FHM
+    $(".playbook").click(function(e){ 
+        if(e.target.className != 'navLink'){
+            activateSleepTimer();
+        }else{
+            sleep_timer = clearTimeout(sleep_timer);
+        }
+    });
+
+     $("#sleepSlideshow").slides({
+        play: 7000,
+        effect: 'slide',
+        crossfade: true,
+        generatePagination: false
+    });
+
+    $("#sleepSlideshow").click(function(event) {
+
+        // get class of image clicked and redirect to menu if promo slide - FHM
+        var is_promo = event.target.className == "promoSlide" ? true : false;
+        if(is_promo == true){
+
+            var item_id = event.target.id.split("#")[0];
+            var item_name = event.target.id.split("#")[1];
+            var item_menu = event.target.id.split("#")[2];
+
+            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
+            $.jStorage.set("promo_item", JSON.stringify(promo_item));
+
+                logUserStep("in", 1, function(){
+                    logUserActivity("in", "clicked_promo_slide", item_id, function(){
+                    $("body").load(URL + "menu", function(){
+                        $(function(){
+                            $("#touch").hide();
+                            $("#hiddenPromo").trigger("click");
+                        });
+                    });
+                });
+            });
+        }else{
+            $(this).hide();
+            activateSleepTimer(); 
+        }
+    });  
+
+   /*
+
+    $("#sleepSlideshow").click(function(event) {
+        // get class of image clicked and redirect to menu if promo slide - FHM
+        var is_promo = event.target.className == "promoSlide" ? true : false;
+        if(is_promo == true){
+
+            var item_id = event.target.id.split("#")[0];
+            var item_name = event.target.id.split("#")[1];
+            var item_menu = event.target.id.split("#")[2];
+
+            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
+            $.jStorage.set("promo_item", JSON.stringify(promo_item));
+            $("#hiddenPromo").trigger("click");
+        }else{
+            activateSleepTimer(); 
+        }
+
+        $("#touch").hide();
+        $(this).hide();
+    });
+*/
+
+}
+
 // list of functions according to main pages - FHM
 function home(){
 
@@ -54,61 +129,17 @@ function home(){
 
     $(document).ready(function() { 
 
-        $("#sleepSlideshow").slides({
-            play: 7000,
-            effect: 'slide',
-            crossfade: true,
-            generatePagination: false
-        });
-
         // check if analytics are set (when cached) - FHM
         var is_path = $.jStorage.get("path");
         if(is_path == null){
             startAnalytics();
         }
+
+        startSleep();
         
         $(".playbook").ajaxError(function(){
             alert("Could not connect to server, please try again!");
         }); 
-
-        $("#sleepSlideshow").click(function(event) {
-
-            // get class of image clicked and redirect to menu if promo slide - FHM
-            var is_promo = event.target.className == "promoSlide" ? true : false;
-            if(is_promo == true){
-
-                var item_id = event.target.id.split("#")[0];
-                var item_name = event.target.id.split("#")[1];
-                var item_menu = event.target.id.split("#")[2];
-
-                var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
-                $.jStorage.set("promo_item", JSON.stringify(promo_item));
-
-                logUserStep("in", 1, function(){
-                    $("body").load(URL + "menu", function(){
-                        $(function(){
-                            $("#touch").hide();
-                            $("#hiddenPromo").trigger("click");
-                        });
-                    });
-                });
-            }else{
-                $(this).hide();
-                activateSleepTimer(); 
-            }
-         }); 
-
-         //activate timer - FHM
-        activateSleepTimer(); 
-
-        // click is the main activity to derive idle user time or not so reset timer if click - FHM
-        $(".playbook").click(function(e){ 
-                if(e.target.className != 'navLink'){
-                    activateSleepTimer();
-                }else{
-                    sleep_timer = clearTimeout(sleep_timer);
-                }
-        });
 
          // make start button clickable 
         $("#start_screen").click(function(event) {
@@ -195,12 +226,9 @@ function home(){
 
 function menu(menus, user_basket){
 
-     $("#sleepSlideshow").slides({
-            play: 7000,
-            effect: 'slide',
-            crossfade: true,
-            generatePagination: false
-        });
+    var first_item = true;
+
+    startSleep();
 
     $("#hiddenPromo").click(function(event) {
         var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
@@ -215,39 +243,6 @@ function menu(menus, user_basket){
 
         $.jStorage.deleteKey("promo_item");
     });
-
-    $("#sleepSlideshow").click(function(event) {
-        // get class of image clicked and redirect to menu if promo slide - FHM
-        var is_promo = event.target.className == "promoSlide" ? true : false;
-        if(is_promo == true){
-
-            var item_id = event.target.id.split("#")[0];
-            var item_name = event.target.id.split("#")[1];
-            var item_menu = event.target.id.split("#")[2];
-
-            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
-            $.jStorage.set("promo_item", JSON.stringify(promo_item));
-            $("#hiddenPromo").trigger("click");
-        }else{
-            activateSleepTimer(); 
-        }
-
-        $("#touch").hide();
-        $(this).hide();
-    });
-
-    activateSleepTimer();
-
-    // click is the main activity to derive idle user time or not so reset timer if click - FHM
-    $(".playbook").click(function(e){ 
-        if(e.target.className != 'navLink'){
-            activateSleepTimer();
-        }else{
-            sleep_timer = clearTimeout(sleep_timer);
-        }
-    });
-
-    var first_item = true;
 
     $("#menuHome").click(function(){
         $(this).attr("src", URL  + "public/img/common/btn_home_pressed.png");
@@ -640,51 +635,6 @@ function menu(menus, user_basket){
 
 function video(videos){
 
-     $("#sleepSlideshow").slides({
-            play: 7000,
-            effect: 'slide',
-            crossfade: true,
-            generatePagination: false
-        });
-
-     $("#sleepSlideshow").click(function(event) {
-
-        // get class of image clicked and redirect to menu if promo slide - FHM
-        var is_promo = event.target.className == "promoSlide" ? true : false;
-        if(is_promo == true){
-
-            var item_id = event.target.id.split("#")[0];
-            var item_name = event.target.id.split("#")[1];
-            var item_menu = event.target.id.split("#")[2];
-
-            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
-            $.jStorage.set("promo_item", JSON.stringify(promo_item));
-
-            logUserStep("in", 1, function(){
-                $("body").load(URL + "menu", function(){
-                    $(function(){
-                        $("#touch").hide();
-                        $("#hiddenPromo").trigger("click");
-                    });
-                });
-            });
-        }else{
-            $(this).hide();
-            activateSleepTimer(); 
-        }
-    }); 
-
-    activateSleepTimer();
-
-     // click is the main activity to derive idle user time or not so reset timer if click - FHM
-    $(".playbook").click(function(e){ 
-            if(e.target.className != 'navLink'){
-                activateSleepTimer();
-            }else{
-                sleep_timer = clearTimeout(sleep_timer);
-            }
-    });
-
     // play random video when video ends, make button clickable and control video with click - FHM
     var currentVideo = document.getElementById("video");
     var previous_vid = new Array(0, 0 ,0 ,0 ,0);
@@ -694,6 +644,8 @@ function video(videos){
     var curr_vid_id = "";
     var finished_watching = "no";
     var first_vid = true;
+
+    startSleep();
             
     // analytics exit point when video ends - FHM
     $(currentVideo).bind('ended', function(event) {
@@ -806,50 +758,7 @@ function video(videos){
 
 function game(){
 
-     $("#sleepSlideshow").slides({
-        play: 7000,
-        effect: 'slide',
-        crossfade: true,
-        generatePagination: false
-    });
-
-    $("#sleepSlideshow").click(function(event) {
-
-        // get class of image clicked and redirect to menu if promo slide - FHM
-        var is_promo = event.target.className == "promoSlide" ? true : false;
-        if(is_promo == true){
-
-            var item_id = event.target.id.split("#")[0];
-            var item_name = event.target.id.split("#")[1];
-            var item_menu = event.target.id.split("#")[2];
-
-            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
-            $.jStorage.set("promo_item", JSON.stringify(promo_item));
-
-            logUserStep("in", 1, function(){
-                $("body").load(URL + "menu", function(){
-                    $(function(){
-                        $("#touch").hide();
-                        $("#hiddenPromo").trigger("click");
-                    });
-                });
-            });
-        }else{
-            $(this).hide();
-            activateSleepTimer(); 
-        }
-    });  
-
-    activateSleepTimer();
-
-     // click is the main activity to derive idle user time or not so reset timer if click - FHM
-    $(".playbook").click(function(e){ 
-            if(e.target.className != 'navLink'){
-                activateSleepTimer();
-            }else{
-                sleep_timer = clearTimeout(sleep_timer);
-            }
-    });
+    startSleep();    
 
     $("#gameHomeLink").click(function(){            
         $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
@@ -862,3 +771,4 @@ function game(){
         }, 100);
     });
 }    
+
