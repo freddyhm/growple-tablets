@@ -199,6 +199,8 @@ function home(){
 
 function menu(menus, user_basket){
 
+    /*
+
     $("#hiddenPromo").click(function(event) {
         var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
         addItem(promo_item.id, promo_item.name, promo_item.menu, 'yes');
@@ -212,8 +214,10 @@ function menu(menus, user_basket){
 
         $.jStorage.deleteKey("promo_item");
     });
-    
 
+*/
+    
+/*
     $("#sleepSlideshow").click(function(event) {
         // get class of image clicked and redirect to menu if promo slide - FHM
         var is_promo = event.target.className == "promoSlide" ? true : false;
@@ -233,6 +237,7 @@ function menu(menus, user_basket){
         $("#touch").hide();
         $(this).hide();
     });
+*/
 
     activateSleepTimer();
 
@@ -281,16 +286,20 @@ function menu(menus, user_basket){
     var cart_timer = "";
 
     if(user_basket != ""){
+        // clear basket (persists when script is cached) - FHM 
+        basket = new Array();
         fillCart(user_basket);  
     }
 
 
     function fillCart(basket){
-            //function addItem(id, name, menu_name, push){
+        
+        //
 
-            basket.forEach(function(entry){
-                    addItem(entry[0], entry[1], entry[2], "no");
-            });
+        //function addItem(id, name, menu_name, push){
+        basket.forEach(function(entry){
+                addItem(entry[0], entry[1], entry[2], "no");
+        });
     }
 
     $(".menuList").each(function(event) {
@@ -502,15 +511,15 @@ function menu(menus, user_basket){
         // remove item from cart - FHM
         $(del_id).click(function(){
 
-                // flag to stop the cart from going up - FHM
-                touched_cart = true;
+            // flag to stop the cart from going up - FHM
+            touched_cart = true;
 
-                var item_id = $(this).attr("value");
-                var cart_id = "#" + $(this).attr("id");
+            var item_id = $(this).attr("value");
+            var cart_id = "#" + $(this).attr("id");
 
-                removeItem(item_id);
+            removeItem(item_id);
 
-                $(cart_id).parent("td").remove();
+            $(cart_id).parent("td").remove();
         });
     }
 
@@ -568,9 +577,7 @@ function menu(menus, user_basket){
 
         // redirect to home page - FHM
         if(answer == true){
-                
             var url = URL + 'mother/addToCart/d/';
-
             // empty the user's basket - FHM
             saveBasket("");
 

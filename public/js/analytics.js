@@ -1,6 +1,5 @@
 // Analytic Functions: track cart items, store user baskets, and save paths - FHM
 // * Replaces server-side tracking * - FHM
-
 function startAnalytics(callback){
 
 	var path = $.parseJSON($.jStorage.get("path"));
