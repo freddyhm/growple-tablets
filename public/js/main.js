@@ -17,7 +17,7 @@ function activateSleepTimer(){
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
-   $("#sleepSlideshow").show();
+ //  $("#sleepSlideshow").show();
 }
 
 //init binding events for sleep functions - FHM
@@ -34,13 +34,15 @@ function startSleep(){
         }
     });
 
+    /*
+
      $("#sleepSlideshow").slides({
         play: 7000,
         effect: 'slide',
         crossfade: true,
         generatePagination: false
     });
-
+*/
     $("#sleepSlideshow").click(function(event) {
 
         // get class of image clicked and redirect to menu if promo slide - FHM
@@ -71,7 +73,6 @@ function startSleep(){
     });  
 
    /*
-
     $("#sleepSlideshow").click(function(event) {
         // get class of image clicked and redirect to menu if promo slide - FHM
         var is_promo = event.target.className == "promoSlide" ? true : false;
@@ -91,8 +92,7 @@ function startSleep(){
         $("#touch").hide();
         $(this).hide();
     });
-*/
-
+  */
 }
 
 // list of functions according to main pages - FHM
