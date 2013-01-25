@@ -8,10 +8,8 @@
 
     <!-- STYLESHEET-->
     <link rel="stylesheet" href="<?php echo URL . 'public/css/main.css'; ?>">
-   <!-- <link rel="stylesheet" href="<?php //echo URL . 'public/css/jquery-ui-1.10.0.custom.css'; ?>" /> -->
     <!-- SCRIPTS -->
     <script src="<?php echo URL . 'public/js/jquery-1.8.3.min.js'; ?>"></script>
-    <script src="<?php echo URL . 'public/js/jquery-ui-1.10.0.custom.min.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/jstorage.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/slides.min.jquery.js';?>"></script>
     <script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
