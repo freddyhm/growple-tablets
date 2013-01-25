@@ -564,13 +564,16 @@ function menu(menus){
 
                 // Triggering bPopup when click event is fired
                // $('#element_to_pop_up').bPopup();
-                //alert("Uh Oh! You forgot to add an item.");
-             $(function() {
-                $("#forgotItem" ).dialog({
-                  resizable: false,
-                  height:240
-                });
-              });
+                alert("Uh Oh! You forgot to add an item.");
+
+                /*
+                 $(function() {
+                    $("#forgotItem" ).dialog({
+                      resizable: false,
+                      height:240
+                    });
+                  });
+                */
             }
         }else{
 
@@ -591,8 +594,6 @@ function menu(menus){
 
     // done button pressed, pops in and out - FHM
     $("#waitForServer").click(function(event) {
-
-        
 
         // Store cart in session variable - Need to do - FHM
         var answer = confirm("*WAIT* Did the server take your order?");
