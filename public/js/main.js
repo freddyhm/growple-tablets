@@ -11,14 +11,12 @@ var server_active = false;
 // kick-start sleep timer - FHM
 function activateSleepTimer(){
     
-    
     // check if a timer is already present, if yes than clear and init - FHM 
-    if(sleep_timer == ""){
-        sleep_timer = setTimeout(function() {sleep(); }, 2000);
-    }else{
+    if(sleep_timer != ""){
         sleep_timer = clearTimeout(sleep_timer);
-        sleep_timer = setTimeout(function() {sleep(); }, 2000);
     }
+
+    sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -563,7 +561,16 @@ function menu(menus){
             }else{
                 // flag for sleep to init - FHM
                 server_active = false;
-                alert("Uh Oh! You forgot to add an item.");
+
+                // Triggering bPopup when click event is fired
+               // $('#element_to_pop_up').bPopup();
+                //alert("Uh Oh! You forgot to add an item.");
+             $(function() {
+                $("#forgotItem" ).dialog({
+                  resizable: false,
+                  height:240
+                });
+              });
             }
         }else{
 
@@ -584,6 +591,8 @@ function menu(menus){
 
     // done button pressed, pops in and out - FHM
     $("#waitForServer").click(function(event) {
+
+        
 
         // Store cart in session variable - Need to do - FHM
         var answer = confirm("*WAIT* Did the server take your order?");
@@ -644,17 +653,17 @@ function menu(menus){
 
     // don't let cart hide if user deletes an item (activity in cart) - FHM
     function animateCartAddItem(){
-            animateCartDown();
+        animateCartDown();
 
-            if(cart_timer != ""){
-                    cart_timer = clearTimeout(cart_timer);  
+        if(cart_timer != ""){
+            cart_timer = clearTimeout(cart_timer);  
+        }
+
+        cart_timer = setTimeout(function(){
+            if(!touched_cart){
+                animateCartUp();
             }
-
-            cart_timer = setTimeout(function(){
-                    if(!touched_cart){
-                            animateCartUp();
-                    }
-            }, 2500);
+        }, 5000);
 
       touched_cart = false;
     }
