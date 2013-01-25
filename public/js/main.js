@@ -630,8 +630,8 @@ function menu(menus){
     // make cart and cart area go up and down - FHM
     function animateCartDown(){
             $("#cart").animate({bottom: "-64"}, 1);
-            $("#cartTabArea").css("top", "140px");
-            $("#cartTabArea").css("height", "199px");
+            $("#cartTabArea").css("top", "196px");
+            $("#cartTabArea").css("height", "152px");
             cart_status = "showing";
     }
 
