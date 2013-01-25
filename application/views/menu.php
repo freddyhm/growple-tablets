@@ -1,7 +1,5 @@
 <script>
 $(document).ready(function() {	
-	// get basket - FHM  
- 	//var basket = getBasket();
 	menu(<?php echo json_encode($menus); ?>);
 
 		$("#menuContent").click(function(){
@@ -29,11 +27,10 @@ $(document).ready(function() {
 		</table>
 		</div>
 		<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
-		<div id="waitForServer">
-			<div id="waitForServerBckgd"></div>
-			<img id="LoadingWaiter" src="<?php echo URL .'public/img/menu/cart/loading_waiter.gif'; ?>">
-			<img id="waitForServerSign" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
-		
+		<div id="waitForServer" class="serverActive">
+			<div id="waitForServerBckgd" class ="serverActive"></div>
+			<img id="LoadingWaiter"  class ="serverActive" src="<?php echo URL .'public/img/menu/cart/loading_waiter.gif'; ?>">
+			<img id="waitForServerSign"  class ="serverActive" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
 		</div>
 	</div>
 	<div class="mainMenu"> 

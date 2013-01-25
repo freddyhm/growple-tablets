@@ -5,14 +5,20 @@ var activate = 0;       // reset global vars - FHM
 var basket = new Array(); // menu global vars - FHM
 var user_basket = {};   // menu global vars - FHM
 var sleep_timer = "";   // sleep global vars - FHM
-
 var bask_item_id = 0; // basket global var - FHM
+var server_active = false;
 
-
-// list of global functions - FHM
+// kick-start sleep timer - FHM
 function activateSleepTimer(){
-    sleep_timer = clearTimeout(sleep_timer);
-    sleep_timer = setTimeout(function() {sleep(); }, 120000);
+    
+    
+    // check if a timer is already present, if yes than clear and init - FHM 
+    if(sleep_timer == ""){
+        sleep_timer = setTimeout(function() {sleep(); }, 2000);
+    }else{
+        sleep_timer = clearTimeout(sleep_timer);
+        sleep_timer = setTimeout(function() {sleep(); }, 2000);
+    }
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -34,8 +40,9 @@ function startSleep(){
     activateSleepTimer();
 
      // click is the main activity to derive idle user time or not so reset timer if click - FHM
+     // exceptions are with nav links (home) and cart action (menu) where we don't want to activate timer - FHM
     $(".playbook").click(function(e){ 
-        if(e.target.className != 'navLink'){
+        if(e.target.className != "navLink" && server_active == false && e.target.className != "serverActive"){
             activateSleepTimer();
         }else{
             sleep_timer = clearTimeout(sleep_timer);
@@ -112,7 +119,7 @@ function home(){
     $(appCache).bind('checking', function(event) {
         // kick-start analytics
         startAnalytics(function(){
-            clearTimeout(sleep_timer);
+            sleep_timer = clearTimeout(sleep_timer);
             $("#loadPage").show();
         });  
     });
@@ -238,15 +245,15 @@ function menu(menus){
     var cart_timer = "";
     var first_item = true;
     user_basket = getBasket();
+    server_active = false; // need to re-init persists when script is cached) - FHM
+
+    // clear basket (persists when script is cached) - FHM 
     basket = new Array();
 
     if(user_basket != ""){
-    // clear basket (persists when script is cached) - FHM 
-    
-    fillCart(user_basket);  
+       fillCart(user_basket);  
     }
 
-  
     startSleep();
 
     $("#hiddenPromo").click(function(event) {
@@ -531,38 +538,47 @@ function menu(menus){
     
     // add or edit cart - FHM
     $("#cartAction").click(function(event){
-            
+
         // get item count and status of order - FHM
         var item_count = $("#cartItems td").length;
         var waiting_for_server = $("#waitForServer").css("display");
         
         if(waiting_for_server == "none"){
 
-                // clear the timer so cart won't go up - FHM
-                cart_timer = clearTimeout(cart_timer);
+            // clear the timer so cart won't go up - FHM
+            cart_timer = clearTimeout(cart_timer);
 
-                if(item_count != 0){
-                        // show "waiting for server"  - FHM
-                        $(this).attr("src",URL + "public/img/menu/cart/btn_edit.png");
-                        $("#grabIt").css("z-index", "1");
-                        $("#cartTab").hide();
-                        $("#cart").css("z-index", "2");
-                        $("#waitForServer").show();
+            if(item_count != 0){
 
-                }else{
-                        alert("Uh Oh! You forgot to add an item.");
-                }
+                // flag for sleep to get cleared - FHM
+                server_active = true;
+    
+                // show "waiting for server"  - FHM
+                $(this).attr("src",URL + "public/img/menu/cart/btn_edit.png");
+                $("#grabIt").css("z-index", "1");
+                $("#cartTab").hide();
+                $("#cart").css("z-index", "2");
+                $("#waitForServer").show();
+
+            }else{
+                // flag for sleep to init - FHM
+                server_active = false;
+                alert("Uh Oh! You forgot to add an item.");
+            }
         }else{
 
-                // pulls cart back up after a short interval - FHM 
-                animateCartAddItem();
+            // flag for sleep to get cleared - FHM
+            server_active = false;
 
-                // abort "waiting for server"  - FHM
-                $(this).attr("src",URL + "public/img/menu/cart/btn_cart_ready.png");
-                $("#grabIt").css("z-index", "2");
-                $("#cartTab").show();
-                $("#cart").css("z-index", "1");
-                $("#waitForServer").hide();
+            // pulls cart back up after a short interval - FHM 
+            animateCartAddItem();
+
+            // abort "waiting for server"  - FHM
+            $(this).attr("src",URL + "public/img/menu/cart/btn_cart_ready.png");
+            $("#grabIt").css("z-index", "2");
+            $("#cartTab").show();
+            $("#cart").css("z-index", "1");
+            $("#waitForServer").hide();
         }
     });
 
@@ -574,6 +590,10 @@ function menu(menus){
 
         // redirect to home page - FHM
         if(answer == true){
+
+            // clear serv
+            server_active = false;
+
             var url = URL + 'mother/addToCart/d/';
             // empty the user's basket - FHM
             saveBasket("");
