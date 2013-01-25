@@ -636,7 +636,7 @@ function menu(menus){
     }
 
     function animateCartUp(){
-            $("#cart").animate({bottom: "180"}, 1);
+            $("#cart").animate({bottom: "128"}, 1);
             $("#cartTabArea").css("top", "0px");
             $("#cartTabArea").css("height", "341px");
             cart_status = "hidden";

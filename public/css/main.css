@@ -431,6 +431,15 @@ width: 127px;
   float: right;
   position: relative;
   bottom: 170px;
+
+}
+
+#cartRibbon
+{
+  float: right;
+  position: relative;
+  top:17px;
+  left:165px;
 }
 
 #cartArea
@@ -456,7 +465,7 @@ width: 127px;
   z-index: 1;
   height: 600px;
   width: 1024px;  
-  bottom: 180px; 
+  bottom: 130px; 
   background-size: 140%
 }
 

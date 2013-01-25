@@ -27,6 +27,7 @@ $(document).ready(function() {
 		</table>
 		</div>
 		<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
+		<img id="cartRibbon" src="<?php echo URL .'public/img/menu/cart/ribbon.png'; ?>">
 		<div id="waitForServer" class="serverActive">
 			<div id="waitForServerBckgd" class ="serverActive"></div>
 			<img id="LoadingWaiter"  class ="serverActive" src="<?php echo URL .'public/img/menu/cart/loading_waiter.gif'; ?>">
