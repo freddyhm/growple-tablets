@@ -563,17 +563,7 @@ function menu(menus){
                 server_active = false;
 
                 // Triggering bPopup when click event is fired
-               // $('#element_to_pop_up').bPopup();
                 alert("Uh Oh! You forgot to add an item.");
-
-                /*
-                 $(function() {
-                    $("#forgotItem" ).dialog({
-                      resizable: false,
-                      height:240
-                    });
-                  });
-                */
             }
         }else{
 
