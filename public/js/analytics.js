@@ -88,20 +88,29 @@ function logUserActivity(status, action, item_id, callback){
 	 }
 }
 
-function createUserPath(){
+function createUserPath(callback){
     var date = new Date().toString();
      //init the multi-array and partially set it - FHM
     var new_event = {"steps": [], "start": date, "end": ""};
   
-    return new_event;
+    if(callback != undefined){
+	 	callback();
+	}else
+	{
+		return new_event;
+	}
 }
 
-function saveUserPath(){
+function saveUserPath(callback){
 
     var date = new Date().toString();
     var path = $.parseJSON($.jStorage.get("path"));
     path.end = date;
     $.jStorage.set("path", JSON.stringify(path));
+
+    if(callback != undefined){
+	 	callback();
+	}
 }
 
 function saveBasket(user_basket, callback){
@@ -157,27 +166,33 @@ function sendToServer(callback){
 	});
 }
 
-function resetAnalytics(){
+function resetAnalytics(callback){
 	$.jStorage.deleteKey("path");
 	$.jStorage.deleteKey("user_carts");
 	$.jStorage.deleteKey("user_basket");
-}
-
-function newCycle(callback){
-	createUserPath();
-
-	if(callback != undefined){
-	 	callback();
-	}	
-}
-
-function endCycle(callback){
-	saveUserPath();
-	sendToServer(function(){
-		resetAnalytics();
-	});
+	$.jStorage.deleteKey("promo_item");
 
 	if(callback != undefined){
 	 	callback();
 	}
+}
+
+function newCycle(callback){
+	createUserPath(function(){
+		if(callback != undefined){
+	 		callback();
+		}
+	});
+}
+
+function endCycle(callback){
+	saveUserPath(function(){
+		sendToServer(function(){
+			resetAnalytics(function(){
+				if(callback != undefined){
+	 				callback();
+				}
+			});
+		});
+	});
 }

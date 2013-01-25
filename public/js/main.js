@@ -230,10 +230,23 @@ function home(){
     }
 }
 
-function menu(menus, user_basket){
+function menu(menus){
 
+    // counter for grabIt function - FHM
+    var cart_status = "hidden";
+    var touched_cart = false;
+    var cart_timer = "";
     var first_item = true;
+    user_basket = getBasket();
+    basket = new Array();
 
+    if(user_basket != ""){
+    // clear basket (persists when script is cached) - FHM 
+    
+    fillCart(user_basket);  
+    }
+
+  
     startSleep();
 
     $("#hiddenPromo").click(function(event) {
@@ -277,18 +290,6 @@ function menu(menus, user_basket){
                 });
          }, 300);
     });
-
-    // counter for grabIt function - FHM
-    var cart_status = "hidden";
-    var touched_cart = false;
-    var cart_timer = "";
-
-    if(user_basket != ""){
-        // clear basket (persists when script is cached) - FHM 
-        basket = new Array();
-        fillCart(user_basket);  
-    }
-
 
     function fillCart(basket){
 

@@ -1,10 +1,16 @@
 
+# !!!!!!!!!!!!!!! NOT FOR PRODUCTION !!!!!!!!!!!!!!!!!!! #
+
 # Delete all analytics
 truncate activities; truncate carts; truncate cart_items; truncate events; truncate steps; truncate users; 
 
-
 # Delete reports
 truncate reports; truncate snapshots;
+
+# !!!!!!!!!!!!!!! END OF NOT FOR PRODUCTION !!!!!!!!!!!!!!!!!!! #
+
+
+# SAFE FOR PRODUCTION 
 
 # Delete analytics (not cart)
 DELETE FROM activities WHERE step_id IN (SELECT id FROM steps WHERE event_id > );

@@ -1,8 +1,8 @@
 <script>
 $(document).ready(function() {	
 	// get basket - FHM  
- 	var basket = getBasket();
-	menu(<?php echo json_encode($menus); ?>, basket);
+ 	//var basket = getBasket();
+	menu(<?php echo json_encode($menus); ?>);
 
 		$("#menuContent").click(function(){
 			$("#touch").hide();
