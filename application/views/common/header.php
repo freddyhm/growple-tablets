@@ -18,7 +18,7 @@
     <script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
 </head>	
 <body>
-	<div style="display:none;"><video loop="loop" autoplay="autoplay"><source src="<?php echo URL . 'public/vid/nosleep.mp4'; ?>" /></video ></div>
+	<div style="display:none;"><video id="noSleepVid" loop="loop" autoplay="autoplay"><source src="<?php echo URL . 'public/vid/nosleep.mp4'; ?>" /></video ></div>
 	<div id="sleepSlideshow">
         <div class="slides_container">
             <!--

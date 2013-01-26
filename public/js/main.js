@@ -223,7 +223,9 @@ function home(){
             if(touch_count == 11 && activate == 3){
                  $("#loadPage").show();
                 endCycle(function(){
+                    // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
                      $("#load_pic").hide();
+                     sleep_timer = clearTimeout(sleep_timer);
                 });
             }
 
