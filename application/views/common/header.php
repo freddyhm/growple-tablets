@@ -7,10 +7,12 @@
 
     <!-- STYLESHEET-->
     <link rel="stylesheet" href="<?php echo URL . 'public/css/main.css'; ?>">
+    <link rel="stylesheet" href="<?php echo URL . 'public/css/confirm.css'; ?>">
     <!-- SCRIPTS -->
     <script src="<?php echo URL . 'public/js/jquery-1.8.3.min.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/jstorage.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/slides.min.jquery.js';?>"></script>
+    <script src="<?php echo URL . 'public/js/jquery.simplemodal.js'; ?>"></script>
     <script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/analytics.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
@@ -46,3 +48,11 @@
     </div>
 	<div class="playbook">
 		<div class="content">
+            <!-- modal content -->
+            <div id='confirm'>
+                <div class='header'><span>Confirm</span></div>
+                <div class='message'></div>
+                <div class='buttons'>
+                    <div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+                </div>
+            </div>

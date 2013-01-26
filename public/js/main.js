@@ -254,6 +254,29 @@ function menu(menus){
 
     startSleep();
 
+    function confirm(message, callback) {
+        $('#confirm').modal({
+            closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
+            position: ["20%",],
+            overlayId: 'confirm-overlay',
+            containerId: 'confirm-container', 
+            onShow: function (dialog) {
+                var modal = this;
+                $('.message', dialog.data[0]).append(message);
+
+                // if the user clicks "yes"
+                $('.yes', dialog.data[0]).click(function () {
+                    // call the callback
+                    if ($.isFunction(callback)) {
+                        callback.apply();
+                    }
+                    // close the dialog
+                    modal.close(); // or $.modal.close();
+                });
+            }
+        });
+    }
+
     $("#hiddenPromo").click(function(event) {
         var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
         addItem(promo_item.id, promo_item.name, promo_item.menu, 'yes');
@@ -585,13 +608,9 @@ function menu(menus){
     // done button pressed, pops in and out - FHM
     $("#waitForServer").click(function(event) {
 
-        // Store cart in session variable - Need to do - FHM
-        var answer = confirm("*WAIT* Did the server take your order?");
-
-        // redirect to home page - FHM
-        if(answer == true){
-
-            // clear serv
+        // pop-up making sure user has taken order - FHM
+        confirm("*WAIT* Did the server take your order?", function(){
+           // clear server active - FHM
             server_active = false;
 
             var url = URL + 'mother/addToCart/d/';
@@ -614,7 +633,7 @@ function menu(menus){
                     });
                 });
             });
-        } 
+        });
     });
 
     // area where cart is activated (cart shows/hides)
