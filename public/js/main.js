@@ -609,7 +609,7 @@ function menu(menus){
     $("#waitForServer").click(function(event) {
 
         // pop-up making sure user has taken order - FHM
-        confirm("*WAIT* Did the server take your order?", function(){
+        confirm("*WAIT* <br><br>Did the server take your order?", function(){
            // clear server active - FHM
             server_active = false;
 
