@@ -586,7 +586,10 @@ function menu(menus){
                 server_active = false;
 
                 // Triggering bPopup when click event is fired
-                alert("Uh Oh! You forgot to add an item.");
+              //  alert("Uh Oh! You forgot to add an item.");
+                $("#basic-modal-content").modal();
+                $("#basic-log").show();
+
             }
         }else{
 

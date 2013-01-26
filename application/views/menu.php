@@ -7,8 +7,15 @@ $(document).ready(function() {
 		});
 });
 </script>
-<div id="dialog" title="" style="display:none;">
-  <p>Uh Oh! You forgot to add an item.</p>
+
+		
+<!-- modal content -->
+<div id="basic-modal-content">
+	<h3>Uh Oh! You forgot to add an item.</h3>
+</div>
+<!-- preload the images -->
+<div style='display:none'>
+	<img src="<?php echo URL .'public/img/confirm/x.png' ?>"/>
 </div>
 <div id="hiddenPromo"></div>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
