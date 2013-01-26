@@ -15,7 +15,7 @@ $(document).ready(function() {
 </div>
 <!-- preload the images -->
 <div style='display:none'>
-	<img src="<?php echo URL .'public/img/confirm/x.png' ?>"/>
+	<img src="<?php echo URL . 'public/img/confirm/x.png' ?>"/>
 </div>
 <div id="hiddenPromo"></div>
 <img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
