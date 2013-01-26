@@ -30,7 +30,6 @@
 #simplemodal-overlay {background-color:#eee;}
 
 /* Container */
-
 #basic-modal-content {display:none; margin:auto;}
 #simplemodal-container {height:118px; width:550px; color:#333; font-size:28px; background-color:#fff; border:5px solid #336699; padding:12px;}
 #simplemodal-container .simplemodal-data {padding:8px;}

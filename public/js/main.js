@@ -762,6 +762,9 @@ function video(videos){
         first_vid = position;
 
         vid_timer  = clearTimeout(vid_timer);
+         vid_timer = setTimeout(function() {
+                $("#video_menu").hide();
+        }, 5000);
 
         // reset status for new video - FHM
         status = 'play';
@@ -788,10 +791,6 @@ function video(videos){
         }else{
                 previous_position = 0;
         }
-
-        vid_timer = setTimeout(function() {
-                $("#video_menu").hide();
-        }, 3500);
             
         logUserActivity("in", "started_watching_video", videos[random_num].id, function(){
             $(currentVideo).attr("src", URL + 'public/vid/' + videos[random_num].path);

@@ -1,5 +1,9 @@
 
-*******************
-Growple! v.1.0: 
-*******************
+********************************************
+Growple! v.1.1.3 - Saturday January 26, 2013
+********************************************
  
+ FIXES & CHANGES:
+-Added Ribbon to menu module 
+-Replaced JS standard alerts with custom alerts and confirmation w/css and script
+-Disabled sleep on growple logo when resetting
