@@ -25,3 +25,29 @@
 #confirm-container a.modal-close:active,
 #confirm-container a.modal-close:visited {text-decoration:none; font-weight:bold; position:absolute; right:10px; top:2px; color:#fff;}
 #confirm-container a.modal-close:hover {color:#ccc;}
+
+
+
+#basic-modal-content {display:none; margin:auto;}
+
+/* Overlay */
+#simplemodal-overlay {background-color:#eee;}
+
+/* Container */
+#simplemodal-container {height:118px; width:550px; color:#333; font-size:28px; background-color:#fff; border:5px solid #336699; padding:12px;}
+#simplemodal-container .simplemodal-data {padding:8px;}
+#simplemodal-container code {background:#141414; border-left:3px solid #65B43D; color:#333; display:block; font-size:12px; margin-bottom:12px; padding:4px 6px 6px;}
+#simplemodal-container a {color:#ddd;}
+#simplemodal-container a.modalCloseImg {background:url(../img/basic/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:-3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
+#simplemodal-container h3 {color:#84b8d9;}
+
+#simplemodal-container a.modalCloseImg {
+    background:none;
+    right:-14px;
+    width:22px;
+    height:26px;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+      src='img/x.png', sizingMethod='scale'
+    );
+  }
+
