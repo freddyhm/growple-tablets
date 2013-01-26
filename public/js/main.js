@@ -586,7 +586,7 @@ function menu(menus){
                 server_active = false;
 
                 // Triggering bPopup when click event is fired
-                alert("Uh Oh! You forgot to add an item.");
+                $("#basic-modal-content").modal();
             }
         }else{
 
@@ -609,7 +609,7 @@ function menu(menus){
     $("#waitForServer").click(function(event) {
 
         // pop-up making sure user has taken order - FHM
-        confirm("*WAIT* <br><br>Did the server take your order?", function(){
+        confirm("*WAIT* Did the server take your order?", function(){
            // clear server active - FHM
             server_active = false;
 

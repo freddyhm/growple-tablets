@@ -7,8 +7,6 @@ $(document).ready(function() {
 		});
 });
 </script>
-
-		
 <!-- modal content -->
 <div id="basic-modal-content">
 	<h3>Uh Oh! You forgot to add an item.</h3>
