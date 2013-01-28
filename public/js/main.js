@@ -532,19 +532,17 @@ function menu(menus){
         var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
         var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
         var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
-        var item_num = "<div class='cartNum' id='cart" + id + "'>#" + id + "</div>";  
+
+         if(is_dish == false){
+            var item_num = "<div class='cartNum' id='cart" + id + "'>" + menu_name + "</div>";  
+        }else{
+            var item_num = "<div class='cartNum' id='cart" + id + "'>#" + id + "</div>";  
+        }
 
         del_id = "#" + del_id;
         
-        if(is_dish == false){
-            // insert new pic and item - FHM
-             $("#cartItems tr").append("<td style='bottom:26px; position:relative;'>" + item_img + del_img + item_name + "</td>");  
-        }else{
-            $("#cartItems tr").append("<td>" + item_img + del_img + item_name + item_num + "</td>");  
-        }
-        
-        
-    
+        $("#cartItems tr").append("<td>" + item_img + del_img + item_name + item_num + "</td>");  
+ 
         bask_item_id++;
 
         // remove item from cart - FHM
