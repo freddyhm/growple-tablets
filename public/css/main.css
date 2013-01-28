@@ -490,6 +490,15 @@ opacity: 0.8;
   
 }
 
+.cartNum
+{
+  position: relative;
+  bottom: 200px;
+  text-align: center;
+  font-size: 46px;
+  color: white;
+}
+
 
 #cartItems td
 {
