@@ -16,7 +16,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 120000);
+    sleep_timer = setTimeout(function() {sleep(); }, 12000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -519,21 +519,32 @@ function menu(menus){
         basket.push(item_desc);
 
         var del_id = "cart_" + bask_item_id;
+        var is_dish = true;
 
         if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
             menu_name = 'dishes';
         }
 
+        if(menu_name == 'drinks' || menu_name == 'beer' || menu_name == 'combos'){
+            is_dish = false;
+        }
+
         var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
         var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
         var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
-        var item_num = "<div class='cartNum' id='cart" + id + "'>#" + id + "</div>";
+        var item_num = "<div class='cartNum' id='cart" + id + "'>#" + id + "</div>";  
 
         del_id = "#" + del_id;
         
-        // insert new pic and item - FHM
-        $("#cartItems tr").append("<td>" + item_img + del_img + item_name + item_num + "</td>");
+        if(is_dish == false){
+            // insert new pic and item - FHM
+             $("#cartItems tr").append("<td style='bottom:26px; position:relative;'>" + item_img + del_img + item_name + "</td>");  
+        }else{
+            $("#cartItems tr").append("<td>" + item_img + del_img + item_name + item_num + "</td>");  
+        }
         
+        
+    
         bask_item_id++;
 
         // remove item from cart - FHM
