@@ -6,7 +6,8 @@
     {
         $cfg->set_model_directory(MODEL_DIR);
         $cfg->set_connections(array(
-            ENVIRONMENT => DB_TYPE . '://' . DB_USER . ':' . DB_PASS . '@' . DB_HOST . '/' . DB_NAME. ';charset=utf8'));
-
-        $cfg->set_default_connection(ENVIRONMENT);
+        	'owl' => 'mysql://root:root@localhost/meet_owl;charset=utf8',
+            ENVIRONMENT => DB_TYPE . '://' . DB_USER . ':' . DB_PASS . '@' . DB_HOST . '/' . DB_NAME. ';charset=utf8'
+        	)
+        );
     });

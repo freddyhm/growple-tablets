@@ -131,6 +131,16 @@ class Login {
             //        setcookie("user_email", $result_row->email, time() + (3600*24*100));
                     
                     $this->user_is_logged_in = true;
+
+                    $cfg = ActiveRecord\Config::instance();
+
+                    $cfg->set_default_connection("owl");
+
+                    $module_list = Module::find_all_by_parent_id('1');
+
+                    echo $module_list;
+                    break;
+
                     return true;          
                     
                 } else {
