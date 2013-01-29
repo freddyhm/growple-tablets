@@ -17,6 +17,8 @@ class Login {
     private     $user_password_hash         = "";                       // user's hashed and salted password
     private     $user_is_logged_in          = false;                    // status of login
     private     $user_screen_name           = "";
+    private     $usertype_id                = "";
+    private     $venue_id                = "";
 
     public      $registration_successful    = false;
     
@@ -118,15 +120,15 @@ class Login {
                      */
                     Session::set('user_id', $result_row->id);
                     Session::set('user_name', $result_row->name);
-                    Session::set('user_email', $result_row->email);
-                    Session::set('user_screen_name', $result_row->screen_name);
+                 //   Session::set('user_email', $result_row->email);
+                   // Session::set('user_screen_name', $result_row->screen_name);
                     Session::set('user_logged_in', 1);
 
                     /**
                      *  write user data into COOKIE [a file in user's browser]
                      */
                     setcookie("user_name", $result_row->name, time() + (3600*24*100));
-                    setcookie("user_email", $result_row->email, time() + (3600*24*100));
+            //        setcookie("user_email", $result_row->email, time() + (3600*24*100));
                     
                     $this->user_is_logged_in = true;
                     return true;          
@@ -197,14 +199,14 @@ class Login {
                 $this->user_name            = $_POST['user_name'];
                 $this->user_password        = $_POST['user_password_new'];
                 $this->user_password_repeat = $_POST['user_password_repeat'];
-                $this->user_email           = $_POST['user_email'];
-                $this->user_screen_name     = $_POST['user_screen_name'];
+                $this->usertype_id           = $_POST['usertype_id'];
+                $this->venue_id     = $_POST['venue_id'];
                 
                 // cut data down to max 64 chars to prevent database flooding
                 $this->user_name            = substr($this->user_name, 0, 64);
                 $this->user_password        = substr($this->user_password, 0, 64);
                 $this->user_password_repeat = substr($this->user_password_repeat, 0, 64);
-                $this->user_email           = substr($this->user_email, 0, 64);
+            //    $this->user_email           = substr($this->user_email, 0, 64);
                 
                 // generate random string "salt", a string to "encrypt" the password hash
                 // this is a basic salt, you might replace this with a more advanced function
@@ -237,7 +239,7 @@ class Login {
                 //append salt2 data to the password, and crypt using salt, results in a 60 char output
                 $this->user_password_hash = crypt ( $this->user_password, $hashing_algorithm . $salt );               
 
-                $query_check_user_name = User::find_by_user_name($this->user_name);
+                $query_check_user_name = User::find_by_name($this->user_name);
 
                 if(!empty($query_check_user_name)) {
                     
@@ -248,7 +250,9 @@ class Login {
                     $user = new User();
                     $user->name = $this->user_name;
                     $user->password_hash = $this->user_password_hash;
-                    $user->email = $this->user_email;
+                    $user->usertype_id = $this->usertype_id;
+                    $user->venue_id = $this->venue_id;
+               //     $user->email = $this->user_email;
                 
                     if ($user->save()) {
                         

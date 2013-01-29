@@ -21,6 +21,8 @@ class Bootstrap
 			$this->reroute($url);
 		}else{
 			// base structure
+			//echo $login->displayRegisterPage();
+			//break;
 			if ($login->displayRegisterPage()){
 			    include($this->view_path . 'register.php');
 			} else {
