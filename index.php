@@ -51,6 +51,18 @@ if(isset($_REQUEST['url'])){
 
 // route to loading screen 
 $login = new Login(); 
+
+
+
+$cfg = ActiveRecord\Config::instance();
+
+$cfg->set_default_connection("admin");
+$cfg->set_model_directory('application/models/admin');
+
+print_r(User::find("all"));
+
+print_r($cfg);
+break;
 $app = new Bootstrap($login);
 
 

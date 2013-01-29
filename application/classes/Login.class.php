@@ -35,7 +35,7 @@ class Login {
      */    
     public function __construct() {                     // (Database $db) says: the _construct method expects a parameter, but it has to be an object of the class "Database"
         
-        $this->connection = ActiveRecord\ConnectionManager::get_connection("development");
+        $this->connection = ActiveRecord\ConnectionManager::get_connection("admin");
 
         $user_name = Session::get('user_name');
         $user_logged_in = Session::get('user_logged_in');
@@ -132,10 +132,7 @@ class Login {
                     
                     $this->user_is_logged_in = true;
 
-                    $cfg = ActiveRecord\Config::instance();
-
-                    $cfg->set_default_connection("owl");
-
+                    
                     $module_list = Module::find_all_by_parent_id('1');
 
                     echo $module_list;
