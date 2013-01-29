@@ -50,8 +50,8 @@ if(isset($_REQUEST['url'])){
 }
 
 // route to loading screen 
-$app = new Bootstrap();
+$login = new Login(); 
+$app = new Bootstrap($login);
 
 
-//$app->reroute(array('loading'));
 
