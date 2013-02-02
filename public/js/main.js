@@ -115,9 +115,9 @@ function home(){
     
     // on checking for both refresh and loading, reset the app - FHM        
     $(appCache).bind('checking', function(event) {
-        // kick-start analytics
+        // kick-start analytics & clear sleep - FHM
+        sleep_timer = clearTimeout(sleep_timer);
         startAnalytics(function(){
-            sleep_timer = clearTimeout(sleep_timer);
             $("#loadPage").show();
         });  
     });
@@ -222,10 +222,10 @@ function home(){
 
             if(touch_count == 11 && activate == 3){
                  $("#loadPage").show();
+                sleep_timer = clearTimeout(sleep_timer);
                 endCycle(function(){
                     // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
                      $("#load_pic").hide();
-                     sleep_timer = clearTimeout(sleep_timer);
                 });
             }
 
