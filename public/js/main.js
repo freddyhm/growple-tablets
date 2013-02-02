@@ -150,6 +150,7 @@ function home(){
         
         $(".playbook").ajaxError(function(){
             alert("Could not connect to server, please try again!");
+            sleep_timer = clearTimeout(sleep_timer);
         }); 
 
          // make start button clickable 
@@ -222,10 +223,10 @@ function home(){
 
             if(touch_count == 11 && activate == 3){
                  $("#loadPage").show();
-                sleep_timer = clearTimeout(sleep_timer);
                 endCycle(function(){
                     // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
                      $("#load_pic").hide();
+                     sleep_timer = clearTimeout(sleep_timer);
                 });
             }
 
