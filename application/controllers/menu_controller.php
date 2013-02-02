@@ -12,6 +12,8 @@ class Menu extends Controller {
 		
 		try{
 			$module_list = Module::find_all_by_parent_id('1');
+
+
 		}catch(Exception $e){
 			$this->handleError('danger', get_class().'_controller.php', 'Problem pulling menu info data database, ORM/DB problem.');
 		}
@@ -39,7 +41,7 @@ class Menu extends Controller {
 			$first_time = Session::get('menu_first_time');
 			$first_time = isset($first_time) ? 'No' : 'Yes'; 
 
-			$info = array('menus' => $menus, 'is_virgin' => $first_time);
+			$info = array('menus' => $menus, 'is_virgin' => $first_time, 'venue' => Session::get('venue'));
 		
 			parent::$data = $info; 
 			parent::index();

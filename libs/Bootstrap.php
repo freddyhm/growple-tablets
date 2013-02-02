@@ -18,11 +18,9 @@ class Bootstrap
 		$url = explode('/', $url);
 
 		if($url[0] == 'butlers'){
+			$this->setDb();
 			$this->reroute($url);
 		}else{
-			// base structure
-			//echo $login->displayRegisterPage();
-			//break;
 			if ($login->displayRegisterPage()){
 			    include($this->view_path . 'register.php');
 			} else {
@@ -31,6 +29,7 @@ class Bootstrap
 					if(empty($url[0])){
 						$url = array('home');				
 					}
+					$this->setDb();
 					$this->reroute($url);
 			    } else {
 			        // not logged in, showing the login form
@@ -39,6 +38,11 @@ class Bootstrap
 			}
 		}
 	}
+
+	private function setDb(){
+		$entity = Session::get("entity");
+		Controller::switchDb($entity);
+	} 
 
 
 	public function reroute($url)

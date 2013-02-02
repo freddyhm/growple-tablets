@@ -1,6 +1,8 @@
 <script>
 $(document).ready(function() {	
-	menu(<?php echo json_encode($menus); ?>);
+
+
+	menu(<?php echo json_encode($menus); ?>, "<?php echo $venue; ?>");
 
 		$("#menuContent").click(function(){
 			$("#touch").hide();
@@ -28,12 +30,12 @@ $(document).ready(function() {
 			<tr></tr>
 		</table>
 		</div>
-		<img id="cartAction" src="<?php echo URL .'public/img/menu/cart/btn_cart_ready.png'; ?>">
-		<img id="cartRibbon" src="<?php echo URL .'public/img/menu/cart/ribbon.png'; ?>">
+		<img id="cartAction" src="<?php echo URL .'public/img/menu/common/cart/btn_cart_ready.png'; ?>">
+		<img id="cartRibbon" src="<?php echo URL .'public/img/menu/common/cart/ribbon.png'; ?>">
 		<div id="waitForServer" class="serverActive">
 			<div id="waitForServerBckgd" class ="serverActive"></div>
-			<img id="LoadingWaiter"  class ="serverActive" src="<?php echo URL .'public/img/menu/cart/loading_waiter.gif'; ?>">
-			<img id="waitForServerSign"  class ="serverActive" src="<?php echo URL .'public/img/menu/cart/btn_wait.png'; ?>">
+			<img id="LoadingWaiter"  class ="serverActive" src="<?php echo URL .'public/img/menu/common/cart/loading_waiter.gif'; ?>">
+			<img id="waitForServerSign"  class ="serverActive" src="<?php echo URL .'public/img/menu/common/cart/btn_wait.png'; ?>">
 		</div>
 	</div>
 	<div class="mainMenu"> 
@@ -43,7 +45,7 @@ $(document).ready(function() {
 				foreach($menus as $menu) {	
 				?>
 				<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
-					<img class="menuTabs" src="<?php echo URL .'public/img/menu/header_menu_notselected.png'; ?>">
+					<img class="menuTabs" src="<?php echo URL .'public/img/menu/common/header_menu_notselected.png'; ?>">
 					<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
 				</td>
 				<?php } ?>
@@ -72,8 +74,8 @@ $(document).ready(function() {
 			<span class="itemPrice">
 				$10.99
 			</span>	
-			<img id="grabIt" src="<?php echo URL .'public/img/menu/btn_grab.png'; ?>">
-			<img id="touch" src="<?php echo URL .'public/img/menu/btn_touch.png'; ?>">
+			<img id="grabIt" src="<?php echo URL .'public/img/menu/common/btn_grab.png'; ?>">
+			<img id="touch" src="<?php echo URL .'public/img/menu/common/btn_touch.png'; ?>">
 		</div>
 	</div>
 	<img id="menuHome" class="navLink" src="<?php echo URL .'public/img/common/btn_home.png'; ?>">

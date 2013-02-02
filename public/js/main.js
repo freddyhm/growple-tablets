@@ -1,6 +1,6 @@
 /* GLOGBAL VARIABLES */
 var touch_count = 0; // reset global vars - FHM
-var activate = 0;       // reset global vars - FHM
+var activate = "";       // reset global vars - FHM
 
 var basket = new Array(); // menu global vars - FHM
 var user_basket = {};   // menu global vars - FHM
@@ -16,7 +16,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 12000);
+    sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -214,19 +214,32 @@ function home(){
 
         // activation numbers - FHM
         if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-             activate++;
+             
+             if(touch_count == 6){
+                activate = 'a';
+             }else if(touch_count == 9){
+                activate += 'b';
+             }else if(touch_count == 11){
+                activate += 'c';
+             }
         }
 
         // after fourth step, check if all activation numbers have been hit - FHM
         if(touch_try == 3){
 
-            if(touch_count == 11 && activate == 3){
-                 $("#loadPage").show();
-                endCycle(function(){
-                    // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
-                     $("#load_pic").hide();
-                     sleep_timer = clearTimeout(sleep_timer);
-                });
+            if(touch_count == 11){
+                if(activate == 'ac'){
+                    $("body").load(URL + "index.php?logout");
+                }
+
+                if(activate == 'abc'){
+                    $("#loadPage").show();
+                    endCycle(function(){
+                        // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
+                         $("#load_pic").hide();
+                         sleep_timer = clearTimeout(sleep_timer);
+                    });
+                }
             }
 
             //reset variables
@@ -237,13 +250,14 @@ function home(){
     }
 }
 
-function menu(menus){
+function menu(menus, venue){
 
     // counter for grabIt function - FHM
     var cart_status = "hidden";
     var touched_cart = false;
     var cart_timer = "";
     var first_item = true;
+    var venue = venue;
     user_basket = getBasket();
     server_active = false; // need to re-init persists when script is cached) - FHM
 
@@ -339,12 +353,12 @@ function menu(menus){
 
                 // deselect current menu and change header - FHM
                 $(current_id).removeClass('menuSelected');
-                $("> img", current_id).attr("src", URL + "public/img/menu/header_menu_notselected.png");
+                $("> img", current_id).attr("src", URL + "public/img/menu/common/header_menu_notselected.png");
                 $(current_id).css("background-color", "");
                 
                 // select new menu and change header - FHM
                 $(this).addClass('menuSelected');
-                $("> img",this).attr("src", URL + "public/img/menu/header_menu_selected.png");
+                $("> img",this).attr("src", URL + "public/img/menu/common/header_menu_selected.png");
                 $(this).css("background-color", "rgba(0,0,0,0.8)");
 
                 // get new menu_id and populate submenu - FHM
@@ -423,7 +437,7 @@ function menu(menus){
                     }else if (menu_id == 12){
                             folder = '/combos/';
                     }
-                    var item_pic = URL + 'public/img/menu' + folder + menus[menu_id].items[item_id].big_pic;
+                    var item_pic = URL + 'public/img/menu/' + venue + folder + menus[menu_id].items[item_id].big_pic;
                     var item_pos = $(this).position();
                     var item_width = $(this).css("width");
                     var item_padding_right = $(this).css("padding-right");
@@ -486,9 +500,9 @@ function menu(menus){
         var selected_menu_name = $(".menuSelected .menuName").html().toLowerCase();
 
         // btn pressed - FHM
-        $(this).attr("src", URL  + "public/img/menu/btn_grab_pressed.png");     
+        $(this).attr("src", URL  + "public/img/menu/common/btn_grab_pressed.png");     
         setTimeout(function() { 
-            $("#grabIt").attr("src", URL  + "public/img/menu/btn_grab.png"); 
+            $("#grabIt").attr("src", URL  + "public/img/menu/common/btn_grab.png"); 
             animateCartAddItem(); 
             addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
         }, 100);
@@ -529,8 +543,8 @@ function menu(menus){
             is_dish = false;
         }
 
-        var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + menu_name + "/" + id  + ".jpg'>";
-        var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/cart/btn_delete.png'>";
+        var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + venue + menu_name + "/" + id  + ".jpg'>";
+        var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/common/cart/btn_delete.png'>";
         var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
 
          if(is_dish == false){
@@ -587,7 +601,7 @@ function menu(menus){
                 server_active = true;
     
                 // show "waiting for server"  - FHM
-                $(this).attr("src",URL + "public/img/menu/cart/btn_edit.png");
+                $(this).attr("src",URL + "public/img/menu/common/cart/btn_edit.png");
                 $("#grabIt").css("z-index", "1");
                 $("#cartTab").hide();
                 $("#cart").css("z-index", "2");
@@ -609,7 +623,7 @@ function menu(menus){
             animateCartAddItem();
 
             // abort "waiting for server"  - FHM
-            $(this).attr("src",URL + "public/img/menu/cart/btn_cart_ready.png");
+            $(this).attr("src",URL + "public/img/menu/common/cart/btn_cart_ready.png");
             $("#grabIt").css("z-index", "2");
             $("#cartTab").show();
             $("#cart").css("z-index", "1");

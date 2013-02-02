@@ -51,11 +51,6 @@ if(isset($_REQUEST['url'])){
 
 // route to loading screen 
 $login = new Login(); 
-
-
-
-print_r($cfg);
-break;
 $app = new Bootstrap($login);
 
 
