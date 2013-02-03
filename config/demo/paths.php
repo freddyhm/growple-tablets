@@ -1,5 +1,5 @@
 <?php
 
 // Always provide a trailing slash (/) after a path
-define('URL' , '/gple/m/');
+define('URL' , '/growple/demo/');
 define('ENVIRONMENT', 'staging');
