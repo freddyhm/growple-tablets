@@ -1,7 +1,6 @@
 /* GLOGBAL VARIABLES */
 var touch_count = 0; // reset global vars - FHM
 var activate = "";       // reset global vars - FHM
-
 var basket = new Array(); // menu global vars - FHM
 var user_basket = {};   // menu global vars - FHM
 var sleep_timer = "";   // sleep global vars - FHM
@@ -340,7 +339,9 @@ function menu(menus, venue){
 
         //function addItem(id, name, menu_name, push){
         basket.forEach(function(entry){
-                addItem(entry[0], entry[1], entry[2], "no");
+
+
+                addItem(entry[0], entry[1], entry[2], entry[3], "no");
         });
     }
 
@@ -553,39 +554,49 @@ function menu(menus, venue){
         item_desc[0] = id;
         item_desc[1] = name;
         item_desc[2] = menu_name;
+        item_desc[3] = menu_pic;
 
         basket.push(item_desc);
 
         var del_id = "cart_" + bask_item_id;
         var is_dish = true;
 
+        var item_num = "";
+        var item_name = "";
+        var del_img = "";
+        var item_img = "";
+
+    
         if(venue == 'owl'){
-             if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
+            if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
                 menu_name = 'dishes';
             }
 
             if(menu_name == 'drinks' || menu_name == 'beer' || menu_name == 'combos'){
                 is_dish = false;
             }
+
+            if(is_dish == false){
+                item_num = "<div class='cartNum' id='cart" + id + "'>" + menu_name + "</div>";  
+            }else{
+                item_num = "<div class='cartNum' id='cart" + id + "'>#" + id + "</div>";  
+            }
+
+            item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
+
         }else if(venue == 'frontrow'){
 
+             if(menu_name == 'burgers + pasta'){
+                menu_name = 'burgers';
+            }
 
-
-
+            item_num = "<div style='font-size:20px; bottom:164px' class='cartNum' id='cart" + id + "'>" + name + "</div>";  
         }
 
+        item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + venue + "/" + menu_name + "/" + menu_pic  + "'>";
+
+        del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/common/cart/btn_delete.png'>";
        
-
-        var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + venue + "/" + menu_name + "/" + menu_pic  + "'>";
-        var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/common/cart/btn_delete.png'>";
-        var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
-
-         if(is_dish == false){
-            var item_num = "<div class='cartNum' id='cart" + id + "'>" + menu_name + "</div>";  
-        }else{
-            var item_num = "<div class='cartNum' id='cart" + id + "'>#" + id + "</div>";  
-        }
-
         del_id = "#" + del_id;
         
         $("#cartItems tr").append("<td>" + item_img + del_img + item_name + item_num + "</td>");  
