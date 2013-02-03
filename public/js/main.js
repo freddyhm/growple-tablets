@@ -429,14 +429,32 @@ function menu(menus, venue){
                     var item_id = $(this).attr("value");
                     var menu_id = $(".menuSelected").attr("id").substring(4);
                     
-                    // set proper image folder depending on menu - FHM
-                    if(menu_id == 10){
+
+
+                    if(venue == 'owl'){
+                        // set proper image folder depending on menu - FHM
+                        if(menu_id == 10){
+                                folder = '/drinks/';
+                        }else if (menu_id == 11){
+                                folder = '/beer/';
+                        }else if (menu_id == 12){
+                                folder = '/combos/';
+                        }
+                    }else if(venue == 'frontrow'){
+
+                        if(menu_id == 4){
+                            folder = '/appetizers/';
+                        }else if (menu_id == 9){
+                            folder = '/burgers/';
+                        }else if (menu_id == 10){
                             folder = '/drinks/';
-                    }else if (menu_id == 11){
+                        }else if(menu_id == 11){
+                            folder = '/desserts/';
+                        }else if(menu_id == 13){
                             folder = '/beer/';
-                    }else if (menu_id == 12){
-                            folder = '/combos/';
+                        }
                     }
+                    
                     var item_pic = URL + 'public/img/menu/' + venue + folder + menus[menu_id].items[item_id].big_pic;
                     var item_pos = $(this).position();
                     var item_width = $(this).css("width");
