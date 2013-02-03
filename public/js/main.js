@@ -229,7 +229,9 @@ function home(){
 
             if(touch_count == 11){
                 if(activate == 'ac'){
-                    $("body").load(URL + "index.php?logout");
+                    endCycle(function(){
+                        $("body").load(URL + "index.php?logout");
+                    });
                 }
 
                 if(activate == 'abc'){

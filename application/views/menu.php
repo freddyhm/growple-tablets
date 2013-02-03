@@ -1,7 +1,6 @@
 <script>
 $(document).ready(function() {	
 
-
 	menu(<?php echo json_encode($menus); ?>, "<?php echo $venue; ?>");
 
 		$("#menuContent").click(function(){
