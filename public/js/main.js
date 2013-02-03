@@ -413,17 +413,18 @@ function menu(menus, venue){
 
             for (var key in menus[menu_num].items)
             {
-                    var name = menus[menu_num].items[key].name;
-                    var menu_item_id = menus[menu_num].items[key].id;
-                    var korean_name = menus[menu_num].items[key].korean_name;
-                    var id = key + 1;
-                    var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + name.toUpperCase();
+                var name = menus[menu_num].items[key].name;
+                var menu_item_id = menus[menu_num].items[key].id;
+                var menu_item_pic = menus[menu_num].items[key].big_pic;
+                var id = key + 1;
+                var item = "<td id='item" + id + "' class='items' title='" + menu_item_pic + "' value='" + menu_item_id + "'><span>" + name.toUpperCase();
 
-                    if(venue == 'owl'){
-                        item += "</span><br>" + "<span>" + korean_name + "</span></td>";
-                    }
-                
-                    $(".subMenuList table tr").append(item);
+                if(venue == 'owl'){
+                    var korean_name = menus[menu_num].items[key].korean_name;
+                    item += "</span><br>" + "<span>" + korean_name + "</span></td>";
+                }
+            
+                $(".subMenuList table tr").append(item);
             }
 
             // after adding all items, add click behavior to all of them - FHM
@@ -519,6 +520,8 @@ function menu(menus, venue){
 
         var selected_item = $(".itemName").val();
         var selected_item_name = $(".itemName").html();
+        var selected_item_pic = $(".itemName").attr("title");
+        alert(selected_item_pic);
         var selected_menu_name = $(".menuSelected .menuName").html().toLowerCase();
 
         // btn pressed - FHM
@@ -526,7 +529,7 @@ function menu(menus, venue){
         setTimeout(function() { 
             $("#grabIt").attr("src", URL  + "public/img/menu/common/btn_grab.png"); 
             animateCartAddItem(); 
-            addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
+            addItem(selected_item, selected_item_name, selected_menu_name, selected_item_pic, 'yes');
         }, 100);
         
         var last_item = $("#cartItems tr td:last").position();
@@ -539,7 +542,7 @@ function menu(menus, venue){
 
 
     // inserts item into a user's cart - FHM
-    function addItem(id, name, menu_name, push){
+    function addItem(id, name, menu_name, menu_pic, push){
 
         if(push == 'yes'){
             if(id < 10){
@@ -565,7 +568,7 @@ function menu(menus, venue){
             is_dish = false;
         }
 
-        var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + venue + menu_name + "/" + id  + ".jpg'>";
+        var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + venue + "/" + menu_name + "/" + menu_pic  + "'>";
         var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/common/cart/btn_delete.png'>";
         var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
 
