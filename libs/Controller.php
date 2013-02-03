@@ -33,27 +33,18 @@ class Controller {
 		ActiveRecord\ConnectionManager::drop_connection();
 
 		if($entity == 1){
+			foreach (glob("libs/" . ENVIRONMENT . "/owl/*.php") as $filename)
+			{
+			    require $filename;
+			}
 
-			ActiveRecord\Config::initialize(function($cfg)
-			{
-			    $cfg->set_model_directory(MODEL_DIR);
-			    $cfg->set_connections(array('owl' => 'mysql://root:root@localhost/meet_owl;charset=utf8'));
-			    $cfg->set_default_connection('owl');
-			});
 		}else if ($entity == 2){
-			ActiveRecord\Config::initialize(function($cfg)
+
+			foreach (glob("libs/" . ENVIRONMENT . "/frontrow/*.php") as $filename)
 			{
-			    $cfg->set_model_directory(MODEL_DIR);
-			    $cfg->set_connections(array('mcginnis' => 'mysql://root:root@localhost/meet_mcginnis;charset=utf8'));
-			    $cfg->set_default_connection('mcginnis');
-			});
-		}else if ($entity == 3){
-			ActiveRecord\Config::initialize(function($cfg)
-			{
-			    $cfg->set_model_directory(MODEL_DIR);
-			    $cfg->set_connections(array('admin' => DB_TYPE . '://' . DB_USER . ':' . DB_PASS . '@' . DB_HOST . '/' . DB_NAME. ';charset=utf8'));
-			    $cfg->set_default_connection('admin');
-			});
+			    require $filename;
+			}
+			
 		}
 	}
 

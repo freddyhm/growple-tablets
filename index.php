@@ -19,6 +19,11 @@ foreach (glob("libs/*.php") as $filename)
     require $filename;
 }
 
+foreach (glob("libs/$environment/admin/*.php") as $filename)
+{
+    require $filename;
+}
+
 foreach (glob("application/classes/*.php") as $filename)
 {
     require $filename;
