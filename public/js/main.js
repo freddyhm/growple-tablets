@@ -415,9 +415,8 @@ function menu(menus, venue){
             {
                 var name = menus[menu_num].items[key].name;
                 var menu_item_id = menus[menu_num].items[key].id;
-                var menu_item_pic = menus[menu_num].items[key].big_pic;
                 var id = key + 1;
-                var item = "<td id='item" + id + "' class='items' title='" + menu_item_pic + "' value='" + menu_item_id + "'><span>" + name.toUpperCase();
+                var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + name.toUpperCase();
 
                 if(venue == 'owl'){
                     var korean_name = menus[menu_num].items[key].korean_name;
@@ -520,7 +519,7 @@ function menu(menus, venue){
 
         var selected_item = $(".itemName").val();
         var selected_item_name = $(".itemName").html();
-        var selected_item_pic = $(".itemName").attr("title");
+        var selected_item_pic = $(".items").attr("title");
         alert(selected_item_pic);
         var selected_menu_name = $(".menuSelected .menuName").html().toLowerCase();
 

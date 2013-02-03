@@ -44,10 +44,20 @@ $(document).ready(function() {
 			<?php 
 				foreach($menus as $menu) {	
 				?>
-				<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
-					<img class="menuTabs" src="<?php echo URL .'public/img/menu/common/header_menu_notselected.png'; ?>">
-					<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
-				</td>
+					<?php 
+						if($menu['name'] == 'burgers + pasta'){
+					?>
+					<td style="font-size: 15px;" class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
+						<img class="menuTabs" src="<?php echo URL .'public/img/menu/common/header_menu_notselected.png'; ?>">
+						<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
+					</td>
+					<?php }else{ ?>
+
+					<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
+						<img class="menuTabs" src="<?php echo URL .'public/img/menu/common/header_menu_notselected.png'; ?>">
+						<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
+					</td>
+					<?php } ?>
 				<?php } ?>
 			</tr>
 		</table> 
