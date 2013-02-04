@@ -18,6 +18,7 @@ function activateSleepTimer(){
 
 
     sleep_timer = setTimeout(function() {sleep(); }, 120000);
+}
 
 
 //put the app to sleep mode after a certain time has elapsed - FHM

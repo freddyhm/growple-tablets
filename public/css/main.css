@@ -459,7 +459,7 @@ width: 127px;
 
 #cart
 {
-  background-image: url('../img/menu/cart/bg_cart.png');
+  background-image: url('../img/menu/common/cart/bg_cart.png');
   background-repeat: no-repeat;
   position: absolute;
   z-index: 1;
