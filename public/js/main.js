@@ -236,8 +236,10 @@ function home(){
 
             if(touch_count == 11){
                 if(activate == 'ac'){
+                    $("#loadPage").show();
                     endCycle(function(){
-                        window.location.href = URL + "index.php?logout"; 
+                        $("#load_pic").hide();
+                        window.location.href = URL + "home?logout"; 
                     });
                 }
 

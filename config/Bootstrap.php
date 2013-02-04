@@ -27,6 +27,8 @@ class Bootstrap
 			    // are we logged in ?
 			    if ($login->isUserLoggedIn()) {
 					if(empty($url[0])){
+
+						$login->loginWithPostData();
 						$url = array('home');				
 					}
 					$this->setDb();
