@@ -1,4 +1,4 @@
-<script>
+<script>	
  	// Took out document ready since we want the function to trigger before the doc is fully loaded 
 	home();	
 </script>

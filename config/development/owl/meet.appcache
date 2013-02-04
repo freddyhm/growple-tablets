@@ -4,14 +4,16 @@ CACHE MANIFEST
 
 NETWORK:
 /growple/meet/v1.0/public/js/main.js
+/growple/meet/v1.0/home
 
 CACHE:
+
 /growple/meet/v1.0/public/js/jquery-1.8.3.min.js
 /growple/meet/v1.0/public/js/jstorage.js
 /growple/meet/v1.0/public/js/slides.min.jquery.js
 /growple/meet/v1.0/public/js/jquery.simplemodal.js
 /growple/meet/v1.0/public/js/analytics.js
-/growple/meet/v1.0/home
+
 /growple/meet/v1.0/game
 /growple/meet/v1.0/video
 /growple/meet/v1.0/menu

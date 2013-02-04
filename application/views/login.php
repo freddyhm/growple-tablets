@@ -1,3 +1,4 @@
+<?php require 'application/views/common/header.php' ?>
 <style>
 .login
 {
@@ -102,3 +103,4 @@ input[type=submit], input[type=text], input[type=password]
         <!-- <a class="login_link" href="index.php?register">Create new Account</a> -->
     </div>
 </div>
+<?php require 'application/views/common/footer.php' ?>

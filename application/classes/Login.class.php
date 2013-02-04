@@ -34,7 +34,8 @@ class Login {
      * you know, when you do "$login = new Login();"
      */    
     public function __construct() {                     // (Database $db) says: the _construct method expects a parameter, but it has to be an object of the class "Database"
-        
+
+        Controller::switchDb('admin');
         $this->connection = ActiveRecord\ConnectionManager::get_connection("admin");
 
         $user_name = Session::get('user_name');
@@ -97,9 +98,8 @@ class Login {
     
 
     private function loginWithSessionData() {
-        
+
         $this->user_is_logged_in = true;
-        
     }
     
 
@@ -121,9 +121,7 @@ class Login {
                     Session::set('user_name', $result_row->name);
                     Session::set('user_logged_in', 1);
                     Session::set('entity', $result_row->venue_id);
-
-
-
+                    Session::set('first_time', 1);
 
                     $venue_name = "";
 

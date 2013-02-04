@@ -65,6 +65,7 @@ class Bootstrap
 					// look for file, import the file, log error, send to start page - FHM
 					if (file_exists($file)) 
 					{
+
 						require $file;
 						// instantiate controller
 						$controller = new $url[$key];

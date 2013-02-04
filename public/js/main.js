@@ -112,10 +112,12 @@ function startSleep(){
 // list of functions according to main pages - FHM
 function home(){
 
+    
+
     var appCache = window.applicationCache;
     var one_user = 0;
     var touch_try = 0;   // count for reset function - FHM
-    
+
     // on checking for both refresh and loading, reset the app - FHM        
     $(appCache).bind('checking', function(event) {
         // kick-start analytics & clear sleep - FHM
@@ -141,7 +143,7 @@ function home(){
         $("#load_pic").hide();
     });
 
-    $(document).ready(function() { 
+    $(document).ready(function() {
 
         // check if analytics are set (when cached) - FHM
         var is_path = $.jStorage.get("path");
@@ -213,6 +215,7 @@ function home(){
     // set new user cycle - FHM
     function reset(touch){
 
+
         touch_count += touch;
         touch_try++;
 
@@ -234,7 +237,7 @@ function home(){
             if(touch_count == 11){
                 if(activate == 'ac'){
                     endCycle(function(){
-                        $("body").load(URL + "index.php?logout");
+                        window.location.href = URL + "index.php?logout"; 
                     });
                 }
 
