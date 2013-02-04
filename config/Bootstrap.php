@@ -6,7 +6,7 @@ class Bootstrap
 	private $ctrl_path = 'application/controllers/';
 	private $view_path = 'application/views/';
 
-	public function __construct($login) 
+	public function __construct() 
 	{
 		// extract and trim last '/'' in URL - FHM 
 	    // get url only if it has been set - FHM
@@ -16,7 +16,11 @@ class Bootstrap
 		//$url = filter_var($url, FILTER_SANITIZE_URL);
 		// create array from url - FHM 
 		$url = explode('/', $url);
+		$this->setDb();
 
+		$this->reroute($url);
+
+		/*
 		if($url[0] == 'butlers'){
 			$this->setDb();
 			$this->reroute($url);
@@ -28,8 +32,8 @@ class Bootstrap
 			    if ($login->isUserLoggedIn()) {
 					if(empty($url[0])){
 
-						$login->loginWithPostData();
-						$url = array('home');				
+						//$login->loginWithPostData();
+				//		$url = array('home');				
 					}
 					$this->setDb();
 					$this->reroute($url);
@@ -39,10 +43,11 @@ class Bootstrap
 			    }
 			}
 		}
+		*/
 	}
 
 	private function setDb(){
-		$entity = Session::get("entity");
+		$entity = 2;
 		Controller::switchDb($entity);
 	} 
 

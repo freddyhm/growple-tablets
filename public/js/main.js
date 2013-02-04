@@ -239,7 +239,7 @@ function home(){
                     $("#loadPage").show();
                     endCycle(function(){
                         $("#load_pic").hide();
-                        window.location.href = URL + "home?logout"; 
+                     //   window.location.href = URL + "home?logout"; 
                     });
                 }
 
