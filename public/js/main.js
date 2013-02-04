@@ -1,7 +1,6 @@
 /* GLOGBAL VARIABLES */
 var touch_count = 0; // reset global vars - FHM
 var activate = "";       // reset global vars - FHM
-
 var basket = new Array(); // menu global vars - FHM
 var user_basket = {};   // menu global vars - FHM
 var sleep_timer = "";   // sleep global vars - FHM
@@ -17,9 +16,9 @@ function activateSleepTimer(){
     }
 
 
+
     sleep_timer = setTimeout(function() {sleep(); }, 120000);
 
-}
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
@@ -232,7 +231,9 @@ function home(){
 
             if(touch_count == 11){
                 if(activate == 'ac'){
-                    $("body").load(URL + "index.php?logout");
+                    endCycle(function(){
+                        $("body").load(URL + "index.php?logout");
+                    });
                 }
 
                 if(activate == 'abc'){
@@ -342,7 +343,9 @@ function menu(menus, venue){
 
         //function addItem(id, name, menu_name, push){
         basket.forEach(function(entry){
-                addItem(entry[0], entry[1], entry[2], "no");
+
+
+                addItem(entry[0], entry[1], entry[2], entry[3], "no");
         });
     }
 
@@ -415,14 +418,17 @@ function menu(menus, venue){
 
             for (var key in menus[menu_num].items)
             {
-                    var name = menus[menu_num].items[key].name;
-                    var menu_item_id = menus[menu_num].items[key].id;
-                    var korean_name = menus[menu_num].items[key].korean_name;
-                    var id = key + 1;
-                    var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + 
-                                            name.toUpperCase() + "</span><br>" + "<span>" + korean_name + "</span></td>";
+                var name = menus[menu_num].items[key].name;
+                var menu_item_id = menus[menu_num].items[key].id;
+                var id = key + 1;
+                var item = "<td id='item" + id + "' class='items' value='" + menu_item_id + "'><span>" + name.toUpperCase();
 
-                    $(".subMenuList table tr").append(item);
+                if(venue == 'owl'){
+                    var korean_name = menus[menu_num].items[key].korean_name;
+                    item += "</span><br>" + "<span>" + korean_name + "</span></td>";
+                }
+            
+                $(".subMenuList table tr").append(item);
             }
 
             // after adding all items, add click behavior to all of them - FHM
@@ -458,7 +464,8 @@ function menu(menus, venue){
                         }
                     }
                     
-                    var item_pic = URL + 'public/img/menu/' + venue + folder + menus[menu_id].items[item_id].big_pic;
+                    var item_bckgd_pic = URL + 'public/img/menu/' + venue + folder + menus[menu_id].items[item_id].big_pic;
+                    var item_pic = menus[menu_id].items[item_id].big_pic;
                     var item_pos = $(this).position();
                     var item_width = $(this).css("width");
                     var item_padding_right = $(this).css("padding-right");
@@ -469,7 +476,7 @@ function menu(menus, venue){
                     var opac_img2 = $("#bckgdImg2").css("opacity");
 
                     if(opac_img1 == 1 && opac_img2 == 1){
-                            changePicture(item_pic);        
+                            changePicture(item_bckgd_pic);        
                     }
                     
                     var last_item = $("#selectedItem").attr("value");
@@ -484,7 +491,7 @@ function menu(menus, venue){
                                 // slide the selected item box AFTER analytics has finished (make sure there's no gaps) - FHM
                                 $('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
 
-                                        $('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+                                        $('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id).attr("title", item_pic);
                                         $('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
                                         $('.itemDescription').html(menus[menu_id].items[item_id].description);
                                         $('.itemPrice').html(menus[menu_id].items[item_id].price);
@@ -498,7 +505,7 @@ function menu(menus, venue){
                         logUserActivity("in", "viewing_menu_item", item_id, function(){
                                  // slide the selected item box AFTER analytics has finished (make sure there's no gaps) - FHM
                             $('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
-                                $('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id);
+                                $('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id).attr("title", item_pic);
                                 $('.itemKorean').html(menus[menu_id].items[item_id].korean_name);
                                 $('.itemDescription').html(menus[menu_id].items[item_id].description);
                                 $('.itemPrice').html(menus[menu_id].items[item_id].price);
@@ -518,6 +525,7 @@ function menu(menus, venue){
 
         var selected_item = $(".itemName").val();
         var selected_item_name = $(".itemName").html();
+        var selected_item_pic = $(".itemName").attr("title"); // need to change this - getting item name through title - FHM
         var selected_menu_name = $(".menuSelected .menuName").html().toLowerCase();
 
         // btn pressed - FHM
@@ -525,7 +533,7 @@ function menu(menus, venue){
         setTimeout(function() { 
             $("#grabIt").attr("src", URL  + "public/img/menu/common/btn_grab.png"); 
             animateCartAddItem(); 
-            addItem(selected_item, selected_item_name, selected_menu_name, 'yes');
+            addItem(selected_item, selected_item_name, selected_menu_name, selected_item_pic, 'yes');
         }, 100);
         
         var last_item = $("#cartItems tr td:last").position();
@@ -538,7 +546,7 @@ function menu(menus, venue){
 
 
     // inserts item into a user's cart - FHM
-    function addItem(id, name, menu_name, push){
+    function addItem(id, name, menu_name, menu_pic, push){
 
         if(push == 'yes'){
             if(id < 10){
@@ -550,30 +558,49 @@ function menu(menus, venue){
         item_desc[0] = id;
         item_desc[1] = name;
         item_desc[2] = menu_name;
+        item_desc[3] = menu_pic;
 
         basket.push(item_desc);
 
         var del_id = "cart_" + bask_item_id;
         var is_dish = true;
 
-        if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
-            menu_name = 'dishes';
+        var item_num = "";
+        var item_name = "";
+        var del_img = "";
+        var item_img = "";
+
+    
+        if(venue == 'owl'){
+            if(menu_name == 'appetizers' || menu_name == 'soup &amp; noodle'){
+                menu_name = 'dishes';
+            }
+
+            if(menu_name == 'drinks' || menu_name == 'beer' || menu_name == 'combos'){
+                is_dish = false;
+            }
+
+            if(is_dish == false){
+                item_num = "<div class='cartNum' id='cart" + id + "'>" + menu_name + "</div>";  
+            }else{
+                item_num = "<div class='cartNum' id='cart" + id + "'>#" + id + "</div>";  
+            }
+
+            item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
+
+        }else if(venue == 'frontrow'){
+
+             if(menu_name == 'burgers + pasta'){
+                menu_name = 'burgers';
+            }
+
+            item_num = "<div style='font-size:20px; bottom:164px' class='cartNum' id='cart" + id + "'>" + name + "</div>";  
         }
 
-        if(menu_name == 'drinks' || menu_name == 'beer' || menu_name == 'combos'){
-            is_dish = false;
-        }
+        item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + venue + "/" + menu_name + "/" + menu_pic  + "'>";
 
-        var item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + venue + menu_name + "/" + id  + ".jpg'>";
-        var del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/common/cart/btn_delete.png'>";
-        var item_name = "<div class='cartName' id='cart" + name + "'>" + name + "</div>";
-
-         if(is_dish == false){
-            var item_num = "<div class='cartNum' id='cart" + id + "'>" + menu_name + "</div>";  
-        }else{
-            var item_num = "<div class='cartNum' id='cart" + id + "'>#" + id + "</div>";  
-        }
-
+        del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/common/cart/btn_delete.png'>";
+       
         del_id = "#" + del_id;
         
         $("#cartItems tr").append("<td>" + item_img + del_img + item_name + item_num + "</td>");  

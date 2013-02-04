@@ -9,12 +9,17 @@ $environment = 'development';
 
 
 // loading necessary files (order of loading is important!) - FHM
+foreach (glob("config/*.php") as $filename)
+{
+    require $filename;
+}
+
 foreach (glob("config/$environment/*.php") as $filename)
 {
     require $filename;
 }
 
-foreach (glob("libs/*.php") as $filename)
+foreach (glob("config/$environment/admin/*.php") as $filename)
 {
     require $filename;
 }

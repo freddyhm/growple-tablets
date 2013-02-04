@@ -1,7 +1,6 @@
 <script>
 $(document).ready(function() {	
 
-
 	menu(<?php echo json_encode($menus); ?>, "<?php echo $venue; ?>");
 
 		$("#menuContent").click(function(){
@@ -18,8 +17,8 @@ $(document).ready(function() {
 	<img src="<?php echo URL . 'public/img/confirm/x.png' ?>"/>
 </div>
 <div id="hiddenPromo"></div>
-<img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg1"/>
-<img src="<?php echo URL .'public/img/menu/dishes/02.jpg'; ?>"  id="bckgdImg2"/>
+<img src=""  id="bckgdImg1"/>
+<img src=""  id="bckgdImg2"/>
 <div id="menuContent">
 	<div id="cartTabArea"></div>
 	<!-- Main Menu (Bottom) -->
@@ -44,10 +43,20 @@ $(document).ready(function() {
 			<?php 
 				foreach($menus as $menu) {	
 				?>
-				<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
-					<img class="menuTabs" src="<?php echo URL .'public/img/menu/common/header_menu_notselected.png'; ?>">
-					<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
-				</td>
+					<?php 
+						if($menu['name'] == 'burgers + pasta'){
+					?>
+					<td style="font-size: 15px;" class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
+						<img class="menuTabs" src="<?php echo URL .'public/img/menu/common/header_menu_notselected.png'; ?>">
+						<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
+					</td>
+					<?php }else{ ?>
+
+					<td class="menuList" id="menu<?php echo $menu['id']; ?>" class="<?php echo $menu['name']; ?>">
+						<img class="menuTabs" src="<?php echo URL .'public/img/menu/common/header_menu_notselected.png'; ?>">
+						<span class="menuName"><?php echo strtoupper($menu['name']); ?></span>
+					</td>
+					<?php } ?>
 				<?php } ?>
 			</tr>
 		</table> 
@@ -66,13 +75,11 @@ $(document).ready(function() {
 	<!-- Item Detail -->
 	<div class="itemDetailContainer"> 
 		<div id="itemInfoWrapper">
-			<span class="itemName">BULGOGI</span>
-			<span class="itemKorean">불고기</span>
+			<span class="itemName"></span>
+			<span class="itemKorean"></span>
 			<span class="itemDescription">
-				Stir-fried beef, some vegetables, noodles with sweet soy sauce on the sizzling plate, rice
 			</span>
 			<span class="itemPrice">
-				$10.99
 			</span>	
 			<img id="grabIt" src="<?php echo URL .'public/img/menu/common/btn_grab.png'; ?>">
 			<img id="touch" src="<?php echo URL .'public/img/menu/common/btn_touch.png'; ?>">

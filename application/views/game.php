@@ -7,7 +7,7 @@
 <img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
 <div id="header_game">
 	<img src="<?php echo URL . 'public/img/game/games.png'; ?>">
-</div>	
+</div>		
 
 <div id="msg_game">
 	Play With Other Tables<br><br>

@@ -328,7 +328,7 @@ width: 127px;
 
 .itemDetailContainer
 {
-  background-image: url('../img/menu/bg_info.png');
+  background-image: url('../img/menu/common/bg_info.png');
   width: 444px;
   height: 390px;
 }
@@ -498,7 +498,8 @@ opacity: 0.8;
   font-size: 46px;
   color: white;
   background-color: black;
-opacity: 0.8;
+  opacity: 0.8;
+  height:77px;
 }
 
 
