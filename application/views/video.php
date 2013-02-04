@@ -1,6 +1,6 @@
 <script>
 	$(document).ready(function() {	
-		video(<?php echo json_encode($videos); ?>);
+		video(<?php echo json_encode($videos); ?>, "<?php echo Session::get('venue'); ?>");
 	});
 </script>
 <!-- AREA FOR VIDEO -->

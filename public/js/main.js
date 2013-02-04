@@ -755,7 +755,7 @@ function menu(menus, venue){
     }
 }
 
-function video(videos){
+function video(videos, venue){
 
     // play random video when video ends, make button clickable and control video with click - FHM
     var currentVideo = document.getElementById("video");
@@ -867,7 +867,7 @@ function video(videos){
         }
             
         logUserActivity("in", "started_watching_video", videos[random_num].id, function(){
-            $(currentVideo).attr("src", URL + 'public/vid/' + videos[random_num].path);
+            $(currentVideo).attr("src", URL + 'public/vid/' + venue + '/' + videos[random_num].path);
             $(currentVideo).attr("id", videos[random_num].id);
             $("#video_name").html( videos[random_num].name);
             $("#video_author").html( videos[random_num].author);
