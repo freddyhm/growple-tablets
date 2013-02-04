@@ -1,3 +1,4 @@
+
 /* GLOGBAL VARIABLES */
 var touch_count = 0; // reset global vars - FHM
 var activate = "";       // reset global vars - FHM

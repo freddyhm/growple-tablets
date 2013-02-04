@@ -122,25 +122,21 @@ class Login {
                     Session::set('user_logged_in', 1);
                     Session::set('entity', $result_row->venue_id);
 
+
+
+
                     $venue_name = "";
 
                     switch ($result_row->venue_id) {
                         case 1:
                             $venue_name = 'owl';
                             break;
-
                         case 2:
                             $venue_name = 'frontrow';
                             break;
                     }
 
                     Session::set('venue', $venue_name);
-
-                    /**
-                     *  write user data into COOKIE [a file in user's browser]
-                     */
-                 //   setcookie("user_name", $result_row->name, time() + (3600*24*100));
-           
                     
                     $this->user_is_logged_in = true;
                     return true;          

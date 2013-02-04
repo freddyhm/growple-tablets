@@ -1,6 +1,12 @@
 <!DOCTYPE html>
+<!-- <html> -->
+<?php 
+    if(Session::get('venue')){
+?>
+<html manifest="<?php echo URL . 'config/' . ENVIRONMENT . '/' . Session::get('venue') . '/meet.appcache' ?>">
+<?php }else{?>
 <html>
-<!--<html manifest="<?php //echo URL . 'config/' . ENVIRONMENT . '/meet.appcache' ?>"> -->
+<?php }?>
 <head>
 	<!-- Don't ever take this out, never, ever, ever -> this makes the korean symbols magically appear in the browser - FHM -->
 	<meta http-equiv="Content-Type" content="text/html;charset=utf8">

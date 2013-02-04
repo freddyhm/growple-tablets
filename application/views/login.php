@@ -1,5 +1,4 @@
-<?php include('application/views/common/header.php'); ?>
-<div data-role="content">
+
     <div class="login_wrapper">       
         <?php
 
@@ -20,16 +19,10 @@
         <div class="login_message success" style="color:green";>
             <?php echo $message; ?>
         </div>              
-        <?php
-        
+        <?php 
             }
         }
-        ?>  
-         <script>
-        $(document).ready(function() {
-            login();
-        }); 
-      </script>           
+        ?>            
         <form method="post" action="index.php" name="loginform" id="loginform">
             <div class="login">
                 <input id="login_input_username" class="login_input" type="text" name="user_name" placeholder="Username" />
@@ -41,5 +34,3 @@
             <!-- <a class="login_link" href="index.php?register">Create new Account</a> -->
         </div>
     </div>
-</div>
-<?php include('application/views/common/footer.php'); ?>
