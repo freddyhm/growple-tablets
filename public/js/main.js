@@ -17,7 +17,6 @@ function activateSleepTimer(){
     }
 
 
-
     sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
@@ -235,6 +234,8 @@ function home(){
         if(touch_try == 3){
 
             if(touch_count == 11){
+
+                /*
                 if(activate == 'ac'){
                     $("#loadPage").show();
                     endCycle(function(){
@@ -242,6 +243,7 @@ function home(){
                      //   window.location.href = URL + "home?logout"; 
                     });
                 }
+                */
 
                 if(activate == 'abc'){
                     $("#loadPage").show();
