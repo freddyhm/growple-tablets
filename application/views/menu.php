@@ -8,6 +8,43 @@ $(document).ready(function() {
 		});
 });
 </script>
+<?php if($venue == 'frontrow'){ ?>
+<style>
+.itemDescription {
+font-size: 19px;
+font-style: italic;
+width: 330px;
+height: 121px;
+position: absolute;
+margin: 165px 24px;
+opacity: 0.9;
+color: white;
+overflow-y: scroll;
+}
+.itemName {
+font-size: 26px;
+font-weight: bold;
+font-family: 'Helvetica';
+width: 278px;
+position: absolute;
+margin: 62px 29px;
+text-align: center;
+text-shadow: 0px 1px 5px black;
+color: white;
+}
+.itemPrice {
+color: #FFD200;
+font-size: 27px;
+font-weight: bold;
+height: 78px;
+margin: 297px 5px;
+position: absolute;
+text-align: center;
+text-shadow: 0 1px 5px black;
+width: 336px;
+}
+</style>
+<?php }?>
 <!-- modal content -->
 <div id="basic-modal-content">
 	<h3>Uh Oh! You forgot to add an item.</h3>
@@ -75,6 +112,9 @@ $(document).ready(function() {
 	<!-- Item Detail -->
 	<div class="itemDetailContainer"> 
 		<div id="itemInfoWrapper">
+			
+
+
 			<span class="itemName"></span>
 			<span class="itemKorean"></span>
 			<span class="itemDescription">

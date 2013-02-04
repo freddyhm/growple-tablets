@@ -375,7 +375,11 @@ width: 127px;
   margin: 180px 24px;
   opacity: 0.9;
   color:white;
+  z-index: 2;
 }
+
+
+
 
 #grabIt
 {

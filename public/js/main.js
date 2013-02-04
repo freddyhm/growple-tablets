@@ -724,6 +724,7 @@ function menu(menus, venue){
 
     // make cart and cart area go up and down - FHM
     function animateCartDown(){
+            $(".itemDescription").css("z-index", "0");
             $("#cart").animate({bottom: "-64"}, 1);
             $("#cartTabArea").css("top", "196px");
             $("#cartTabArea").css("height", "152px");
@@ -731,6 +732,7 @@ function menu(menus, venue){
     }
 
     function animateCartUp(){
+            $(".itemDescription").css("z-index", "2");
             $("#cart").animate({bottom: "128"}, 1);
             $("#cartTabArea").css("top", "0px");
             $("#cartTabArea").css("height", "341px");
