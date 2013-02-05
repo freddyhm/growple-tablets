@@ -772,18 +772,33 @@ function video(videos, venue){
     var previous_position = 0;
     var status = 'play';
     var vid_timer = "";
+    var inactive_timer = "";
+    var is_inactive = false;
     var curr_vid_id = "";
     var finished_watching = "no";
     var first_vid = true;
 
     startSleep();
+    startInactive();
+
+    // goes to home after 10 min of inactivity 
+    function startInactive(){
+        inactive_timer = clearTimeout(inactive_timer);
+        inactive_timer = setTimeout(function(){
+            is_inactive = true;
+        }, 600000);
+    }
             
     // analytics exit point when video ends - FHM
     $(currentVideo).bind('ended', function(event) {
         curr_vid_id = $(this).attr("id");
         logUserActivity("out", "finished_watching", curr_vid_id, function(){
              finished_watching = "yes";
-             showRandomVideo();
+             if(is_inactive == true){
+                $("body").load("home");
+             }else{
+                 showRandomVideo();    
+             }
         });
     });
 
@@ -812,6 +827,10 @@ function video(videos, venue){
     });
 
     $("#next").click(function(event) {
+        
+        // reset inactive timer
+        startInactive();
+        
         $(this).attr("src", URL  + "public/img/video/btn_next_pressed.png");
          setTimeout(function(){ 
             $("#next").attr("src", URL  + "public/img/video/btn_next.png");
@@ -827,6 +846,9 @@ function video(videos, venue){
 
     // check menu and video status, stop or play accordingly - FHM
     $(currentVideo).click(function(event) {
+
+        // reset inactive timer
+        startInactive();
 
         if(status == 'play' && $("#video_menu").css("display") == "none"){
                 currentVideo.pause();
