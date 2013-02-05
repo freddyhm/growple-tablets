@@ -1,3 +1,4 @@
+<?php require 'application/views/common/header.php' ?>
 <style>
 .login
 {
@@ -64,6 +65,49 @@ input[type=submit], input[type=text], input[type=password]
     font-size:28px;
 }
 </style>
+<script>
+
+ var appCache = window.applicationCache;
+
+// on checking for both refresh and loading, reset the app - FHM        
+    $(appCache).bind('checking', function(event) {
+        // kick-start analytics & clear sleep - FHM
+        sleep_timer = clearTimeout(sleep_timer);
+        $("#loadPage").show();
+    });
+
+    // when browser gets refreshed after cached - FHM
+    $(appCache).bind('noupdate', function(event) {
+        $("#load_pic").hide();
+    });
+
+    // when cache finishes - FHM
+    $(appCache).bind('cached', function(event) {
+        // first load 
+        $("#load_pic").hide();
+    });
+
+    $(appCache).bind('updateready', function(event) {
+        // load when manifest changes
+        $("#load_pic").hide();
+    });
+
+    $(document).ready(function($) {
+        $("#start_screen").click(function(event) {
+        $("#loadPage").hide();
+         });
+    });
+</script>
+<div id="loadPage">
+    <img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
+    <!-- START LOGO BUTTON -->
+    <div id ="main_logo">
+        <div id="loading">
+            <img id="load_pic" src="<?php echo URL . 'public/img/common/loading.gif'; ?>">
+        </div>  
+        <img id="start_screen" src="<?php echo URL . 'public/img/common/start_btn_logo.png'; ?>">
+    </div>
+</div>
 <div class="login_wrapper">       
     <?php
 
@@ -102,3 +146,4 @@ input[type=submit], input[type=text], input[type=password]
         <!-- <a class="login_link" href="index.php?register">Create new Account</a> -->
     </div>
 </div>
+<?php require 'application/views/common/footer.php' ?>

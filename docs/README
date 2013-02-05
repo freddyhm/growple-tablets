@@ -26,3 +26,18 @@ BOOSTS:
 #1.9 - Add numbers to cart items
 #1.10 - Style number + overlay
 #1.11 - Make ribbon more visible
+
+********************************************
+Growple! v.1.1.5 - Wednesday February 4, 2013
+********************************************
+
+BOOSTS:
+#1.1 - Add login screen (disabled due to cache problems)
+#1.2 - Create new DBs, connect to it based on login
+#1.3 - Add McGinnis items
+#1.4 - Change URL for pics after regrouping
+#1.5 - CSS fixes
+#1.6 - Fix cart pics for Mcg
+#1.7 - Update cache manifest 
+#1.8 - Pick new videos for frontrow
+#1.9 - Get cache manifest to update depending on url (disabled)

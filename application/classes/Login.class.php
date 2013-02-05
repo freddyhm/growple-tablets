@@ -34,7 +34,8 @@ class Login {
      * you know, when you do "$login = new Login();"
      */    
     public function __construct() {                     // (Database $db) says: the _construct method expects a parameter, but it has to be an object of the class "Database"
-        
+
+        Controller::switchDb('admin');
         $this->connection = ActiveRecord\ConnectionManager::get_connection("admin");
 
         $user_name = Session::get('user_name');
@@ -76,34 +77,17 @@ class Login {
         } else {
             
             $this->errors[] = "No database connection.";
-        }
-        
-        // cookie handling user name
-        if (isset($_COOKIE['user_name'])) {
-            $this->view_user_name = strip_tags($_COOKIE["user_name"]);
-        } else {
-            $this->view_user_name = "Username";
-        }
-        
-        // cookie handling avatar link
-        if (isset($_COOKIE['user_email'])) {
-            $this->avatar_url = "http://www.gravatar.com/avatar/" . md5(strtolower(trim($_COOKIE['user_email']))) . "?d=mm&s=125";
-        } else {
-            // override 
-            $this->avatar_url = "http://www.gravatar.com/avatar/" . md5("xxxxxx@xxxxxxxxxx.com") . "?d=mm&s=125";
-        }
-        
+        }        
     }    
     
 
     private function loginWithSessionData() {
-        
+
         $this->user_is_logged_in = true;
-        
     }
     
 
-    private function loginWithPostData() {
+    public function loginWithPostData() {
             
             $this->user_name = $_POST['user_name'];  
             $checklogin = User::find_by_name($this->user_name);
@@ -121,9 +105,7 @@ class Login {
                     Session::set('user_name', $result_row->name);
                     Session::set('user_logged_in', 1);
                     Session::set('entity', $result_row->venue_id);
-
-
-
+                    Session::set('first_time', 1);
 
                     $venue_name = "";
 
@@ -136,8 +118,7 @@ class Login {
                             break;
                     }
 
-                    Session::set('venue', $venue_name);
-                    
+                    Session::set('venue', $venue_name);                    
                     $this->user_is_logged_in = true;
                     return true;          
                     

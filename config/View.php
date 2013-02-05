@@ -20,7 +20,7 @@ class View {
         $lwr_viewname = strtolower($viewname);
         $viewname = is_dir("application/views/".$lwr_viewname) ? $lwr_viewname."/".$subviewname : $lwr_viewname; 
 
-        require 'application/views/common/header.php';
+        require 'application/views/common/header.php';    
         require 'application/views/' . $viewname . '.php';
         require 'application/views/common/footer.php';
     }   
