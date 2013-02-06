@@ -7,19 +7,34 @@ var user_basket = {};   // menu global vars - FHM
 var sleep_timer = "";   // sleep global vars - FHM
 var bask_item_id = 0; // basket global var - FHM
 var server_active = false;
+var nofade_timer = "";
 
 // kick-start sleep timer - FHM
 function activateSleepTimer(){
-    
+
     // check if a timer is already present, if yes than clear and init - FHM 
     if(sleep_timer != ""){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-
     sleep_timer = setTimeout(function() {sleep(); }, 120000);
 }
 
+// checks to see if no sleep video is playing after 3 min
+function resetNoFade(){
+    nofade_vid  = document.getElementById("noSleepVid");
+
+    if(nofade_timer != ""){
+        nofade_timer = clearInterval(nofade_timer);
+    }
+
+    nofade_timer = setInterval(function(){
+    if(nofade_vid.paused){
+        nofade_vid.play();
+        
+     }
+    }, 180000);    
+}
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
@@ -111,8 +126,6 @@ function startSleep(){
 // list of functions according to main pages - FHM
 function home(){
 
-    
-
     var appCache = window.applicationCache;
     var one_user = 0;
     var touch_try = 0;   // count for reset function - FHM
@@ -151,6 +164,7 @@ function home(){
         }
 
         startSleep();
+        resetNoFade();
         
         $(".playbook").ajaxError(function(){
             alert("Could not connect to server, please try again!");
@@ -264,7 +278,6 @@ function home(){
 }
 
 function menu(menus, venue){
-
     // counter for grabIt function - FHM
     var cart_status = "hidden";
     var touched_cart = false;
@@ -282,6 +295,7 @@ function menu(menus, venue){
     }
 
     startSleep();
+    resetNoFade();
 
     function confirm(message, callback) {
         $('#confirm').modal({
@@ -362,56 +376,56 @@ function menu(menus, venue){
 
         $(this).click(function(event) {
 
-                // get id of currently selected menu  FHM
-                var current_menu = $('.menuSelected').attr('id');
-                var current_id = '#' + current_menu;
+            // get id of currently selected menu  FHM
+            var current_menu = $('.menuSelected').attr('id');
+            var current_id = '#' + current_menu;
 
-                // deselect current menu and change header - FHM
-                $(current_id).removeClass('menuSelected');
-                $("> img", current_id).attr("src", URL + "public/img/menu/common/header_menu_notselected.png");
-                $(current_id).css("background-color", "");
-                
-                // select new menu and change header - FHM
-                $(this).addClass('menuSelected');
-                $("> img",this).attr("src", URL + "public/img/menu/common/header_menu_selected.png");
-                $(this).css("background-color", "rgba(0,0,0,0.8)");
+            // deselect current menu and change header - FHM
+            $(current_id).removeClass('menuSelected');
+            $("> img", current_id).attr("src", URL + "public/img/menu/common/header_menu_notselected.png");
+            $(current_id).css("background-color", "");
+            
+            // select new menu and change header - FHM
+            $(this).addClass('menuSelected');
+            $("> img",this).attr("src", URL + "public/img/menu/common/header_menu_selected.png");
+            $(this).css("background-color", "rgba(0,0,0,0.8)");
 
-                // get new menu_id and populate submenu - FHM
-                var new_id = $(this).attr('id').substring(4);
-                populateSubMenu(new_id);
+            // get new menu_id and populate submenu - FHM
+            var new_id = $(this).attr('id').substring(4);
+            populateSubMenu(new_id);
 
-                // select first item in category - FHM
-                $(".subMenuList tr td:first").trigger('click');
+            // select first item in category - FHM
+            $(".subMenuList tr td:first").trigger('click');
 
-                // move scroll bar to first element - FHM
-                $(".subMenu").animate({ scrollLeft: 0 }, "slow");
+            // move scroll bar to first element - FHM
+            $(".subMenu").animate({ scrollLeft: 0 }, "slow");
         });
     });
 
     function changePicture(pic_path){
 
-            var status = $("#bckgdImg2").css('display');
+        var status = $("#bckgdImg2").css('display');
 
-            if(status == 'none'){
+        if(status == 'none'){
 
-                    var index = $("#bckgdImg1").css('z-index');
-                    var new_index = index - 1;
+                var index = $("#bckgdImg1").css('z-index');
+                var new_index = index - 1;
 
-                    $("#bckgdImg2").css("z-index", new_index);
-                    $("#bckgdImg2").css('display', 'inline');
-                    $("#bckgdImg2").attr("src", pic_path);
-                    $("#bckgdImg1").fadeOut(100);
-            
-            }else{
+                $("#bckgdImg2").css("z-index", new_index);
+                $("#bckgdImg2").css('display', 'inline');
+                $("#bckgdImg2").attr("src", pic_path);
+                $("#bckgdImg1").fadeOut(100);
+        
+        }else{
 
-                    var index = $("#bckgdImg2").css('z-index');
-                    var new_index = index - 1;
+                var index = $("#bckgdImg2").css('z-index');
+                var new_index = index - 1;
 
-                    $("#bckgdImg1").css("z-index", new_index);
-                    $("#bckgdImg1").css('display', 'inline');
-                    $("#bckgdImg1").attr("src", pic_path);
-                    $("#bckgdImg2").fadeOut(100);
-            }       
+                $("#bckgdImg1").css("z-index", new_index);
+                $("#bckgdImg1").css('display', 'inline');
+                $("#bckgdImg1").attr("src", pic_path);
+                $("#bckgdImg2").fadeOut(100);
+        }       
     }
 
     function populateSubMenu(menu_num){
@@ -781,6 +795,9 @@ function video(videos, venue){
     startSleep();
     startInactive();
 
+    // clear no fade timer because pb can only play one vid at a time 
+    nofade_timer = clearInterval(nofade_timer);
+
     // goes to home after 10 min of inactivity 
     function startInactive(){
         inactive_timer = clearTimeout(inactive_timer);
@@ -910,7 +927,8 @@ function video(videos, venue){
 
 function game(){
 
-    startSleep();    
+    startSleep();
+    resetNoFade();    
 
     $("#gameHomeLink").click(function(){            
         $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
