@@ -546,6 +546,12 @@ function menu(menus, venue){
     // Show cart, add item, and close
     $("#grabIt").click(function(){
 
+        // tracking when press grab it button 
+        logUserActivity("in", "pressed_grab_it", "", 2, function(){
+            logUserActivity("out", "pressed_grab_it", "", 2, function(){
+            });
+        });
+
         var selected_item = $(".itemName").val();
         var selected_item_name = $(".itemName").html();
         var selected_item_pic = $(".itemName").attr("title"); // need to change this - getting item name through title - FHM
