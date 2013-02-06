@@ -54,13 +54,19 @@ function logUserActivity(status, action, item_id, test_id, callback){
 	var date = new Date().toString();
 
 
-
 	// get current step and activity key based on lengths - FHM
     current_step_key = old_path.steps.length == 0 ? 0: old_path.steps.length - 1;
     current_act_key = old_path.steps[current_step_key].activities.length;
+    // get last activity through the array's last key - FHM
+    var last_act_key = current_act_key - 1;
 
-	//need to figure out if the last activiy has finished- FHM
 	if(status == 'in'){
+
+		// checks if last activity ended, if not end it now 
+		if(current_act_key != 0 && new_path.steps[current_step_key].activities[last_act_key].end == ""){
+		   new_path.steps[current_step_key].activities[last_act_key].end = date;
+		}
+
 		// create new array with new key, keep 0 if first - FHM
 		new_path.steps[current_step_key].activities[current_act_key] = {"start" : "", "action" : "", "item_id" : "", "test_id": "", "end": ""}; 
 		new_path.steps[current_step_key].activities[current_act_key].start = date;
@@ -70,10 +76,7 @@ function logUserActivity(status, action, item_id, test_id, callback){
 
 	}else if(status == 'out'){
 
-		// get last activity through the array's last key - FHM
-		var last_act_key = current_act_key - 1;
-
-		// in case activity loses it's 'in' (when clicking really fast, in and out of module), we re-init the activity object - FHM
+		// in case activity loses it's 'in' (when clicking really fast, in and out of module), we re-init the activity object
 		// check if last activity has ended, if it has, init and close new object 
 		if(new_path.steps[current_step_key].activities == "" || new_path.steps[current_step_key].activities[last_act_key].end != ""){
 			new_path.steps[current_step_key].activities[current_act_key] = {"start" : "", "action" : "", "item_id" : "", "test_id": "", "end": ""}; 
@@ -86,6 +89,7 @@ function logUserActivity(status, action, item_id, test_id, callback){
 			last_act_key = current_act_key - 1;
 		};
 
+		// update last activity with out
 		new_path.steps[current_step_key].activities[last_act_key].action = action 
 		new_path.steps[current_step_key].activities[last_act_key].end = date;
 	}
