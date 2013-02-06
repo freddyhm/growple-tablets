@@ -617,10 +617,10 @@ function menu(menus, venue){
                 menu_name = 'burgers';
             }
 
-            item_num = "<div style='font-size:20px; bottom:164px' class='cartNum' id='cart" + id + "'>" + name + "</div>";  
+            item_num = "<div style='font-size:26px; bottom:164px' class='cartNum' id='cart" + id + "'>" + name + "</div>";  
         }
 
-        item_img =  "<img class='smallPicItem' width='200px' height='130px'  src='" + URL + "public/img/menu/" + venue + "/" + menu_name + "/" + menu_pic  + "'>";
+        item_img =  "<img class='smallPicItem' width='240px' height='170px'  src='" + URL + "public/img/menu/" + venue + "/" + menu_name + "/" + menu_pic  + "'>";
 
         del_img = "<img class ='cartDeleteItem' value='" + id + "' id='" + del_id + "' src='" + URL + "public/img/menu/common/cart/btn_delete.png'>";
        

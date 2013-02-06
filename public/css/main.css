@@ -524,8 +524,8 @@ opacity: 0.8;
 .cartDeleteItem
 {
   position: relative;
-  bottom: 145px;
-  left: 170px;
+  bottom: 185px;
+  left: 200px;
   opacity: 0.9;
   z-index: 99;
 }
