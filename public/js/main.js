@@ -734,13 +734,13 @@ function menu(menus, venue){
     });
 
     // area where cart is activated (cart shows/hides)
-    $("#cartTabArea").click(function(event) {
+    $("#cartRibbon").click(function(event) {
 
-            if(cart_status == "hidden"){
-                    animateCartDown();
-            }else if(cart_status == "showing"){
-                    animateCartUp();                        
-            }
+        if(cart_status == "hidden"){
+                animateCartDown();
+        }else if(cart_status == "showing"){
+                animateCartUp();                        
+        }
     });
 
     // make cart and cart area go up and down - FHM

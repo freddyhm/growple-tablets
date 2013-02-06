@@ -57,7 +57,6 @@ width: 336px;
 <img src=""  id="bckgdImg1"/>
 <img src=""  id="bckgdImg2"/>
 <div id="menuContent">
-	<div id="cartTabArea"></div>
 	<!-- Main Menu (Bottom) -->
 	<div id="mainBkgdMenu"></div>
 	<div id="cart">
