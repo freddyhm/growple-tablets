@@ -78,7 +78,7 @@ function startSleep(){
             $.jStorage.set("promo_item", JSON.stringify(promo_item));
 
                 logUserStep("in", 1, function(){
-                    logUserActivity("in", "clicked_promo_slide", item_id, function(){
+                    logUserActivity("in", "clicked_promo_slide", item_id, "", function(){
                     $("body").load(URL + "menu", function(){
                         $(function(){
                             $("#touch").hide();
@@ -352,7 +352,7 @@ function menu(menus, venue){
             var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
                 // save current basket - FHM
                 saveBasket(basket, function(){
-                   logUserActivity("out", action, last_item, function(){
+                   logUserActivity("out", action, last_item, "", function(){
                         // step exit point analytic - FHM
                         logUserStep("out", 1, function(){
                             $("body").load(URL + "home");
@@ -508,8 +508,8 @@ function menu(menus, venue){
 
                         // check for first item for analytics - FHM
                         var action = first_item == true ? "first" : "viewed_menu_item";
-                        logUserActivity("out", action, last_item, function(){
-                            logUserActivity("in", "viewing_menu_item", item_id, function(){
+                        logUserActivity("out", action, last_item, "", function(){
+                            logUserActivity("in", "viewing_menu_item", item_id, "", function(){
                                 first_item = false;
                                 // slide the selected item box AFTER analytics has finished (make sure there's no gaps) - FHM
                                 $('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
@@ -525,7 +525,7 @@ function menu(menus, venue){
                         });
                     }else{
                         // analytic entry (for end time, need to calculate with next point in db) - FHM
-                        logUserActivity("in", "viewing_menu_item", item_id, function(){
+                        logUserActivity("in", "viewing_menu_item", item_id, "", function(){
                                  // slide the selected item box AFTER analytics has finished (make sure there's no gaps) - FHM
                             $('#selectedItem').animate({ left: item_pos.left, width: box_size},500, function(){
                                 $('.itemName').html(menus[menu_id].items[item_id].name.toUpperCase()).attr("value", item_id).attr("title", item_pic);
@@ -724,7 +724,7 @@ function menu(menus, venue){
                 }   
                 // check for first item for analytics - FHM
                 var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
-                logUserActivity("out", action, last_item, function(){
+                logUserActivity("out", action, last_item, "", function(){
                     logUserStep("out", 1, function(){
                         $("body").load(URL + "home");
                     });
@@ -735,6 +735,12 @@ function menu(menus, venue){
 
     // area where cart is activated (cart shows/hides)
     $("#cartRibbon").click(function(event) {
+
+        // tracking ribbon change 
+        logUserActivity("in", "touched_ribbon","",1, function(){
+         logUserActivity("out", "touched_ribbon","",1, function(){
+         });
+        });
 
         if(cart_status == "hidden"){
                 animateCartDown();
@@ -809,7 +815,7 @@ function video(videos, venue){
     // analytics exit point when video ends - FHM
     $(currentVideo).bind('ended', function(event) {
         curr_vid_id = $(this).attr("id");
-        logUserActivity("out", "finished_watching", curr_vid_id, function(){
+        logUserActivity("out", "finished_watching", curr_vid_id, "", function(){
              finished_watching = "yes";
              if(is_inactive == true){
                 $("body").load("home");
@@ -835,8 +841,8 @@ function video(videos, venue){
                 // check if first video for analytics - FHM
                 var action = first_vid == true ? "first" : "exit_while_watching_video";
                  // step exit point analytic - FHM
-                logUserActivity("out", action, curr_vid_id, function(){
-                    logUserStep("out", 2, function(){
+                logUserActivity("out", action, curr_vid_id, "", function(){
+                    logUserStep("out", 2,  function(){
                         $("body").load(URL + "home");
                     });
                 });
@@ -855,7 +861,7 @@ function video(videos, venue){
 
             // check if first video for analytic - FHM
             var action = first_vid == true ? "first" :  "skipped_video";
-            logUserActivity("out", action, curr_vid_id, function(){
+            logUserActivity("out", action, curr_vid_id, "", function(){
                 showRandomVideo(false);
              });
          }, 300);
@@ -914,7 +920,7 @@ function video(videos, venue){
                 previous_position = 0;
         }
             
-        logUserActivity("in", "started_watching_video", videos[random_num].id, function(){
+        logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
             $(currentVideo).attr("src", URL + 'public/vid/' + venue + '/' + videos[random_num].path);
             $(currentVideo).attr("id", videos[random_num].id);
             $("#video_name").html( videos[random_num].name);

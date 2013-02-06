@@ -2,5 +2,5 @@
 
 class Activity extends ActiveRecord\Model
 {
-	static $belongs_to = array(array('step'));
+	static $belongs_to = array(array('step'), array('test'));
 }
