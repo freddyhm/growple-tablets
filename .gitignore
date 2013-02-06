@@ -1,4 +1,4 @@
 dandelion/
-config/development/paths.php
-config/development/settings.js
+config/development/
+config/development/
 application/views/common/header.php
