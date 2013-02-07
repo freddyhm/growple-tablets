@@ -17,7 +17,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 120000);
+    sleep_timer = setTimeout(function() {sleep(); }, 10000);
 }
 
 // checks to see if no sleep video is playing after 3 min
@@ -72,20 +72,22 @@ function startSleep(){
 
             var item_id = event.target.id.split("#")[0];
             var item_name = event.target.id.split("#")[1];
-            var item_menu = event.target.id.split("#")[2];
+            var item_menu_id = event.target.id.split("#")[2];
+            var item_menu_name = event.target.id.split("#")[3];
+            var item_pic = event.target.id.split("#")[4];
 
-            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
+            var promo_item = { "id": item_id, "name": item_name, "menu_id": item_menu_id, "menu_name": item_menu_name, "pic" : item_pic};
             $.jStorage.set("promo_item", JSON.stringify(promo_item));
 
-                logUserStep("in", 1, function(){
-                    logUserActivity("in", "clicked_promo_slide", item_id, "", function(){
+             //   logUserStep("in", 1, function(){
+               //     logUserActivity("in", "clicked_promo_slide", item_id, "", function(){
                     $("body").load(URL + "menu", function(){
                         $(function(){
                             $("#touch").hide();
                             $("#hiddenPromo").trigger("click");
                         });
-                    });
-                });
+                 //   });
+                //});
             });
         }else{
 
@@ -99,28 +101,6 @@ function startSleep(){
             activateSleepTimer(); 
         }
     });  
-
-   /*
-    $("#sleepSlideshow").click(function(event) {
-        // get class of image clicked and redirect to menu if promo slide - FHM
-        var is_promo = event.target.className == "promoSlide" ? true : false;
-        if(is_promo == true){
-
-            var item_id = event.target.id.split("#")[0];
-            var item_name = event.target.id.split("#")[1];
-            var item_menu = event.target.id.split("#")[2];
-
-            var promo_item = { "id": item_id, "name": item_name, "menu": item_menu};
-            $.jStorage.set("promo_item", JSON.stringify(promo_item));
-            $("#hiddenPromo").trigger("click");
-        }else{
-            activateSleepTimer(); 
-        }
-
-        $("#touch").hide();
-        $(this).hide();
-    });
-  */
 }
 
 // list of functions according to main pages - FHM
@@ -320,15 +300,21 @@ function menu(menus, venue){
         });
     }
 
-    $("#hiddenPromo").click(function(event) {
-        var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
-        addItem(promo_item.id, promo_item.name, promo_item.menu, 'yes');
-        animateCartDown();
-        var last_item = $("#cartItems tr td:last").position();
 
+    $("#hiddenPromo").click(function(event) {
+        
+        var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
+        var last_item = $("#cartItems tr td:last").position();
+        var menu_id = "#menu" + promo_item.menu_id;
+        var item_id = "#item" + promo_item.id + "1";
+
+        $(menu_id).trigger("click");
+        $(item_id).trigger("click");
+        $("#selectedItem").hide();
+            
         // position on first load when there is no last item - FHM
         if(last_item != undefined){
-            $("#cartArea").animate({ scrollLeft: last_item.left}, "slow");    
+            $("#cartArea").animate({ scrollLeft: last_item.left}, "slow"); 
         }
 
         $.jStorage.deleteKey("promo_item");
@@ -364,11 +350,9 @@ function menu(menus, venue){
 
     function fillCart(basket){
 
-        //function addItem(id, name, menu_name, push){
+        //function addItem(id, name, menu_name, menu_pic, push){
         basket.forEach(function(entry){
-
-
-                addItem(entry[0], entry[1], entry[2], entry[3], "no");
+            addItem(entry[0], entry[1], entry[2], entry[3], "no");
         });
     }
 
@@ -461,8 +445,6 @@ function menu(menus, venue){
                     var item_id = $(this).attr("value");
                     var menu_id = $(".menuSelected").attr("id").substring(4);
                     
-
-
                     if(venue == 'owl'){
                         // set proper image folder depending on menu - FHM
                         if(menu_id == 10){
@@ -812,6 +794,8 @@ function video(videos, venue){
 
     // goes to home after 10 min of inactivity 
     function startInactive(){
+        // reset inactive variable
+        is_inactive = false;
         inactive_timer = clearTimeout(inactive_timer);
         inactive_timer = setTimeout(function(){
             is_inactive = true;

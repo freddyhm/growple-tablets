@@ -53,8 +53,8 @@ if(isset($_REQUEST['url'])){
 	Session::init();
 }
 
-Session::set('entity', 2);
-Session::set('venue', 'frontrow');  
+Session::set('entity', 1);
+Session::set('venue', 'owl');  
 
 // route to loading screen 
 //$login = new Login(); 

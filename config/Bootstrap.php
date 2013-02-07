@@ -47,7 +47,7 @@ class Bootstrap
 	}
 
 	private function setDb(){
-		$entity = 2;
+		$entity = 1;
 		Controller::switchDb($entity);
 	} 
 

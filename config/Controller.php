@@ -33,6 +33,7 @@ class Controller {
 		ActiveRecord\ConnectionManager::drop_connection();
 
 		if($entity == 1){
+
 			foreach (glob("config/" . ENVIRONMENT . "/owl/*.php") as $filename)
 			{
 			    require $filename;

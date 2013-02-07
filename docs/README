@@ -28,7 +28,7 @@ BOOSTS:
 #1.11 - Make ribbon more visible
 
 ********************************************
-Growple! v1.1.5 - Wednesday February 4, 2013
+Growple! v1.1.5 - Monday February 4, 2013
 ********************************************
 
 BOOSTS:
@@ -41,3 +41,20 @@ BOOSTS:
 #1.7 - Update cache manifest 
 #1.8 - Pick new videos for frontrow
 #1.9 - Get cache manifest to update depending on url (disabled)
+
+
+********************************************
+Growple! v1.1.6 - Wednesday February 6, 2013
+********************************************
+
+BOOSTS:
+
+#1 - Go to home when Video becomes inactive after 10 min, resets when user touches next or pauses video
+#3 - Change "touch this" image, more intuitive
+#4 - Fix cart images, bigger and added name
+#5 - Track changes with analytics
+
+BUGS:
+#1 - Added another timer to check if nosleep video is still playing after 3 min.
+
+
