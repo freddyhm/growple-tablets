@@ -17,7 +17,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 5000);
+    sleep_timer = setTimeout(function() {sleep(); }, 2000);
 }
 
 // checks to see if no sleep video is playing after 3 min
@@ -130,9 +130,7 @@ function home(){
     $(appCache).bind('checking', function(event) {
         // kick-start analytics & clear sleep - FHM
         sleep_timer = clearTimeout(sleep_timer);
-        startAnalytics(function(){
-            $("#loadPage").show();
-        });  
+        $("#loadPage").show();
     });
 
     // when browser gets refreshed after cached - FHM
