@@ -349,11 +349,6 @@ function menu(menus, venue){
 
              // activity exit point analytic  - FHM
             var last_item = $("#selectedItem").attr("value");
-
-            if(last_item == undefined){
-                last_item = 2;
-            }
-
             // check for first item for analytics - FHM
             var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
                 // save current basket - FHM
@@ -507,7 +502,6 @@ function menu(menus, venue){
                     var last_item = $("#selectedItem").attr("value");
 
                     if(last_item != undefined){
-
                         // check for first item for analytics - FHM
                         var action = first_item == true ? "first" : "viewed_menu_item";
                         logUserActivity("out", action, last_item, "", function(){
@@ -551,6 +545,7 @@ function menu(menus, venue){
         // tracking when press grab it button 
         logUserActivity("in", "pressed_grab_it", "", 2, function(){
             logUserActivity("out", "pressed_grab_it", "", 2, function(){
+                first_item = false;
             });
         });
 
@@ -739,10 +734,6 @@ function menu(menus, venue){
             addToCart(basket, function(){
                 // activity exit point analytic  - FHM
                 var last_item = $("#selectedItem").attr("value");
-
-                if(last_item == undefined){
-                    last_item = 2;
-                }   
                 // check for first item for analytics - FHM
                 var action = first_item == true ? "first" : "exit_while_viewing_menu_item";
                 logUserActivity("out", action, last_item, "", function(){
@@ -758,10 +749,24 @@ function menu(menus, venue){
     $("#cartRibbon").click(function(event) {
 
         // tracking ribbon change 
-        logUserActivity("in", "touched_ribbon","",1, function(){
-         logUserActivity("out", "touched_ribbon","",1, function(){
-         });
-        });
+
+        if(first_item == true){
+            logUserActivity("out", "first", 2, "", function(){
+                 logUserActivity("in", "touched_ribbon","",1, function(){
+                    logUserActivity("out", "touched_ribbon","",1, function(){
+                        first_item = false;
+                    });
+                });
+            });
+        }else{
+            logUserActivity("in", "touched_ribbon","",1, function(){
+             logUserActivity("out", "touched_ribbon","",1, function(){
+                first_item = false;
+             });
+            });
+        }
+
+        
 
         if(cart_status == "hidden"){
                 animateCartDown();
