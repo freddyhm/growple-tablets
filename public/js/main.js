@@ -582,13 +582,13 @@ function menu(menus, venue){
         var promo_item = $.parseJSON($.jStorage.get("promo_item"));              
         var promo_id = "";
 
+        // check if our promo item is set
         if(promo_item != null){
-
+            // delete promo when done setting 
             if(id == promo_item.id){
                 promo_id = promo_item.promo_id;
+                $.jStorage.deleteKey("promo_item");
             }
-            
-            $.jStorage.deleteKey("promo_item");
         }
 
         if(push == 'yes'){
