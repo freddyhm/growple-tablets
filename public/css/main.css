@@ -573,9 +573,180 @@ left: 425px;
 
 /* END - MENU */
 
-/* START - VIDEO */
+/* START - LIST MENU */
 
-/* END - VIDEO */
+#listBkgdMenu
+{
+  background: #ffffff 
+  background-size: auto;
+  -moz-box-shadow: 10px 0px 200px 0px #000000;
+  -webkit-box-shadow: 10px 0px 200px 0px #000000;
+  -o-box-shadow: 10px 0px 200px 0px #000000;
+  box-shadow: 10px 0px 200px 0px #000000;
+  border-radius: 0px;
+  margin: 0px;
+  border-top: none;
+  border-right: 10px solid #84a83b;
+  border-bottom: none;
+  border-left: none;
+  width: 520px;
+  height: 600px;
+  float:left;
+}
+
+table.gridtable {
+  font-family: verdana,arial,sans-serif;
+  font-size:11px;
+  color:#333333;
+  border-width: 1px;
+  border-color: #666666;
+  border-collapse: collapse;
+  width:520px;
+  opacity: 0.9;
+}
+table.gridtable th {
+  border-width: 1px;
+  padding: 8px;
+  background-color: black;
+  opacity: 0.7;
+  -moz-box-shadow: 0px 1px 1px 0px #000000;
+  -webkit-box-shadow: 0px 1px 1px 0px #000000;
+  -o-box-shadow: 0px 1px 1px 0px #000000;
+  box-shadow: 0px 1px 1px 0px #000000;
+  color: white;
+  font-size: 22px;
+  height:30px;
+  width:155px;
+  font-weight: lighter;
+}
+table.gridtable td {
+  border-width: 1px;
+  padding: 8px;
+  height:155px;
+  width:155px;
+}
+
+.gridName_selected
+{
+  position: relative;
+text-align: center;
+color: white;
+background-color: #0076a3;
+opacity: 0.9;
+height: 70px;
+width: 150px;
+font-weight: lighter;
+}
+
+
+.gridName_notselected
+{
+  position: relative;
+text-align: center;
+color: white;
+background-color: black;
+opacity: 0.8;
+height: 70px;
+width: 150px;
+font-weight: lighter;
+}
+
+.gridPrice
+{
+  height: 20px;
+width: 150px;
+font-weight: bolder;
+position: relative;
+text-align: center;
+margin-top: -95px;
+}
+#listMenuContent
+{
+  position: absolute;
+  width:520px;
+  height:600px;
+  z-index:1;
+  top:0px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  background: url('../img/common/start_bg1.jpg');
+}
+
+#listInfoContent
+{
+  width: 494px;
+  height:600px;
+  float:right;
+  background: rgba(37, 38, 41, 0);
+  background-image: -moz-linear-gradient(270deg, rgba(37, 38, 41, 0) 26%, #000000 100%), url('../img/menu/common/listmenuBkgd_info.png');
+  background-image: -webkit-linear-gradient(270deg, rgba(37, 38, 41, 0) 26%, #000000 100%), url('../img/menu/common/listmenuBkgd_info.png');
+  background-image: -o-linear-gradient(270deg, rgba(37, 38, 41, 0) 26%, #000000 100%), url('../img/menu/common/listmenuBkgd_info.png');
+  background-image: linear-gradient(180deg, rgba(37, 38, 41, 0) 26%, #000000 100%), url('../img/menu/common/listmenuBkgd_info.png');
+  background-repeat: repeat;
+}
+
+.itemName_list
+{
+  font-size: 30px;
+font-weight: bold;
+font-family: 'Helvetica';
+width: 400px;
+position: absolute;
+margin: 100px 47px;
+text-align: center;
+text-shadow: 0px 1px 5px black;
+color: white;
+}
+#itemPicture_list
+{
+  width:400px;
+  height:175px;
+  background-color: white;
+  position: relative;
+  top: 180px;
+left: 52px;
+background: url('../img/menu/common/example.png') no-repeat;
+}
+.itemDescription_list
+{
+width: 400px;
+height: 150px;
+font-size: 18px;
+font-style: italic;
+position: absolute;
+opacity: 0.9;
+color: white;
+z-index: 2;
+overflow-y: scroll;
+font-weight: lighter;
+top: 360px;
+left: 580px;
+}
+
+.itemPrice_list
+{
+   color: #FFD200;
+font-size: 28px;
+font-weight: bold;
+height: 55px;
+position: absolute;
+text-align: center;
+text-shadow: 0 1px 5px black;
+width: 150px;
+top: 530px;
+left: 590px;
+}
+
+#grabIt_list
+{
+  position: relative;
+  z-index:1;
+  top: 330px;
+left: 235px;
+}
+
+
+/* END - LIST MENU */
 
 /* START - ERROR */
 #updatemsg
