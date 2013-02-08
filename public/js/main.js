@@ -542,12 +542,24 @@ function menu(menus, venue){
     // Show cart, add item, and close
     $("#grabIt").click(function(){
 
-        // tracking when press grab it button 
-        logUserActivity("in", "pressed_grab_it", "", 2, function(){
-            logUserActivity("out", "pressed_grab_it", "", 2, function(){
-                first_item = false;
+        // tracking grab it press, finishing first activity if still true
+        if(first_item == true){
+            var current_item_id = $("#selectedItem").attr("value");
+            logUserActivity("out", "first", current_item_id, "", function(){
+                logUserActivity("in", "pressed_grab_it", "", 2, function(){
+                    logUserActivity("out", "pressed_grab_it", "", 2, function(){
+                        first_item = false;
+                    });
+                });
             });
-        });
+        }else{
+             // tracking when press grab it button 
+            logUserActivity("in", "pressed_grab_it", "", 2, function(){
+                logUserActivity("out", "pressed_grab_it", "", 2, function(){
+                    first_item = false;
+                });
+            });
+        }
 
         var selected_item = $(".itemName").val();
         var selected_item_name = $(".itemName").html();
@@ -748,10 +760,12 @@ function menu(menus, venue){
     // area where cart is activated (cart shows/hides)
     $("#cartRibbon").click(function(event) {
 
-        // tracking ribbon change 
-
+        // tracking ribbon change, finishing first activity if still true
         if(first_item == true){
-            logUserActivity("out", "first", 2, "", function(){
+ 
+            var current_item_id = $("#selectedItem").attr("value");
+
+            logUserActivity("out", "first", current_item_id, "", function(){
                  logUserActivity("in", "touched_ribbon","",1, function(){
                     logUserActivity("out", "touched_ribbon","",1, function(){
                         first_item = false;
@@ -765,8 +779,6 @@ function menu(menus, venue){
              });
             });
         }
-
-        
 
         if(cart_status == "hidden"){
                 animateCartDown();
