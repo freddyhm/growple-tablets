@@ -17,7 +17,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 10000);
+    sleep_timer = setTimeout(function() {sleep(); }, 5000);
 }
 
 // checks to see if no sleep video is playing after 3 min
@@ -49,6 +49,19 @@ function sleep(){
    $("#sleepSlideshow").show();
 }
 
+function exitSleepSlideshow(){
+
+    // hide the slideshow - FHM
+    $("#sleepSlideshow").hide();
+
+    // remove slide control class (stop the slideshow) - FHM
+    var cnt = $(".slides_control").contents();
+    $(".slides_control").replaceWith(cnt);
+
+    activateSleepTimer(); 
+}
+
+
 //init binding events for sleep functions - FHM
 function startSleep(){
 
@@ -75,33 +88,36 @@ function startSleep(){
             var item_menu_id = event.target.id.split("#")[2];
             var item_menu_name = event.target.id.split("#")[3];
             var item_pic = event.target.id.split("#")[4];
+            var item_promo_id = event.target.id.split("#")[5];
 
-            var promo_item = { "id": item_id, "name": item_name, "menu_id": item_menu_id, "menu_name": item_menu_name, "pic" : item_pic};
+            var promo_item = { "id": item_id, "name": item_name, "menu_id": item_menu_id, "menu_name": item_menu_name, "pic" : item_pic, "promo_id" : item_promo_id};
             $.jStorage.set("promo_item", JSON.stringify(promo_item));
 
-             //   logUserStep("in", 1, function(){
-               //     logUserActivity("in", "clicked_promo_slide", item_id, "", function(){
-                    $("body").load(URL + "menu", function(){
-                        $(function(){
-                            $("#touch").hide();
-                            $("#hiddenPromo").trigger("click");
+                logUserStep("in", 1, function(){
+                    logUserActivity("in", "clicked_promo_slide", item_id, "", function(){
+
+                    var in_menu = $(".mainMenu").html();
+                    if(in_menu == undefined){
+                        $("body").load(URL + "menu", function(){
+                            $(function(){
+                                $("#touch").hide();
+                                $("#hiddenPromo").trigger("click");
+                            });
                         });
-                 //   });
-                //});
-            });
+                    }else{
+                        $("#hiddenPromo").trigger("click");
+                        exitSleepSlideshow();
+                    }  
+                        
+                    });
+                });
+            
         }else{
-
-            // hide the slideshow - FHM
-            $(this).hide();
-
-            // remove slide control class (stop the slideshow) - FHM
-            var cnt = $(".slides_control").contents();
-            $(".slides_control").replaceWith(cnt);
-
-            activateSleepTimer(); 
+          exitSleepSlideshow();
         }
     });  
 }
+
 
 // list of functions according to main pages - FHM
 function home(){
@@ -300,24 +316,28 @@ function menu(menus, venue){
         });
     }
 
-
     $("#hiddenPromo").click(function(event) {
-        
+
         var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
+        
         var last_item = $("#cartItems tr td:last").position();
         var menu_id = "#menu" + promo_item.menu_id;
         var item_id = "#item" + promo_item.id + "1";
 
         $(menu_id).trigger("click");
         $(item_id).trigger("click");
-        $("#selectedItem").hide();
-            
+
+        var current_item_pos;
+
+        setTimeout(function(){ 
+            current_item_pos  = $("#selectedItem").css("left");
+            $(".subMenu").animate({ scrollLeft: current_item_pos}, "slow");
+        }, 1300)
+
         // position on first load when there is no last item - FHM
         if(last_item != undefined){
             $("#cartArea").animate({ scrollLeft: last_item.left}, "slow"); 
         }
-
-        $.jStorage.deleteKey("promo_item");
     });
 
     $("#menuHome").click(function(){
@@ -391,15 +411,14 @@ function menu(menus, venue){
         var status = $("#bckgdImg2").css('display');
 
         if(status == 'none'){
-
                 var index = $("#bckgdImg1").css('z-index');
                 var new_index = index - 1;
 
                 $("#bckgdImg2").css("z-index", new_index);
                 $("#bckgdImg2").css('display', 'inline');
-                $("#bckgdImg2").attr("src", pic_path);
-                $("#bckgdImg1").fadeOut(100);
-        
+                $("#bckgdImg2").attr("src", pic_path, function(){
+                    $("#bckgdImg1").fadeOut(100);
+                });
         }else{
 
                 var index = $("#bckgdImg2").css('z-index');
@@ -407,8 +426,9 @@ function menu(menus, venue){
 
                 $("#bckgdImg1").css("z-index", new_index);
                 $("#bckgdImg1").css('display', 'inline');
-                $("#bckgdImg1").attr("src", pic_path);
-                $("#bckgdImg2").fadeOut(100);
+                $("#bckgdImg1").attr("src", pic_path, function(){
+                    $("#bckgdImg2").fadeOut(100);    
+                });
         }       
     }
 
@@ -559,6 +579,18 @@ function menu(menus, venue){
     // inserts item into a user's cart - FHM
     function addItem(id, name, menu_name, menu_pic, push){
 
+        var promo_item = $.parseJSON($.jStorage.get("promo_item"));              
+        var promo_id = "";
+
+        if(promo_item != null){
+
+            if(id == promo_item.id){
+                promo_id = promo_item.promo_id;
+            }
+            
+            $.jStorage.deleteKey("promo_item");
+        }
+
         if(push == 'yes'){
             if(id < 10){
                 id = "0"+ id;
@@ -570,6 +602,7 @@ function menu(menus, venue){
         item_desc[1] = name;
         item_desc[2] = menu_name;
         item_desc[3] = menu_pic;
+        item_desc[4] = promo_id;
 
         basket.push(item_desc);
 

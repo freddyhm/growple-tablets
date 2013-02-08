@@ -54,6 +54,7 @@ class Mother extends Controller {
 				$cart_item = new CartItem();
 				$cart_item->cart_id = $new_cart->id;
 				$cart_item->item_id = intval($item[0]);
+				$cart_item->promo_id = intval($item[4]);
 				$failure = $cart_item->save() ? $failure : 'true';
 				}
 			}
