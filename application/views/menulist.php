@@ -1,3 +1,4 @@
+
 <!-- modal content -->
 <div id="basic-modal-content">
 	<h3>Uh Oh! You forgot to add an item.</h3>
@@ -10,7 +11,27 @@
 <img src=""  id="bckgdImg1"/>
 <img src=""  id="bckgdImg2"/>
 <div id="menuContent">
+		<div id="cart">
+		<div id="cartArea">
+		<table id="cartItems">
+			<tr></tr>
+		</table>
+		</div>
+		<img id="cartAction" src="<?php echo URL .'public/img/menu/common/cart/btn_cart_ready.png'; ?>">
+		<img id="cartRibbon" src="<?php echo URL .'public/img/menu/common/cart/ribbon.png'; ?>">
+		<!--<img id="cartList" src="<?php //echo URL .'public/img/menu/common/cart/listview.png'; ?>">-->
+		<div id="waitForServer" class="serverActive">
+			<div id="waitForServerBckgd" class ="serverActive"></div>
+			<img id="LoadingWaiter"  class ="serverActive" src="<?php echo URL .'public/img/menu/common/cart/loading_waiter.gif'; ?>">
+			<img id="waitForServerSign"  class ="serverActive" src="<?php echo URL .'public/img/menu/common/cart/btn_wait.png'; ?>">
+		</div>
+	</div>
+
+
+
 	<!-- Left Grid Menu -->
+
+
 	<div id="listBkgdMenu"></div>
 
 	<div id="listMenuContent">
