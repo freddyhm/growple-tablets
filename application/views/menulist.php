@@ -11,7 +11,7 @@
 <img src=""  id="bckgdImg1"/>
 <img src=""  id="bckgdImg2"/>
 <div id="menuContent">
-		<div id="cart">
+	<div id="cart">
 		<div id="cartArea">
 		<table id="cartItems">
 			<tr></tr>
@@ -26,12 +26,7 @@
 			<img id="waitForServerSign"  class ="serverActive" src="<?php echo URL .'public/img/menu/common/cart/btn_wait.png'; ?>">
 		</div>
 	</div>
-
-
-
 	<!-- Left Grid Menu -->
-
-
 	<div id="listBkgdMenu"></div>
 
 	<div id="listMenuContent">
