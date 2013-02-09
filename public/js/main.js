@@ -83,6 +83,8 @@ function startSleep(){
         var is_promo = event.target.className == "promoSlide" ? true : false;
         if(is_promo == true){
 
+           // alert(event.target.id);
+
             var item_id = event.target.id.split("#")[0];
             var item_name = event.target.id.split("#")[1];
             var item_menu_id = event.target.id.split("#")[2];
@@ -318,23 +320,25 @@ function menu(menus, venue){
 
         var promo_item  = $.parseJSON($.jStorage.get("promo_item"));              
         
-        var last_item = $("#cartItems tr td:last").position();
-        var menu_id = "#menu" + promo_item.menu_id;
-        var item_id = "#item" + promo_item.id + "1";
+        if(promo_item){
+            var last_item = $("#cartItems tr td:last").position();
+            var menu_id = "#menu" + promo_item.menu_id;
+            var item_id = "#item" + promo_item.id + "1";
 
-        $(menu_id).trigger("click");
-        $(item_id).trigger("click");
+            $(menu_id).trigger("click");
+            $(item_id).trigger("click");
 
-        var current_item_pos;
+            var current_item_pos;
 
-        setTimeout(function(){ 
-            current_item_pos  = $("#selectedItem").css("left");
-            $(".subMenu").animate({ scrollLeft: current_item_pos}, "slow");
-        }, 1300)
+            setTimeout(function(){ 
+                current_item_pos  = $("#selectedItem").css("left");
+                $(".subMenu").animate({ scrollLeft: current_item_pos}, "slow");
+            }, 1300)
 
-        // position on first load when there is no last item - FHM
-        if(last_item != undefined){
-            $("#cartArea").animate({ scrollLeft: last_item.left}, "slow"); 
+            // position on first load when there is no last item - FHM
+            if(last_item != undefined){
+                $("#cartArea").animate({ scrollLeft: last_item.left}, "slow"); 
+            }
         }
     });
 
