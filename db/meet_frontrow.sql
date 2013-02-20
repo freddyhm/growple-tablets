@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2013 at 01:54 AM
+-- Generation Time: Feb 19, 2013 at 08:16 PM
 -- Server version: 5.5.9
 -- PHP Version: 5.3.6
 
@@ -32,863 +32,31 @@ CREATE TABLE `activities` (
   `end` datetime DEFAULT NULL,
   `step_id` int(11) NOT NULL,
   `item_id` int(11) DEFAULT NULL,
+  `test_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `step_id` (`step_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=849 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `activities`
 --
 
-INSERT INTO `activities` VALUES(1, 'clicked_promo_slide', '2013-01-23 22:07:32', '1969-12-31 19:00:00', 1, 1);
-INSERT INTO `activities` VALUES(2, 'viewing_menu_item', '2013-01-23 22:07:32', '1969-12-31 19:00:00', 2, 2);
-INSERT INTO `activities` VALUES(3, 'clicked_promo_slide', '2013-01-23 22:10:17', '1969-12-31 19:00:00', 3, 1);
-INSERT INTO `activities` VALUES(4, 'viewing_menu_item', '2013-01-23 22:10:17', '1969-12-31 19:00:00', 3, 2);
-INSERT INTO `activities` VALUES(5, 'clicked_promo_slide', '2013-01-23 22:10:20', '1969-12-31 19:00:00', 4, 1);
-INSERT INTO `activities` VALUES(6, 'viewing_menu_item', '2013-01-23 22:10:20', '1969-12-31 19:00:00', 4, 2);
-INSERT INTO `activities` VALUES(7, 'clicked_promo_slide', '2013-01-23 22:10:28', '1969-12-31 19:00:00', 5, 21);
-INSERT INTO `activities` VALUES(8, 'viewing_menu_item', '2013-01-23 22:10:28', '1969-12-31 19:00:00', 5, 2);
-INSERT INTO `activities` VALUES(9, 'clicked_promo_slide', '2013-01-23 22:10:31', '1969-12-31 19:00:00', 6, 1);
-INSERT INTO `activities` VALUES(10, 'viewing_menu_item', '2013-01-23 22:10:31', '1969-12-31 19:00:00', 6, 2);
-INSERT INTO `activities` VALUES(11, 'clicked_promo_slide', '2013-01-23 22:10:33', '1969-12-31 19:00:00', 7, 1);
-INSERT INTO `activities` VALUES(12, 'first', '2013-01-23 22:10:34', '2013-01-23 22:10:34', 7, 2);
-INSERT INTO `activities` VALUES(13, 'viewing_menu_item', '2013-01-23 22:10:34', '1969-12-31 19:00:00', 7, 3);
-INSERT INTO `activities` VALUES(14, 'clicked_promo_slide', '2013-01-23 22:10:38', '1969-12-31 19:00:00', 8, 1);
-INSERT INTO `activities` VALUES(15, 'viewing_menu_item', '2013-01-23 22:10:38', '1969-12-31 19:00:00', 8, 2);
-INSERT INTO `activities` VALUES(16, 'clicked_promo_slide', '2013-01-23 22:10:47', '1969-12-31 19:00:00', 9, 21);
-INSERT INTO `activities` VALUES(17, 'first', '2013-01-23 22:10:47', '2013-01-23 22:10:49', 9, 2);
-INSERT INTO `activities` VALUES(18, 'clicked_promo_slide', '2013-01-23 22:10:52', '1969-12-31 19:00:00', 10, 1);
-INSERT INTO `activities` VALUES(19, 'viewing_menu_item', '2013-01-23 22:10:52', '1969-12-31 19:00:00', 10, 2);
-INSERT INTO `activities` VALUES(20, 'clicked_promo_slide', '2013-01-23 22:24:37', '1969-12-31 19:00:00', 11, 1);
-INSERT INTO `activities` VALUES(21, 'viewing_menu_item', '2013-01-23 22:24:37', '1969-12-31 19:00:00', 11, 2);
-INSERT INTO `activities` VALUES(22, 'clicked_promo_slide', '2013-01-23 22:24:42', '1969-12-31 19:00:00', 12, 1);
-INSERT INTO `activities` VALUES(23, 'viewing_menu_item', '2013-01-23 22:24:42', '1969-12-31 19:00:00', 12, 2);
-INSERT INTO `activities` VALUES(24, 'clicked_promo_slide', '2013-01-23 22:24:50', '1969-12-31 19:00:00', 13, 21);
-INSERT INTO `activities` VALUES(25, 'viewing_menu_item', '2013-01-23 22:24:50', '1969-12-31 19:00:00', 13, 2);
-INSERT INTO `activities` VALUES(26, 'clicked_promo_slide', '2013-01-23 22:24:55', '1969-12-31 19:00:00', 14, 1);
-INSERT INTO `activities` VALUES(27, 'viewing_menu_item', '2013-01-23 22:24:55', '1969-12-31 19:00:00', 14, 2);
-INSERT INTO `activities` VALUES(28, 'clicked_promo_slide', '2013-01-23 22:25:00', '1969-12-31 19:00:00', 15, 1);
-INSERT INTO `activities` VALUES(29, 'viewing_menu_item', '2013-01-23 22:25:00', '1969-12-31 19:00:00', 15, 2);
-INSERT INTO `activities` VALUES(30, 'clicked_promo_slide', '2013-01-23 22:25:03', '1969-12-31 19:00:00', 16, 1);
-INSERT INTO `activities` VALUES(31, 'viewing_menu_item', '2013-01-23 22:25:03', '1969-12-31 19:00:00', 16, 2);
-INSERT INTO `activities` VALUES(32, 'clicked_promo_slide', '2013-01-23 22:25:06', '1969-12-31 19:00:00', 17, 1);
-INSERT INTO `activities` VALUES(33, 'viewing_menu_item', '2013-01-23 22:25:06', '1969-12-31 19:00:00', 17, 2);
-INSERT INTO `activities` VALUES(34, 'clicked_promo_slide', '2013-01-23 22:25:15', '1969-12-31 19:00:00', 18, 21);
-INSERT INTO `activities` VALUES(35, 'viewing_menu_item', '2013-01-23 22:25:15', '1969-12-31 19:00:00', 18, 2);
-INSERT INTO `activities` VALUES(36, 'clicked_promo_slide', '2013-01-23 22:25:18', '1969-12-31 19:00:00', 19, 1);
-INSERT INTO `activities` VALUES(37, 'viewing_menu_item', '2013-01-23 22:25:18', '1969-12-31 19:00:00', 19, 2);
-INSERT INTO `activities` VALUES(38, 'clicked_promo_slide', '2013-01-23 22:25:24', '1969-12-31 19:00:00', 20, 1);
-INSERT INTO `activities` VALUES(39, 'viewing_menu_item', '2013-01-23 22:25:24', '1969-12-31 19:00:00', 20, 2);
-INSERT INTO `activities` VALUES(40, 'clicked_promo_slide', '2013-01-23 22:25:32', '1969-12-31 19:00:00', 21, 21);
-INSERT INTO `activities` VALUES(41, 'viewing_menu_item', '2013-01-23 22:25:32', '1969-12-31 19:00:00', 21, 2);
-INSERT INTO `activities` VALUES(42, 'clicked_promo_slide', '2013-01-23 22:25:36', '1969-12-31 19:00:00', 22, 1);
-INSERT INTO `activities` VALUES(43, 'viewing_menu_item', '2013-01-23 22:25:36', '1969-12-31 19:00:00', 22, 2);
-INSERT INTO `activities` VALUES(44, 'viewing_menu_item', '2013-01-23 22:25:37', '1969-12-31 19:00:00', 22, 5);
-INSERT INTO `activities` VALUES(45, 'clicked_promo_slide', '2013-01-23 22:26:25', '1969-12-31 19:00:00', 23, 1);
-INSERT INTO `activities` VALUES(46, 'viewing_menu_item', '2013-01-23 22:26:25', '1969-12-31 19:00:00', 23, 2);
-INSERT INTO `activities` VALUES(47, 'first', '2013-01-24 09:35:36', '2013-01-24 09:35:42', 24, 2);
-INSERT INTO `activities` VALUES(48, 'viewing_menu_item', '2013-01-24 09:35:43', '1969-12-31 19:00:00', 25, 2);
-INSERT INTO `activities` VALUES(49, 'first', '2013-01-24 09:36:08', '2013-01-24 09:36:13', 26, 2);
-INSERT INTO `activities` VALUES(50, 'viewed_menu_item', '2013-01-24 09:36:13', '2013-01-24 09:36:15', 26, 4);
-INSERT INTO `activities` VALUES(51, 'viewed_menu_item', '2013-01-24 09:36:15', '2013-01-24 09:36:18', 26, 5);
-INSERT INTO `activities` VALUES(52, 'exit_while_viewing_menu_item', '2013-01-24 09:36:18', '2013-01-24 09:36:24', 26, 6);
-INSERT INTO `activities` VALUES(53, 'first', '2013-01-24 09:36:27', '2013-01-24 09:36:27', 28, 2);
-INSERT INTO `activities` VALUES(54, 'viewed_menu_item', '2013-01-24 09:36:27', '2013-01-24 09:36:28', 28, 4);
-INSERT INTO `activities` VALUES(55, 'viewed_menu_item', '2013-01-24 09:36:28', '2013-01-24 09:36:28', 28, 1);
-INSERT INTO `activities` VALUES(56, 'viewed_menu_item', '2013-01-24 09:36:28', '2013-01-24 09:36:28', 28, 53);
-INSERT INTO `activities` VALUES(57, 'viewed_menu_item', '2013-01-24 09:36:28', '2013-01-24 09:36:29', 28, 59);
-INSERT INTO `activities` VALUES(58, 'viewed_menu_item', '2013-01-24 09:36:29', '2013-01-24 09:36:29', 28, 65);
-INSERT INTO `activities` VALUES(59, 'viewed_menu_item', '2013-01-24 09:36:29', '2013-01-24 09:36:30', 28, 1);
-INSERT INTO `activities` VALUES(60, 'viewed_menu_item', '2013-01-24 09:36:30', '2013-01-24 09:36:30', 28, 8);
-INSERT INTO `activities` VALUES(61, 'exit_while_viewing_menu_item', '2013-01-24 09:36:30', '2013-01-24 09:36:31', 28, 2);
-INSERT INTO `activities` VALUES(62, 'first', '2013-01-24 09:36:32', '2013-01-24 09:36:33', 29, 78);
-INSERT INTO `activities` VALUES(63, 'skipped_video', '2013-01-24 09:36:33', '2013-01-24 09:36:34', 29, 80);
-INSERT INTO `activities` VALUES(64, 'exit_while_watching_video', '2013-01-24 09:36:34', '2013-01-24 09:36:35', 29, 75);
-INSERT INTO `activities` VALUES(65, 'first', '2013-01-24 14:01:05', '2013-01-24 14:01:14', 32, 2);
-INSERT INTO `activities` VALUES(66, 'started_watching_video', '2013-01-24 14:01:19', '1969-12-31 19:00:00', 34, 73);
-INSERT INTO `activities` VALUES(67, 'started_watching_video', '2013-01-24 15:08:37', '1969-12-31 19:00:00', 36, 73);
-INSERT INTO `activities` VALUES(68, 'first', '2013-01-24 15:13:01', '2013-01-24 15:13:19', 38, 72);
-INSERT INTO `activities` VALUES(69, 'first', '2013-01-24 15:13:23', '2013-01-24 15:15:24', 39, 2);
-INSERT INTO `activities` VALUES(70, 'first', '2013-01-24 15:28:11', '2013-01-24 15:28:12', 42, 2);
-INSERT INTO `activities` VALUES(71, 'viewed_menu_item', '2013-01-24 15:28:12', '2013-01-24 15:28:12', 42, 3);
-INSERT INTO `activities` VALUES(72, 'viewed_menu_item', '2013-01-24 15:28:12', '2013-01-24 15:28:13', 42, 4);
-INSERT INTO `activities` VALUES(73, 'viewed_menu_item', '2013-01-24 15:28:13', '2013-01-24 15:28:14', 42, 5);
-INSERT INTO `activities` VALUES(74, 'viewed_menu_item', '2013-01-24 15:28:14', '2013-01-24 15:28:14', 42, 8);
-INSERT INTO `activities` VALUES(75, 'viewing_menu_item', '2013-01-24 15:28:14', '1969-12-31 19:00:00', 42, 1);
-INSERT INTO `activities` VALUES(76, 'viewing_menu_item', '2013-01-24 15:32:19', '1969-12-31 19:00:00', 43, 2);
-INSERT INTO `activities` VALUES(77, 'viewing_menu_item', '2013-01-24 15:32:32', '1969-12-31 19:00:00', 44, 2);
-INSERT INTO `activities` VALUES(78, 'first', '2013-01-24 15:32:35', '2013-01-24 15:32:39', 45, 2);
-INSERT INTO `activities` VALUES(79, 'viewed_menu_item', '2013-01-24 15:32:39', '2013-01-24 15:32:41', 45, 3);
-INSERT INTO `activities` VALUES(80, 'viewing_menu_item', '2013-01-24 15:32:41', '1969-12-31 19:00:00', 45, 4);
-INSERT INTO `activities` VALUES(81, 'first', '2013-01-24 15:32:52', '2013-01-24 15:32:54', 47, 2);
-INSERT INTO `activities` VALUES(82, 'viewing_menu_item', '2013-01-24 15:32:54', '1969-12-31 19:00:00', 47, 4);
-INSERT INTO `activities` VALUES(83, 'first', '2013-01-24 15:33:05', '2013-01-24 15:33:07', 48, 2);
-INSERT INTO `activities` VALUES(84, 'viewed_menu_item', '2013-01-24 15:33:07', '2013-01-24 15:33:08', 48, 4);
-INSERT INTO `activities` VALUES(85, 'viewed_menu_item', '2013-01-24 15:33:08', '2013-01-24 15:33:10', 48, 5);
-INSERT INTO `activities` VALUES(86, 'viewed_menu_item', '2013-01-24 15:33:10', '2013-01-24 15:33:12', 48, 6);
-INSERT INTO `activities` VALUES(87, 'exit_while_viewing_menu_item', '2013-01-24 15:33:12', '2013-01-24 15:33:18', 48, 3);
-INSERT INTO `activities` VALUES(88, 'first', '2013-01-24 15:33:19', '2013-01-24 15:33:21', 49, 2);
-INSERT INTO `activities` VALUES(89, 'first', '2013-01-24 15:33:22', '2013-01-24 15:33:24', 50, 2);
-INSERT INTO `activities` VALUES(90, 'viewed_menu_item', '2013-01-24 15:33:24', '2013-01-24 15:33:25', 50, 3);
-INSERT INTO `activities` VALUES(91, 'viewed_menu_item', '2013-01-24 15:33:25', '2013-01-24 15:33:27', 50, 4);
-INSERT INTO `activities` VALUES(92, 'viewed_menu_item', '2013-01-24 15:33:27', '2013-01-24 15:33:30', 50, 5);
-INSERT INTO `activities` VALUES(93, 'exit_while_viewing_menu_item', '2013-01-24 15:33:30', '2013-01-24 15:33:34', 50, 2);
-INSERT INTO `activities` VALUES(94, 'first', '2013-01-24 15:33:35', '2013-01-24 15:34:46', 51, 2);
-INSERT INTO `activities` VALUES(95, 'first', '2013-01-24 15:34:47', '2013-01-24 15:35:36', 52, 2);
-INSERT INTO `activities` VALUES(96, 'first', '2013-01-24 15:35:37', '2013-01-24 15:35:40', 53, 2);
-INSERT INTO `activities` VALUES(97, 'viewing_menu_item', '2013-01-24 15:35:41', '1969-12-31 19:00:00', 54, 2);
-INSERT INTO `activities` VALUES(98, 'first', '2013-01-24 15:36:41', '2013-01-24 15:36:46', 55, 2);
-INSERT INTO `activities` VALUES(99, 'first', '2013-01-24 15:36:47', '2013-01-24 15:36:49', 56, 2);
-INSERT INTO `activities` VALUES(100, 'viewing_menu_item', '2013-01-24 15:36:50', '1969-12-31 19:00:00', 57, 2);
-INSERT INTO `activities` VALUES(101, 'first', '2013-01-24 15:36:53', '2013-01-24 15:36:57', 58, 2);
-INSERT INTO `activities` VALUES(102, 'viewed_menu_item', '2013-01-24 15:36:57', '2013-01-24 15:36:59', 58, 3);
-INSERT INTO `activities` VALUES(103, 'viewed_menu_item', '2013-01-24 15:36:59', '2013-01-24 15:37:00', 58, 4);
-INSERT INTO `activities` VALUES(104, 'exit_while_viewing_menu_item', '2013-01-24 15:37:00', '2013-01-24 15:37:06', 58, 5);
-INSERT INTO `activities` VALUES(105, 'first', '2013-01-24 15:38:06', '2013-01-24 15:56:30', 59, 2);
-INSERT INTO `activities` VALUES(106, 'first', '2013-01-24 17:01:51', '2013-01-24 17:01:54', 62, 2);
-INSERT INTO `activities` VALUES(107, 'first', '2013-01-24 17:01:57', '2013-01-24 17:02:00', 63, 2);
-INSERT INTO `activities` VALUES(108, 'first', '2013-01-24 17:02:01', '2013-01-24 17:02:04', 64, 2);
-INSERT INTO `activities` VALUES(109, 'first', '2013-01-24 17:04:13', '2013-01-24 17:04:16', 65, 2);
-INSERT INTO `activities` VALUES(110, 'first', '2013-01-24 17:04:19', '2013-01-24 17:04:22', 66, 2);
-INSERT INTO `activities` VALUES(111, 'viewing_menu_item', '2013-01-24 17:04:23', '1969-12-31 19:00:00', 67, 2);
-INSERT INTO `activities` VALUES(112, 'first', '2013-01-24 17:04:49', '2013-01-24 17:04:53', 68, 2);
-INSERT INTO `activities` VALUES(113, 'first', '2013-01-24 17:05:08', '2013-01-24 17:05:10', 71, 2);
-INSERT INTO `activities` VALUES(114, 'first', '2013-01-24 17:05:11', '2013-01-24 17:05:13', 72, 2);
-INSERT INTO `activities` VALUES(115, 'first', '2013-01-24 17:05:16', '2013-01-24 17:05:20', 73, 2);
-INSERT INTO `activities` VALUES(116, 'viewing_menu_item', '2013-01-24 17:05:21', '1969-12-31 19:00:00', 74, 2);
-INSERT INTO `activities` VALUES(117, 'first', '2013-01-24 17:06:39', '2013-01-24 17:06:42', 75, 2);
-INSERT INTO `activities` VALUES(118, 'first', '2013-01-24 17:06:45', '2013-01-24 17:06:48', 76, 2);
-INSERT INTO `activities` VALUES(119, 'viewing_menu_item', '2013-01-24 17:06:49', '1969-12-31 19:00:00', 77, 2);
-INSERT INTO `activities` VALUES(120, 'viewing_menu_item', '2013-01-24 17:07:02', '1969-12-31 19:00:00', 78, 2);
-INSERT INTO `activities` VALUES(121, 'first', '2013-01-24 17:07:16', '2013-01-24 17:07:18', 79, 2);
-INSERT INTO `activities` VALUES(122, 'first', '2013-01-24 17:07:22', '2013-01-24 17:07:25', 80, 2);
-INSERT INTO `activities` VALUES(123, 'viewing_menu_item', '2013-01-24 17:07:26', '1969-12-31 19:00:00', 81, 2);
-INSERT INTO `activities` VALUES(124, 'first', '2013-01-24 17:23:29', '2013-01-24 17:23:30', 83, 2);
-INSERT INTO `activities` VALUES(125, 'exit_while_viewing_menu_item', '2013-01-24 17:23:30', '2013-01-24 17:23:33', 83, 3);
-INSERT INTO `activities` VALUES(126, 'first', '2013-01-24 17:24:29', '2013-01-24 17:24:33', 85, 2);
-INSERT INTO `activities` VALUES(127, 'first', '2013-01-24 17:24:37', '2013-01-24 17:24:42', 86, 2);
-INSERT INTO `activities` VALUES(128, 'first', '2013-01-24 17:24:43', '2013-01-24 17:24:46', 87, 2);
-INSERT INTO `activities` VALUES(129, 'exit_while_viewing_menu_item', '2013-01-24 17:24:46', '2013-01-24 17:24:48', 87, 3);
-INSERT INTO `activities` VALUES(130, 'first', '2013-01-24 17:24:51', '2013-01-24 17:24:54', 88, 2);
-INSERT INTO `activities` VALUES(131, 'first', '2013-01-24 17:24:55', '2013-01-24 17:24:58', 89, 2);
-INSERT INTO `activities` VALUES(132, 'viewing_menu_item', '2013-01-25 10:51:40', '1969-12-31 19:00:00', 90, 2);
-INSERT INTO `activities` VALUES(133, 'viewing_menu_item', '2013-01-25 10:51:50', '1969-12-31 19:00:00', 91, 2);
-INSERT INTO `activities` VALUES(134, 'first', '2013-01-25 10:51:59', '2013-01-25 10:52:01', 92, 2);
-INSERT INTO `activities` VALUES(135, 'first', '2013-01-25 10:52:04', '2013-01-25 10:52:08', 93, 2);
-INSERT INTO `activities` VALUES(136, 'first', '2013-01-25 10:52:09', '2013-01-25 10:52:10', 94, 2);
-INSERT INTO `activities` VALUES(137, 'first', '2013-01-25 10:52:11', '2013-01-25 10:52:17', 95, 2);
-INSERT INTO `activities` VALUES(138, 'first', '2013-01-25 10:52:26', '2013-01-25 10:52:28', 96, 2);
-INSERT INTO `activities` VALUES(139, 'viewed_menu_item', '2013-01-25 10:52:28', '2013-01-25 10:52:30', 96, 3);
-INSERT INTO `activities` VALUES(140, 'viewed_menu_item', '2013-01-25 10:52:30', '2013-01-25 10:52:30', 96, 1);
-INSERT INTO `activities` VALUES(141, 'viewed_menu_item', '2013-01-25 10:52:30', '2013-01-25 10:52:31', 96, 24);
-INSERT INTO `activities` VALUES(142, 'exit_while_viewing_menu_item', '2013-01-25 10:52:31', '2013-01-25 10:52:33', 96, 24);
-INSERT INTO `activities` VALUES(143, 'first', '2013-01-25 10:52:34', '2013-01-25 10:52:36', 97, 2);
-INSERT INTO `activities` VALUES(144, 'first', '2013-01-25 10:52:37', '2013-01-25 10:52:40', 98, 2);
-INSERT INTO `activities` VALUES(145, 'first', '2013-01-25 10:53:54', '2013-01-25 10:53:57', 99, 2);
-INSERT INTO `activities` VALUES(146, 'exit_while_viewing_menu_item', '2013-01-25 10:53:57', '2013-01-25 10:54:01', 99, 4);
-INSERT INTO `activities` VALUES(147, 'first', '2013-01-25 10:54:02', '2013-01-25 10:54:04', 100, 2);
-INSERT INTO `activities` VALUES(148, 'first', '2013-01-25 10:54:05', '2013-01-25 10:54:21', 101, 2);
-INSERT INTO `activities` VALUES(149, 'first', '2013-01-25 10:54:22', '2013-01-25 10:54:41', 102, 2);
-INSERT INTO `activities` VALUES(150, 'first', '2013-01-25 10:54:43', '2013-01-25 10:54:46', 103, 2);
-INSERT INTO `activities` VALUES(151, 'first', '2013-01-25 10:54:47', '2013-01-25 10:54:50', 104, 2);
-INSERT INTO `activities` VALUES(152, 'first', '2013-01-25 10:54:51', '2013-01-25 10:57:01', 105, 2);
-INSERT INTO `activities` VALUES(153, 'viewing_menu_item', '2013-01-24 15:38:30', '1969-12-31 19:00:00', 106, 2);
-INSERT INTO `activities` VALUES(154, 'viewing_menu_item', '2013-01-24 15:40:04', '1969-12-31 19:00:00', 107, 2);
-INSERT INTO `activities` VALUES(155, 'first', '2013-01-24 15:40:20', '2013-01-24 15:40:31', 108, 2);
-INSERT INTO `activities` VALUES(156, 'viewed_menu_item', '2013-01-24 15:40:31', '2013-01-24 15:40:34', 108, 4);
-INSERT INTO `activities` VALUES(157, 'viewed_menu_item', '2013-01-24 15:40:34', '2013-01-24 15:40:36', 108, 5);
-INSERT INTO `activities` VALUES(158, 'viewed_menu_item', '2013-01-24 15:40:36', '2013-01-24 15:40:48', 108, 6);
-INSERT INTO `activities` VALUES(159, 'viewing_menu_item', '2013-01-24 15:40:48', '1969-12-31 19:00:00', 108, 16);
-INSERT INTO `activities` VALUES(160, 'first', '2013-01-24 15:43:44', '2013-01-24 15:44:49', 109, 2);
-INSERT INTO `activities` VALUES(161, 'viewing_menu_item', '2013-01-24 15:44:49', '1969-12-31 19:00:00', 109, 4);
-INSERT INTO `activities` VALUES(162, 'first', '2013-01-24 15:45:27', '2013-01-24 15:45:37', 110, 2);
-INSERT INTO `activities` VALUES(163, 'viewed_menu_item', '2013-01-24 15:45:37', '2013-01-24 15:45:42', 110, 4);
-INSERT INTO `activities` VALUES(164, 'exit_while_viewing_menu_item', '2013-01-24 15:45:42', '2013-01-24 15:46:47', 110, 2);
-INSERT INTO `activities` VALUES(165, 'viewing_menu_item', '2013-01-24 15:46:49', '1969-12-31 19:00:00', 111, 2);
-INSERT INTO `activities` VALUES(166, 'viewing_menu_item', '2013-01-25 14:06:25', '1969-12-31 19:00:00', 112, 2);
-INSERT INTO `activities` VALUES(167, 'viewing_menu_item', '2013-01-25 14:07:36', '1969-12-31 19:00:00', 113, 2);
-INSERT INTO `activities` VALUES(168, 'viewing_menu_item', '2013-01-25 14:10:38', '1969-12-31 19:00:00', 114, 2);
-INSERT INTO `activities` VALUES(169, 'viewing_menu_item', '2013-01-25 14:10:44', '1969-12-31 19:00:00', 115, 2);
-INSERT INTO `activities` VALUES(170, 'viewing_menu_item', '2013-01-25 14:26:12', '1969-12-31 19:00:00', 116, 2);
-INSERT INTO `activities` VALUES(171, 'viewing_menu_item', '2013-01-25 14:27:18', '1969-12-31 19:00:00', 117, 2);
-INSERT INTO `activities` VALUES(172, 'viewing_menu_item', '2013-01-25 14:29:31', '1969-12-31 19:00:00', 118, 2);
-INSERT INTO `activities` VALUES(173, 'viewing_menu_item', '2013-01-25 14:29:35', '1969-12-31 19:00:00', 119, 2);
-INSERT INTO `activities` VALUES(174, 'viewing_menu_item', '2013-01-25 14:30:06', '1969-12-31 19:00:00', 120, 2);
-INSERT INTO `activities` VALUES(175, 'viewing_menu_item', '2013-01-25 14:32:34', '1969-12-31 19:00:00', 121, 2);
-INSERT INTO `activities` VALUES(176, 'viewing_menu_item', '2013-01-25 18:54:02', '1969-12-31 19:00:00', 122, 2);
-INSERT INTO `activities` VALUES(177, 'viewing_menu_item', '2013-01-25 18:58:20', '1969-12-31 19:00:00', 123, 2);
-INSERT INTO `activities` VALUES(178, 'viewing_menu_item', '2013-01-25 18:58:25', '1969-12-31 19:00:00', 124, 2);
-INSERT INTO `activities` VALUES(179, 'first', '2013-01-25 19:04:17', '2013-01-25 19:04:22', 125, 2);
-INSERT INTO `activities` VALUES(180, 'first', '2013-01-25 19:16:00', '2013-01-25 19:16:02', 126, 2);
-INSERT INTO `activities` VALUES(181, 'viewed_menu_item', '2013-01-25 19:16:02', '2013-01-25 19:16:06', 126, 3);
-INSERT INTO `activities` VALUES(182, 'viewed_menu_item', '2013-01-25 19:16:06', '2013-01-25 19:16:20', 126, 4);
-INSERT INTO `activities` VALUES(183, 'viewed_menu_item', '2013-01-25 19:16:20', '2013-01-25 19:16:22', 126, 5);
-INSERT INTO `activities` VALUES(184, 'viewed_menu_item', '2013-01-25 19:16:22', '2013-01-25 19:16:28', 126, 6);
-INSERT INTO `activities` VALUES(185, 'viewed_menu_item', '2013-01-25 19:16:28', '2013-01-25 19:16:30', 126, 7);
-INSERT INTO `activities` VALUES(186, 'viewed_menu_item', '2013-01-25 19:16:30', '2013-01-25 19:16:31', 126, 16);
-INSERT INTO `activities` VALUES(187, 'viewed_menu_item', '2013-01-25 19:16:31', '2013-01-25 19:16:32', 126, 17);
-INSERT INTO `activities` VALUES(188, 'viewed_menu_item', '2013-01-25 19:16:32', '2013-01-25 19:16:34', 126, 18);
-INSERT INTO `activities` VALUES(189, 'viewed_menu_item', '2013-01-25 19:16:34', '2013-01-25 19:16:35', 126, 19);
-INSERT INTO `activities` VALUES(190, 'viewed_menu_item', '2013-01-25 19:16:35', '2013-01-25 19:16:36', 126, 21);
-INSERT INTO `activities` VALUES(191, 'viewed_menu_item', '2013-01-25 19:16:36', '2013-01-25 19:16:42', 126, 23);
-INSERT INTO `activities` VALUES(192, 'viewed_menu_item', '2013-01-25 19:16:42', '2013-01-25 19:16:47', 126, 36);
-INSERT INTO `activities` VALUES(193, 'viewed_menu_item', '2013-01-25 19:16:47', '2013-01-25 19:16:51', 126, 37);
-INSERT INTO `activities` VALUES(194, 'viewed_menu_item', '2013-01-25 19:16:51', '2013-01-25 19:16:59', 126, 38);
-INSERT INTO `activities` VALUES(195, 'viewed_menu_item', '2013-01-25 19:16:59', '2013-01-25 19:17:02', 126, 40);
-INSERT INTO `activities` VALUES(196, 'viewed_menu_item', '2013-01-25 19:17:02', '2013-01-25 19:17:02', 126, 38);
-INSERT INTO `activities` VALUES(197, 'viewed_menu_item', '2013-01-25 19:17:02', '2013-01-25 19:17:13', 126, 40);
-INSERT INTO `activities` VALUES(198, 'viewed_menu_item', '2013-01-25 19:17:13', '2013-01-25 19:17:14', 126, 41);
-INSERT INTO `activities` VALUES(199, 'viewed_menu_item', '2013-01-25 19:17:14', '2013-01-25 19:17:16', 126, 40);
-INSERT INTO `activities` VALUES(200, 'viewed_menu_item', '2013-01-25 19:17:16', '2013-01-25 19:17:17', 126, 8);
-INSERT INTO `activities` VALUES(201, 'viewed_menu_item', '2013-01-25 19:17:17', '2013-01-25 19:17:18', 126, 1);
-INSERT INTO `activities` VALUES(202, 'viewed_menu_item', '2013-01-25 19:17:18', '2013-01-25 19:17:19', 126, 8);
-INSERT INTO `activities` VALUES(203, 'viewed_menu_item', '2013-01-25 19:17:19', '2013-01-25 19:17:21', 126, 9);
-INSERT INTO `activities` VALUES(204, 'viewed_menu_item', '2013-01-25 19:17:21', '2013-01-25 19:17:21', 126, 13);
-INSERT INTO `activities` VALUES(205, 'viewed_menu_item', '2013-01-25 19:17:21', '2013-01-25 19:17:22', 126, 14);
-INSERT INTO `activities` VALUES(206, 'viewed_menu_item', '2013-01-25 19:17:22', '2013-01-25 19:17:23', 126, 15);
-INSERT INTO `activities` VALUES(207, 'viewed_menu_item', '2013-01-25 19:17:23', '2013-01-25 19:17:25', 126, 12);
-INSERT INTO `activities` VALUES(208, 'viewed_menu_item', '2013-01-25 19:17:25', '2013-01-25 19:17:26', 126, 9);
-INSERT INTO `activities` VALUES(209, 'viewed_menu_item', '2013-01-25 19:17:26', '2013-01-25 19:17:29', 126, 10);
-INSERT INTO `activities` VALUES(210, 'viewed_menu_item', '2013-01-25 19:17:29', '2013-01-25 19:17:31', 126, 8);
-INSERT INTO `activities` VALUES(211, 'viewing_menu_item', '2013-01-25 19:17:31', '1969-12-31 19:00:00', 126, 2);
-INSERT INTO `activities` VALUES(212, 'viewing_menu_item', '2013-01-25 19:19:56', '1969-12-31 19:00:00', 127, 2);
-INSERT INTO `activities` VALUES(213, 'viewing_menu_item', '2013-01-25 19:21:14', '1969-12-31 19:00:00', 128, 2);
-INSERT INTO `activities` VALUES(214, 'viewing_menu_item', '2013-01-25 19:24:56', '1969-12-31 19:00:00', 129, 2);
-INSERT INTO `activities` VALUES(215, 'first', '2013-01-25 19:44:23', '2013-01-25 19:44:31', 130, 2);
-INSERT INTO `activities` VALUES(216, 'viewing_menu_item', '2013-01-25 19:45:29', '1969-12-31 19:00:00', 131, 2);
-INSERT INTO `activities` VALUES(217, 'viewing_menu_item', '2013-01-25 20:04:41', '1969-12-31 19:00:00', 132, 2);
-INSERT INTO `activities` VALUES(218, 'viewing_menu_item', '2013-01-25 20:04:53', '1969-12-31 19:00:00', 133, 2);
-INSERT INTO `activities` VALUES(219, 'viewing_menu_item', '2013-01-25 20:10:45', '1969-12-31 19:00:00', 134, 2);
-INSERT INTO `activities` VALUES(220, 'viewing_menu_item', '2013-01-25 20:12:20', '1969-12-31 19:00:00', 135, 2);
-INSERT INTO `activities` VALUES(221, 'viewing_menu_item', '2013-01-25 20:12:40', '1969-12-31 19:00:00', 136, 2);
-INSERT INTO `activities` VALUES(222, 'viewing_menu_item', '2013-01-25 20:13:11', '1969-12-31 19:00:00', 137, 2);
-INSERT INTO `activities` VALUES(223, 'viewing_menu_item', '2013-01-25 20:15:49', '1969-12-31 19:00:00', 138, 2);
-INSERT INTO `activities` VALUES(224, 'viewing_menu_item', '2013-01-25 20:16:48', '1969-12-31 19:00:00', 139, 2);
-INSERT INTO `activities` VALUES(225, 'viewing_menu_item', '2013-01-25 20:16:51', '1969-12-31 19:00:00', 140, 2);
-INSERT INTO `activities` VALUES(226, 'viewing_menu_item', '2013-01-25 20:17:31', '1969-12-31 19:00:00', 141, 2);
-INSERT INTO `activities` VALUES(227, 'viewing_menu_item', '2013-01-25 20:19:35', '1969-12-31 19:00:00', 142, 2);
-INSERT INTO `activities` VALUES(228, 'viewing_menu_item', '2013-01-25 20:20:04', '1969-12-31 19:00:00', 143, 2);
-INSERT INTO `activities` VALUES(229, 'viewing_menu_item', '2013-01-25 20:20:38', '1969-12-31 19:00:00', 144, 2);
-INSERT INTO `activities` VALUES(230, 'viewing_menu_item', '2013-01-25 20:20:53', '1969-12-31 19:00:00', 145, 2);
-INSERT INTO `activities` VALUES(231, 'viewing_menu_item', '2013-01-25 20:21:01', '1969-12-31 19:00:00', 146, 2);
-INSERT INTO `activities` VALUES(232, 'viewing_menu_item', '2013-01-25 20:22:05', '1969-12-31 19:00:00', 147, 2);
-INSERT INTO `activities` VALUES(233, 'viewing_menu_item', '2013-01-25 20:22:22', '1969-12-31 19:00:00', 148, 2);
-INSERT INTO `activities` VALUES(234, 'viewing_menu_item', '2013-01-25 20:22:42', '1969-12-31 19:00:00', 149, 2);
-INSERT INTO `activities` VALUES(235, 'viewing_menu_item', '2013-01-25 20:24:58', '1969-12-31 19:00:00', 150, 2);
-INSERT INTO `activities` VALUES(236, 'viewing_menu_item', '2013-01-25 20:25:01', '1969-12-31 19:00:00', 151, 2);
-INSERT INTO `activities` VALUES(237, 'viewing_menu_item', '2013-01-25 20:25:10', '1969-12-31 19:00:00', 152, 2);
-INSERT INTO `activities` VALUES(238, 'viewing_menu_item', '2013-01-25 20:26:13', '1969-12-31 19:00:00', 153, 2);
-INSERT INTO `activities` VALUES(239, 'viewing_menu_item', '2013-01-25 20:27:11', '1969-12-31 19:00:00', 154, 2);
-INSERT INTO `activities` VALUES(240, 'viewing_menu_item', '2013-01-25 20:27:37', '1969-12-31 19:00:00', 155, 2);
-INSERT INTO `activities` VALUES(241, 'viewing_menu_item', '2013-01-25 20:27:58', '1969-12-31 19:00:00', 157, 2);
-INSERT INTO `activities` VALUES(242, 'viewing_menu_item', '2013-01-25 20:28:13', '1969-12-31 19:00:00', 158, 2);
-INSERT INTO `activities` VALUES(243, 'viewing_menu_item', '2013-01-25 20:28:26', '1969-12-31 19:00:00', 159, 2);
-INSERT INTO `activities` VALUES(244, 'viewing_menu_item', '2013-01-25 20:28:50', '1969-12-31 19:00:00', 160, 2);
-INSERT INTO `activities` VALUES(245, 'viewing_menu_item', '2013-01-25 20:29:38', '1969-12-31 19:00:00', 161, 2);
-INSERT INTO `activities` VALUES(246, 'viewing_menu_item', '2013-01-25 20:30:00', '1969-12-31 19:00:00', 162, 2);
-INSERT INTO `activities` VALUES(247, 'viewing_menu_item', '2013-01-25 20:30:51', '1969-12-31 19:00:00', 163, 2);
-INSERT INTO `activities` VALUES(248, 'viewing_menu_item', '2013-01-25 20:31:38', '1969-12-31 19:00:00', 164, 2);
-INSERT INTO `activities` VALUES(249, 'viewing_menu_item', '2013-01-25 20:32:02', '1969-12-31 19:00:00', 165, 2);
-INSERT INTO `activities` VALUES(250, 'viewing_menu_item', '2013-01-25 20:33:02', '1969-12-31 19:00:00', 166, 2);
-INSERT INTO `activities` VALUES(251, 'viewing_menu_item', '2013-01-25 20:34:40', '1969-12-31 19:00:00', 167, 2);
-INSERT INTO `activities` VALUES(252, 'viewing_menu_item', '2013-01-25 20:36:37', '1969-12-31 19:00:00', 168, 2);
-INSERT INTO `activities` VALUES(253, 'viewing_menu_item', '2013-01-25 20:38:09', '1969-12-31 19:00:00', 169, 2);
-INSERT INTO `activities` VALUES(254, 'viewing_menu_item', '2013-01-25 20:38:24', '1969-12-31 19:00:00', 170, 2);
-INSERT INTO `activities` VALUES(255, 'viewing_menu_item', '2013-01-25 20:38:30', '1969-12-31 19:00:00', 171, 2);
-INSERT INTO `activities` VALUES(256, 'viewing_menu_item', '2013-01-25 20:49:10', '1969-12-31 19:00:00', 172, 2);
-INSERT INTO `activities` VALUES(257, 'viewing_menu_item', '2013-01-25 20:49:23', '1969-12-31 19:00:00', 173, 2);
-INSERT INTO `activities` VALUES(258, 'viewing_menu_item', '2013-01-25 20:51:50', '1969-12-31 19:00:00', 174, 2);
-INSERT INTO `activities` VALUES(259, 'viewing_menu_item', '2013-01-25 20:56:57', '1969-12-31 19:00:00', 175, 2);
-INSERT INTO `activities` VALUES(260, 'viewing_menu_item', '2013-01-25 20:57:04', '1969-12-31 19:00:00', 176, 2);
-INSERT INTO `activities` VALUES(261, 'viewing_menu_item', '2013-01-25 21:00:04', '1969-12-31 19:00:00', 177, 2);
-INSERT INTO `activities` VALUES(262, 'viewing_menu_item', '2013-01-25 21:00:26', '1969-12-31 19:00:00', 178, 2);
-INSERT INTO `activities` VALUES(263, 'viewing_menu_item', '2013-01-25 21:01:44', '1969-12-31 19:00:00', 179, 2);
-INSERT INTO `activities` VALUES(264, 'viewing_menu_item', '2013-01-25 21:03:54', '1969-12-31 19:00:00', 180, 2);
-INSERT INTO `activities` VALUES(265, 'viewing_menu_item', '2013-01-25 21:04:00', '1969-12-31 19:00:00', 181, 2);
-INSERT INTO `activities` VALUES(266, 'viewing_menu_item', '2013-01-25 21:04:05', '1969-12-31 19:00:00', 182, 2);
-INSERT INTO `activities` VALUES(267, 'viewing_menu_item', '2013-01-25 21:04:34', '1969-12-31 19:00:00', 183, 2);
-INSERT INTO `activities` VALUES(268, 'viewing_menu_item', '2013-01-25 21:28:31', '1969-12-31 19:00:00', 184, 2);
-INSERT INTO `activities` VALUES(269, 'viewing_menu_item', '2013-01-25 21:33:11', '1969-12-31 19:00:00', 185, 2);
-INSERT INTO `activities` VALUES(270, 'viewing_menu_item', '2013-01-25 21:33:32', '1969-12-31 19:00:00', 186, 2);
-INSERT INTO `activities` VALUES(271, 'viewing_menu_item', '2013-01-25 21:35:08', '1969-12-31 19:00:00', 187, 2);
-INSERT INTO `activities` VALUES(272, 'viewing_menu_item', '2013-01-25 21:35:46', '1969-12-31 19:00:00', 188, 2);
-INSERT INTO `activities` VALUES(273, 'viewing_menu_item', '2013-01-25 21:35:48', '1969-12-31 19:00:00', 189, 2);
-INSERT INTO `activities` VALUES(274, 'viewing_menu_item', '2013-01-25 21:35:58', '1969-12-31 19:00:00', 190, 2);
-INSERT INTO `activities` VALUES(275, 'viewing_menu_item', '2013-01-26 10:09:20', '1969-12-31 19:00:00', 191, 2);
-INSERT INTO `activities` VALUES(276, 'viewing_menu_item', '2013-01-26 11:01:44', '1969-12-31 19:00:00', 192, 2);
-INSERT INTO `activities` VALUES(277, 'viewing_menu_item', '2013-01-26 11:12:21', '1969-12-31 19:00:00', 193, 2);
-INSERT INTO `activities` VALUES(278, 'viewing_menu_item', '2013-01-26 11:14:59', '1969-12-31 19:00:00', 194, 2);
-INSERT INTO `activities` VALUES(279, 'viewing_menu_item', '2013-01-26 11:17:12', '1969-12-31 19:00:00', 195, 2);
-INSERT INTO `activities` VALUES(280, 'viewing_menu_item', '2013-01-26 11:18:18', '1969-12-31 19:00:00', 196, 2);
-INSERT INTO `activities` VALUES(281, 'viewing_menu_item', '2013-01-26 11:18:23', '1969-12-31 19:00:00', 197, 2);
-INSERT INTO `activities` VALUES(282, 'viewing_menu_item', '2013-01-26 11:19:37', '1969-12-31 19:00:00', 198, 2);
-INSERT INTO `activities` VALUES(283, 'viewing_menu_item', '2013-01-26 11:20:01', '1969-12-31 19:00:00', 199, 2);
-INSERT INTO `activities` VALUES(284, 'viewing_menu_item', '2013-01-26 12:55:46', '1969-12-31 19:00:00', 200, 2);
-INSERT INTO `activities` VALUES(285, 'first', '2013-01-26 13:08:17', '2013-01-26 13:08:18', 201, 2);
-INSERT INTO `activities` VALUES(286, 'first', '2013-01-30 16:49:25', '2013-01-30 16:49:27', 202, 2);
-INSERT INTO `activities` VALUES(287, 'first', '2013-01-30 16:52:16', '2013-01-30 16:52:19', 205, 2);
-INSERT INTO `activities` VALUES(288, 'viewing_menu_item', '2013-02-02 15:29:39', '1969-12-31 19:00:00', 209, 2);
-INSERT INTO `activities` VALUES(289, 'first', '2013-02-02 15:29:53', '2013-02-02 15:30:13', 210, 44);
-INSERT INTO `activities` VALUES(290, 'viewed_menu_item', '2013-02-02 15:30:13', '2013-02-02 15:30:15', 210, 62);
-INSERT INTO `activities` VALUES(291, 'viewed_menu_item', '2013-02-02 15:30:15', '2013-02-02 15:30:16', 210, 35);
-INSERT INTO `activities` VALUES(292, 'viewing_menu_item', '2013-02-02 15:30:16', '1969-12-31 19:00:00', 210, 1);
-INSERT INTO `activities` VALUES(293, 'first', '2013-02-02 15:31:02', '2013-02-02 15:31:11', 211, 44);
-INSERT INTO `activities` VALUES(294, 'viewed_menu_item', '2013-02-02 15:31:11', '2013-02-02 15:31:22', 211, 62);
-INSERT INTO `activities` VALUES(295, 'viewed_menu_item', '2013-02-02 15:31:22', '2013-02-02 15:31:27', 211, 68);
-INSERT INTO `activities` VALUES(296, 'viewed_menu_item', '2013-02-02 15:31:27', '2013-02-02 15:31:29', 211, 35);
-INSERT INTO `activities` VALUES(297, 'viewed_menu_item', '2013-02-02 15:31:29', '2013-02-02 15:31:45', 211, 1);
-INSERT INTO `activities` VALUES(298, 'viewed_menu_item', '2013-02-02 15:31:45', '2013-02-02 15:31:48', 211, 81);
-INSERT INTO `activities` VALUES(299, 'viewed_menu_item', '2013-02-02 15:31:48', '2013-02-02 15:31:57', 211, 23);
-INSERT INTO `activities` VALUES(300, 'viewed_menu_item', '2013-02-02 15:31:57', '2013-02-02 15:33:01', 211, 44);
-INSERT INTO `activities` VALUES(301, 'viewed_menu_item', '2013-02-02 15:33:01', '2013-02-02 15:33:03', 211, 45);
-INSERT INTO `activities` VALUES(302, 'viewed_menu_item', '2013-02-02 15:33:03', '2013-02-02 15:33:04', 211, 45);
-INSERT INTO `activities` VALUES(303, 'viewed_menu_item', '2013-02-02 15:33:04', '2013-02-02 15:33:05', 211, 46);
-INSERT INTO `activities` VALUES(304, 'viewed_menu_item', '2013-02-02 15:33:05', '2013-02-02 15:33:07', 211, 47);
-INSERT INTO `activities` VALUES(305, 'viewed_menu_item', '2013-02-02 15:33:07', '2013-02-02 15:33:09', 211, 48);
-INSERT INTO `activities` VALUES(306, 'viewed_menu_item', '2013-02-02 15:33:09', '2013-02-02 15:33:12', 211, 49);
-INSERT INTO `activities` VALUES(307, 'viewed_menu_item', '2013-02-02 15:33:12', '2013-02-02 15:33:14', 211, 62);
-INSERT INTO `activities` VALUES(308, 'viewed_menu_item', '2013-02-02 15:33:14', '2013-02-02 15:33:16', 211, 63);
-INSERT INTO `activities` VALUES(309, 'viewed_menu_item', '2013-02-02 15:33:16', '2013-02-02 15:33:17', 211, 64);
-INSERT INTO `activities` VALUES(310, 'viewed_menu_item', '2013-02-02 15:33:17', '2013-02-02 15:33:18', 211, 35);
-INSERT INTO `activities` VALUES(311, 'viewing_menu_item', '2013-02-02 15:33:18', '1969-12-31 19:00:00', 211, 36);
-INSERT INTO `activities` VALUES(312, 'first', '2013-02-02 15:33:29', '2013-02-02 17:16:25', 212, 44);
-INSERT INTO `activities` VALUES(313, 'viewed_menu_item', '2013-02-02 17:16:25', '2013-02-02 17:16:26', 212, 45);
-INSERT INTO `activities` VALUES(314, 'viewed_menu_item', '2013-02-02 17:16:26', '2013-02-02 17:16:28', 212, 45);
-INSERT INTO `activities` VALUES(315, 'viewed_menu_item', '2013-02-02 17:16:28', '2013-02-02 17:16:30', 212, 46);
-INSERT INTO `activities` VALUES(316, 'viewed_menu_item', '2013-02-02 17:16:30', '2013-02-02 17:16:33', 212, 47);
-INSERT INTO `activities` VALUES(317, 'viewed_menu_item', '2013-02-02 17:16:33', '2013-02-02 17:16:35', 212, 48);
-INSERT INTO `activities` VALUES(318, 'viewed_menu_item', '2013-02-02 17:16:35', '2013-02-02 18:58:20', 212, 1);
-INSERT INTO `activities` VALUES(319, 'viewed_menu_item', '2013-02-02 18:58:20', '2013-02-02 18:58:24', 212, 8);
-INSERT INTO `activities` VALUES(320, 'viewed_menu_item', '2013-02-02 18:58:24', '2013-02-02 18:58:25', 212, 62);
-INSERT INTO `activities` VALUES(321, 'viewed_menu_item', '2013-02-02 18:58:25', '2013-02-02 18:58:28', 212, 44);
-INSERT INTO `activities` VALUES(322, 'viewing_menu_item', '2013-02-02 18:58:28', '1969-12-31 19:00:00', 212, 53);
-INSERT INTO `activities` VALUES(323, 'first', '2013-02-02 19:00:40', '2013-02-02 19:00:41', 213, 44);
-INSERT INTO `activities` VALUES(324, 'viewed_menu_item', '2013-02-02 19:00:41', '2013-02-02 19:00:42', 213, 45);
-INSERT INTO `activities` VALUES(325, 'viewing_menu_item', '2013-02-02 19:00:42', '1969-12-31 19:00:00', 213, 62);
-INSERT INTO `activities` VALUES(326, 'first', '2013-02-02 19:01:01', '2013-02-02 19:02:07', 214, 44);
-INSERT INTO `activities` VALUES(327, 'viewed_menu_item', '2013-02-02 19:02:07', '2013-02-02 19:02:09', 214, 45);
-INSERT INTO `activities` VALUES(328, 'viewed_menu_item', '2013-02-02 19:02:09', '2013-02-02 19:05:07', 214, 46);
-INSERT INTO `activities` VALUES(329, 'viewed_menu_item', '2013-02-02 19:05:07', '2013-02-02 19:05:08', 214, 44);
-INSERT INTO `activities` VALUES(330, 'viewing_menu_item', '2013-02-02 19:05:08', '1969-12-31 19:00:00', 214, 46);
-INSERT INTO `activities` VALUES(331, 'first', '2013-02-02 19:06:38', '2013-02-02 19:06:39', 215, 44);
-INSERT INTO `activities` VALUES(332, 'viewed_menu_item', '2013-02-02 19:06:39', '2013-02-02 19:06:42', 215, 45);
-INSERT INTO `activities` VALUES(333, 'viewing_menu_item', '2013-02-02 19:06:42', '1969-12-31 19:00:00', 215, 35);
-INSERT INTO `activities` VALUES(334, 'first', '2013-02-02 19:06:54', '2013-02-02 19:06:55', 216, 44);
-INSERT INTO `activities` VALUES(335, 'viewing_menu_item', '2013-02-02 19:06:55', '1969-12-31 19:00:00', 216, 45);
-INSERT INTO `activities` VALUES(336, 'viewing_menu_item', '2013-02-02 19:07:39', '1969-12-31 19:00:00', 218, 44);
-INSERT INTO `activities` VALUES(337, 'first', '2013-02-02 19:07:53', '2013-02-02 19:07:55', 219, 44);
-INSERT INTO `activities` VALUES(338, 'viewing_menu_item', '2013-02-02 19:07:55', '1969-12-31 19:00:00', 219, 45);
-INSERT INTO `activities` VALUES(339, 'first', '2013-02-02 19:08:09', '2013-02-02 19:08:11', 220, 44);
-INSERT INTO `activities` VALUES(340, 'viewing_menu_item', '2013-02-02 19:08:11', '1969-12-31 19:00:00', 220, 45);
-INSERT INTO `activities` VALUES(341, 'first', '2013-02-02 19:08:37', '2013-02-02 19:08:39', 221, 44);
-INSERT INTO `activities` VALUES(342, 'viewing_menu_item', '2013-02-02 19:08:39', '1969-12-31 19:00:00', 221, 45);
-INSERT INTO `activities` VALUES(343, 'first', '2013-02-02 19:11:09', '2013-02-02 19:11:10', 222, 44);
-INSERT INTO `activities` VALUES(344, 'viewing_menu_item', '2013-02-02 19:11:10', '1969-12-31 19:00:00', 222, 45);
-INSERT INTO `activities` VALUES(345, 'first', '2013-02-02 19:11:50', '2013-02-02 19:11:54', 223, 44);
-INSERT INTO `activities` VALUES(346, 'viewed_menu_item', '2013-02-02 19:11:54', '2013-02-02 19:11:55', 223, 45);
-INSERT INTO `activities` VALUES(347, 'viewed_menu_item', '2013-02-02 19:11:55', '2013-02-02 19:11:57', 223, 46);
-INSERT INTO `activities` VALUES(348, 'viewed_menu_item', '2013-02-02 19:11:57', '2013-02-02 19:11:58', 223, 44);
-INSERT INTO `activities` VALUES(349, 'viewed_menu_item', '2013-02-02 19:11:58', '2013-02-02 19:11:59', 223, 45);
-INSERT INTO `activities` VALUES(350, 'viewed_menu_item', '2013-02-02 19:11:59', '2013-02-02 19:12:00', 223, 46);
-INSERT INTO `activities` VALUES(351, 'viewed_menu_item', '2013-02-02 19:12:00', '2013-02-02 19:12:03', 223, 49);
-INSERT INTO `activities` VALUES(352, 'viewed_menu_item', '2013-02-02 19:12:03', '2013-02-02 19:12:06', 223, 50);
-INSERT INTO `activities` VALUES(353, 'viewed_menu_item', '2013-02-02 19:12:06', '2013-02-02 19:12:09', 223, 53);
-INSERT INTO `activities` VALUES(354, 'viewed_menu_item', '2013-02-02 19:12:09', '2013-02-02 19:12:10', 223, 52);
-INSERT INTO `activities` VALUES(355, 'viewed_menu_item', '2013-02-02 19:12:10', '2013-02-02 19:12:12', 223, 53);
-INSERT INTO `activities` VALUES(356, 'viewed_menu_item', '2013-02-02 19:12:12', '2013-02-02 19:12:17', 223, 54);
-INSERT INTO `activities` VALUES(357, 'viewed_menu_item', '2013-02-02 19:12:17', '2013-02-02 19:12:18', 223, 55);
-INSERT INTO `activities` VALUES(358, 'viewed_menu_item', '2013-02-02 19:12:18', '2013-02-02 19:12:20', 223, 56);
-INSERT INTO `activities` VALUES(359, 'viewed_menu_item', '2013-02-02 19:12:20', '2013-02-02 19:12:22', 223, 57);
-INSERT INTO `activities` VALUES(360, 'viewed_menu_item', '2013-02-02 19:12:22', '2013-02-02 19:12:24', 223, 59);
-INSERT INTO `activities` VALUES(361, 'viewed_menu_item', '2013-02-02 19:12:24', '2013-02-02 19:12:27', 223, 58);
-INSERT INTO `activities` VALUES(362, 'viewed_menu_item', '2013-02-02 19:12:27', '2013-02-02 19:12:29', 223, 60);
-INSERT INTO `activities` VALUES(363, 'viewed_menu_item', '2013-02-02 19:12:29', '2013-02-02 19:12:32', 223, 61);
-INSERT INTO `activities` VALUES(364, 'viewed_menu_item', '2013-02-02 19:12:32', '2013-02-02 19:12:34', 223, 55);
-INSERT INTO `activities` VALUES(365, 'viewed_menu_item', '2013-02-02 19:12:34', '2013-02-02 19:12:36', 223, 62);
-INSERT INTO `activities` VALUES(366, 'viewed_menu_item', '2013-02-02 19:12:36', '2013-02-02 19:12:39', 223, 63);
-INSERT INTO `activities` VALUES(367, 'viewed_menu_item', '2013-02-02 19:12:39', '2013-02-02 19:12:42', 223, 64);
-INSERT INTO `activities` VALUES(368, 'viewed_menu_item', '2013-02-02 19:12:42', '2013-02-02 19:12:47', 223, 65);
-INSERT INTO `activities` VALUES(369, 'viewed_menu_item', '2013-02-02 19:12:47', '2013-02-02 19:12:48', 223, 66);
-INSERT INTO `activities` VALUES(370, 'viewed_menu_item', '2013-02-02 19:12:48', '2013-02-02 19:12:51', 223, 68);
-INSERT INTO `activities` VALUES(371, 'viewed_menu_item', '2013-02-02 19:12:51', '2013-02-02 19:12:53', 223, 69);
-INSERT INTO `activities` VALUES(372, 'viewed_menu_item', '2013-02-02 19:12:53', '2013-02-02 19:14:55', 223, 71);
-INSERT INTO `activities` VALUES(373, 'viewed_menu_item', '2013-02-02 19:14:55', '2013-02-02 19:14:56', 223, 72);
-INSERT INTO `activities` VALUES(374, 'viewed_menu_item', '2013-02-02 19:14:56', '2013-02-02 19:14:57', 223, 35);
-INSERT INTO `activities` VALUES(375, 'viewed_menu_item', '2013-02-02 19:14:57', '2013-02-02 19:14:58', 223, 1);
-INSERT INTO `activities` VALUES(376, 'viewed_menu_item', '2013-02-02 19:14:58', '2013-02-02 19:15:21', 223, 35);
-INSERT INTO `activities` VALUES(377, 'viewed_menu_item', '2013-02-02 19:15:21', '2013-02-02 19:15:22', 223, 62);
-INSERT INTO `activities` VALUES(378, 'viewed_menu_item', '2013-02-02 19:15:22', '2013-02-02 19:15:22', 223, 35);
-INSERT INTO `activities` VALUES(379, 'viewed_menu_item', '2013-02-02 19:15:22', '2013-02-02 19:15:23', 223, 1);
-INSERT INTO `activities` VALUES(380, 'viewed_menu_item', '2013-02-02 19:15:23', '2013-02-02 19:15:23', 223, 81);
-INSERT INTO `activities` VALUES(381, 'viewed_menu_item', '2013-02-02 19:15:23', '2013-02-02 19:15:24', 223, 23);
-INSERT INTO `activities` VALUES(382, 'viewed_menu_item', '2013-02-02 19:15:24', '2013-02-02 19:15:25', 223, 35);
-INSERT INTO `activities` VALUES(383, 'exit_while_viewing_menu_item', '2013-02-02 19:15:25', '2013-02-02 19:16:23', 223, 62);
-INSERT INTO `activities` VALUES(384, 'first', '2013-02-02 19:16:36', '2013-02-02 19:16:43', 224, 2);
-INSERT INTO `activities` VALUES(385, 'first', '2013-02-02 19:16:59', '2013-02-02 19:17:02', 225, 44);
-INSERT INTO `activities` VALUES(386, 'viewed_menu_item', '2013-02-02 19:17:02', '2013-02-02 19:17:03', 225, 45);
-INSERT INTO `activities` VALUES(387, 'viewed_menu_item', '2013-02-02 19:17:03', '2013-02-02 19:17:04', 225, 62);
-INSERT INTO `activities` VALUES(388, 'viewed_menu_item', '2013-02-02 19:17:04', '2013-02-02 19:17:32', 225, 35);
-INSERT INTO `activities` VALUES(389, 'viewed_menu_item', '2013-02-02 19:17:32', '2013-02-02 19:17:39', 225, 1);
-INSERT INTO `activities` VALUES(390, 'viewing_menu_item', '2013-02-02 19:17:39', '1969-12-31 19:00:00', 225, 35);
-INSERT INTO `activities` VALUES(391, 'first', '2013-02-02 19:17:46', '2013-02-02 19:17:57', 226, 44);
-INSERT INTO `activities` VALUES(392, 'viewed_menu_item', '2013-02-02 19:17:57', '2013-02-02 19:19:23', 226, 35);
-INSERT INTO `activities` VALUES(393, 'viewed_menu_item', '2013-02-02 19:19:23', '2013-02-02 19:19:24', 226, 35);
-INSERT INTO `activities` VALUES(394, 'viewed_menu_item', '2013-02-02 19:19:24', '2013-02-02 19:19:25', 226, 62);
-INSERT INTO `activities` VALUES(395, 'viewed_menu_item', '2013-02-02 19:19:25', '2013-02-02 19:19:28', 226, 35);
-INSERT INTO `activities` VALUES(396, 'viewing_menu_item', '2013-02-02 19:19:28', '1969-12-31 19:00:00', 226, 62);
-INSERT INTO `activities` VALUES(397, 'first', '2013-02-02 19:25:07', '2013-02-02 19:25:11', 227, 44);
-INSERT INTO `activities` VALUES(398, 'viewed_menu_item', '2013-02-02 19:25:11', '2013-02-02 19:25:12', 227, 62);
-INSERT INTO `activities` VALUES(399, 'viewed_menu_item', '2013-02-02 19:25:12', '2013-02-02 19:25:34', 227, 35);
-INSERT INTO `activities` VALUES(400, 'viewed_menu_item', '2013-02-02 19:25:34', '2013-02-02 19:25:35', 227, 62);
-INSERT INTO `activities` VALUES(401, 'viewed_menu_item', '2013-02-02 19:25:35', '2013-02-02 19:25:35', 227, 35);
-INSERT INTO `activities` VALUES(402, 'viewed_menu_item', '2013-02-02 19:25:35', '2013-02-02 19:25:36', 227, 1);
-INSERT INTO `activities` VALUES(403, 'viewed_menu_item', '2013-02-02 19:25:36', '2013-02-02 19:25:37', 227, 35);
-INSERT INTO `activities` VALUES(404, 'viewed_menu_item', '2013-02-02 19:25:37', '2013-02-02 19:25:38', 227, 36);
-INSERT INTO `activities` VALUES(405, 'viewed_menu_item', '2013-02-02 19:25:38', '2013-02-02 19:25:38', 227, 37);
-INSERT INTO `activities` VALUES(406, 'viewed_menu_item', '2013-02-02 19:25:38', '2013-02-02 19:25:39', 227, 1);
-INSERT INTO `activities` VALUES(407, 'viewed_menu_item', '2013-02-02 19:25:39', '2013-02-02 19:25:43', 227, 2);
-INSERT INTO `activities` VALUES(408, 'viewed_menu_item', '2013-02-02 19:25:43', '2013-02-02 19:25:44', 227, 81);
-INSERT INTO `activities` VALUES(409, 'viewed_menu_item', '2013-02-02 19:25:44', '2013-02-02 19:25:45', 227, 35);
-INSERT INTO `activities` VALUES(410, 'viewed_menu_item', '2013-02-02 19:25:45', '2013-02-02 19:25:58', 227, 62);
-INSERT INTO `activities` VALUES(411, 'viewing_menu_item', '2013-02-02 19:25:58', '1969-12-31 19:00:00', 227, 35);
-INSERT INTO `activities` VALUES(412, 'first', '2013-02-02 19:26:58', '2013-02-02 19:26:59', 228, 44);
-INSERT INTO `activities` VALUES(413, 'viewed_menu_item', '2013-02-02 19:26:59', '2013-02-02 19:27:00', 228, 35);
-INSERT INTO `activities` VALUES(414, 'viewing_menu_item', '2013-02-02 19:27:00', '1969-12-31 19:00:00', 228, 36);
-INSERT INTO `activities` VALUES(415, 'first', '2013-02-02 19:27:04', '2013-02-02 19:27:06', 229, 44);
-INSERT INTO `activities` VALUES(416, 'viewed_menu_item', '2013-02-02 19:27:06', '2013-02-02 19:27:07', 229, 45);
-INSERT INTO `activities` VALUES(417, 'viewed_menu_item', '2013-02-02 19:27:07', '2013-02-02 19:27:08', 229, 46);
-INSERT INTO `activities` VALUES(418, 'viewed_menu_item', '2013-02-02 19:27:08', '2013-02-02 19:27:09', 229, 35);
-INSERT INTO `activities` VALUES(419, 'viewed_menu_item', '2013-02-02 19:27:09', '2013-02-02 19:27:11', 229, 36);
-INSERT INTO `activities` VALUES(420, 'viewed_menu_item', '2013-02-02 19:27:11', '2013-02-02 19:27:12', 229, 37);
-INSERT INTO `activities` VALUES(421, 'viewed_menu_item', '2013-02-02 19:27:12', '2013-02-02 19:27:14', 229, 36);
-INSERT INTO `activities` VALUES(422, 'viewed_menu_item', '2013-02-02 19:27:14', '2013-02-02 19:27:15', 229, 37);
-INSERT INTO `activities` VALUES(423, 'viewed_menu_item', '2013-02-02 19:27:15', '2013-02-02 19:27:21', 229, 38);
-INSERT INTO `activities` VALUES(424, 'viewed_menu_item', '2013-02-02 19:27:21', '2013-02-02 19:27:25', 229, 39);
-INSERT INTO `activities` VALUES(425, 'viewed_menu_item', '2013-02-02 19:27:25', '2013-02-02 19:27:27', 229, 37);
-INSERT INTO `activities` VALUES(426, 'viewed_menu_item', '2013-02-02 19:27:27', '2013-02-02 19:27:32', 229, 40);
-INSERT INTO `activities` VALUES(427, 'viewed_menu_item', '2013-02-02 19:27:32', '2013-02-02 19:28:01', 229, 42);
-INSERT INTO `activities` VALUES(428, 'viewed_menu_item', '2013-02-02 19:28:01', '2013-02-02 19:28:03', 229, 43);
-INSERT INTO `activities` VALUES(429, 'viewed_menu_item', '2013-02-02 19:28:03', '2013-02-02 19:28:05', 229, 1);
-INSERT INTO `activities` VALUES(430, 'viewed_menu_item', '2013-02-02 19:28:05', '2013-02-02 19:28:15', 229, 2);
-INSERT INTO `activities` VALUES(431, 'viewed_menu_item', '2013-02-02 19:28:15', '2013-02-02 19:28:17', 229, 3);
-INSERT INTO `activities` VALUES(432, 'viewed_menu_item', '2013-02-02 19:28:17', '2013-02-02 19:28:18', 229, 4);
-INSERT INTO `activities` VALUES(433, 'viewed_menu_item', '2013-02-02 19:28:18', '2013-02-02 19:28:20', 229, 5);
-INSERT INTO `activities` VALUES(434, 'viewed_menu_item', '2013-02-02 19:28:20', '2013-02-02 19:28:22', 229, 6);
-INSERT INTO `activities` VALUES(435, 'viewed_menu_item', '2013-02-02 19:28:22', '2013-02-02 19:28:23', 229, 7);
-INSERT INTO `activities` VALUES(436, 'viewed_menu_item', '2013-02-02 19:28:23', '2013-02-02 19:28:24', 229, 8);
-INSERT INTO `activities` VALUES(437, 'viewed_menu_item', '2013-02-02 19:28:24', '2013-02-02 19:28:26', 229, 9);
-INSERT INTO `activities` VALUES(438, 'viewed_menu_item', '2013-02-02 19:28:26', '2013-02-02 19:28:28', 229, 10);
-INSERT INTO `activities` VALUES(439, 'viewed_menu_item', '2013-02-02 19:28:28', '2013-02-02 19:28:29', 229, 8);
-INSERT INTO `activities` VALUES(440, 'viewed_menu_item', '2013-02-02 19:28:29', '2013-02-02 19:28:34', 229, 9);
-INSERT INTO `activities` VALUES(441, 'viewed_menu_item', '2013-02-02 19:28:34', '2013-02-02 19:28:35', 229, 12);
-INSERT INTO `activities` VALUES(442, 'viewed_menu_item', '2013-02-02 19:28:35', '2013-02-02 19:28:37', 229, 13);
-INSERT INTO `activities` VALUES(443, 'viewed_menu_item', '2013-02-02 19:28:37', '2013-02-02 19:28:38', 229, 14);
-INSERT INTO `activities` VALUES(444, 'viewed_menu_item', '2013-02-02 19:28:38', '2013-02-02 19:28:40', 229, 15);
-INSERT INTO `activities` VALUES(445, 'viewed_menu_item', '2013-02-02 19:28:40', '2013-02-02 19:28:42', 229, 16);
-INSERT INTO `activities` VALUES(446, 'viewed_menu_item', '2013-02-02 19:28:42', '2013-02-02 19:28:43', 229, 17);
-INSERT INTO `activities` VALUES(447, 'viewed_menu_item', '2013-02-02 19:28:43', '2013-02-02 19:28:44', 229, 18);
-INSERT INTO `activities` VALUES(448, 'viewed_menu_item', '2013-02-02 19:28:44', '2013-02-02 19:28:46', 229, 19);
-INSERT INTO `activities` VALUES(449, 'viewed_menu_item', '2013-02-02 19:28:46', '2013-02-02 19:28:47', 229, 20);
-INSERT INTO `activities` VALUES(450, 'viewed_menu_item', '2013-02-02 19:28:47', '2013-02-02 19:28:49', 229, 21);
-INSERT INTO `activities` VALUES(451, 'viewed_menu_item', '2013-02-02 19:28:49', '2013-02-02 19:28:51', 229, 22);
-INSERT INTO `activities` VALUES(452, 'viewed_menu_item', '2013-02-02 19:28:51', '2013-02-02 19:28:52', 229, 81);
-INSERT INTO `activities` VALUES(453, 'viewed_menu_item', '2013-02-02 19:28:52', '2013-02-02 19:28:54', 229, 82);
-INSERT INTO `activities` VALUES(454, 'viewed_menu_item', '2013-02-02 19:28:54', '2013-02-02 19:28:56', 229, 83);
-INSERT INTO `activities` VALUES(455, 'viewed_menu_item', '2013-02-02 19:28:56', '2013-02-02 19:28:57', 229, 84);
-INSERT INTO `activities` VALUES(456, 'viewed_menu_item', '2013-02-02 19:28:57', '2013-02-02 19:28:59', 229, 85);
-INSERT INTO `activities` VALUES(457, 'viewed_menu_item', '2013-02-02 19:28:59', '2013-02-02 19:29:01', 229, 86);
-INSERT INTO `activities` VALUES(458, 'viewed_menu_item', '2013-02-02 19:29:01', '2013-02-02 19:29:02', 229, 23);
-INSERT INTO `activities` VALUES(459, 'viewed_menu_item', '2013-02-02 19:29:02', '2013-02-02 19:29:03', 229, 24);
-INSERT INTO `activities` VALUES(460, 'viewed_menu_item', '2013-02-02 19:29:03', '2013-02-02 19:29:04', 229, 25);
-INSERT INTO `activities` VALUES(461, 'viewed_menu_item', '2013-02-02 19:29:04', '2013-02-02 19:29:05', 229, 26);
-INSERT INTO `activities` VALUES(462, 'viewed_menu_item', '2013-02-02 19:29:05', '2013-02-02 19:29:07', 229, 27);
-INSERT INTO `activities` VALUES(463, 'viewed_menu_item', '2013-02-02 19:29:07', '2013-02-02 19:29:08', 229, 27);
-INSERT INTO `activities` VALUES(464, 'viewed_menu_item', '2013-02-02 19:29:08', '2013-02-02 19:29:14', 229, 26);
-INSERT INTO `activities` VALUES(465, 'viewed_menu_item', '2013-02-02 19:29:14', '2013-02-02 19:29:17', 229, 27);
-INSERT INTO `activities` VALUES(466, 'viewed_menu_item', '2013-02-02 19:29:17', '2013-02-02 19:29:18', 229, 28);
-INSERT INTO `activities` VALUES(467, 'viewed_menu_item', '2013-02-02 19:29:18', '2013-02-02 19:29:30', 229, 27);
-INSERT INTO `activities` VALUES(468, 'viewed_menu_item', '2013-02-02 19:29:30', '2013-02-02 19:29:32', 229, 28);
-INSERT INTO `activities` VALUES(469, 'viewed_menu_item', '2013-02-02 19:29:32', '2013-02-02 19:29:33', 229, 29);
-INSERT INTO `activities` VALUES(470, 'viewed_menu_item', '2013-02-02 19:29:33', '2013-02-02 19:29:55', 229, 30);
-INSERT INTO `activities` VALUES(471, 'viewed_menu_item', '2013-02-02 19:29:55', '2013-02-02 19:29:56', 229, 31);
-INSERT INTO `activities` VALUES(472, 'viewed_menu_item', '2013-02-02 19:29:56', '2013-02-02 19:29:58', 229, 32);
-INSERT INTO `activities` VALUES(473, 'viewed_menu_item', '2013-02-02 19:29:58', '2013-02-02 19:29:59', 229, 33);
-INSERT INTO `activities` VALUES(474, 'viewed_menu_item', '2013-02-02 19:29:59', '2013-02-02 19:30:02', 229, 34);
-INSERT INTO `activities` VALUES(475, 'viewed_menu_item', '2013-02-02 19:30:02', '2013-02-02 19:30:33', 229, 30);
-INSERT INTO `activities` VALUES(476, 'viewed_menu_item', '2013-02-02 19:30:33', '2013-02-02 19:30:38', 229, 31);
-INSERT INTO `activities` VALUES(477, 'viewed_menu_item', '2013-02-02 19:30:38', '2013-02-02 19:30:54', 229, 30);
-INSERT INTO `activities` VALUES(478, 'viewing_menu_item', '2013-02-02 19:30:54', '1969-12-31 19:00:00', 229, 29);
-INSERT INTO `activities` VALUES(479, 'first', '2013-02-02 19:31:13', '2013-02-02 19:31:16', 230, 44);
-INSERT INTO `activities` VALUES(480, 'viewed_menu_item', '2013-02-02 19:31:16', '2013-02-02 19:31:18', 230, 23);
-INSERT INTO `activities` VALUES(481, 'viewed_menu_item', '2013-02-02 19:31:18', '2013-02-02 19:31:19', 230, 33);
-INSERT INTO `activities` VALUES(482, 'viewed_menu_item', '2013-02-02 19:31:19', '2013-02-02 19:31:21', 230, 32);
-INSERT INTO `activities` VALUES(483, 'viewed_menu_item', '2013-02-02 19:31:21', '2013-02-02 19:31:23', 230, 34);
-INSERT INTO `activities` VALUES(484, 'viewed_menu_item', '2013-02-02 19:31:23', '2013-02-02 19:31:23', 230, 31);
-INSERT INTO `activities` VALUES(485, 'viewed_menu_item', '2013-02-02 19:31:23', '2013-02-02 19:31:24', 230, 32);
-INSERT INTO `activities` VALUES(486, 'viewed_menu_item', '2013-02-02 19:31:24', '2013-02-02 19:31:25', 230, 29);
-INSERT INTO `activities` VALUES(487, 'viewed_menu_item', '2013-02-02 19:31:25', '2013-02-02 19:31:26', 230, 29);
-INSERT INTO `activities` VALUES(488, 'viewed_menu_item', '2013-02-02 19:31:26', '2013-02-02 19:31:27', 230, 28);
-INSERT INTO `activities` VALUES(489, 'viewing_menu_item', '2013-02-02 19:31:27', '1969-12-31 19:00:00', 230, 27);
-INSERT INTO `activities` VALUES(490, 'first', '2013-02-02 19:55:03', '2013-02-02 19:55:04', 231, 44);
-INSERT INTO `activities` VALUES(491, 'viewed_menu_item', '2013-02-02 19:55:04', '2013-02-02 19:55:05', 231, 45);
-INSERT INTO `activities` VALUES(492, 'viewed_menu_item', '2013-02-02 19:55:05', '2013-02-02 19:55:06', 231, 46);
-INSERT INTO `activities` VALUES(493, 'viewed_menu_item', '2013-02-02 19:55:06', '2013-02-02 19:55:07', 231, 62);
-INSERT INTO `activities` VALUES(494, 'viewed_menu_item', '2013-02-02 19:55:07', '2013-02-02 19:55:08', 231, 63);
-INSERT INTO `activities` VALUES(495, 'viewed_menu_item', '2013-02-02 19:55:08', '2013-02-02 19:55:09', 231, 64);
-INSERT INTO `activities` VALUES(496, 'viewed_menu_item', '2013-02-02 19:55:09', '2013-02-02 19:55:10', 231, 1);
-INSERT INTO `activities` VALUES(497, 'viewed_menu_item', '2013-02-02 19:55:10', '2013-02-02 19:55:11', 231, 2);
-INSERT INTO `activities` VALUES(498, 'viewed_menu_item', '2013-02-02 19:55:11', '2013-02-02 19:55:12', 231, 23);
-INSERT INTO `activities` VALUES(499, 'viewed_menu_item', '2013-02-02 19:55:12', '2013-02-02 19:55:13', 231, 25);
-INSERT INTO `activities` VALUES(500, 'viewed_menu_item', '2013-02-02 19:55:13', '2013-02-02 19:55:14', 231, 26);
-INSERT INTO `activities` VALUES(501, 'viewed_menu_item', '2013-02-02 19:55:14', '2013-02-02 19:55:32', 231, 27);
-INSERT INTO `activities` VALUES(502, 'viewed_menu_item', '2013-02-02 19:55:32', '2013-02-02 19:55:34', 231, 28);
-INSERT INTO `activities` VALUES(503, 'viewed_menu_item', '2013-02-02 19:55:34', '2013-02-02 19:55:34', 231, 32);
-INSERT INTO `activities` VALUES(504, 'viewed_menu_item', '2013-02-02 19:55:34', '2013-02-02 19:55:35', 231, 31);
-INSERT INTO `activities` VALUES(505, 'viewed_menu_item', '2013-02-02 19:55:35', '2013-02-02 19:55:36', 231, 31);
-INSERT INTO `activities` VALUES(506, 'viewed_menu_item', '2013-02-02 19:55:36', '2013-02-02 19:55:37', 231, 32);
-INSERT INTO `activities` VALUES(507, 'viewed_menu_item', '2013-02-02 19:55:37', '2013-02-02 19:55:39', 231, 30);
-INSERT INTO `activities` VALUES(508, 'viewed_menu_item', '2013-02-02 19:55:39', '2013-02-02 19:56:10', 231, 44);
-INSERT INTO `activities` VALUES(509, 'viewed_menu_item', '2013-02-02 19:56:10', '2013-02-02 19:56:11', 231, 62);
-INSERT INTO `activities` VALUES(510, 'viewed_menu_item', '2013-02-02 19:56:11', '2013-02-02 19:56:12', 231, 35);
-INSERT INTO `activities` VALUES(511, 'viewed_menu_item', '2013-02-02 19:56:12', '2013-02-02 19:56:12', 231, 1);
-INSERT INTO `activities` VALUES(512, 'viewed_menu_item', '2013-02-02 19:56:12', '2013-02-02 19:56:14', 231, 81);
-INSERT INTO `activities` VALUES(513, 'viewed_menu_item', '2013-02-02 19:56:14', '2013-02-02 19:56:15', 231, 44);
-INSERT INTO `activities` VALUES(514, 'viewed_menu_item', '2013-02-02 19:56:15', '2013-02-02 20:04:03', 231, 45);
-INSERT INTO `activities` VALUES(515, 'viewed_menu_item', '2013-02-02 20:04:03', '2013-02-02 20:04:04', 231, 46);
-INSERT INTO `activities` VALUES(516, 'viewed_menu_item', '2013-02-02 20:04:04', '2013-02-02 20:04:05', 231, 62);
-INSERT INTO `activities` VALUES(517, 'viewed_menu_item', '2013-02-02 20:04:05', '2013-02-02 20:04:05', 231, 35);
-INSERT INTO `activities` VALUES(518, 'viewed_menu_item', '2013-02-02 20:04:05', '2013-02-02 20:04:06', 231, 1);
-INSERT INTO `activities` VALUES(519, 'viewed_menu_item', '2013-02-02 20:04:06', '2013-02-02 20:04:07', 231, 1);
-INSERT INTO `activities` VALUES(520, 'viewed_menu_item', '2013-02-02 20:04:07', '2013-02-02 20:34:59', 231, 2);
-INSERT INTO `activities` VALUES(521, 'viewed_menu_item', '2013-02-02 20:34:59', '2013-02-02 20:35:00', 231, 44);
-INSERT INTO `activities` VALUES(522, 'viewed_menu_item', '2013-02-02 20:35:00', '2013-02-02 20:35:01', 231, 62);
-INSERT INTO `activities` VALUES(523, 'viewed_menu_item', '2013-02-02 20:35:01', '2013-02-02 20:35:01', 231, 62);
-INSERT INTO `activities` VALUES(524, 'viewed_menu_item', '2013-02-02 20:35:01', '2013-02-02 20:53:24', 231, 35);
-INSERT INTO `activities` VALUES(525, 'viewed_menu_item', '2013-02-02 20:53:24', '2013-02-02 20:53:25', 231, 36);
-INSERT INTO `activities` VALUES(526, 'viewed_menu_item', '2013-02-02 20:53:25', '2013-02-02 20:53:26', 231, 37);
-INSERT INTO `activities` VALUES(527, 'viewed_menu_item', '2013-02-02 20:53:26', '2013-02-02 20:53:27', 231, 41);
-INSERT INTO `activities` VALUES(528, 'viewed_menu_item', '2013-02-02 20:53:27', '2013-02-02 20:53:30', 231, 40);
-INSERT INTO `activities` VALUES(529, 'viewing_menu_item', '2013-02-02 20:53:30', '1969-12-31 19:00:00', 231, 42);
-INSERT INTO `activities` VALUES(530, 'first', '2013-02-02 20:54:21', '2013-02-02 20:54:24', 232, 44);
-INSERT INTO `activities` VALUES(531, 'viewing_menu_item', '2013-02-02 20:54:25', '1969-12-31 19:00:00', 233, 44);
-INSERT INTO `activities` VALUES(532, 'first', '2013-02-02 20:54:49', '2013-02-02 20:54:50', 234, 44);
-INSERT INTO `activities` VALUES(533, 'viewed_menu_item', '2013-02-02 20:54:50', '2013-02-02 20:54:50', 234, 45);
-INSERT INTO `activities` VALUES(534, 'viewed_menu_item', '2013-02-02 20:54:50', '2013-02-02 20:54:51', 234, 62);
-INSERT INTO `activities` VALUES(535, 'exit_while_viewing_menu_item', '2013-02-02 20:54:51', '2013-02-02 20:54:52', 234, 44);
-INSERT INTO `activities` VALUES(536, 'first', '2013-02-02 20:54:53', '2013-02-02 20:54:55', 235, 44);
-INSERT INTO `activities` VALUES(537, 'viewed_menu_item', '2013-02-02 20:54:55', '2013-02-02 20:54:56', 235, 45);
-INSERT INTO `activities` VALUES(538, 'viewed_menu_item', '2013-02-02 20:54:56', '2013-02-02 20:54:57', 235, 53);
-INSERT INTO `activities` VALUES(539, 'viewing_menu_item', '2013-02-02 20:54:57', '1969-12-31 19:00:00', 235, 52);
-INSERT INTO `activities` VALUES(540, 'first', '2013-02-02 20:58:05', '2013-02-02 20:58:06', 236, 44);
-INSERT INTO `activities` VALUES(541, 'viewed_menu_item', '2013-02-02 20:58:06', '2013-02-02 20:58:07', 236, 45);
-INSERT INTO `activities` VALUES(542, 'viewed_menu_item', '2013-02-02 20:58:07', '2013-02-02 20:58:08', 236, 46);
-INSERT INTO `activities` VALUES(543, 'viewed_menu_item', '2013-02-02 20:58:08', '2013-02-02 20:58:09', 236, 50);
-INSERT INTO `activities` VALUES(544, 'viewed_menu_item', '2013-02-02 20:58:09', '2013-02-02 20:58:11', 236, 56);
-INSERT INTO `activities` VALUES(545, 'viewed_menu_item', '2013-02-02 20:58:11', '2013-02-02 20:58:13', 236, 62);
-INSERT INTO `activities` VALUES(546, 'viewed_menu_item', '2013-02-02 20:58:13', '2013-02-02 20:58:14', 236, 35);
-INSERT INTO `activities` VALUES(547, 'viewed_menu_item', '2013-02-02 20:58:14', '2013-02-02 20:58:28', 236, 35);
-INSERT INTO `activities` VALUES(548, 'viewing_menu_item', '2013-02-02 20:58:28', '1969-12-31 19:00:00', 236, 36);
-INSERT INTO `activities` VALUES(549, 'first', '2013-02-02 21:01:28', '2013-02-02 21:01:32', 237, 44);
-INSERT INTO `activities` VALUES(550, 'viewed_menu_item', '2013-02-02 21:01:32', '2013-02-02 21:01:33', 237, 45);
-INSERT INTO `activities` VALUES(551, 'viewed_menu_item', '2013-02-02 21:01:33', '2013-02-02 21:02:25', 237, 46);
-INSERT INTO `activities` VALUES(552, 'viewed_menu_item', '2013-02-02 21:02:25', '2013-02-02 21:02:26', 237, 47);
-INSERT INTO `activities` VALUES(553, 'viewed_menu_item', '2013-02-02 21:02:26', '2013-02-02 21:02:27', 237, 49);
-INSERT INTO `activities` VALUES(554, 'viewing_menu_item', '2013-02-02 21:02:27', '1969-12-31 19:00:00', 237, 48);
-INSERT INTO `activities` VALUES(555, 'first', '2013-02-02 21:02:59', '2013-02-02 21:03:28', 238, 44);
-INSERT INTO `activities` VALUES(556, 'viewing_menu_item', '2013-02-02 21:03:28', '1969-12-31 19:00:00', 238, 45);
-INSERT INTO `activities` VALUES(557, 'viewing_menu_item', '2013-02-02 21:12:26', '1969-12-31 19:00:00', 239, 44);
-INSERT INTO `activities` VALUES(558, 'viewing_menu_item', '2013-02-02 21:23:13', '1969-12-31 19:00:00', 240, 44);
-INSERT INTO `activities` VALUES(559, 'viewing_menu_item', '2013-02-02 21:24:28', '1969-12-31 19:00:00', 241, 44);
-INSERT INTO `activities` VALUES(560, 'viewing_menu_item', '2013-02-02 21:25:08', '1969-12-31 19:00:00', 242, 44);
-INSERT INTO `activities` VALUES(561, 'viewing_menu_item', '2013-02-02 21:25:50', '1969-12-31 19:00:00', 243, 44);
-INSERT INTO `activities` VALUES(562, 'viewing_menu_item', '2013-02-02 21:26:33', '1969-12-31 19:00:00', 244, 44);
-INSERT INTO `activities` VALUES(563, 'first', '2013-02-02 21:26:49', '2013-02-02 21:26:52', 245, 44);
-INSERT INTO `activities` VALUES(564, 'viewing_menu_item', '2013-02-02 21:26:52', '1969-12-31 19:00:00', 245, 45);
-INSERT INTO `activities` VALUES(565, 'first', '2013-02-02 21:28:28', '2013-02-02 21:28:30', 246, 44);
-INSERT INTO `activities` VALUES(566, 'viewing_menu_item', '2013-02-02 21:28:30', '1969-12-31 19:00:00', 246, 45);
-INSERT INTO `activities` VALUES(567, 'first', '2013-02-02 21:29:47', '2013-02-02 21:30:39', 247, 44);
-INSERT INTO `activities` VALUES(568, 'viewed_menu_item', '2013-02-02 21:30:39', '2013-02-02 21:30:41', 247, 46);
-INSERT INTO `activities` VALUES(569, 'viewed_menu_item', '2013-02-02 21:30:41', '2013-02-02 21:30:43', 247, 50);
-INSERT INTO `activities` VALUES(570, 'viewed_menu_item', '2013-02-02 21:30:43', '2013-02-02 21:30:45', 247, 49);
-INSERT INTO `activities` VALUES(571, 'viewed_menu_item', '2013-02-02 21:30:45', '2013-02-02 21:30:47', 247, 54);
-INSERT INTO `activities` VALUES(572, 'viewed_menu_item', '2013-02-02 21:30:47', '2013-02-02 21:30:48', 247, 59);
-INSERT INTO `activities` VALUES(573, 'viewed_menu_item', '2013-02-02 21:30:48', '2013-02-02 21:32:07', 247, 35);
-INSERT INTO `activities` VALUES(574, 'viewed_menu_item', '2013-02-02 21:32:07', '2013-02-02 21:36:23', 247, 36);
-INSERT INTO `activities` VALUES(575, 'viewed_menu_item', '2013-02-02 21:36:23', '2013-02-02 21:36:24', 247, 41);
-INSERT INTO `activities` VALUES(576, 'viewed_menu_item', '2013-02-02 21:36:24', '2013-02-02 21:36:25', 247, 40);
-INSERT INTO `activities` VALUES(577, 'viewed_menu_item', '2013-02-02 21:36:25', '2013-02-02 21:36:27', 247, 1);
-INSERT INTO `activities` VALUES(578, 'viewing_menu_item', '2013-02-02 21:36:27', '1969-12-31 19:00:00', 247, 81);
-INSERT INTO `activities` VALUES(579, 'first', '2013-02-02 21:38:32', '2013-02-02 21:38:35', 248, 44);
-INSERT INTO `activities` VALUES(580, 'viewing_menu_item', '2013-02-02 21:38:35', '1969-12-31 19:00:00', 248, 45);
-INSERT INTO `activities` VALUES(581, 'first', '2013-02-02 21:41:49', '2013-02-02 21:41:51', 249, 44);
-INSERT INTO `activities` VALUES(582, 'viewing_menu_item', '2013-02-02 21:41:51', '1969-12-31 19:00:00', 249, 45);
-INSERT INTO `activities` VALUES(583, 'first', '2013-02-02 21:43:06', '2013-02-02 21:43:07', 250, 44);
-INSERT INTO `activities` VALUES(584, 'viewing_menu_item', '2013-02-02 21:43:07', '1969-12-31 19:00:00', 250, 45);
-INSERT INTO `activities` VALUES(585, 'viewing_menu_item', '2013-02-02 21:45:32', '1969-12-31 19:00:00', 251, 44);
-INSERT INTO `activities` VALUES(586, 'viewing_menu_item', '2013-02-03 09:43:43', '1969-12-31 19:00:00', 253, 44);
-INSERT INTO `activities` VALUES(587, 'first', '2013-02-03 09:43:56', '2013-02-03 09:43:57', 254, 44);
-INSERT INTO `activities` VALUES(588, 'viewing_menu_item', '2013-02-03 09:43:57', '1969-12-31 19:00:00', 254, 35);
-INSERT INTO `activities` VALUES(589, 'viewing_menu_item', '2013-02-03 09:44:13', '1969-12-31 19:00:00', 255, 44);
-INSERT INTO `activities` VALUES(590, 'viewing_menu_item', '2013-02-03 09:44:40', '1969-12-31 19:00:00', 256, 44);
-INSERT INTO `activities` VALUES(591, 'first', '2013-02-03 09:44:55', '2013-02-03 09:44:57', 257, 44);
-INSERT INTO `activities` VALUES(592, 'viewed_menu_item', '2013-02-03 09:44:57', '2013-02-03 09:44:58', 257, 35);
-INSERT INTO `activities` VALUES(593, 'viewing_menu_item', '2013-02-03 09:44:58', '1969-12-31 19:00:00', 257, 62);
-INSERT INTO `activities` VALUES(594, 'first', '2013-02-03 09:46:33', '2013-02-03 09:46:34', 258, 44);
-INSERT INTO `activities` VALUES(595, 'viewed_menu_item', '2013-02-03 09:46:34', '2013-02-03 09:46:35', 258, 35);
-INSERT INTO `activities` VALUES(596, 'viewed_menu_item', '2013-02-03 09:46:35', '2013-02-03 09:46:36', 258, 62);
-INSERT INTO `activities` VALUES(597, 'viewed_menu_item', '2013-02-03 09:46:36', '2013-02-03 09:46:37', 258, 1);
-INSERT INTO `activities` VALUES(598, 'viewed_menu_item', '2013-02-03 09:46:37', '2013-02-03 09:46:38', 258, 81);
-INSERT INTO `activities` VALUES(599, 'viewed_menu_item', '2013-02-03 09:46:38', '2013-02-03 09:47:46', 258, 23);
-INSERT INTO `activities` VALUES(600, 'viewed_menu_item', '2013-02-03 09:47:46', '2013-02-03 09:47:47', 258, 24);
-INSERT INTO `activities` VALUES(601, 'viewed_menu_item', '2013-02-03 09:47:47', '2013-02-03 09:47:49', 258, 25);
-INSERT INTO `activities` VALUES(602, 'viewed_menu_item', '2013-02-03 09:47:49', '2013-02-03 09:47:53', 258, 26);
-INSERT INTO `activities` VALUES(603, 'viewed_menu_item', '2013-02-03 09:47:53', '2013-02-03 09:47:54', 258, 28);
-INSERT INTO `activities` VALUES(604, 'viewed_menu_item', '2013-02-03 09:47:54', '2013-02-03 09:47:55', 258, 62);
-INSERT INTO `activities` VALUES(605, 'viewed_menu_item', '2013-02-03 09:47:55', '2013-02-03 09:47:57', 258, 44);
-INSERT INTO `activities` VALUES(606, 'viewed_menu_item', '2013-02-03 09:47:57', '2013-02-03 09:47:58', 258, 62);
-INSERT INTO `activities` VALUES(607, 'viewed_menu_item', '2013-02-03 09:47:58', '2013-02-03 09:47:59', 258, 63);
-INSERT INTO `activities` VALUES(608, 'viewed_menu_item', '2013-02-03 09:47:59', '2013-02-03 09:48:00', 258, 64);
-INSERT INTO `activities` VALUES(609, 'viewed_menu_item', '2013-02-03 09:48:00', '2013-02-03 09:48:01', 258, 66);
-INSERT INTO `activities` VALUES(610, 'viewed_menu_item', '2013-02-03 09:48:01', '2013-02-03 09:48:02', 258, 65);
-INSERT INTO `activities` VALUES(611, 'viewed_menu_item', '2013-02-03 09:48:02', '2013-02-03 09:48:05', 258, 68);
-INSERT INTO `activities` VALUES(612, 'viewed_menu_item', '2013-02-03 09:48:05', '2013-02-03 09:48:11', 258, 69);
-INSERT INTO `activities` VALUES(613, 'viewed_menu_item', '2013-02-03 09:48:11', '2013-02-03 09:48:13', 258, 70);
-INSERT INTO `activities` VALUES(614, 'viewed_menu_item', '2013-02-03 09:48:13', '2013-02-03 09:48:14', 258, 73);
-INSERT INTO `activities` VALUES(615, 'viewed_menu_item', '2013-02-03 09:48:14', '2013-02-03 09:48:16', 258, 71);
-INSERT INTO `activities` VALUES(616, 'viewed_menu_item', '2013-02-03 09:48:16', '2013-02-03 09:48:17', 258, 35);
-INSERT INTO `activities` VALUES(617, 'viewed_menu_item', '2013-02-03 09:48:17', '2013-02-03 09:48:17', 258, 81);
-INSERT INTO `activities` VALUES(618, 'viewed_menu_item', '2013-02-03 09:48:17', '2013-02-03 09:48:26', 258, 23);
-INSERT INTO `activities` VALUES(619, 'viewed_menu_item', '2013-02-03 09:48:26', '2013-02-03 09:48:27', 258, 24);
-INSERT INTO `activities` VALUES(620, 'viewed_menu_item', '2013-02-03 09:48:27', '2013-02-03 09:48:28', 258, 25);
-INSERT INTO `activities` VALUES(621, 'viewed_menu_item', '2013-02-03 09:48:28', '2013-02-03 09:48:30', 258, 26);
-INSERT INTO `activities` VALUES(622, 'viewed_menu_item', '2013-02-03 09:48:30', '2013-02-03 09:48:31', 258, 28);
-INSERT INTO `activities` VALUES(623, 'viewed_menu_item', '2013-02-03 09:48:31', '2013-02-03 09:48:32', 258, 33);
-INSERT INTO `activities` VALUES(624, 'viewed_menu_item', '2013-02-03 09:48:32', '2013-02-03 09:48:34', 258, 31);
-INSERT INTO `activities` VALUES(625, 'viewing_menu_item', '2013-02-03 09:48:34', '1969-12-31 19:00:00', 258, 30);
-INSERT INTO `activities` VALUES(626, 'first', '2013-02-03 09:53:48', '2013-02-03 09:53:54', 259, 44);
-INSERT INTO `activities` VALUES(627, 'viewed_menu_item', '2013-02-03 09:53:54', '2013-02-03 09:54:32', 259, 45);
-INSERT INTO `activities` VALUES(628, 'viewed_menu_item', '2013-02-03 09:54:32', '2013-02-03 09:54:35', 259, 46);
-INSERT INTO `activities` VALUES(629, 'viewed_menu_item', '2013-02-03 09:54:35', '2013-02-03 09:54:36', 259, 45);
-INSERT INTO `activities` VALUES(630, 'viewing_menu_item', '2013-02-03 09:54:36', '1969-12-31 19:00:00', 259, 44);
-INSERT INTO `activities` VALUES(631, 'first', '2013-02-03 09:56:43', '2013-02-03 09:56:48', 260, 44);
-INSERT INTO `activities` VALUES(632, 'viewing_menu_item', '2013-02-03 09:56:48', '1969-12-31 19:00:00', 260, 45);
-INSERT INTO `activities` VALUES(633, 'first', '2013-02-03 09:57:25', '2013-02-03 09:57:26', 261, 44);
-INSERT INTO `activities` VALUES(634, 'viewed_menu_item', '2013-02-03 09:57:26', '2013-02-03 09:57:28', 261, 45);
-INSERT INTO `activities` VALUES(635, 'viewed_menu_item', '2013-02-03 09:57:28', '2013-02-03 09:57:31', 261, 46);
-INSERT INTO `activities` VALUES(636, 'viewed_menu_item', '2013-02-03 09:57:31', '2013-02-03 09:57:34', 261, 50);
-INSERT INTO `activities` VALUES(637, 'viewed_menu_item', '2013-02-03 09:57:34', '2013-02-03 09:57:36', 261, 62);
-INSERT INTO `activities` VALUES(638, 'viewed_menu_item', '2013-02-03 09:57:36', '2013-02-03 09:57:37', 261, 63);
-INSERT INTO `activities` VALUES(639, 'viewed_menu_item', '2013-02-03 09:57:37', '2013-02-03 09:57:39', 261, 64);
-INSERT INTO `activities` VALUES(640, 'viewed_menu_item', '2013-02-03 09:57:39', '2013-02-03 09:57:42', 261, 1);
-INSERT INTO `activities` VALUES(641, 'viewed_menu_item', '2013-02-03 09:57:42', '2013-02-03 09:57:43', 261, 2);
-INSERT INTO `activities` VALUES(642, 'viewed_menu_item', '2013-02-03 09:57:43', '2013-02-03 09:57:47', 261, 81);
-INSERT INTO `activities` VALUES(643, 'viewed_menu_item', '2013-02-03 09:57:47', '2013-02-03 09:57:54', 261, 83);
-INSERT INTO `activities` VALUES(644, 'viewed_menu_item', '2013-02-03 09:57:54', '2013-02-03 09:57:57', 261, 84);
-INSERT INTO `activities` VALUES(645, 'viewed_menu_item', '2013-02-03 09:57:57', '2013-02-03 09:57:58', 261, 23);
-INSERT INTO `activities` VALUES(646, 'viewed_menu_item', '2013-02-03 09:57:58', '2013-02-03 09:58:00', 261, 24);
-INSERT INTO `activities` VALUES(647, 'viewed_menu_item', '2013-02-03 09:58:00', '2013-02-03 10:01:22', 261, 26);
-INSERT INTO `activities` VALUES(648, 'viewed_menu_item', '2013-02-03 10:01:22', '2013-02-03 10:01:23', 261, 35);
-INSERT INTO `activities` VALUES(649, 'exit_while_viewing_menu_item', '2013-02-03 10:01:23', '2013-02-03 10:01:24', 261, 44);
-INSERT INTO `activities` VALUES(650, 'first', '2013-02-03 10:01:27', '2013-02-03 10:01:43', 262, 44);
-INSERT INTO `activities` VALUES(651, 'viewed_menu_item', '2013-02-03 10:01:43', '2013-02-03 10:01:44', 262, 56);
-INSERT INTO `activities` VALUES(652, 'viewed_menu_item', '2013-02-03 10:01:44', '2013-02-03 10:01:50', 262, 55);
-INSERT INTO `activities` VALUES(653, 'viewed_menu_item', '2013-02-03 10:01:50', '2013-02-03 10:01:52', 262, 54);
-INSERT INTO `activities` VALUES(654, 'viewed_menu_item', '2013-02-03 10:01:52', '2013-02-03 10:01:53', 262, 62);
-INSERT INTO `activities` VALUES(655, 'viewing_menu_item', '2013-02-03 10:01:53', '1969-12-31 19:00:00', 262, 63);
-INSERT INTO `activities` VALUES(656, 'viewing_menu_item', '2013-02-03 10:06:44', '1969-12-31 19:00:00', 263, 44);
-INSERT INTO `activities` VALUES(657, 'first', '2013-02-03 10:07:36', '2013-02-03 10:07:40', 264, 44);
-INSERT INTO `activities` VALUES(658, 'viewed_menu_item', '2013-02-03 10:07:40', '2013-02-03 10:07:42', 264, 46);
-INSERT INTO `activities` VALUES(659, 'viewed_menu_item', '2013-02-03 10:07:42', '2013-02-03 10:07:45', 264, 47);
-INSERT INTO `activities` VALUES(660, 'viewed_menu_item', '2013-02-03 10:07:45', '2013-02-03 10:08:04', 264, 35);
-INSERT INTO `activities` VALUES(661, 'viewing_menu_item', '2013-02-03 10:08:04', '1969-12-31 19:00:00', 264, 36);
-INSERT INTO `activities` VALUES(662, 'first', '2013-02-03 10:08:37', '2013-02-03 10:08:41', 265, 44);
-INSERT INTO `activities` VALUES(663, 'viewed_menu_item', '2013-02-03 10:08:41', '2013-02-03 10:08:42', 265, 62);
-INSERT INTO `activities` VALUES(664, 'viewed_menu_item', '2013-02-03 10:08:42', '2013-02-03 10:08:43', 265, 63);
-INSERT INTO `activities` VALUES(665, 'viewing_menu_item', '2013-02-03 10:08:43', '1969-12-31 19:00:00', 265, 35);
-INSERT INTO `activities` VALUES(666, 'first', '2013-02-03 10:09:19', '2013-02-03 10:09:20', 266, 44);
-INSERT INTO `activities` VALUES(667, 'viewed_menu_item', '2013-02-03 10:09:20', '2013-02-03 10:09:21', 266, 35);
-INSERT INTO `activities` VALUES(668, 'viewing_menu_item', '2013-02-03 10:09:21', '1969-12-31 19:00:00', 266, 35);
-INSERT INTO `activities` VALUES(669, 'first', '2013-02-03 10:10:26', '2013-02-03 10:10:28', 267, 44);
-INSERT INTO `activities` VALUES(670, 'exit_while_viewing_menu_item', '2013-02-03 10:10:28', '2013-02-03 10:10:31', 267, 45);
-INSERT INTO `activities` VALUES(671, 'first', '2013-02-03 10:10:33', '2013-02-03 10:10:37', 268, 44);
-INSERT INTO `activities` VALUES(672, 'first', '2013-02-03 10:10:38', '2013-02-03 10:10:42', 269, 44);
-INSERT INTO `activities` VALUES(673, 'exit_while_viewing_menu_item', '2013-02-03 10:10:42', '2013-02-03 10:10:44', 269, 46);
-INSERT INTO `activities` VALUES(674, 'first', '2013-02-03 10:10:45', '2013-02-03 10:10:52', 270, 44);
-INSERT INTO `activities` VALUES(675, 'viewed_menu_item', '2013-02-03 10:10:52', '2013-02-03 10:10:58', 270, 35);
-INSERT INTO `activities` VALUES(676, 'viewed_menu_item', '2013-02-03 10:10:58', '2013-02-03 10:11:05', 270, 37);
-INSERT INTO `activities` VALUES(677, 'viewed_menu_item', '2013-02-03 10:11:05', '2013-02-03 10:11:09', 270, 38);
-INSERT INTO `activities` VALUES(678, 'viewing_menu_item', '2013-02-03 10:11:09', '1969-12-31 19:00:00', 270, 39);
-INSERT INTO `activities` VALUES(679, 'first', '2013-02-03 10:12:05', '2013-02-03 10:12:09', 271, 44);
-INSERT INTO `activities` VALUES(680, 'viewed_menu_item', '2013-02-03 10:12:09', '2013-02-03 10:12:13', 271, 45);
-INSERT INTO `activities` VALUES(681, 'viewed_menu_item', '2013-02-03 10:12:13', '2013-02-03 10:12:17', 271, 46);
-INSERT INTO `activities` VALUES(682, 'viewed_menu_item', '2013-02-03 10:12:17', '2013-02-03 10:13:41', 271, 35);
-INSERT INTO `activities` VALUES(683, 'viewing_menu_item', '2013-02-03 10:13:41', '1969-12-31 19:00:00', 271, 36);
-INSERT INTO `activities` VALUES(684, 'first', '2013-02-03 10:15:02', '2013-02-03 10:15:05', 272, 44);
-INSERT INTO `activities` VALUES(685, 'viewed_menu_item', '2013-02-03 10:15:05', '2013-02-03 10:15:07', 272, 45);
-INSERT INTO `activities` VALUES(686, 'viewed_menu_item', '2013-02-03 10:15:07', '2013-02-03 10:15:10', 272, 46);
-INSERT INTO `activities` VALUES(687, 'viewed_menu_item', '2013-02-03 10:15:10', '2013-02-03 10:15:11', 272, 47);
-INSERT INTO `activities` VALUES(688, 'viewed_menu_item', '2013-02-03 10:15:11', '2013-02-03 10:15:13', 272, 35);
-INSERT INTO `activities` VALUES(689, 'viewed_menu_item', '2013-02-03 10:15:13', '2013-02-03 10:15:16', 272, 36);
-INSERT INTO `activities` VALUES(690, 'viewed_menu_item', '2013-02-03 10:15:16', '2013-02-03 10:15:21', 272, 41);
-INSERT INTO `activities` VALUES(691, 'viewed_menu_item', '2013-02-03 10:15:21', '2013-02-03 10:15:24', 272, 1);
-INSERT INTO `activities` VALUES(692, 'viewed_menu_item', '2013-02-03 10:15:24', '2013-02-03 10:15:28', 272, 35);
-INSERT INTO `activities` VALUES(693, 'viewed_menu_item', '2013-02-03 10:15:28', '2013-02-03 10:15:31', 272, 62);
-INSERT INTO `activities` VALUES(694, 'exit_while_viewing_menu_item', '2013-02-03 10:15:31', '2013-02-03 10:23:18', 272, 68);
-INSERT INTO `activities` VALUES(695, 'viewing_menu_item', '2013-02-03 10:23:20', '1969-12-31 19:00:00', 273, 44);
-INSERT INTO `activities` VALUES(696, 'viewing_menu_item', '2013-02-03 10:26:43', '1969-12-31 19:00:00', 274, 44);
-INSERT INTO `activities` VALUES(697, 'first', '2013-02-03 10:26:46', '2013-02-03 10:26:47', 275, 44);
-INSERT INTO `activities` VALUES(698, 'exit_while_viewing_menu_item', '2013-02-03 10:26:47', '2013-02-03 10:26:54', 275, 46);
-INSERT INTO `activities` VALUES(699, 'first', '2013-02-03 10:26:55', '2013-02-03 10:26:59', 276, 44);
-INSERT INTO `activities` VALUES(700, 'first', '2013-02-03 10:27:00', '2013-02-03 10:27:05', 277, 44);
-INSERT INTO `activities` VALUES(701, 'viewed_menu_item', '2013-02-03 10:27:05', '2013-02-03 10:27:07', 277, 46);
-INSERT INTO `activities` VALUES(702, 'viewed_menu_item', '2013-02-03 10:27:07', '2013-02-03 10:27:09', 277, 49);
-INSERT INTO `activities` VALUES(703, 'exit_while_viewing_menu_item', '2013-02-03 10:27:09', '2013-02-03 10:27:12', 277, 50);
-INSERT INTO `activities` VALUES(704, 'first', '2013-02-03 10:27:14', '2013-02-03 10:27:19', 278, 44);
-INSERT INTO `activities` VALUES(705, 'viewed_menu_item', '2013-02-03 10:27:19', '2013-02-03 10:27:23', 278, 50);
-INSERT INTO `activities` VALUES(706, 'viewed_menu_item', '2013-02-03 10:27:23', '2013-02-03 10:27:24', 278, 1);
-INSERT INTO `activities` VALUES(707, 'exit_while_viewing_menu_item', '2013-02-03 10:27:24', '2013-02-03 10:27:27', 278, 2);
-INSERT INTO `activities` VALUES(708, 'first', '2013-02-03 10:27:29', '2013-02-03 10:27:36', 279, 44);
-INSERT INTO `activities` VALUES(709, 'first', '2013-02-03 10:27:38', '2013-02-03 10:27:46', 280, 44);
-INSERT INTO `activities` VALUES(710, 'viewed_menu_item', '2013-02-03 10:27:46', '2013-02-03 10:27:47', 280, 47);
-INSERT INTO `activities` VALUES(711, 'viewed_menu_item', '2013-02-03 10:27:47', '2013-02-03 10:27:48', 280, 1);
-INSERT INTO `activities` VALUES(712, 'viewing_menu_item', '2013-02-03 10:27:48', '1969-12-31 19:00:00', 280, 3);
-INSERT INTO `activities` VALUES(713, 'viewing_menu_item', '2013-02-03 10:32:42', '1969-12-31 19:00:00', 281, 44);
-INSERT INTO `activities` VALUES(714, 'viewing_menu_item', '2013-02-03 10:34:36', '1969-12-31 19:00:00', 282, 44);
-INSERT INTO `activities` VALUES(715, 'viewing_menu_item', '2013-02-03 10:35:26', '1969-12-31 19:00:00', 283, 44);
-INSERT INTO `activities` VALUES(716, 'viewing_menu_item', '2013-02-03 10:35:56', '1969-12-31 19:00:00', 284, 44);
-INSERT INTO `activities` VALUES(717, 'first', '2013-02-03 10:36:22', '2013-02-03 10:36:41', 285, 44);
-INSERT INTO `activities` VALUES(718, 'first', '2013-02-03 10:36:54', '2013-02-03 10:36:57', 286, 2);
-INSERT INTO `activities` VALUES(719, 'viewed_menu_item', '2013-02-03 10:36:57', '2013-02-03 10:36:59', 286, 4);
-INSERT INTO `activities` VALUES(720, 'viewed_menu_item', '2013-02-03 10:36:59', '2013-02-03 10:37:01', 286, 5);
-INSERT INTO `activities` VALUES(721, 'viewed_menu_item', '2013-02-03 10:37:01', '2013-02-03 10:37:02', 286, 1);
-INSERT INTO `activities` VALUES(722, 'viewed_menu_item', '2013-02-03 10:37:02', '2013-02-03 10:37:02', 286, 24);
-INSERT INTO `activities` VALUES(723, 'viewed_menu_item', '2013-02-03 10:37:02', '2013-02-03 10:37:03', 286, 24);
-INSERT INTO `activities` VALUES(724, 'exit_while_viewing_menu_item', '2013-02-03 10:37:03', '2013-02-03 10:37:07', 286, 25);
-INSERT INTO `activities` VALUES(725, 'first', '2013-02-03 10:37:08', '2013-02-03 10:37:22', 287, 2);
-INSERT INTO `activities` VALUES(726, 'first', '2013-02-03 10:37:23', '2013-02-03 10:37:29', 288, 2);
-INSERT INTO `activities` VALUES(727, 'exit_while_viewing_menu_item', '2013-02-03 10:37:29', '2013-02-03 10:39:17', 288, 4);
-INSERT INTO `activities` VALUES(728, 'first', '2013-02-03 10:39:25', '2013-02-03 10:39:26', 289, 44);
-INSERT INTO `activities` VALUES(729, 'viewed_menu_item', '2013-02-03 10:39:26', '2013-02-03 10:39:27', 289, 45);
-INSERT INTO `activities` VALUES(730, 'viewed_menu_item', '2013-02-03 10:39:27', '2013-02-03 10:39:41', 289, 46);
-INSERT INTO `activities` VALUES(731, 'viewing_menu_item', '2013-02-03 10:39:41', '1969-12-31 19:00:00', 289, 47);
-INSERT INTO `activities` VALUES(732, 'first', '2013-02-03 10:41:33', '2013-02-03 10:41:36', 290, 44);
-INSERT INTO `activities` VALUES(733, 'exit_while_viewing_menu_item', '2013-02-03 10:41:36', '2013-02-03 10:41:38', 290, 46);
-INSERT INTO `activities` VALUES(734, 'first', '2013-02-03 10:44:40', '2013-02-03 10:44:41', 292, 44);
-INSERT INTO `activities` VALUES(735, 'first', '2013-02-03 11:32:55', '2013-02-03 11:32:58', 294, 44);
-INSERT INTO `activities` VALUES(736, 'first', '2013-02-03 11:33:06', '2013-02-03 11:33:09', 295, 2);
-INSERT INTO `activities` VALUES(737, 'viewing_menu_item', '2013-02-03 11:45:13', '1969-12-31 19:00:00', 297, 44);
-INSERT INTO `activities` VALUES(738, 'first', '2013-02-03 12:00:32', '2013-02-03 12:00:34', 298, 44);
-INSERT INTO `activities` VALUES(739, 'viewing_menu_item', '2013-02-03 12:01:06', '1969-12-31 19:00:00', 299, 2);
-INSERT INTO `activities` VALUES(740, 'first', '2013-02-03 19:33:50', '2013-02-03 19:53:41', 300, 44);
-INSERT INTO `activities` VALUES(741, 'first', '2013-02-03 19:53:43', '2013-02-03 19:53:45', 301, 88);
-INSERT INTO `activities` VALUES(742, 'skipped_video', '2013-02-03 19:53:45', '2013-02-03 19:53:47', 301, 95);
-INSERT INTO `activities` VALUES(743, 'exit_while_watching_video', '2013-02-03 19:53:47', '2013-02-03 19:53:49', 301, 91);
-INSERT INTO `activities` VALUES(744, 'first', '2013-02-03 19:57:50', '2013-02-03 19:57:51', 302, 92);
-INSERT INTO `activities` VALUES(745, 'skipped_video', '2013-02-03 19:57:51', '2013-02-03 19:57:52', 302, 90);
-INSERT INTO `activities` VALUES(746, 'skipped_video', '2013-02-03 19:57:52', '2013-02-03 19:57:52', 302, 94);
-INSERT INTO `activities` VALUES(747, 'skipped_video', '2013-02-03 19:57:52', '2013-02-03 19:57:53', 302, 88);
-INSERT INTO `activities` VALUES(748, 'skipped_video', '2013-02-03 19:57:53', '2013-02-03 19:57:53', 302, 91);
-INSERT INTO `activities` VALUES(749, 'skipped_video', '2013-02-03 19:57:53', '2013-02-03 19:57:54', 302, 95);
-INSERT INTO `activities` VALUES(750, 'skipped_video', '2013-02-03 19:57:54', '2013-02-03 19:57:54', 302, 89);
-INSERT INTO `activities` VALUES(751, 'skipped_video', '2013-02-03 19:57:54', '2013-02-03 19:57:55', 302, 92);
-INSERT INTO `activities` VALUES(752, 'skipped_video', '2013-02-03 19:57:55', '2013-02-03 19:57:55', 302, 93);
-INSERT INTO `activities` VALUES(753, 'skipped_video', '2013-02-03 19:57:55', '2013-02-03 19:57:56', 302, 87);
-INSERT INTO `activities` VALUES(754, 'skipped_video', '2013-02-03 19:57:56', '2013-02-03 19:57:56', 302, 91);
-INSERT INTO `activities` VALUES(755, 'skipped_video', '2013-02-03 19:57:56', '2013-02-03 19:57:57', 302, 88);
-INSERT INTO `activities` VALUES(756, 'skipped_video', '2013-02-03 19:57:57', '2013-02-03 19:57:57', 302, 95);
-INSERT INTO `activities` VALUES(757, 'skipped_video', '2013-02-03 19:57:57', '2013-02-03 19:57:58', 302, 89);
-INSERT INTO `activities` VALUES(758, 'skipped_video', '2013-02-03 19:57:58', '2013-02-03 19:57:58', 302, 92);
-INSERT INTO `activities` VALUES(759, 'skipped_video', '2013-02-03 19:57:58', '2013-02-03 19:57:59', 302, 87);
-INSERT INTO `activities` VALUES(760, 'skipped_video', '2013-02-03 19:57:59', '2013-02-03 19:57:59', 302, 90);
-INSERT INTO `activities` VALUES(761, 'skipped_video', '2013-02-03 19:57:59', '2013-02-03 19:57:59', 302, 88);
-INSERT INTO `activities` VALUES(762, 'skipped_video', '2013-02-03 19:57:59', '2013-02-03 19:58:00', 302, 94);
-INSERT INTO `activities` VALUES(763, 'skipped_video', '2013-02-03 19:58:00', '2013-02-03 19:58:00', 302, 89);
-INSERT INTO `activities` VALUES(764, 'exit_while_watching_video', '2013-02-03 19:58:00', '2013-02-03 19:58:01', 302, 93);
-INSERT INTO `activities` VALUES(765, 'viewing_menu_item', '2013-02-03 22:48:14', '1969-12-31 19:00:00', 303, 2);
-INSERT INTO `activities` VALUES(766, 'first', '2013-02-03 22:48:58', '2013-02-03 22:48:59', 305, 2);
-INSERT INTO `activities` VALUES(767, 'first', '2013-02-03 22:57:04', '2013-02-03 22:57:05', 307, 2);
-INSERT INTO `activities` VALUES(768, 'exit_while_viewing_menu_item', '2013-02-03 22:57:05', '2013-02-03 22:57:07', 307, 3);
-INSERT INTO `activities` VALUES(769, 'first', '2013-02-03 22:57:34', '2013-02-03 22:57:37', 308, 2);
-INSERT INTO `activities` VALUES(770, 'viewed_menu_item', '2013-02-03 22:57:37', '2013-02-03 22:57:38', 308, 8);
-INSERT INTO `activities` VALUES(771, 'viewed_menu_item', '2013-02-03 22:57:38', '2013-02-03 22:57:39', 308, 1);
-INSERT INTO `activities` VALUES(772, 'exit_while_viewing_menu_item', '2013-02-03 22:57:39', '2013-02-03 22:57:42', 308, 25);
-INSERT INTO `activities` VALUES(773, 'first', '2013-02-03 22:58:51', '2013-02-03 22:58:52', 309, 44);
-INSERT INTO `activities` VALUES(774, 'first', '2013-02-03 23:16:01', '2013-02-03 23:16:04', 310, 2);
-INSERT INTO `activities` VALUES(775, 'first', '2013-02-03 23:24:58', '2013-02-03 23:25:00', 311, 2);
-INSERT INTO `activities` VALUES(776, 'first', '2013-02-03 23:26:06', '2013-02-03 23:26:38', 312, 2);
-INSERT INTO `activities` VALUES(777, 'first', '2013-02-03 23:34:03', '2013-02-03 23:34:05', 314, 44);
-INSERT INTO `activities` VALUES(778, 'viewed_menu_item', '2013-02-03 23:34:05', '2013-02-03 23:34:06', 314, 45);
-INSERT INTO `activities` VALUES(779, 'viewed_menu_item', '2013-02-03 23:34:06', '2013-02-03 23:34:07', 314, 46);
-INSERT INTO `activities` VALUES(780, 'viewed_menu_item', '2013-02-03 23:34:07', '2013-02-03 23:34:07', 314, 62);
-INSERT INTO `activities` VALUES(781, 'viewed_menu_item', '2013-02-03 23:34:07', '2013-02-03 23:34:08', 314, 35);
-INSERT INTO `activities` VALUES(782, 'exit_while_viewing_menu_item', '2013-02-03 23:34:08', '2013-02-03 23:34:09', 314, 1);
-INSERT INTO `activities` VALUES(783, 'first', '2013-02-03 23:34:18', '2013-02-03 23:34:19', 315, 44);
-INSERT INTO `activities` VALUES(784, 'first', '2013-02-03 23:34:24', '2013-02-03 23:34:25', 317, 44);
-INSERT INTO `activities` VALUES(785, 'first', '2013-02-03 23:34:33', '2013-02-03 23:34:34', 318, 44);
-INSERT INTO `activities` VALUES(786, 'first', '2013-02-03 23:35:20', '2013-02-03 23:35:22', 319, 44);
-INSERT INTO `activities` VALUES(787, 'first', '2013-02-03 23:35:36', '2013-02-03 23:35:37', 320, 44);
-INSERT INTO `activities` VALUES(788, 'first', '2013-02-03 23:35:50', '2013-02-03 23:35:52', 321, 44);
-INSERT INTO `activities` VALUES(789, 'first', '2013-02-03 23:36:18', '2013-02-03 23:36:32', 324, 44);
-INSERT INTO `activities` VALUES(790, 'first', '2013-02-03 23:37:24', '2013-02-03 23:37:25', 325, 44);
-INSERT INTO `activities` VALUES(791, 'viewed_menu_item', '2013-02-03 23:37:25', '2013-02-03 23:37:26', 325, 45);
-INSERT INTO `activities` VALUES(792, 'viewed_menu_item', '2013-02-03 23:37:26', '2013-02-03 23:37:26', 325, 46);
-INSERT INTO `activities` VALUES(793, 'viewed_menu_item', '2013-02-03 23:37:26', '2013-02-03 23:37:27', 325, 35);
-INSERT INTO `activities` VALUES(794, 'viewed_menu_item', '2013-02-03 23:37:27', '2013-02-03 23:37:30', 325, 1);
-INSERT INTO `activities` VALUES(795, 'exit_while_viewing_menu_item', '2013-02-03 23:37:30', '2013-02-03 23:37:32', 325, 44);
-INSERT INTO `activities` VALUES(796, 'first', '2013-02-04 00:52:20', '2013-02-04 00:52:24', 327, 44);
-INSERT INTO `activities` VALUES(797, 'viewed_menu_item', '2013-02-04 00:52:24', '2013-02-04 00:52:25', 327, 45);
-INSERT INTO `activities` VALUES(798, 'viewed_menu_item', '2013-02-04 00:52:25', '2013-02-04 00:52:25', 327, 45);
-INSERT INTO `activities` VALUES(799, 'viewed_menu_item', '2013-02-04 00:52:25', '2013-02-04 00:52:33', 327, 46);
-INSERT INTO `activities` VALUES(800, 'viewed_menu_item', '2013-02-04 00:52:33', '2013-02-04 00:52:37', 327, 50);
-INSERT INTO `activities` VALUES(801, 'viewing_menu_item', '2013-02-04 00:52:37', '1969-12-31 19:00:00', 327, 54);
-INSERT INTO `activities` VALUES(802, 'first', '2013-02-04 00:56:05', '2013-02-04 00:56:07', 328, 97);
-INSERT INTO `activities` VALUES(803, 'first', '2013-02-04 00:56:08', '2013-02-04 00:56:10', 329, 44);
-INSERT INTO `activities` VALUES(804, 'viewed_menu_item', '2013-02-04 00:56:10', '2013-02-04 00:56:12', 329, 46);
-INSERT INTO `activities` VALUES(805, 'viewed_menu_item', '2013-02-04 00:56:12', '2013-02-04 00:56:16', 329, 49);
-INSERT INTO `activities` VALUES(806, 'viewed_menu_item', '2013-02-04 00:56:16', '2013-02-04 00:56:17', 329, 48);
-INSERT INTO `activities` VALUES(807, 'viewed_menu_item', '2013-02-04 00:56:17', '2013-02-04 00:56:18', 329, 47);
-INSERT INTO `activities` VALUES(808, 'viewing_menu_item', '2013-02-04 00:56:18', '1969-12-31 19:00:00', 329, 54);
-INSERT INTO `activities` VALUES(809, 'first', '2013-02-04 00:59:55', '2013-02-04 00:59:56', 330, 88);
-INSERT INTO `activities` VALUES(810, 'first', '2013-02-04 01:00:44', '2013-02-04 01:00:47', 331, 44);
-INSERT INTO `activities` VALUES(811, 'viewed_menu_item', '2013-02-04 01:00:47', '2013-02-04 01:00:49', 331, 50);
-INSERT INTO `activities` VALUES(812, 'viewed_menu_item', '2013-02-04 01:00:49', '2013-02-04 01:00:50', 331, 53);
-INSERT INTO `activities` VALUES(813, 'viewed_menu_item', '2013-02-04 01:00:50', '2013-02-04 01:00:57', 331, 51);
-INSERT INTO `activities` VALUES(814, 'viewed_menu_item', '2013-02-04 01:00:57', '2013-02-04 01:00:58', 331, 55);
-INSERT INTO `activities` VALUES(815, 'viewed_menu_item', '2013-02-04 01:00:58', '2013-02-04 01:01:01', 331, 58);
-INSERT INTO `activities` VALUES(816, 'viewing_menu_item', '2013-02-04 01:01:01', '1969-12-31 19:00:00', 331, 61);
-INSERT INTO `activities` VALUES(817, 'viewing_menu_item', '2013-02-04 01:05:41', '1969-12-31 19:00:00', 332, 44);
-INSERT INTO `activities` VALUES(818, 'first', '2013-02-04 01:06:26', '2013-02-04 01:06:44', 333, 44);
-INSERT INTO `activities` VALUES(819, 'viewed_menu_item', '2013-02-04 01:06:44', '2013-02-04 01:06:45', 333, 35);
-INSERT INTO `activities` VALUES(820, 'viewing_menu_item', '2013-02-04 01:06:45', '1969-12-31 19:00:00', 333, 36);
-INSERT INTO `activities` VALUES(821, 'first', '2013-02-04 01:11:02', '2013-02-04 01:11:04', 334, 44);
-INSERT INTO `activities` VALUES(822, 'viewed_menu_item', '2013-02-04 01:11:04', '2013-02-04 01:11:05', 334, 46);
-INSERT INTO `activities` VALUES(823, 'viewed_menu_item', '2013-02-04 01:11:05', '2013-02-04 01:11:05', 334, 49);
-INSERT INTO `activities` VALUES(824, 'viewed_menu_item', '2013-02-04 01:11:05', '2013-02-04 01:11:07', 334, 48);
-INSERT INTO `activities` VALUES(825, 'viewed_menu_item', '2013-02-04 01:11:07', '2013-02-04 01:11:08', 334, 50);
-INSERT INTO `activities` VALUES(826, 'viewed_menu_item', '2013-02-04 01:11:08', '2013-02-04 01:11:10', 334, 52);
-INSERT INTO `activities` VALUES(827, 'viewed_menu_item', '2013-02-04 01:11:10', '2013-02-04 01:11:12', 334, 55);
-INSERT INTO `activities` VALUES(828, 'viewing_menu_item', '2013-02-04 01:11:12', '1969-12-31 19:00:00', 334, 54);
-INSERT INTO `activities` VALUES(829, 'first', '2013-02-04 01:11:29', '2013-02-04 01:11:32', 335, 44);
-INSERT INTO `activities` VALUES(830, 'viewing_menu_item', '2013-02-04 01:11:32', '1969-12-31 19:00:00', 335, 35);
-INSERT INTO `activities` VALUES(831, 'first', '2013-02-04 01:12:53', '2013-02-04 01:12:59', 336, 44);
-INSERT INTO `activities` VALUES(832, 'viewing_menu_item', '2013-02-04 01:12:59', '1969-12-31 19:00:00', 336, 35);
-INSERT INTO `activities` VALUES(833, 'viewing_menu_item', '2013-02-04 01:13:58', '1969-12-31 19:00:00', 337, 44);
-INSERT INTO `activities` VALUES(834, 'viewing_menu_item', '2013-02-04 01:15:31', '1969-12-31 19:00:00', 338, 44);
-INSERT INTO `activities` VALUES(835, 'first', '2013-02-04 01:16:54', '2013-02-04 01:17:09', 339, 44);
-INSERT INTO `activities` VALUES(836, 'viewing_menu_item', '2013-02-04 01:17:09', '1969-12-31 19:00:00', 339, 35);
-INSERT INTO `activities` VALUES(837, 'first', '2013-02-04 01:18:59', '2013-02-04 01:19:14', 340, 44);
-INSERT INTO `activities` VALUES(838, 'viewing_menu_item', '2013-02-04 01:19:14', '1969-12-31 19:00:00', 340, 35);
-INSERT INTO `activities` VALUES(839, 'first', '2013-02-04 01:20:14', '2013-02-04 01:20:16', 341, 44);
-INSERT INTO `activities` VALUES(840, 'viewing_menu_item', '2013-02-04 01:20:16', '1969-12-31 19:00:00', 341, 35);
-INSERT INTO `activities` VALUES(841, 'first', '2013-02-04 01:20:25', '2013-02-04 01:20:28', 342, 44);
-INSERT INTO `activities` VALUES(842, 'viewing_menu_item', '2013-02-04 01:20:28', '1969-12-31 19:00:00', 342, 35);
-INSERT INTO `activities` VALUES(843, 'first', '2013-02-04 01:20:52', '2013-02-04 01:20:54', 343, 44);
-INSERT INTO `activities` VALUES(844, 'viewing_menu_item', '2013-02-04 01:20:54', '1969-12-31 19:00:00', 343, 35);
-INSERT INTO `activities` VALUES(845, 'first', '2013-02-04 01:21:18', '2013-02-04 01:21:20', 344, 44);
-INSERT INTO `activities` VALUES(846, 'exit_while_viewing_menu_item', '2013-02-04 01:21:20', '2013-02-04 01:21:26', 344, 35);
-INSERT INTO `activities` VALUES(847, 'first', '2013-02-04 01:21:27', '2013-02-04 01:21:29', 345, 44);
-INSERT INTO `activities` VALUES(848, 'viewing_menu_item', '2013-02-04 01:21:29', '1969-12-31 19:00:00', 345, 35);
+INSERT INTO `activities` VALUES(1, 'first', '2013-02-06 16:24:50', '2013-02-06 16:24:52', 468, 44, 0);
+INSERT INTO `activities` VALUES(2, 'viewed_menu_item', '2013-02-06 16:24:52', '2013-02-06 16:24:52', 468, 45, 0);
+INSERT INTO `activities` VALUES(3, 'viewing_menu_item', '2013-02-06 16:24:52', '2013-02-06 16:24:53', 468, 46, 0);
+INSERT INTO `activities` VALUES(4, 'pressed_grab_it', '2013-02-06 16:24:53', '2013-02-06 16:24:53', 468, 0, 2);
+INSERT INTO `activities` VALUES(5, 'touched_ribbon', '2013-02-06 16:24:54', '2013-02-06 16:24:54', 468, 0, 1);
+INSERT INTO `activities` VALUES(6, 'exit_while_viewing_menu_item', '2013-02-06 16:24:56', '2013-02-06 16:24:56', 468, 46, 0);
+INSERT INTO `activities` VALUES(7, 'first', '2013-02-06 16:25:19', '2013-02-06 16:25:21', 469, 44, 0);
+INSERT INTO `activities` VALUES(8, 'viewed_menu_item', '2013-02-06 16:25:21', '2013-02-06 16:25:25', 469, 45, 0);
+INSERT INTO `activities` VALUES(9, 'viewing_menu_item', '2013-02-06 16:25:25', '2013-02-06 16:25:27', 469, 47, 0);
+INSERT INTO `activities` VALUES(10, 'pressed_grab_it', '2013-02-06 16:25:27', '2013-02-06 16:25:27', 469, 0, 2);
+INSERT INTO `activities` VALUES(11, 'touched_ribbon', '2013-02-06 16:25:31', '2013-02-06 16:25:31', 469, 0, 1);
+INSERT INTO `activities` VALUES(12, 'viewed_menu_item', '2013-02-06 16:25:35', '2013-02-06 16:25:35', 469, 47, 0);
+INSERT INTO `activities` VALUES(13, 'viewing_menu_item', '2013-02-06 16:25:35', '2013-02-06 16:25:39', 469, 35, 0);
+INSERT INTO `activities` VALUES(14, 'touched_ribbon', '2013-02-06 16:25:39', '2013-02-06 16:25:39', 469, 0, 1);
+INSERT INTO `activities` VALUES(15, 'exit_while_viewing_menu_item', '2013-02-06 16:25:42', '2013-02-06 16:25:42', 469, 35, 0);
 
 -- --------------------------------------------------------
 
@@ -922,6 +90,7 @@ CREATE TABLE `cart_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cart_id` int(11) DEFAULT NULL,
   `item_id` int(11) NOT NULL,
+  `promo_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cart_id` (`cart_id`),
   KEY `item_id` (`item_id`)
@@ -931,10 +100,10 @@ CREATE TABLE `cart_items` (
 -- Dumping data for table `cart_items`
 --
 
-INSERT INTO `cart_items` VALUES(1, 1, 2);
-INSERT INTO `cart_items` VALUES(2, 1, 2);
-INSERT INTO `cart_items` VALUES(3, 2, 2);
-INSERT INTO `cart_items` VALUES(4, 2, 2);
+INSERT INTO `cart_items` VALUES(1, 1, 2, NULL);
+INSERT INTO `cart_items` VALUES(2, 1, 2, NULL);
+INSERT INTO `cart_items` VALUES(3, 2, 2, NULL);
+INSERT INTO `cart_items` VALUES(4, 2, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -956,43 +125,40 @@ CREATE TABLE `events` (
   KEY `module_id` (`module_id`),
   KEY `user_id` (`user_id`),
   KEY `eventcategory_id` (`eventcategory_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` VALUES(1, 'Path started', '2013-02-03 10:41:57', '2013-02-03 10:44:44', NULL, NULL, 30, 1);
-INSERT INTO `events` VALUES(2, 'Path started', '2013-02-03 10:45:24', '2013-02-03 10:45:28', NULL, NULL, 31, 1);
-INSERT INTO `events` VALUES(3, 'Path started', '2013-02-03 10:58:39', '2013-02-03 11:33:00', NULL, NULL, 32, 1);
-INSERT INTO `events` VALUES(4, 'Path started', '2013-02-03 11:33:04', '2013-02-03 20:00:01', NULL, NULL, 33, 1);
-INSERT INTO `events` VALUES(5, 'Path started', '2013-02-03 22:42:10', '2013-02-03 23:06:06', NULL, NULL, 34, 1);
-INSERT INTO `events` VALUES(6, 'Path started', '2013-02-03 23:15:54', '2013-02-03 23:16:06', NULL, NULL, 35, 1);
-INSERT INTO `events` VALUES(7, 'Path started', '2013-02-03 23:16:14', '2013-02-03 23:17:18', NULL, NULL, 36, 1);
-INSERT INTO `events` VALUES(8, 'Path started', '2013-02-03 23:17:22', '2013-02-03 23:17:45', NULL, NULL, 37, 1);
-INSERT INTO `events` VALUES(9, 'Path started', '2013-02-03 23:17:51', '2013-02-03 23:18:23', NULL, NULL, 38, 1);
-INSERT INTO `events` VALUES(10, 'Path started', '2013-02-03 23:24:41', '2013-02-03 23:25:06', NULL, NULL, 39, 1);
-INSERT INTO `events` VALUES(11, 'Path started', '2013-02-03 23:25:13', '2013-02-03 23:25:47', NULL, NULL, 40, 1);
-INSERT INTO `events` VALUES(12, 'Path started', '2013-02-03 23:25:59', '2013-02-03 23:26:40', NULL, NULL, 41, 1);
-INSERT INTO `events` VALUES(13, 'Path started', '2013-02-03 23:29:52', '2013-02-03 23:30:46', NULL, NULL, 42, 1);
-INSERT INTO `events` VALUES(14, 'Path started', '2013-02-03 23:31:00', '2013-02-03 23:31:25', NULL, NULL, 43, 1);
-INSERT INTO `events` VALUES(15, 'Path started', '2013-02-03 23:32:37', '2013-02-03 23:33:04', NULL, NULL, 44, 1);
-INSERT INTO `events` VALUES(16, 'Path started', '2013-02-03 23:33:43', '2013-02-03 23:33:46', NULL, NULL, 45, 1);
-INSERT INTO `events` VALUES(17, 'Path started', '2013-02-03 23:33:59', '2013-02-03 23:36:34', NULL, NULL, 46, 1);
-INSERT INTO `events` VALUES(18, 'Path started', '2013-02-03 23:37:22', '2013-02-03 23:37:34', NULL, NULL, 47, 1);
-INSERT INTO `events` VALUES(19, 'Path started', '2013-02-04 00:32:57', '2013-02-04 00:33:03', NULL, NULL, 48, 1);
-INSERT INTO `events` VALUES(20, 'Path started', '2013-02-04 00:46:34', '2013-02-04 00:46:35', NULL, NULL, 49, 1);
-INSERT INTO `events` VALUES(21, 'Path started', '2013-02-04 00:51:55', '2013-02-04 01:24:27', NULL, NULL, 50, 1);
-INSERT INTO `events` VALUES(22, 'Path started', '2013-02-04 01:25:43', '2013-02-04 01:27:12', NULL, NULL, 51, 1);
-INSERT INTO `events` VALUES(23, 'Path started', '2013-02-04 01:27:25', '2013-02-04 01:27:27', NULL, NULL, 52, 1);
-INSERT INTO `events` VALUES(24, 'Path started', '2013-02-04 01:27:29', '2013-02-04 01:27:41', NULL, NULL, 53, 1);
-INSERT INTO `events` VALUES(25, 'Path started', '2013-02-04 01:27:48', '2013-02-04 01:27:49', NULL, NULL, 54, 1);
-INSERT INTO `events` VALUES(26, 'Path started', '2013-02-04 01:28:35', '2013-02-04 01:28:37', NULL, NULL, 55, 1);
-INSERT INTO `events` VALUES(27, 'Path started', '2013-02-04 01:28:40', '2013-02-04 01:28:51', NULL, NULL, 56, 1);
-INSERT INTO `events` VALUES(28, 'Path started', '2013-02-04 01:29:05', '2013-02-04 01:29:06', NULL, NULL, 57, 1);
-INSERT INTO `events` VALUES(29, 'Path started', '2013-02-04 01:38:14', '2013-02-04 01:41:47', NULL, NULL, 58, 1);
-INSERT INTO `events` VALUES(30, 'Path started', '2013-02-04 01:42:20', '2013-02-04 01:42:22', NULL, NULL, 59, 1);
-INSERT INTO `events` VALUES(31, 'Path started', '2013-02-04 01:48:20', '2013-02-04 01:48:22', NULL, NULL, 60, 1);
+INSERT INTO `events` VALUES(1, 'Path started', '2013-02-04 14:41:09', '2013-02-04 14:41:19', NULL, NULL, 147, 1);
+INSERT INTO `events` VALUES(2, 'Path started', '2013-02-04 14:41:20', '2013-02-04 14:41:25', NULL, NULL, 148, 1);
+INSERT INTO `events` VALUES(3, 'Path started', '2013-02-04 14:41:31', '2013-02-05 18:39:44', NULL, NULL, 149, 1);
+INSERT INTO `events` VALUES(4, 'Path started', '2013-02-05 18:39:46', '2013-02-05 22:35:22', NULL, NULL, 150, 1);
+INSERT INTO `events` VALUES(5, 'Path started', '2013-02-05 22:35:30', '2013-02-05 22:36:44', NULL, NULL, 151, 1);
+INSERT INTO `events` VALUES(6, 'Path started', '2013-02-05 22:36:48', '2013-02-05 22:37:05', NULL, NULL, 152, 1);
+INSERT INTO `events` VALUES(7, 'Path started', '2013-02-05 22:40:09', '2013-02-05 22:40:14', NULL, NULL, 153, 1);
+INSERT INTO `events` VALUES(8, 'Path started', '2013-02-05 22:40:26', '2013-02-05 22:40:36', NULL, NULL, 154, 1);
+INSERT INTO `events` VALUES(9, 'Path started', '2013-02-05 22:42:16', '2013-02-05 22:42:30', NULL, NULL, 155, 1);
+INSERT INTO `events` VALUES(10, 'Path started', '2013-02-05 22:45:04', '2013-02-05 22:45:15', NULL, NULL, 156, 1);
+INSERT INTO `events` VALUES(11, 'Path started', '2013-02-05 22:47:37', '2013-02-05 22:49:28', NULL, NULL, 157, 1);
+INSERT INTO `events` VALUES(12, 'Path started', '2013-02-05 22:49:53', '2013-02-05 22:51:29', NULL, NULL, 158, 1);
+INSERT INTO `events` VALUES(13, 'Path started', '2013-02-05 22:51:30', '2013-02-05 22:52:20', NULL, NULL, 159, 1);
+INSERT INTO `events` VALUES(14, 'Path started', '2013-02-05 22:52:41', '2013-02-05 22:56:45', NULL, NULL, 160, 1);
+INSERT INTO `events` VALUES(15, 'Path started', '2013-02-05 22:57:59', '2013-02-05 23:05:09', NULL, NULL, 161, 1);
+INSERT INTO `events` VALUES(16, 'Path started', '2013-02-05 23:05:10', '2013-02-05 23:05:23', NULL, NULL, 162, 1);
+INSERT INTO `events` VALUES(17, 'Path started', '2013-02-05 23:05:49', '2013-02-05 23:06:00', NULL, NULL, 163, 1);
+INSERT INTO `events` VALUES(18, 'Path started', '2013-02-05 23:06:25', '2013-02-05 23:06:42', NULL, NULL, 164, 1);
+INSERT INTO `events` VALUES(19, 'Path started', '2013-02-05 23:10:28', '2013-02-05 23:22:21', NULL, NULL, 165, 1);
+INSERT INTO `events` VALUES(20, 'Path started', '2013-02-05 23:22:43', '2013-02-05 23:22:51', NULL, NULL, 166, 1);
+INSERT INTO `events` VALUES(21, 'Path started', '2013-02-05 23:23:15', '2013-02-05 23:23:53', NULL, NULL, 167, 1);
+INSERT INTO `events` VALUES(22, 'Path started', '2013-02-05 23:24:01', '2013-02-05 23:24:08', NULL, NULL, 168, 1);
+INSERT INTO `events` VALUES(23, 'Path started', '2013-02-05 23:25:06', '2013-02-05 23:25:20', NULL, NULL, 169, 1);
+INSERT INTO `events` VALUES(24, 'Path started', '2013-02-06 12:47:12', '2013-02-06 16:19:08', NULL, NULL, 170, 1);
+INSERT INTO `events` VALUES(25, 'Path started', '2013-02-06 16:19:43', '2013-02-06 16:20:42', NULL, NULL, 171, 1);
+INSERT INTO `events` VALUES(26, 'Path started', '2013-02-06 16:23:27', '2013-02-06 16:24:00', NULL, NULL, 172, 1);
+INSERT INTO `events` VALUES(27, 'Path started', '2013-02-06 16:24:45', '2013-02-06 16:24:59', NULL, NULL, 173, 1);
+INSERT INTO `events` VALUES(28, 'Path started', '2013-02-06 16:25:18', '2013-02-06 16:25:44', NULL, NULL, 174, 1);
 
 -- --------------------------------------------------------
 
@@ -1166,6 +332,43 @@ INSERT INTO `modules` VALUES(13, 'beer', 1, 1);
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `promos`
+--
+
+CREATE TABLE `promos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `filename` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `promotype_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `promos`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promo_types`
+--
+
+CREATE TABLE `promo_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `promo_types`
+--
+
+INSERT INTO `promo_types` VALUES(1, 'slides');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reports`
 --
 
@@ -1298,7 +501,7 @@ CREATE TABLE `steps` (
   PRIMARY KEY (`id`),
   KEY `event_id` (`event_id`),
   KEY `module_id` (`module_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=346 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=470 ;
 
 --
 -- Dumping data for table `steps`
@@ -1649,6 +852,130 @@ INSERT INTO `steps` VALUES(342, '2013-02-04 01:20:25', '1969-12-31 19:00:00', 21
 INSERT INTO `steps` VALUES(343, '2013-02-04 01:20:52', '1969-12-31 19:00:00', 21, 1);
 INSERT INTO `steps` VALUES(344, '2013-02-04 01:21:18', '2013-02-04 01:21:26', 21, 1);
 INSERT INTO `steps` VALUES(345, '2013-02-04 01:21:27', '1969-12-31 19:00:00', 21, 1);
+INSERT INTO `steps` VALUES(346, '2013-02-04 01:48:47', '2013-02-04 01:48:49', 32, 1);
+INSERT INTO `steps` VALUES(347, '2013-02-04 02:54:53', '2013-02-04 02:54:56', 39, 1);
+INSERT INTO `steps` VALUES(348, '2013-02-04 02:55:29', '1969-12-31 19:00:00', 40, 1);
+INSERT INTO `steps` VALUES(349, '2013-02-04 02:56:15', '2013-02-04 02:56:17', 41, 1);
+INSERT INTO `steps` VALUES(350, '2013-02-04 02:56:56', '2013-02-04 02:56:57', 43, 1);
+INSERT INTO `steps` VALUES(351, '2013-02-04 02:56:58', '2013-02-04 02:57:00', 43, 1);
+INSERT INTO `steps` VALUES(352, '2013-02-04 02:57:01', '2013-02-04 02:57:02', 43, 1);
+INSERT INTO `steps` VALUES(353, '2013-02-04 03:02:35', '2013-02-04 03:02:36', 43, 1);
+INSERT INTO `steps` VALUES(354, '2013-02-04 03:03:03', '2013-02-04 03:03:04', 44, 1);
+INSERT INTO `steps` VALUES(355, '2013-02-04 03:03:28', '2013-02-04 03:03:29', 46, 3);
+INSERT INTO `steps` VALUES(356, '2013-02-04 03:03:41', '2013-02-04 03:03:42', 46, 3);
+INSERT INTO `steps` VALUES(357, '2013-02-04 03:04:05', '2013-02-04 03:04:06', 47, 3);
+INSERT INTO `steps` VALUES(358, '2013-02-04 03:28:31', '2013-02-04 03:28:34', 60, 1);
+INSERT INTO `steps` VALUES(359, '2013-02-04 11:54:40', '2013-02-04 11:54:42', 70, 3);
+INSERT INTO `steps` VALUES(360, '2013-02-04 11:59:14', '2013-02-04 11:59:15', 75, 1);
+INSERT INTO `steps` VALUES(361, '2013-02-04 11:59:16', '2013-02-04 11:59:17', 75, 1);
+INSERT INTO `steps` VALUES(362, '2013-02-04 12:00:24', '2013-02-04 12:00:25', 76, 3);
+INSERT INTO `steps` VALUES(363, '2013-02-04 12:09:47', '2013-02-04 12:09:49', 79, 3);
+INSERT INTO `steps` VALUES(364, '2013-02-04 12:09:50', '2013-02-04 12:09:51', 79, 1);
+INSERT INTO `steps` VALUES(365, '2013-02-04 12:09:53', '2013-02-04 12:09:54', 79, 2);
+INSERT INTO `steps` VALUES(366, '2013-02-04 12:52:26', '2013-02-04 12:52:28', 85, 1);
+INSERT INTO `steps` VALUES(367, '2013-02-04 12:52:45', '2013-02-04 12:52:47', 85, 1);
+INSERT INTO `steps` VALUES(368, '2013-02-04 12:52:56', '2013-02-04 12:52:58', 86, 1);
+INSERT INTO `steps` VALUES(369, '2013-02-04 12:54:43', '2013-02-04 12:54:45', 87, 1);
+INSERT INTO `steps` VALUES(370, '2013-02-04 13:12:39', '2013-02-04 13:12:41', 88, 1);
+INSERT INTO `steps` VALUES(371, '2013-02-04 13:12:42', '2013-02-04 13:12:45', 88, 2);
+INSERT INTO `steps` VALUES(372, '2013-02-04 13:12:53', '2013-02-04 13:12:55', 89, 1);
+INSERT INTO `steps` VALUES(373, '2013-02-04 13:16:46', '2013-02-04 13:16:48', 90, 1);
+INSERT INTO `steps` VALUES(374, '2013-02-04 13:16:54', '1969-12-31 19:00:00', 91, 1);
+INSERT INTO `steps` VALUES(375, '2013-02-04 13:16:58', '2013-02-04 13:17:00', 91, 1);
+INSERT INTO `steps` VALUES(376, '2013-02-04 13:17:10', '2013-02-04 13:17:12', 91, 1);
+INSERT INTO `steps` VALUES(377, '2013-02-04 13:20:24', '2013-02-04 13:20:26', 96, 1);
+INSERT INTO `steps` VALUES(378, '2013-02-04 13:20:42', '2013-02-04 13:20:44', 97, 1);
+INSERT INTO `steps` VALUES(379, '2013-02-04 13:20:52', '2013-02-04 13:20:54', 98, 1);
+INSERT INTO `steps` VALUES(380, '2013-02-04 13:21:06', '2013-02-04 13:21:07', 99, 1);
+INSERT INTO `steps` VALUES(381, '2013-02-04 13:21:25', '2013-02-04 13:21:27', 100, 1);
+INSERT INTO `steps` VALUES(382, '2013-02-04 13:50:07', '2013-02-04 13:50:09', 103, 1);
+INSERT INTO `steps` VALUES(383, '2013-02-04 14:07:23', '2013-02-04 14:07:24', 104, 1);
+INSERT INTO `steps` VALUES(384, '2013-02-04 14:07:45', '2013-02-04 14:07:47', 104, 2);
+INSERT INTO `steps` VALUES(385, '2013-02-04 14:16:26', '2013-02-04 14:16:27', 107, 3);
+INSERT INTO `steps` VALUES(386, '2013-02-04 14:16:28', '2013-02-04 14:16:31', 107, 2);
+INSERT INTO `steps` VALUES(387, '2013-02-04 14:16:32', '2013-02-04 14:16:35', 107, 1);
+INSERT INTO `steps` VALUES(388, '2013-02-04 14:37:04', '2013-02-04 14:37:05', 107, 1);
+INSERT INTO `steps` VALUES(389, '2013-02-04 14:37:46', '2013-02-04 14:37:46', 2, 3);
+INSERT INTO `steps` VALUES(390, '2013-02-04 14:38:03', '2013-02-04 14:38:04', 3, 3);
+INSERT INTO `steps` VALUES(391, '2013-02-04 14:39:30', '2013-02-04 14:39:30', 6, 3);
+INSERT INTO `steps` VALUES(392, '2013-02-04 14:39:38', '2013-02-04 14:39:38', 6, 3);
+INSERT INTO `steps` VALUES(393, '2013-02-04 14:39:41', '2013-02-04 14:39:42', 6, 3);
+INSERT INTO `steps` VALUES(394, '2013-02-04 14:40:37', '2013-02-04 14:40:38', 8, 3);
+INSERT INTO `steps` VALUES(395, '2013-02-04 14:41:21', '2013-02-04 14:41:22', 2, 3);
+INSERT INTO `steps` VALUES(396, '2013-02-04 14:41:22', '2013-02-04 14:41:23', 2, 1);
+INSERT INTO `steps` VALUES(397, '2013-02-04 17:20:40', '2013-02-04 17:24:58', 3, 1);
+INSERT INTO `steps` VALUES(398, '2013-02-04 17:24:59', '1969-12-31 19:00:00', 3, 1);
+INSERT INTO `steps` VALUES(399, '2013-02-05 18:08:37', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(400, '2013-02-05 18:08:44', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(401, '2013-02-05 18:08:56', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(402, '2013-02-05 18:09:01', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(403, '2013-02-05 18:09:13', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(404, '2013-02-05 18:09:19', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(405, '2013-02-05 18:09:30', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(406, '2013-02-05 18:09:33', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(407, '2013-02-05 18:09:34', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(408, '2013-02-05 18:09:39', '2013-02-05 18:09:40', 3, 1);
+INSERT INTO `steps` VALUES(409, '2013-02-05 18:11:35', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(410, '2013-02-05 18:12:23', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(411, '2013-02-05 18:12:36', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(412, '2013-02-05 18:12:57', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(413, '2013-02-05 18:14:44', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(414, '2013-02-05 18:15:06', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(415, '2013-02-05 18:15:09', '1969-12-31 19:00:00', 3, 3);
+INSERT INTO `steps` VALUES(416, '2013-02-05 18:15:11', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(417, '2013-02-05 18:15:14', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(418, '2013-02-05 18:17:25', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(419, '2013-02-05 18:17:46', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(420, '2013-02-05 18:18:45', '2013-02-05 18:18:47', 3, 2);
+INSERT INTO `steps` VALUES(421, '2013-02-05 18:19:28', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(422, '2013-02-05 18:19:38', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(423, '2013-02-05 18:20:11', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(424, '2013-02-05 18:24:47', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(425, '2013-02-05 18:26:10', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(426, '2013-02-05 18:29:29', '1969-12-31 19:00:00', 3, 2);
+INSERT INTO `steps` VALUES(427, '2013-02-05 18:29:38', '2013-02-05 18:39:39', 3, 2);
+INSERT INTO `steps` VALUES(428, '2013-02-05 18:39:41', '2013-02-05 18:39:42', 3, 3);
+INSERT INTO `steps` VALUES(429, '2013-02-05 18:42:38', '1969-12-31 19:00:00', 4, 1);
+INSERT INTO `steps` VALUES(430, '2013-02-05 22:36:58', '2013-02-05 22:37:02', 6, 1);
+INSERT INTO `steps` VALUES(431, '2013-02-05 22:40:10', '2013-02-05 22:40:12', 7, 1);
+INSERT INTO `steps` VALUES(432, '2013-02-05 22:40:28', '2013-02-05 22:40:32', 8, 1);
+INSERT INTO `steps` VALUES(433, '2013-02-05 22:42:17', '2013-02-05 22:42:29', 9, 1);
+INSERT INTO `steps` VALUES(434, '2013-02-05 22:45:07', '2013-02-05 22:45:13', 10, 1);
+INSERT INTO `steps` VALUES(435, '2013-02-05 22:47:40', '1969-12-31 19:00:00', 11, 1);
+INSERT INTO `steps` VALUES(436, '2013-02-05 22:47:53', '2013-02-05 22:48:35', 11, 1);
+INSERT INTO `steps` VALUES(437, '2013-02-05 22:48:37', '2013-02-05 22:48:38', 11, 3);
+INSERT INTO `steps` VALUES(438, '2013-02-05 22:48:42', '2013-02-05 22:49:22', 11, 1);
+INSERT INTO `steps` VALUES(439, '2013-02-05 22:50:01', '1969-12-31 19:00:00', 12, 1);
+INSERT INTO `steps` VALUES(440, '2013-02-05 22:50:58', '2013-02-05 22:51:26', 12, 1);
+INSERT INTO `steps` VALUES(441, '2013-02-05 22:51:31', '2013-02-05 22:52:17', 13, 1);
+INSERT INTO `steps` VALUES(442, '2013-02-05 22:54:00', '1969-12-31 19:00:00', 14, 1);
+INSERT INTO `steps` VALUES(443, '2013-02-05 22:55:55', '1969-12-31 19:00:00', 14, 1);
+INSERT INTO `steps` VALUES(444, '2013-02-05 22:56:26', '2013-02-05 22:56:41', 14, 1);
+INSERT INTO `steps` VALUES(445, '2013-02-05 23:05:11', '2013-02-05 23:05:21', 16, 1);
+INSERT INTO `steps` VALUES(446, '2013-02-05 23:05:50', '2013-02-05 23:05:58', 17, 1);
+INSERT INTO `steps` VALUES(447, '2013-02-05 23:06:27', '2013-02-05 23:06:40', 18, 1);
+INSERT INTO `steps` VALUES(448, '2013-02-05 23:10:30', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(449, '2013-02-05 23:12:06', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(450, '2013-02-05 23:13:39', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(451, '2013-02-05 23:14:00', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(452, '2013-02-05 23:14:15', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(453, '2013-02-05 23:14:18', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(454, '2013-02-05 23:15:55', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(455, '2013-02-05 23:16:11', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(456, '2013-02-05 23:17:51', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(457, '2013-02-05 23:21:03', '1969-12-31 19:00:00', 19, 1);
+INSERT INTO `steps` VALUES(458, '2013-02-05 23:22:11', '2013-02-05 23:22:19', 19, 1);
+INSERT INTO `steps` VALUES(459, '2013-02-05 23:22:44', '2013-02-05 23:22:49', 20, 1);
+INSERT INTO `steps` VALUES(460, '2013-02-05 23:23:19', '1969-12-31 19:00:00', 21, 1);
+INSERT INTO `steps` VALUES(461, '2013-02-05 23:23:47', '2013-02-05 23:23:52', 21, 1);
+INSERT INTO `steps` VALUES(462, '2013-02-05 23:24:02', '2013-02-05 23:24:06', 22, 1);
+INSERT INTO `steps` VALUES(463, '2013-02-05 23:25:09', '2013-02-05 23:25:18', 23, 1);
+INSERT INTO `steps` VALUES(464, '2013-02-06 16:19:01', '2013-02-06 16:19:07', 24, 1);
+INSERT INTO `steps` VALUES(465, '2013-02-06 16:20:11', '2013-02-06 16:20:11', 25, 3);
+INSERT INTO `steps` VALUES(466, '2013-02-06 16:20:33', '2013-02-06 16:20:40', 25, 1);
+INSERT INTO `steps` VALUES(467, '2013-02-06 16:23:29', '2013-02-06 16:23:58', 26, 1);
+INSERT INTO `steps` VALUES(468, '2013-02-06 16:24:50', '2013-02-06 16:24:56', 27, 1);
+INSERT INTO `steps` VALUES(469, '2013-02-06 16:25:19', '2013-02-06 16:25:42', 28, 1);
 
 -- --------------------------------------------------------
 
@@ -1674,6 +1001,25 @@ INSERT INTO `tablets` VALUES(4, 'Yoda');
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tests`
+--
+
+CREATE TABLE `tests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tests`
+--
+
+INSERT INTO `tests` VALUES(1, 'ribbon');
+INSERT INTO `tests` VALUES(2, 'touch this');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -1687,7 +1033,7 @@ CREATE TABLE `users` (
   KEY `venue_id` (`venue_id`),
   KEY `usertype_id` (`usertype_id`),
   KEY `tablet_id` (`tablet_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=175 ;
 
 --
 -- Dumping data for table `users`
@@ -1753,6 +1099,120 @@ INSERT INTO `users` VALUES(57, 'JohnJane', 1, 2, NULL);
 INSERT INTO `users` VALUES(58, 'JohnJane', 1, 2, NULL);
 INSERT INTO `users` VALUES(59, 'JohnJane', 1, 2, NULL);
 INSERT INTO `users` VALUES(60, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(61, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(62, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(63, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(64, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(65, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(66, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(67, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(68, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(69, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(70, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(71, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(72, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(73, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(74, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(75, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(76, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(77, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(78, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(79, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(80, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(81, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(82, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(83, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(84, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(85, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(86, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(87, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(88, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(89, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(90, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(91, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(92, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(93, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(94, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(95, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(96, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(97, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(98, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(99, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(100, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(101, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(102, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(103, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(104, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(105, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(106, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(107, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(108, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(109, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(110, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(111, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(112, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(113, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(114, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(115, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(116, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(117, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(118, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(119, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(120, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(121, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(122, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(123, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(124, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(125, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(126, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(127, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(128, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(129, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(130, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(131, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(132, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(133, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(134, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(135, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(136, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(137, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(138, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(139, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(140, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(141, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(142, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(143, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(144, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(145, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(146, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(147, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(148, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(149, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(150, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(151, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(152, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(153, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(154, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(155, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(156, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(157, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(158, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(159, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(160, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(161, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(162, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(163, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(164, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(165, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(166, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(167, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(168, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(169, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(170, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(171, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(172, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(173, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(174, 'JohnJane', 1, 2, NULL);
 
 -- --------------------------------------------------------
 

@@ -17,7 +17,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 2000);
+    sleep_timer = setTimeout(function() {sleep(); }, 180000);
 }
 
 // checks to see if no sleep video is playing after 3 min
