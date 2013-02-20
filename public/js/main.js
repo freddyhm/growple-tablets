@@ -990,3 +990,25 @@ function game(){
     });
 }    
 
+
+function menulist(){
+    $(".gridMenuItem").click(function(){
+            $(this).css('background-color','#ffffff')
+             $('.itemNameList').html("HELLLOOOO");
+             $('#itemPictureList').attr("src", URL  + "public/img/menu/common/example1.png"); 
+             $('.itemDescriptionList').html("HELLLOOOO");
+             $('.itemPriceList').html("$100");
+            
+    });
+
+    $("#grabItList").click(function(){
+        $(this).attr("src", URL  + "public/img/menu/common/btn_grab_pressed.png");     
+        setTimeout(function() { 
+            $("#grabItList").attr("src", URL  + "public/img/menu/common/btn_grab.png"); 
+            animateCartAddItem(); 
+            addItem(selected_item, selected_item_name, selected_menu_name, selected_item_pic, 'yes');
+        }, 100);
+    
+    });
+
+};

@@ -1,4 +1,8 @@
-
+<script>
+	$(document).ready(function($) {
+		menulist();
+	});
+</script>
 <!-- modal content -->
 <div id="basic-modal-content">
 	<h3>Uh Oh! You forgot to add an item.</h3>
@@ -36,24 +40,24 @@
 			<th colspan='3'>Appetizer</th>
 		</tr>
 		<tr>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
-			<div style="font-size:13px; bottom:72px" class="gridName_selected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
-			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
 			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
 			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
+			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
 			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
 			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
 		</tr>
 		<tr>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
 			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
 			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
 			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
 			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
 			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
 			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td
 		</tr>
@@ -61,13 +65,13 @@
 			<th colspan='3'>Dishes</th>
 		</tr>
 		<tr>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
 			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
 			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
 			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
 			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
-			<td><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
+			<td class="gridMenuItem"><img class="gridPicItem" width="150px" height="150px" src="public/img/menu/common/example2.png">
 			<div style="font-size:13px; bottom:72px" class="gridName_notselected" id="grid44">THE DOUBLE FISTED CHEESBURGER</div>
 			<div style="font-size:13px; color:#ffb400" class="gridPrice" id="grid44">$12.99</div></td>
 		</tr>
@@ -88,12 +92,11 @@
 
 	<!-- Right Info -->
 	<div id="listInfoContent">
-		<span class="itemName_list">THE DOUBLE FISTED CHEESEBURGER</span>	
-		<div id="itemPicture_list"></div>
-		<span class="itemDescription_list">Indulge in this delicious prime rib burger with our spice rub, bacon, melted cheddar cheese, sundried tomato mayo, lettuce, tomato, red onion and pickle. Served with fries on a fresh organic Grainharvest Breadhouse Farmer bun. Add any of the following for</span>
-		<span class="itemPrice_list">$12.99</span>
-		<img id="grabIt_list" src="<?php echo URL .'public/img/menu/common/btn_grab.png'; ?>">
-	
-
+		<span class="itemNameList">THE DOUBLE FISTED CHEESEBURGER</span>	
+		<img id="itemPictureList"src="<?php echo URL .'public/img/menu/common/example.png'; ?>">
+		<span class="itemDescriptionList">Indulge in this delicious prime rib burger with our spice rub, bacon, melted cheddar cheese, sundried tomato mayo, lettuce, tomato, red onion and pickle. Served with fries on a fresh organic Grainharvest Breadhouse Farmer bun. Add any of the following for</span>
+		<span class="itemPriceList">$12.99</span>
+		<img id="grabItList" src="<?php echo URL .'public/img/menu/common/btn_grab.png'; ?>">
 	</div>	
+
 </div>

@@ -651,6 +651,8 @@ width: 150px;
 font-weight: lighter;
 }
 
+
+
 .gridPrice
 {
   height: 20px;
@@ -685,7 +687,7 @@ margin-top: -95px;
   background-repeat: repeat;
 }
 
-.itemName_list
+.itemNameList
 {
   font-size: 30px;
 font-weight: bold;
@@ -697,7 +699,7 @@ text-align: center;
 text-shadow: 0px 1px 5px black;
 color: white;
 }
-#itemPicture_list
+#itemPictureList
 {
   width:400px;
   height:175px;
@@ -705,9 +707,9 @@ color: white;
   position: relative;
   top: 180px;
 left: 52px;
-background: url('../img/menu/common/example.png') no-repeat;
+
 }
-.itemDescription_list
+.itemDescriptionList
 {
 width: 400px;
 height: 150px;
@@ -723,7 +725,7 @@ top: 360px;
 left: 580px;
 }
 
-.itemPrice_list
+.itemPriceList
 {
    color: #FFD200;
 font-size: 28px;
@@ -737,7 +739,7 @@ top: 530px;
 left: 590px;
 }
 
-#grabIt_list
+#grabItList
 {
   position: relative;
   z-index:1;
