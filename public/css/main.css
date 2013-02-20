@@ -1024,3 +1024,27 @@ margin: -150px 310px;
 
 
 /* END - GAME */
+
+/* START - RANDOMBOX GAME */
+
+#randomboxBoxArea
+{
+  margin:auto;
+  z-index:1;
+  position: absolute;
+  top: 155px;
+  left: 30px;
+}
+
+#randomboxTimer
+{
+  font-family: 'VT323', cursive;
+  font-size:175px;
+  color:white;
+  width:400px;
+  height:150px;
+  position: relative;
+  bottom:195px;
+  left:310px;
+  text-align: center;
+}

@@ -8,6 +8,7 @@
     <!-- STYLESHEET-->
     <link rel="stylesheet" href="<?php echo URL . 'public/css/main.css'; ?>">
     <link rel="stylesheet" href="<?php echo URL . 'public/css/confirm.css'; ?>">
+    <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
     <!-- SCRIPTS -->
     <script src="<?php echo URL . 'public/js/jquery-1.8.3.min.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/jstorage.js'; ?>"></script>
