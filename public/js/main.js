@@ -151,6 +151,11 @@ function home(){
         $("#load_pic").hide();
     });
 
+     $(appCache).bind('error', function(event) {
+        //pop up alert if error occurs
+        alert("A caching error occured!");
+    });
+
     $(document).ready(function() {
 
         // check if analytics are set (when cached) - FHM
