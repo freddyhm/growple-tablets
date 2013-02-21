@@ -1017,3 +1017,10 @@ function menulist(){
     });
 
 };
+
+ function randombox(){
+    $(".box").click(function(){
+        $(this).attr("src", URL  + "public/img/game/randombox/box_pressed.png");
+    });
+
+ };
