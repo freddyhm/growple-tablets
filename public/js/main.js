@@ -17,7 +17,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 180000);
+    sleep_timer = setTimeout(function() {sleep(); }, 2000);
 }
 
 // checks to see if no sleep video is playing after 3 min
@@ -95,24 +95,22 @@ function startSleep(){
             var promo_item = { "id": item_id, "name": item_name, "menu_id": item_menu_id, "menu_name": item_menu_name, "pic" : item_pic, "promo_id" : item_promo_id};
             $.jStorage.set("promo_item", JSON.stringify(promo_item));
 
+            var in_menu = $(".mainMenu").html();
+            if(in_menu == undefined){
                 logUserStep("in", 1, function(){
                     logUserActivity("in", "clicked_promo_slide", item_id, "", function(){
-
-                    var in_menu = $(".mainMenu").html();
-                    if(in_menu == undefined){
                         $("body").load(URL + "menu", function(){
                             $(function(){
                                 $("#touch").hide();
                                 $("#hiddenPromo").trigger("click");
                             });
                         });
-                    }else{
-                        $("#hiddenPromo").trigger("click");
-                        exitSleepSlideshow();
-                    }  
-                        
                     });
                 });
+            }else{
+                $("#hiddenPromo").trigger("click");
+                exitSleepSlideshow();
+            }  
             
         }else{
           exitSleepSlideshow();
