@@ -1,6 +1,6 @@
 <?php
 
-// set default timezone - FHM   
+// set default timezone - FHM    
 date_default_timezone_set('America/Toronto');
 
 
