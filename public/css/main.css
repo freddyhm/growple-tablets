@@ -1052,3 +1052,12 @@ margin: -150px 310px;
   padding-left:5px;
 }
 
+#discover-divider
+{
+    background: url('../img/discover/dividerDiscover.png');
+    width:1024px;
+    height:15px;
+    margin:auto;
+
+}
+

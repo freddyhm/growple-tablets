@@ -7,5 +7,6 @@
 					
 			</tr>
 		</table> 
+		<div id="discover-divider"></div>
 	</div>	
 </div>	
