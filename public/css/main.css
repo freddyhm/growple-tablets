@@ -594,38 +594,6 @@ left: 425px;
   float:left;
 }
 
-table.gridtable {
-  font-family: verdana,arial,sans-serif;
-  font-size:11px;
-  color:#333333;
-  border-width: 1px;
-  border-color: #666666;
-  border-collapse: collapse;
-  width:520px;
-  opacity: 0.9;
-}
-table.gridtable th {
-  border-width: 1px;
-  padding: 8px;
-  background-color: black;
-  opacity: 0.7;
-  -moz-box-shadow: 0px 1px 1px 0px #000000;
-  -webkit-box-shadow: 0px 1px 1px 0px #000000;
-  -o-box-shadow: 0px 1px 1px 0px #000000;
-  box-shadow: 0px 1px 1px 0px #000000;
-  color: white;
-  font-size: 22px;
-  height:30px;
-  width:155px;
-  font-weight: lighter;
-}
-table.gridtable td {
-  border-width: 1px;
-  padding: 8px;
-  height:155px;
-  width:155px;
-}
-
 .gridName_selected
 {
   position: relative;
@@ -1048,3 +1016,39 @@ margin: -150px 310px;
   left:310px;
   text-align: center;
 }
+
+
+/* START - DISCOVER */
+#discover-area
+{
+  width:1024px;
+  height:600px;
+  background-image: url('../img/discover/bkgdDiscover.png');
+  background-repeat: repeat;
+}
+
+#discover-promo
+{
+  width:1024px;
+  height:290px;
+  overflow-x: scroll;
+  top:90px;
+  position: relative;
+  padding:5px;
+}
+
+.promo-list
+{
+  width: 1024px;
+  border:1px solid;
+}
+.promo-list td
+{
+  height:262px;
+  width:336px;
+  background-color: white;
+  border:1px solid;
+  border-radius:5px;
+  padding-left:5px;
+}
+

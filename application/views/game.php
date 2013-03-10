@@ -19,4 +19,4 @@
 <div id="icon_game">
 	<img src="<?php echo URL . 'public/img/game/game_icon.png'; ?>">
 </div>	
-<div id="btn_gamehome"><img id="gameHomeLink" class="navLink" src="<?php echo URL . 'public/img/error/btn_return.png'; ?>"></div>
+<div id="btn_gamehome"></div>
