@@ -1,0 +1,17 @@
+    #Required
+    scheme: ftp
+    host: bidloo.tk
+    username: bidlootk
+    password: "2FEP_$D_uV6VD3&>fybs/X9u-Dk#2("
+
+    # Optional
+    path: "/www/gple"
+    exclude:
+        - .gitignore
+        - deploy/
+        - config/development
+        - config/production
+        - config/demo
+        - public/vid
+        - index.php
+    revision_file: .revision
