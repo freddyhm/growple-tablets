@@ -1022,3 +1022,16 @@ function menulist(){
     });
 
  };
+
+function discover(){
+
+    $(".promo-item").click(function(event) {
+        alert("d");
+    });
+
+    $(".feature-item").click(function(event) {
+        alert("s");
+    });
+
+    
+}
