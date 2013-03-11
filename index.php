@@ -2,7 +2,7 @@
 
 // set default timezone - FHM    
 date_default_timezone_set('America/Toronto');
-
+ 
 
 // set environment - development / staging / production - FHM
 $environment = 'development'; 

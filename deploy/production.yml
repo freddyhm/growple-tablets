@@ -1,0 +1,17 @@
+    #Required
+    scheme: ftp
+    host: meeko.ca
+    username: meekoca
+    password: "#}0V,~P6ACwm"
+
+    # Optional
+    path: "/www/gple"
+    exclude:
+        - .gitignore
+        - deploy/
+        - config/development
+        - config/staging
+        - config/demo
+        - public/vid
+        - index.php
+    revision_file: .revision

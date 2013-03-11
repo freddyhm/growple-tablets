@@ -1,0 +1,17 @@
+    #Required
+    scheme: ftp
+    host: growple.com
+    username: growple
+    password: "x:_j6=P8c@*n%c?/zB*{ZpieFwS`CZ?\"yG-mW"
+
+    # Optional
+    path: "/www/demo"
+    exclude:
+        - .gitignore
+        - deploy/
+        - config/development
+        - config/production
+        - config/staging
+        - public/vid
+        - index.php
+    revision_file: .revision
