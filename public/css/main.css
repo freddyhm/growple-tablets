@@ -1269,3 +1269,54 @@ z-index: 1;
 {
   background: url('../img/discover/item1.png');
 }
+
+/*START - PLAY */
+
+#play-area
+{
+  width:1024px;
+  height:600px;
+  background: url('../img/play/vid-preview.png');;
+}
+
+#play-menu
+{
+  width:1024px;
+  height:111px;
+  position: absolute;
+  z-index: 1;
+  top:489px;
+  background: url('../img/play/bkgd-play-navbar.png');
+}
+
+#btn-play-next
+{
+ float: right;
+  position: absolute;
+  z-index: 1;
+  top: 7px;
+  left: 762px;
+
+}
+
+#play-name
+{
+  font-size: 45px;
+  color: #595959;
+  font-weight: bolder;
+  position: absolute;
+  z-index: 1;
+  top: 28px;
+  left: 10px;
+
+}
+
+#play-author
+{
+  font-size: 20px;
+color: #595959;
+position: absolute;
+z-index: 1;
+top: 75px;
+left: 13px;
+}
