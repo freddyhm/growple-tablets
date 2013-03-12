@@ -54,10 +54,16 @@
 		<div class="content">
             <!-- modal content -->
             <div id='confirm'>
-                <div class='header'></div>
-                <div class='message'></div>
-                <div class='buttons'>
-                    <div class='no simplemodal-close'>No</div>
-                    <div class='yes'>Yes</div>
+                <div class='header'>
+                    <div id="pop-header-info">
+                        <div id="pop-title">CHICKEN WINGS</div>
+                        <div id="pop-bar"></div>
+                        <div id="pop-price">9.99</div>
+                        <div id="pop-quit">X</div>
+                    </div>
+                </div>
+                <div id="pop-pic"></div>
+                <div id="pop-info">
+                    <p id="pop-msg">Our legendary chicken wings! Choose your flavour: honey / garlic / hot / sweet / suicide</p>
                 </div>
             </div>

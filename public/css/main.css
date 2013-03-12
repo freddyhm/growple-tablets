@@ -1269,3 +1269,72 @@ z-index: 1;
 {
   background: url('../img/discover/item1.png');
 }
+
+#pop-title
+{
+  width: 355px;
+  font-size: 43px;
+  padding-top: 10px;
+  display: block;
+  padding-left: 10px;
+}
+
+#pop-bar
+{
+  width: 2px;
+  height: 31px;
+  left: 376px;
+  bottom: 41px;
+  background-color: black;
+  position: relative;
+}
+
+#pop-price
+{
+  left: 391px;
+  width: 429px;
+  position: relative;
+  font-size: 37px;
+  bottom: 78px;
+  color: orange;
+}
+
+#pop-quit
+{
+  height: 70px;
+  width: 116px;
+  bottom: 133px;
+  float: right;
+  background-color: beige;
+  text-align: center;
+  color: grey;
+  position: relative;
+  font-size: 61px;
+}
+
+#pop-pic
+{
+  width: 100%;
+  height: 450px;
+  background-color: lightblue;
+  position: relative;
+}
+
+#pop-info
+{
+  width: 100%;
+  height: 134px;
+  opacity: 0.85;
+  background-color: black;
+  
+  position: absolute;
+  bottom: 0px;
+}
+
+#pop-msg
+{
+  color: white;
+  font-size: 25px;
+  width: 600px;
+  margin-left: 40px;
+}
