@@ -1037,16 +1037,6 @@ margin: -150px 310px;
   padding:5px;
 }
 
-#discover-featured
-{
-  width:1024px;
-  height:220px;
-  overflow-x: scroll;
-  top:90px;
-  position: relative;
-  padding:5px;
-}
-
 .promo-list
 {
   width: 1024px;
@@ -1187,44 +1177,33 @@ margin: -150px 310px;
 
 }
 
-#promo-title-event
+.promo-title
 {
   position: absolute;
   top: 237px;
   padding-left:10px;
   font-size:25px;
+  z-index: 2;
+}
+
+#promo-title-center
+{
   color:#8dc63f;
-  z-index: 2;
 }
 
 
-#promo-title-promo
+#promo-title-left
 {
-  position: absolute;
-  top: 237px;
-  padding-left:10px;
-  font-size:25px;
   color:#00aeef;
-  z-index: 2;
 }
 
-#promo-title-special
+#promo-title-right
 {
-  position: absolute;
-  top: 237px;
-  padding-left:10px;
-  font-size:25px;
   color:#ed145b;
-  z-index: 2;
 }
 
 .promo-desc
 {
-  position: absolute;
-  top: 240px;
-  padding-left: 250px;
-  font-size: 17px;
-  font-weight: lighter;
   color: #fff;
   z-index: 2;
 }
@@ -1257,6 +1236,7 @@ z-index: 1;
 
 .feature-title
 {
+  width: 336px;
   position: absolute;
   top: 151px;
   padding-left: 10px;
