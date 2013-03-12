@@ -1025,26 +1025,18 @@ function menulist(){
 
 function discover(){
 
-    function confirm(message, callback) {
-        $('#confirm').modal({
-            position: ["5%",],
-            overlayId: 'confirm-overlay',
-            containerId: 'confirm-container', 
-            onShow: function (dialog) {
+    
 
-                var modal = this;
-
-                // if the user clicks "yes"
-
-               
-                    $("#pop-quit").click(function(event) {
+    $("#spot-pop").modal({
+        position: ["5%"],
+        onShow: function (dialog){
+            var modal = this;
+            $(".modalCloseImg").remove();
+            $("#pop-quit").click(function(event) {
                    alert("d");
-                      });
-               
-               
-            }
-        });
-    }
+            });
+        }
+    });
 
         
 

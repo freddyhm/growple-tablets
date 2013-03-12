@@ -1250,7 +1250,25 @@ z-index: 1;
   background: url('../img/discover/item1.png');
 }
 
-#pop-title
+#spot-pop
+{
+  display: none;
+  background:#fff;
+  position: fixed;
+  z-index: 1002;
+  height: 520px;
+  width: 959px;
+  left: 39px;
+}
+
+#spot-header
+{
+  height: 70px;
+  width: 100%;
+  background-color: grey;
+}
+
+#spot-title
 {
   width: 355px;
   font-size: 43px;
@@ -1259,7 +1277,7 @@ z-index: 1;
   padding-left: 10px;
 }
 
-#pop-bar
+#spot-bar
 {
   width: 2px;
   height: 31px;
@@ -1269,7 +1287,7 @@ z-index: 1;
   position: relative;
 }
 
-#pop-price
+#spot-price
 {
   left: 391px;
   width: 429px;
@@ -1279,7 +1297,7 @@ z-index: 1;
   color: orange;
 }
 
-#pop-quit
+#spot-quit
 {
   height: 70px;
   width: 116px;
@@ -1292,7 +1310,7 @@ z-index: 1;
   font-size: 61px;
 }
 
-#pop-pic
+#spot-pic
 {
   width: 100%;
   height: 450px;
@@ -1300,7 +1318,7 @@ z-index: 1;
   position: relative;
 }
 
-#pop-info
+#spot-info
 {
   width: 100%;
   height: 134px;
@@ -1311,7 +1329,7 @@ z-index: 1;
   bottom: 0px;
 }
 
-#pop-msg
+#spot-msg
 {
   color: white;
   font-size: 25px;

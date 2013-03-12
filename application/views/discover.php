@@ -4,7 +4,7 @@
 	});
 </script>
 <div id='spot-pop'>
-    <div class='spotlight-header'>
+    <div id='spotlight-header'>
         <div id="spot-header-info">
             <div id="spot-title">CHICKEN WINGS</div>
             <div id="spot-bar"></div>
