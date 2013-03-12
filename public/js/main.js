@@ -1046,6 +1046,8 @@ function discover(){
         });
     }
 
+        
+
     $(".promo-item").click(function(event) {
          // pop-up making sure server took order
         confirm("*WAIT* <br><br>Did the server take your order?", function(){   

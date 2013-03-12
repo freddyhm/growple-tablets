@@ -3,6 +3,20 @@
 		discover();
 	});
 </script>
+<div id='spot-pop'>
+    <div class='spotlight-header'>
+        <div id="spot-header-info">
+            <div id="spot-title">CHICKEN WINGS</div>
+            <div id="spot-bar"></div>
+            <div id="spot-price">9.99</div>
+            <div id="spot-quit">X</div>
+        </div>
+    </div>
+    <div id="spot-pic"></div>
+    <div id="spot-info">
+        <p id="spot-msg">Our legendary chicken wings! Choose your flavour: honey / garlic / hot / sweet / suicide</p>
+    </div>
+</div>
 <div id="discover-area">
 	<div id="discover-promo">
 		<table class="promo-list">
