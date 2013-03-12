@@ -1025,58 +1025,19 @@ function menulist(){
 
 function discover(){
 
-    
-
-    $("#spot-pop").modal({
-        position: ["5%"],
-        onShow: function (dialog){
-            var modal = this;
-            $(".modalCloseImg").remove();
-            $("#pop-quit").click(function(event) {
-                   alert("d");
-            });
-        }
-    });
-
-        
-
     $(".promo-item").click(function(event) {
-         // pop-up making sure server took order
-        confirm("*WAIT* <br><br>Did the server take your order?", function(){   
-
-            // get promo item and put in basket
-            var promo = $.parseJSON($.jStorage.get("promo_item"));
-            var item = [promo.item_id, "" , "", "", promo.promo_id];
-            var basket = [item];
-
-            $.jStorage.set("redeemed_promos", "randombox");
-
-            // add the basket to the cart - FHM 
-            addToCart(basket, function(){
-                $.jStorage.deleteKey("promo_item");
-                $("body").load(URL + "home");
-            });
+         $(".spot-pop").modal({
+            position: ["5%"],
+            onShow: function (dialog){
+                var modal = this;
+                $(".modalCloseImg").remove();
+                $(".pop-quit").click(function(event) {
+                       alert("d");
+                });
+            }
         });
     });
 
     $(".feature-item").click(function(event) {
-         // pop-up making sure server took order
-        confirm("*WAIT* <br><br>Did the server take your order?", function(){   
-
-            // get promo item and put in basket
-            var promo = $.parseJSON($.jStorage.get("promo_item"));
-            var item = [promo.item_id, "" , "", "", promo.promo_id];
-            var basket = [item];
-
-            $.jStorage.set("redeemed_promos", "randombox");
-
-            // add the basket to the cart - FHM 
-            addToCart(basket, function(){
-                $.jStorage.deleteKey("promo_item");
-                $("body").load(URL + "home");
-            });
-        });
     });   
-
-    $("")
 }

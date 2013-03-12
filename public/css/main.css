@@ -1250,7 +1250,9 @@ z-index: 1;
   background: url('../img/discover/item1.png');
 }
 
-#spot-pop
+/* pop - up */
+
+.spot-pop
 {
   display: none;
   background:#fff;
@@ -1261,14 +1263,14 @@ z-index: 1;
   left: 39px;
 }
 
-#spot-header
+.spot-pop .spot-header
 {
   height: 70px;
   width: 100%;
   background-color: grey;
 }
 
-#spot-title
+.spot-pop .spot-title
 {
   width: 355px;
   font-size: 43px;
@@ -1277,7 +1279,7 @@ z-index: 1;
   padding-left: 10px;
 }
 
-#spot-bar
+.spot-pop .spot-bar
 {
   width: 2px;
   height: 31px;
@@ -1287,7 +1289,7 @@ z-index: 1;
   position: relative;
 }
 
-#spot-price
+.spot-pop .spot-price
 {
   left: 391px;
   width: 429px;
@@ -1297,7 +1299,7 @@ z-index: 1;
   color: orange;
 }
 
-#spot-quit
+.spot-pop .spot-quit
 {
   height: 70px;
   width: 116px;
@@ -1310,7 +1312,7 @@ z-index: 1;
   font-size: 61px;
 }
 
-#spot-pic
+.spot-pop .spot-pic
 {
   width: 100%;
   height: 450px;
@@ -1318,7 +1320,7 @@ z-index: 1;
   position: relative;
 }
 
-#spot-info
+.spot-pop .spot-info
 {
   width: 100%;
   height: 134px;
@@ -1329,7 +1331,7 @@ z-index: 1;
   bottom: 0px;
 }
 
-#spot-msg
+.spot-pop .spot-msg
 {
   color: white;
   font-size: 25px;
