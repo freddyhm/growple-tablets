@@ -1030,9 +1030,8 @@ function discover(){
             position: ["5%"],
             onShow: function (dialog){
                 var modal = this;
-                $(".modalCloseImg").remove();
-                $(".pop-quit").click(function(event) {
-                       alert("d");
+                $(".spot-pop .spot-quit").click(function(event) {
+                    modal.close();
                 });
             }
         });
