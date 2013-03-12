@@ -1027,22 +1027,21 @@ function discover(){
 
     function confirm(message, callback) {
         $('#confirm').modal({
-            closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
             position: ["5%",],
             overlayId: 'confirm-overlay',
             containerId: 'confirm-container', 
             onShow: function (dialog) {
+
                 var modal = this;
-                $('.message', dialog.data[0]).append(message);
+
                 // if the user clicks "yes"
-                $('.yes', dialog.data[0]).click(function () {
-                    // call the callback
-                    if ($.isFunction(callback)) {
-                        callback.apply();
-                    }
-                    // close the dialog
-                    modal.close(); // or $.modal.close();
-                });
+
+               
+                    $("#pop-quit").click(function(event) {
+                   alert("d");
+                      });
+               
+               
             }
         });
     }
@@ -1067,5 +1066,23 @@ function discover(){
     });
 
     $(".feature-item").click(function(event) {
+         // pop-up making sure server took order
+        confirm("*WAIT* <br><br>Did the server take your order?", function(){   
+
+            // get promo item and put in basket
+            var promo = $.parseJSON($.jStorage.get("promo_item"));
+            var item = [promo.item_id, "" , "", "", promo.promo_id];
+            var basket = [item];
+
+            $.jStorage.set("redeemed_promos", "randombox");
+
+            // add the basket to the cart - FHM 
+            addToCart(basket, function(){
+                $.jStorage.deleteKey("promo_item");
+                $("body").load(URL + "home");
+            });
+        });
     });   
+
+    $("")
 }
