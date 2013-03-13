@@ -36,9 +36,7 @@ class Discover extends Controller {
 			}
 
 			$info = array('items' => $discover_items, 'venue' => Session::get('venue'));
-
 			parent::$data = $info; 
-			parent::index();
 
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');

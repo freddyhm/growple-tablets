@@ -17,6 +17,7 @@
     <script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/analytics.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
+   
 </head>	
 <body>
     <div id="setup">
@@ -56,22 +57,12 @@
             <div id='confirm'>
                 <div class='header'></div>
             </div>
-
-            <!--Navbar if on "Discover"-->
-            <div id="navbar-discover-ok">
-                <div id="btn-discover-ok">
-                    <img src="<?php echo URL . 'public/img/common/discover-pressed.png'?>">
+            <!--Navbar-->
+            <div id="navbar">
+                <div class="nav-btn" id="discover-btn">
+                    <img id="discover-title" src="<?php echo URL . 'public/img/common/discover-pressed.png'; ?>">
                 </div>
-                <div id="btn-play-no">
-                  <img src="<?php echo URL . 'public/img/common/play-nonpressed.png'?>">
+                <div class="nav-btn" id="play-btn">
+                  <img id="play-title" src="<?php echo URL . 'public/img/common/play-nonpressed.png'; ?>">
                 </div>
-             </div>      
-             <!-- Navbar if on "Play"-->
-             <div id="navbar-play-ok">
-                <div id="btn-discover-no">
-                    <img src="<?php echo URL . 'public/img/common/discover-nonpressed.png'?>">
-                </div>
-                <div id="btn-play-ok">
-                    <img src="<?php echo URL . 'public/img/common/play-pressed.png'?>">
-                </div>
-             </div>        
+             </div> 

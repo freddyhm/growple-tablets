@@ -9,6 +9,58 @@ var bask_item_id = 0; // basket global var - FHM
 var server_active = false;
 var nofade_timer = "";
 
+$(document).ready(function($) {
+    $("#discover-btn").click(function(event){
+       $("body").load(URL + 'discover', function(){
+            navSwitchTo("discover");
+       });
+    });
+
+    $("#play-btn").click(function(event) {
+        $("body").load(URL + 'play', function(){
+            navSwitchTo("play");
+        });
+    });
+});
+
+function navSwitchTo(page){
+
+    var playBckgd = "";
+    var playTitle = "";
+    var discBckgd = "";
+    var discTitle = "";
+
+    if(page == 'play'){ 
+
+        // style discover button
+        discBckgd = "-webkit-linear-gradient(270deg, #f0f0f0 0%, rgba(219, 219, 219, 0.9) 100%)";
+        discTitle = "public/img/common/discover-nonpressed.png";
+       
+        // style play button
+        playBckgd = "-webkit-linear-gradient(270deg, #81b53d 0%, rgba(152, 202, 82, 0.9) 100%)";
+        playTitle = "public/img/common/play-pressed.png";
+
+    }else if (page == 'discover'){
+
+        // style discover button
+        discBckgd = "-webkit-linear-gradient(270deg, #006fb7 0%, rgba(0, 99, 166, 0.9) 100%)";
+        discTitle = "public/img/common/discover-pressed.png";
+       
+        // style play button
+        playBckgd = "-webkit-linear-gradient(270deg, #f0f0f0 0%, rgba(219, 219, 219, 0.9) 100%)";
+        playTitle = "public/img/common/play-nonpressed.png";
+
+    }
+
+     // style discover button
+    $("#discover-title").attr("src", discTitle);
+    $("#discover-btn").css("background-image", discBckgd);
+
+    // style play button
+    $("#play-title").attr("src", playTitle);
+    $("#play-btn").css("background-image", playBckgd);    
+}
+
 // kick-start sleep timer - FHM
 function activateSleepTimer(){
 
@@ -227,7 +279,6 @@ function home(){
     // set new user cycle - FHM
     function reset(touch){
 
-
         touch_count += touch;
         touch_try++;
 
@@ -274,7 +325,7 @@ function home(){
  };
 
 function discover(items){
-
+  
     $(".promo-item").click(function(event) {
          $(".spot-pop").modal({
             position: ["5%"],
@@ -419,7 +470,6 @@ function play(videos, venue){
         }else if(status == 'stop' && $("#play-menu").css("display") == "block"){
                 currentVideo.play();
                 $("#play-menu").hide();
-                $("#navbar-play-ok").hide();
                 status = 'play';
         }       
     });
@@ -460,13 +510,13 @@ function play(videos, venue){
                 previous_position = 0;
         }
             
-      //  logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
+        logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
             $(currentVideo).attr("src", URL + 'public/vid/' + venue + '/' + videos[random_num].path);
             $(currentVideo).attr("id", videos[random_num].id);
             $("#play-name").html( videos[random_num].name);
             $("#play-author").html( videos[random_num].author);
             // reset finished watching var - FHM
             finished_watching = "no";               
-       // });                         
+        });                         
     }
 }
