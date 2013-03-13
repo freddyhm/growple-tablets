@@ -8,6 +8,9 @@
 </div>
 <!-- START VIDEO MENUS -->
 <div id="play-menu">
+	<div class="play-hidden-area" id="play-hidden-left"></div>
+	<div class="play-hidden-area" id="play-hidden-center"></div>
+	<div class="play-hidden-area" id="play-hidden-right"></div>
 	<div id="play-title">
 		<span id="play-name"></span>
 		<br>

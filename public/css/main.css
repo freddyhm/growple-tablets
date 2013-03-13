@@ -1019,6 +1019,31 @@ margin: -150px 310px;
 
 
 /* START - DISCOVER */
+
+.disc-hidden-area
+{
+  height: 49px;
+  position: absolute;
+}
+
+#disc-hidden-left
+{
+  width: 154px; 
+  left: 198px;
+}
+
+#disc-hidden-center
+{
+  width: 333px;
+  left: 367px;
+}
+
+#disc-hidden-right
+{
+  width: 292px;
+  left: 716px;
+}
+
 #discover-area
 {
   width:1024px;
@@ -1340,6 +1365,32 @@ z-index: 1;
 }
 
 /*START - PLAY */
+
+.play-hidden-area
+{
+  z-index: 2;
+  top: 14px;
+  height: 94px;
+  position: absolute;
+}
+
+#play-hidden-left
+{
+  width: 277px;
+  left: 0px;
+}
+
+#play-hidden-center
+{
+  width: 278px;
+  left: 273px;
+}
+
+#play-hidden-right
+{
+  left: 554px;
+  width: 207px;
+}
 
 #play-area
 {

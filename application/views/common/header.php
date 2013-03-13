@@ -66,3 +66,13 @@
                   <img id="play-title" src="<?php echo URL . 'public/img/common/play-nonpressed.png'; ?>">
                 </div>
              </div> 
+             <div id="loadPage">
+                <img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
+                <!-- START LOGO BUTTON -->
+                <div id ="main_logo">
+                    <div id="loading">
+                        <img id="load_pic" src="<?php echo URL . 'public/img/common/loading.gif'; ?>">
+                    </div>  
+                    <img id="start_screen" src="<?php echo URL . 'public/img/common/start_btn_logo.png'; ?>">
+                </div>
+            </div>

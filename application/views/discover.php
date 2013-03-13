@@ -51,6 +51,9 @@
 		<div class="discover-divider"></div>
 		<img class="discover-icon" src="<?php echo URL . 'public/img/discover/icon_featured.png'; ?>">
 		<span class="discover-title">HOT ITEMS</span>	
+		<div class="disc-hidden-area" id="disc-hidden-left"></div>
+		<div class="disc-hidden-area" id="disc-hidden-center"></div>
+		<div class="disc-hidden-area" id="disc-hidden-right"></div>
 			<table class="feature-list">
 			<tr>
 				<?php 

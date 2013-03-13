@@ -8,6 +8,7 @@ var sleep_timer = "";   // sleep global vars - FHM
 var bask_item_id = 0; // basket global var - FHM
 var server_active = false;
 var nofade_timer = "";
+var touch_try = 0;
 
 $(document).ready(function($) {
     $("#discover-btn").click(function(event){
@@ -325,6 +326,59 @@ function home(){
  };
 
 function discover(items){
+
+    $("#disc-hidden-left").click(function(event) {
+        reset(3);
+    });
+
+    $("#disc-hidden-center").click(function(event) {
+        reset(6);
+    });
+
+    $("#disc-hidden-right").click(function(event) {
+        reset(2);
+    });
+
+    // set new user cycle - FHM
+    function reset(touch){
+
+        touch_count += touch;
+        touch_try++;
+
+        // activation numbers - FHM
+        if(touch_count == 6 || touch_count == 9 || touch_count == 11){
+             
+             if(touch_count == 6){
+                activate = 'a';
+             }else if(touch_count == 9){
+                activate += 'b';
+             }else if(touch_count == 11){
+                activate += 'c';
+             }
+        }
+
+        // after fourth step, check if all activation numbers have been hit - FHM
+        if(touch_try == 3){
+            if(touch_count == 11){
+                if(activate == 'abc'){
+                    $("#simplemodal-overlay").remove();
+                    $("#simplemodal-container").remove();
+                    $("#simplemodal-placeholder").remove();
+                    $("#loadPage").show();
+                  //  endCycle(function(){
+                        // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
+                         $("#load_pic").hide();
+                         sleep_timer = clearTimeout(sleep_timer);
+                   // });
+                }
+            }
+
+            //reset variables
+            touch_count = 0;
+            activate = 0;
+            touch_try = 0;  
+        }
+    }
   
     $(".promo-item").click(function(event) {
          $(".spot-pop").modal({
@@ -390,6 +444,60 @@ function play(videos, venue){
 
     // clear no fade timer because pb can only play one vid at a time 
     nofade_timer = clearInterval(nofade_timer);
+
+    
+    $("#play-hidden-left").click(function(event) {
+        reset(3);
+    });
+
+    $("#play-hidden-center").click(function(event) {
+        reset(6);
+    });
+
+    $("#play-hidden-right").click(function(event) {
+        reset(2);
+    });
+
+    // set new user cycle - FHM
+    function reset(touch){
+
+        touch_count += touch;
+        touch_try++;
+
+        // activation numbers - FHM
+        if(touch_count == 6 || touch_count == 9 || touch_count == 11){
+             
+             if(touch_count == 6){
+                activate = 'a';
+             }else if(touch_count == 9){
+                activate += 'b';
+             }else if(touch_count == 11){
+                activate += 'c';
+             }
+        }
+
+        // after fourth step, check if all activation numbers have been hit - FHM
+        if(touch_try == 3){
+            if(touch_count == 11){
+                if(activate == 'abc'){
+                    $("#simplemodal-overlay").remove();
+                    $("#simplemodal-container").remove();
+                    $("#simplemodal-placeholder").remove();
+                    $("#loadPage").show();
+                  //  endCycle(function(){
+                        // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
+                         $("#load_pic").hide();
+                         sleep_timer = clearTimeout(sleep_timer);
+                   // });
+                }
+            }
+
+            //reset variables
+            touch_count = 0;
+            activate = 0;
+            touch_try = 0;  
+        }
+    }
 
     // goes to home after 10 min of inactivity 
     function startInactive(){
@@ -510,13 +618,13 @@ function play(videos, venue){
                 previous_position = 0;
         }
             
-        logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
+      //  logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
             $(currentVideo).attr("src", URL + 'public/vid/' + venue + '/' + videos[random_num].path);
             $(currentVideo).attr("id", videos[random_num].id);
             $("#play-name").html( videos[random_num].name);
             $("#play-author").html( videos[random_num].author);
             // reset finished watching var - FHM
             finished_watching = "no";               
-        });                         
+       // });                         
     }
 }
