@@ -551,7 +551,7 @@ function play(videos, venue){
 
         // reset inactive timer
         startInactive();
-        $(this).attr("src", URL  + "public/img/play/btn-next-pressed.png");
+        $(this).attr("src", URL  + "public/img/play/btn-next-press.png");
          setTimeout(function(){ 
             $("#next").attr("src", URL  + "public/img/play/btn-next.png");
             var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
