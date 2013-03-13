@@ -547,7 +547,7 @@ function play(videos, venue){
     });
 
     $("#next").click(function(event) {
-        
+
         // reset inactive timer
         startInactive();
         
@@ -557,9 +557,9 @@ function play(videos, venue){
             var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
             // check if first video for analytic - FHM
             var action = first_vid == true ? "first" :  "skipped_video";
-            logUserActivity("out", action, curr_vid_id, "", function(){
+     //       logUserActivity("out", action, curr_vid_id, "", function(){
                 showRandomVideo(false);
-             });
+       //      });
          }, 300);
     });
 
