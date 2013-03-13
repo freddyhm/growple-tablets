@@ -550,10 +550,9 @@ function play(videos, venue){
 
         // reset inactive timer
         startInactive();
-        
-      //  $(this).attr("src", URL  + "public/img/video/btn_next_pressed.png");
+        $(this).attr("src", URL  + "public/img/play/btn-next-pressed.png");
          setTimeout(function(){ 
-        //    $("#next").attr("src", URL  + "public/img/video/btn_next.png");
+            $("#next").attr("src", URL  + "public/img/play/btn-next.png");
             var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
             // check if first video for analytic - FHM
             var action = first_vid == true ? "first" :  "skipped_video";
