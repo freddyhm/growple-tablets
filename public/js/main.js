@@ -17,7 +17,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 2000);
+    sleep_timer = setTimeout(function() {sleep(); }, 180000);
 }
 
 // checks to see if no sleep video is playing after 3 min
@@ -827,10 +827,93 @@ function menu(menus, venue){
     }
 }
 
-function video(videos, venue){
+function game(){
+
+    startSleep();
+    resetNoFade();    
+
+    $("#gameHomeLink").click(function(){            
+        $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
+        // push and unpush - FHM        
+        setTimeout(function() { 
+            $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
+                logUserStep("out", 3, function(){
+                    $("body").load(URL + "home");
+                }); 
+        }, 100);
+    });
+}    
+
+
+function menulist(){
+    $(".gridMenuItem").click(function(){
+            $(this).css('background-color','#ffffff')
+             $('.itemNameList').html("HELLLOOOO");
+             $('#itemPictureList').attr("src", URL  + "public/img/menu/common/example1.png"); 
+             $('.itemDescriptionList').html("HELLLOOOO");
+             $('.itemPriceList').html("$100");
+            
+    });
+
+    $("#grabItList").click(function(){
+        $(this).attr("src", URL  + "public/img/menu/common/btn_grab_pressed.png");     
+        setTimeout(function() { 
+            $("#grabItList").attr("src", URL  + "public/img/menu/common/btn_grab.png"); 
+            animateCartAddItem(); 
+            addItem(selected_item, selected_item_name, selected_menu_name, selected_item_pic, 'yes');
+        }, 100);
+    
+    });
+
+};
+
+ function randombox(){
+    $(".box").click(function(){
+        $(this).attr("src", URL  + "public/img/game/randombox/box_pressed.png");
+    });
+
+ };
+
+function discover(items){
+
+//    var hot_items = items.hot;
+
+    alert(items.hot.items.name['name']);
+
+    
+
+    $(".promo-item").click(function(event) {
+         $(".spot-pop").modal({
+            position: ["5%"],
+            onShow: function (dialog){
+                var modal = this;
+                
+                $(".spot-pop .spot-quit").click(function(event) {
+                    modal.close();
+                });
+
+                /*
+
+                $(".spot-pop .spot-title").html();
+                $(".spot-pop .spot-pic").html();
+                $(".spot-pop .spot-price").html();
+                $(".spot-pop .spot-info").html();
+                $(".spot-pop .spot-msg").html();
+
+                */
+
+            }
+        });
+    });
+
+    $(".feature-item").click(function(event) {
+    });   
+}
+
+function play(videos, venue){
 
     // play random video when video ends, make button clickable and control video with click - FHM
-    var currentVideo = document.getElementById("video");
+    var currentVideo = document.getElementById("play-item");
     var previous_vid = new Array(0, 0 ,0 ,0 ,0);
     var previous_position = 0;
     var status = 'play';
@@ -899,11 +982,10 @@ function video(videos, venue){
         // reset inactive timer
         startInactive();
         
-        $(this).attr("src", URL  + "public/img/video/btn_next_pressed.png");
+      //  $(this).attr("src", URL  + "public/img/video/btn_next_pressed.png");
          setTimeout(function(){ 
-            $("#next").attr("src", URL  + "public/img/video/btn_next.png");
+        //    $("#next").attr("src", URL  + "public/img/video/btn_next.png");
             var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
-
             // check if first video for analytic - FHM
             var action = first_vid == true ? "first" :  "skipped_video";
             logUserActivity("out", action, curr_vid_id, "", function(){
@@ -918,13 +1000,13 @@ function video(videos, venue){
         // reset inactive timer
         startInactive();
 
-        if(status == 'play' && $("#video_menu").css("display") == "none"){
+        if(status == 'play' && $("#play-menu").css("display") == "none"){
                 currentVideo.pause();
-                $("#video_menu").show();
+                $("#play-menu").show();
                 status = 'stop';
-        }else if(status == 'stop' && $("#video_menu").css("display") == "inline"){
+        }else if(status == 'stop' && $("#play-menu").css("display") == "block"){
                 currentVideo.play();
-                $("#video_menu").hide();
+                $("#play-menu").hide();
                 status = 'play';
         }       
     });
@@ -936,15 +1018,15 @@ function video(videos, venue){
 
         vid_timer  = clearTimeout(vid_timer);
          vid_timer = setTimeout(function() {
-                $("#video_menu").hide();
+                $("#play-menu").hide();
         }, 5000);
 
         // reset status for new video - FHM
         status = 'play';
 
         // show menu if hidden (occurs when playing next video auto) - FHM
-        if($("#video_menu").css("display") != "inline"){
-                $("#video_menu").show();
+        if($("#play-menu").css("display") != "block"){
+            $("#play-menu").show();
         }
 
         var random_num = Math.floor(Math.random()*(videos.length));
@@ -965,109 +1047,13 @@ function video(videos, venue){
                 previous_position = 0;
         }
             
-        logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
+      //  logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
             $(currentVideo).attr("src", URL + 'public/vid/' + venue + '/' + videos[random_num].path);
             $(currentVideo).attr("id", videos[random_num].id);
-            $("#video_name").html( videos[random_num].name);
-            $("#video_author").html( videos[random_num].author);
+            $("#play-name").html( videos[random_num].name);
+            $("#play-author").html( videos[random_num].author);
             // reset finished watching var - FHM
             finished_watching = "no";               
-        });                         
+       // });                         
     }
-}
-
-function game(){
-
-    startSleep();
-    resetNoFade();    
-
-    $("#gameHomeLink").click(function(){            
-        $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return_pressed.png");
-        // push and unpush - FHM        
-        setTimeout(function() { 
-            $("#gameHomeLink").attr("src", URL  + "public/img/error/btn_return.png"); 
-                logUserStep("out", 3, function(){
-                    $("body").load(URL + "home");
-                }); 
-        }, 100);
-    });
-}    
-
-
-function menulist(){
-    $(".gridMenuItem").click(function(){
-            $(this).css('background-color','#ffffff')
-             $('.itemNameList').html("HELLLOOOO");
-             $('#itemPictureList').attr("src", URL  + "public/img/menu/common/example1.png"); 
-             $('.itemDescriptionList').html("HELLLOOOO");
-             $('.itemPriceList').html("$100");
-            
-    });
-
-    $("#grabItList").click(function(){
-        $(this).attr("src", URL  + "public/img/menu/common/btn_grab_pressed.png");     
-        setTimeout(function() { 
-            $("#grabItList").attr("src", URL  + "public/img/menu/common/btn_grab.png"); 
-            animateCartAddItem(); 
-            addItem(selected_item, selected_item_name, selected_menu_name, selected_item_pic, 'yes');
-        }, 100);
-    
-    });
-
-};
-
- function randombox(){
-    $(".box").click(function(){
-        $(this).attr("src", URL  + "public/img/game/randombox/box_pressed.png");
-    });
-
- };
-
-function discover(items){
-
-    $(".promo-item").click(function(event) {
-         $(".spot-pop").modal({
-            position: ["5%"],
-            onShow: function (dialog){
-                var modal = this;
-                
-                $(".spot-pop .spot-quit").click(function(event) {
-                    modal.close();
-                });
-
-                /*
-
-                $(".spot-pop .spot-title").html();
-                $(".spot-pop .spot-pic").html();
-                $(".spot-pop .spot-price").html();
-                $(".spot-pop .spot-info").html();
-                $(".spot-pop .spot-msg").html();
-
-                */
-            }
-        });
-    });
-
-    $(".feature-item").click(function(event) {
-        $(".spot-pop").modal({
-            position: ["5%"],
-            onShow: function (dialog){
-                var modal = this;
-                
-                $(".spot-pop .spot-quit").click(function(event) {
-                    modal.close();
-                });
-
-                /*
-
-                $(".spot-pop .spot-title").html();
-                $(".spot-pop .spot-pic").html();
-                $(".spot-pop .spot-price").html();
-                $(".spot-pop .spot-info").html();
-                $(".spot-pop .spot-msg").html();
-
-                */
-            }
-        });
-    });   
 }

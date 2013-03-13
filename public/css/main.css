@@ -1345,7 +1345,7 @@ z-index: 1;
 {
   width:1024px;
   height:600px;
-  background: url('../img/play/vid-preview.png');;
+  background-color: black;
 }
 
 #play-menu
