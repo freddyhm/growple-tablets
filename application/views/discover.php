@@ -24,7 +24,9 @@
 				<td>
 					<div id="thumb1" class="promo-item">
 						<span class="promo-title" id="promo-title-left"><?php echo strtoupper($items['about']['items'][0]['name']); ?></span>
-						<div class="promo-lock-overlay"></div>
+						<div id="about" class="promo-ribbon">
+							<img src="<?php echo URL . 'public/img/discover/ribbon-about.png'; ?>">
+						</div>	
 						<div class="promo-thumb-overlay"></div>
 						<div class="promo-name-overlay"></div>
 				
