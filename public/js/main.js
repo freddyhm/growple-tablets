@@ -427,6 +427,7 @@ function discover(items){
 
 function play(videos, venue){
 
+
     // play random video when video ends, make button clickable and control video with click - FHM
     var currentVideo = document.getElementById("play-item");
     var previous_vid = new Array(0, 0 ,0 ,0 ,0);
@@ -627,4 +628,6 @@ function play(videos, venue){
             finished_watching = "no";               
        // });                         
     }
+
+
 }

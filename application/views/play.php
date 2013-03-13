@@ -19,5 +19,6 @@
 	<div id="btn-play-next">
 		<img id="next" src="<?php echo URL . 'public/img/play/btn-next.png'; ?>">
 	</div>
+
 </div>
 
