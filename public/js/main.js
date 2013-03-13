@@ -1023,20 +1023,51 @@ function menulist(){
 
  };
 
-function discover(){
+function discover(items){
 
     $(".promo-item").click(function(event) {
          $(".spot-pop").modal({
             position: ["5%"],
             onShow: function (dialog){
                 var modal = this;
+                
                 $(".spot-pop .spot-quit").click(function(event) {
                     modal.close();
                 });
+
+                /*
+
+                $(".spot-pop .spot-title").html();
+                $(".spot-pop .spot-pic").html();
+                $(".spot-pop .spot-price").html();
+                $(".spot-pop .spot-info").html();
+                $(".spot-pop .spot-msg").html();
+
+                */
             }
         });
     });
 
     $(".feature-item").click(function(event) {
+        $(".spot-pop").modal({
+            position: ["5%"],
+            onShow: function (dialog){
+                var modal = this;
+                
+                $(".spot-pop .spot-quit").click(function(event) {
+                    modal.close();
+                });
+
+                /*
+
+                $(".spot-pop .spot-title").html();
+                $(".spot-pop .spot-pic").html();
+                $(".spot-pop .spot-price").html();
+                $(".spot-pop .spot-info").html();
+                $(".spot-pop .spot-msg").html();
+
+                */
+            }
+        });
     });   
 }

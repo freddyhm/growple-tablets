@@ -59,7 +59,9 @@
 				<td>
 					<div id="feat-thumb<?php echo $item['id']; ?>"  class="feature-item">
 						<div class="feature-title">
-							<span id="feature-name"><?php echo strtoupper($item['name']); ?><br><?php echo $item['korean_name']; ?></span>
+							<span id="feature-name"><?php echo strtoupper($item['name']); ?></span>
+							<br>
+							<span id="feature-desc"><?php echo $item['korean_name']; ?></span>
 						</div>
 						<div class="feature-name-overlay"></div>
 					</div>
