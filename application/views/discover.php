@@ -1,6 +1,6 @@
 <script>
 	$(document).ready(function($) {
-		discover();
+		discover(<?php echo json_encode($items); ?>);
 	});
 </script>
 <div class='spot-pop'>

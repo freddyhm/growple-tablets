@@ -1,6 +1,6 @@
 <script>
 	$(document).ready(function() {	
-		play(<?php echo json_encode($play_items); ?>, "<?php echo Session::get('venue'); ?>");
+		play(<?php echo  json_encode($play_items); ?>, "<?php echo Session::get('venue'); ?>");
 	});
 </script>
 <div id="play-area">
