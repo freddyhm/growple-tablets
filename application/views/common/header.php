@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- <html> -->
-<html manifest="<?php echo URL . 'config/' . ENVIRONMENT . '/owl/meet.appcache' ?>">
+ <html> 
+<!-- <html manifest="<?php echo URL . 'config/' . ENVIRONMENT . '/owl/meet.appcache' ?>"> -->
 <head>
 	<!-- Don't ever take this out, never, ever, ever -> this makes the korean symbols magically appear in the browser - FHM -->
 	<meta http-equiv="Content-Type" content="text/html;charset=utf8">
