@@ -11,7 +11,7 @@
 	<div class="play-hidden-area" id="play-hidden-left"></div>
 	<div class="play-hidden-area" id="play-hidden-center"></div>
 	<div class="play-hidden-area" id="play-hidden-right"></div>
-	<div id="play-title">
+	<div id="play-menu-title">
 		<span id="play-name"></span>
 		<br>
 		<span id="play-author"></span>
