@@ -26,7 +26,7 @@
 							<img src="<?php echo URL . 'public/img/discover/ribbon-about.png'; ?>">
 						</div>	
 						<div class="promo-thumb-overlay"></div>
-						<div id="about" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/pic-about.png'; ?>"></div>
+						<div id="about" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $items['about']['items'][0]['small_pic']; ?>"></div>
 						<div class="promo-name-overlay"></div>
 				
 					</div>
@@ -38,7 +38,7 @@
 							<img src="<?php echo URL . 'public/img/discover/ribbon-notice.png'; ?>">
 						</div>	
 						<div class="promo-thumb-overlay"></div>
-						<div id="notice" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/pic-notice.png'; ?>"></div>
+						<div id="notice" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $items['notice']['items'][0]['small_pic']; ?>"></div>
 						<div class="promo-name-overlay"></div>	
 					</div>
 				</td>
@@ -49,7 +49,7 @@
 							<img src="<?php echo URL . 'public/img/discover/ribbon-chef.png'; ?>">
 						</div>	
 						<div class="promo-thumb-overlay"></div>
-						<div id="chef" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/pic-chef.png'; ?>"></div>
+						<div id="chef" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $items['chef\'s pick']['items'][0]['small_pic']; ?>"></div>
 						<div class="promo-name-overlay"></div>	
 					</div>
 				</td>
@@ -70,6 +70,7 @@
 				?>
 				<td>
 					<div id="feat-thumb<?php echo $item['id']; ?>"  class="feature-item">
+						<img id="feature-pic" src="<?php echo URL . 'public/img/discover/feature/' . $item['small_pic']; ?>">
 						<div class="feature-title">
 							<span id="feature-name"><?php echo strtoupper($item['name']); ?></span>
 							<br>

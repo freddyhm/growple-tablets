@@ -1104,21 +1104,6 @@ margin: -150px 310px;
 
 }
 
-#thumb1
-{
-  background: url('../img/discover/item1.png');
-}
-
-#thumb2
-{
-  background: url('../img/discover/item2.png');
-}
-
-#thumb3
-{
-  background: url('../img/discover/item3.png');
-}
-
 .discover-divider
 {
     background: url('../img/discover/dividerDiscover.png');
