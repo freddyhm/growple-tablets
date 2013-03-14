@@ -1190,6 +1190,11 @@ margin: -150px 310px;
   border-radius:5px;
 }
 
+.promo-ribbon
+{
+  position: absolute;
+  z-index: 4;
+}
 .promo-lock-overlay
 {
   background-image: url("../img/discover/unlock.png");
@@ -1213,13 +1218,13 @@ margin: -150px 310px;
 
 #promo-title-center
 {
-  color:#8dc63f;
+  color:#00aeef;
 }
 
 
 #promo-title-left
 {
-  color:#00aeef;
+  color:#8dc63f;
 }
 
 #promo-title-right

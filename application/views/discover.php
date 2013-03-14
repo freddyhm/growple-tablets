@@ -35,6 +35,9 @@
 				<td>
 					<div id="thumb2" class="promo-item">
 						<span class="promo-title" id="promo-title-center"><?php echo strtoupper($items['notice']['items'][0]['name']); ?></span>
+						<div id="notice" class="promo-ribbon">
+							<img src="<?php echo URL . 'public/img/discover/ribbon-notice.png'; ?>">
+						</div>	
 						<div class="promo-thumb-overlay"></div>
 						<div class="promo-name-overlay"></div>	
 					</div>
@@ -42,6 +45,9 @@
 				<td>
 					<div id="thumb3" class="promo-item">
 						<span class="promo-title" id="promo-title-right"><?php echo strtoupper($items["chef's pick"]['items'][0]['name']); ?></span>
+						<div id="notice" class="promo-ribbon">
+							<img src="<?php echo URL . 'public/img/discover/ribbon-chef.png'; ?>">
+						</div>	
 						<div class="promo-thumb-overlay"></div>
 						<div class="promo-name-overlay"></div>	
 					</div>
