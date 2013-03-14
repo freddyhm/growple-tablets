@@ -189,7 +189,7 @@ function startSleep(){
      // click is the main activity to derive idle user time or not so reset timer if click - FHM
      // exceptions are with nav links (home) and cart action (menu) where we don't want to activate timer - FHM
     $(".playbook").click(function(e){ 
-        if(e.target.className != "navLink" && server_active == false && e.target.className != "serverActive"){
+        if(e.target.className != "nav-link" && server_active == false && e.target.className != "serverActive"){
             activateSleepTimer();
         }else{
             sleep_timer = clearTimeout(sleep_timer);
@@ -380,7 +380,7 @@ function play(videos, venue){
         inactive_timer = clearTimeout(inactive_timer);
         inactive_timer = setTimeout(function(){
             is_inactive = true;
-        }, 600000)
+        }, 2000)
     }
             
     // analytics exit point when video ends - FHM
@@ -389,7 +389,7 @@ function play(videos, venue){
         logUserActivity("out", "finished_watching", curr_vid_id, "", function(){
              finished_watching = "yes";
              if(is_inactive == true){
-                $("body").load(URL + "home");
+                $("body").load(URL + "discover");
              }else{
                  showRandomVideo();    
              }
