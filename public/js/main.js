@@ -25,8 +25,6 @@ $(document).ready(function($) {
 
 function init(){
 
-    activateSleepTimer();    
-
     // check if analytics are set (when cached) - FHM
     var is_path = $.jStorage.get("path");
     if(is_path == null){
@@ -44,7 +42,9 @@ function init(){
      // make start button clickable 
     $("#start_screen").click(function(event) {
       startAnalytics(function(){
-            $("body").load(URL + "discover");
+            $("body").load(URL + "discover",function(){
+                activateSleepTimer(); 
+            });
        });
      });
 }
@@ -136,7 +136,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 5000);
+    sleep_timer = setTimeout(function() {sleep(); }, 10000);
 }
 
 // checks to see if no sleep video is playing after 3 min
@@ -337,7 +337,7 @@ function discover(items){
                 }
             });
         });
-     });   
+    });   
 }
 
 function play(videos, venue){
@@ -403,23 +403,6 @@ function play(videos, venue){
 
     showRandomVideo(true);      
 
-    $("#videoHomeLink").click(function(){
-        $("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home_pressed.png");
-         setTimeout(function(){ 
-            $("#videoHomeLink").attr("src", URL  + "public/img/common/btn_home.png");
-                // activity exit point analytic - FHM
-                var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
-                // check if first video for analytics - FHM
-                var action = first_vid == true ? "first" : "exit_while_watching_video";
-                 // step exit point analytic - FHM
-                logUserActivity("out", action, curr_vid_id, "", function(){
-                    logUserStep("out", 2,  function(){
-                        $("body").load(URL + "home");
-                    });
-                });
-         }, 300);
-    });
-
     $("#next").click(function(event) {
 
         // reset inactive timer
@@ -441,12 +424,10 @@ function play(videos, venue){
 
         // reset inactive timer
         startInactive();
+
         if(status == 'play' && $("#play-menu").css("display") == "none"){
                 currentVideo.pause();
                 $("#play-menu").show();
-
-
-                $("navbar-play-ok").show();
                 status = 'stop';
         }else if(status == 'stop' && $("#play-menu").css("display") == "block"){
                 currentVideo.play();
@@ -500,6 +481,4 @@ function play(videos, venue){
             finished_watching = "no";               
        // });                         
     }
-
-
 }
