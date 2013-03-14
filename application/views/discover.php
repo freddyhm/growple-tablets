@@ -1,7 +1,5 @@
 <script>
-	$(document).ready(function($) {
-		discover(<?php echo json_encode($items); ?>);
-	});
+	discover(<?php echo json_encode($items); ?>);
 </script>
 <div class='spot-pop'>
     <div class='spot-header'>

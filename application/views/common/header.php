@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html>
-<!--<html manifest="<?php //echo URL . 'config/' . ENVIRONMENT . '/meet.appcache' ?>"> -->
+ <html> 
+<!-- <html manifest="<?php echo URL . 'config/' . ENVIRONMENT . '/owl/meet.appcache' ?>"> -->
 <head>
 	<!-- Don't ever take this out, never, ever, ever -> this makes the korean symbols magically appear in the browser - FHM -->
 	<meta http-equiv="Content-Type" content="text/html;charset=utf8">
-
     <!-- STYLESHEET-->
     <link rel="stylesheet" href="<?php echo URL . 'public/css/main.css'; ?>">
     <link rel="stylesheet" href="<?php echo URL . 'public/css/confirm.css'; ?>">
-    <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
     <!-- SCRIPTS -->
     <script src="<?php echo URL . 'public/js/jquery-1.8.3.min.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/jstorage.js'; ?>"></script>
@@ -17,7 +15,6 @@
     <script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/analytics.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
-   
 </head>	
 <body>
     <div id="setup">
@@ -60,10 +57,10 @@
             <!--Navbar-->
             <div id="navbar">
                 <div class="nav-btn" id="discover-btn">
-                    <img id="discover-title" src="<?php echo URL . 'public/img/common/discover-pressed.png'; ?>">
+                    <img class="nav-link" id="discover-title" src="<?php echo URL . 'public/img/common/discover-pressed.png'; ?>">
                 </div>
                 <div class="nav-btn" id="play-btn">
-                  <img id="play-title" src="<?php echo URL . 'public/img/common/play-nonpressed.png'; ?>">
+                  <img class="nav-link" id="play-title" src="<?php echo URL . 'public/img/common/play-nonpressed.png'; ?>">
                 </div>
              </div> 
              <div id="loadPage">
