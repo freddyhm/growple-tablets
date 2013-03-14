@@ -1,6 +1,8 @@
 CACHE MANIFEST
 
-# Owl Development       -
+# Owl Development  ------
+NETWORK:
+/growple/meet/app/public/js/main.js
 
 CACHE:
 /growple/meet/app/discover   
@@ -9,7 +11,7 @@ CACHE:
 /growple/meet/app/loading
 /growple/meet/app/public/css/main.css
 /growple/meet/app/public/css/confirm.css
-/growple/meet/app/public/js/main.js
+
 /growple/meet/app/public/js/analytics.js
 /growple/meet/app/public/js/jquery-1.8.3.min.js
 /growple/meet/app/public/js/jstorage.js
@@ -26,7 +28,7 @@ CACHE:
 /growple/meet/app/public/img/discover/ribbon-chef.png
 /growple/meet/app/public/img/discover/ribbon-notice.png
 /growple/meet/app/public/img/discover/unlock.png
-/growple/meet/app/public/img/play/bckgd-play-navbar.png
+/growple/meet/app/public/img/play/bkgd-play-navbar.png
 /growple/meet/app/public/img/play/btn-next-press.png
 /growple/meet/app/public/img/play/btn-next.png
 /growple/meet/app/public/img/play/vid-preview.png
@@ -42,6 +44,7 @@ CACHE:
 /growple/meet/app/public/img/common/discover-nonpressed.png
 /growple/meet/app/public/img/common/discover-pressed.png
 /growple/meet/app/public/img/common/play-nonpressed.png
+/growple/meet/app/public/img/common/play-pressed.png
 /growple/meet/app/public/img/common/start_bg1.png
 /growple/meet/app/public/img/common/loading.gif
 /growple/meet/app/public/img/common/start_btn_logo.png

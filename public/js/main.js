@@ -9,22 +9,19 @@ var server_active = false;
 var nofade_timer = "";
 var touch_try = 0;
 
-$(document).ready(function($) {
-    $("#discover-btn").click(function(event){
+function init(){
+
+     $("#discover-btn").click(function(event){
        $("body").load(URL + 'discover', function(){
             navSwitchTo("discover");
        });
     });
 
     $("#play-btn").click(function(event) {
-        alert("a");
         $("body").load(URL + 'play', function(){
             navSwitchTo("play");
         });
     });
-});
-
-function init(){
 
     // check if analytics are set (when cached) - FHM
     var is_path = $.jStorage.get("path");
@@ -42,11 +39,10 @@ function init(){
 
      // make start button clickable 
     $("#start_screen").click(function(event) {
-         $("#main_log").hide();
           startAnalytics(function(){
-               // $("body").load(URL + "discover",function(){
-                    activateSleepTimer(); 
-               // });
+                $("body").load(URL + "discover",function(){
+                    $("#loadPage").hide();
+                });
            });
      });
 }
@@ -132,13 +128,12 @@ function navSwitchTo(page){
 
 // kick-start sleep timer - FHM
 function activateSleepTimer(){
-
     // check if a timer is already present, if yes than clear and init - FHM 
     if(sleep_timer != ""){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 5000);
+    sleep_timer = setTimeout(function() {sleep(); }, 2000);
 }
 
 // checks to see if no sleep video is playing after 3 min
@@ -159,15 +154,19 @@ function resetNoFade(){
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
-   // init slideshow  - FHM
-    $("#sleepSlideshow").slides({
-        play: 5000,
-        effect: 'slide',
-        crossfade: true,
-        generatePagination: false
-    });
 
-   $("#sleepSlideshow").show();
+    // make sure that the slideshow hasn't started yet 
+    if($(".slides_control")[0] == undefined){
+        // init slideshow  - FHM
+        $("#sleepSlideshow").slides({
+            play: 5000,
+            effect: 'slide',
+            crossfade: true,
+            generatePagination: false
+        });
+
+       $("#sleepSlideshow").show();
+    };
 }
 
 function exitSleepSlideshow(){
@@ -191,8 +190,8 @@ function startSleep(){
      // click is the main activity to derive idle user time or not so reset timer if click - FHM
      // exceptions are with nav links (home) and cart action (menu) where we don't want to activate timer - FHM
     $(".playbook").click(function(e){ 
-        if(e.target.className != "nav-link" && server_active == false && e.target.className != "serverActive"){
-            activateSleepTimer();
+        if(e.target.className != "nav-link" && e.target.id == "start_screen" && server_active == false && e.target.className != "serverActive"){
+          activateSleepTimer();
         }else{
             sleep_timer = clearTimeout(sleep_timer);
         }
@@ -203,8 +202,6 @@ function startSleep(){
         // get class of image clicked and redirect to menu if promo slide - FHM
         var is_promo = event.target.className == "promoSlide" ? true : false;
         if(is_promo == true){
-
-           // alert(event.target.id);
 
             var item_id = event.target.id.split("#")[0];
             var item_name = event.target.id.split("#")[1];
