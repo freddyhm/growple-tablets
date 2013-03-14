@@ -1,4 +1,3 @@
-
 /* GLOGBAL VARIABLES */
 var touch_count = 0; // reset global vars - FHM
 var activate = "";       // reset global vars - FHM
@@ -23,6 +22,47 @@ $(document).ready(function($) {
         });
     });
 });
+
+// set new user cycle - FHM
+function reset(touch){
+
+    touch_count += touch;
+    touch_try++;
+
+    // activation numbers - FHM
+    if(touch_count == 6 || touch_count == 9 || touch_count == 11){
+         
+         if(touch_count == 6){
+            activate = 'a';
+         }else if(touch_count == 9){
+            activate += 'b';
+         }else if(touch_count == 11){
+            activate += 'c';
+         }
+    }
+
+    // after fourth step, check if all activation numbers have been hit - FHM
+    if(touch_try == 3){
+        if(touch_count == 11){
+            if(activate == 'abc'){
+                $("#simplemodal-overlay").remove();
+                $("#simplemodal-container").remove();
+                $("#simplemodal-placeholder").remove();
+                $("#loadPage").show();
+              //  endCycle(function(){
+                    // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
+                     $("#load_pic").hide();
+                     sleep_timer = clearTimeout(sleep_timer);
+               // });
+            }
+        }
+
+        //reset variables
+        touch_count = 0;
+        activate = 0;
+        touch_try = 0;  
+    }
+}
 
 function navSwitchTo(page){
 
@@ -327,6 +367,28 @@ function home(){
 
 function discover(items){
 
+    // check if analytics are set (when cached) - FHM
+    var is_path = $.jStorage.get("path");
+    if(is_path == null){
+        startAnalytics();
+    }
+
+    startSleep();
+    resetNoFade();
+    
+    $(".playbook").ajaxError(function(){
+        alert("Could not connect to server, please try again!");
+        sleep_timer = clearTimeout(sleep_timer);
+    }); 
+
+     // make start button clickable 
+    $("#start_screen").click(function(event) {
+      startAnalytics(function(){
+            $("#loadPage").hide();
+            activateSleepTimer();
+       });
+     });
+
     $("#disc-hidden-left").click(function(event) {
         reset(3);
     });
@@ -339,47 +401,6 @@ function discover(items){
         reset(2);
     });
 
-    // set new user cycle - FHM
-    function reset(touch){
-
-        touch_count += touch;
-        touch_try++;
-
-        // activation numbers - FHM
-        if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-             
-             if(touch_count == 6){
-                activate = 'a';
-             }else if(touch_count == 9){
-                activate += 'b';
-             }else if(touch_count == 11){
-                activate += 'c';
-             }
-        }
-
-        // after fourth step, check if all activation numbers have been hit - FHM
-        if(touch_try == 3){
-            if(touch_count == 11){
-                if(activate == 'abc'){
-                    $("#simplemodal-overlay").remove();
-                    $("#simplemodal-container").remove();
-                    $("#simplemodal-placeholder").remove();
-                    $("#loadPage").show();
-                  //  endCycle(function(){
-                        // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
-                         $("#load_pic").hide();
-                         sleep_timer = clearTimeout(sleep_timer);
-                   // });
-                }
-            }
-
-            //reset variables
-            touch_count = 0;
-            activate = 0;
-            touch_try = 0;  
-        }
-    }
-  
     $(".promo-item").click(function(event) {
          $(".spot-pop").modal({
             position: ["5%"],

@@ -1477,4 +1477,5 @@ left: 13px;
 #play-btn
 {
   float:right;
+  background-image: -webkit-linear-gradient(270deg, #f0f0f0 0%, rgba(219, 219, 219, 0.9) 100%);
 }
