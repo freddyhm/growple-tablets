@@ -17,6 +17,7 @@ $(document).ready(function($) {
     });
 
     $("#play-btn").click(function(event) {
+        alert("a");
         $("body").load(URL + 'play', function(){
             navSwitchTo("play");
         });
@@ -41,11 +42,12 @@ function init(){
 
      // make start button clickable 
     $("#start_screen").click(function(event) {
-      startAnalytics(function(){
-            $("body").load(URL + "discover",function(){
-                activateSleepTimer(); 
-            });
-       });
+         $("#main_log").hide();
+          startAnalytics(function(){
+               // $("body").load(URL + "discover",function(){
+                    activateSleepTimer(); 
+               // });
+           });
      });
 }
 
@@ -136,7 +138,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 10000);
+    sleep_timer = setTimeout(function() {sleep(); }, 5000);
 }
 
 // checks to see if no sleep video is playing after 3 min
