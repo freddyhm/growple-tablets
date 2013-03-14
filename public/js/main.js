@@ -11,6 +11,16 @@ var touch_try = 0;
 
 function init(){
 
+     $("#menuLink").click(function(){
+            $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
+             setTimeout(function(){ 
+                $("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
+                logUserStep("in", 1, function(){
+                    $("body").load(URL + "menu");
+                });
+             }, 300);
+        });
+
      $("#discover-btn").click(function(event){
        $("body").load(URL + 'discover', function(){
             navSwitchTo("discover");
