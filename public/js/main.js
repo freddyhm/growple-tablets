@@ -72,12 +72,15 @@ function reset(touch){
                 $("#simplemodal-overlay").remove();
                 $("#simplemodal-container").remove();
                 $("#simplemodal-placeholder").remove();
-                $("#loadPage").show();
-              //  endCycle(function(){
+                $("#loadPage").show(function(){
+                     sleep_timer = clearTimeout(sleep_timer);
+                //  endCycle(function(){
                     // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
                      $("#load_pic").hide();
-                     sleep_timer = clearTimeout(sleep_timer);
-               // });
+                    
+                    // });
+                });
+              
             }
         }
 
