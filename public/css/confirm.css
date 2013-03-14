@@ -12,7 +12,7 @@
 */
 
 /* Overlay */
-#confirm-overlay {background-color:#eee;}
+#confirm-overlay {background-color:#fff;}
 
 
 /* Container */
@@ -30,7 +30,7 @@
 
 
 /* Overlay */
-#simplemodal-overlay {background-color:#eee;}
+#simplemodal-overlay {background-color:#000; opacity: 1;}
 
 /* Container */
 /*
