@@ -190,7 +190,7 @@ function startSleep(){
      // click is the main activity to derive idle user time or not so reset timer if click - FHM
      // exceptions are with nav links (home) and cart action (menu) where we don't want to activate timer - FHM
     $(".playbook").click(function(e){ 
-        if(e.target.className != "nav-link" && e.target.id == "start_screen" && server_active == false && e.target.className != "serverActive"){
+        if(e.target.className != "nav-link" && e.target.id != "start_screen" && server_active == false && e.target.className != "serverActive"){
           activateSleepTimer();
         }else{
             sleep_timer = clearTimeout(sleep_timer);
