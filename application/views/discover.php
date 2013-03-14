@@ -9,7 +9,7 @@
             <div class="spot-title">CHICKEN WINGS</div>
             <div class="spot-bar"></div>
             <div class="spot-price">9.99</div>
-            <div class="spot-quit">X</div>
+            <div class="spot-quit"></div>
         </div>
     </div>
     <div class="spot-pic"></div>
