@@ -1371,6 +1371,12 @@ z-index: 1;
 
 /*START - PLAY */
 
+#play-title
+{
+  width:750px;
+  height:100px;
+
+}
 .play-hidden-area
 {
   z-index: 2;
@@ -1426,7 +1432,7 @@ z-index: 1;
 
 #play-name
 {
-  font-size: 45px;
+  font-size: 35px;
   color: #595959;
   font-weight: bolder;
   position: absolute;
