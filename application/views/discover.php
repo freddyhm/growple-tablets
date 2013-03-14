@@ -20,7 +20,7 @@
 		<table class="promo-list">
 			<tr>
 				<td>
-					<div id="thumb1" class="promo-item">
+					<div id="thumb-about-<?php echo $items['about']['items'][0]['id']; ?>" class="promo-item">
 						<span class="promo-title" id="promo-title-left"><?php echo strtoupper($items['about']['items'][0]['name']); ?></span>
 						<div id="about" class="promo-ribbon">
 							<img src="<?php echo URL . 'public/img/discover/ribbon-about.png'; ?>">
@@ -32,7 +32,7 @@
 					</div>
 				</td>
 				<td>
-					<div id="thumb2" class="promo-item">
+					<div id="thumb-notice-<?php echo $items['notice']['items'][0]['id']; ?>" class="promo-item">
 						<span class="promo-title" id="promo-title-center"><?php echo strtoupper($items['notice']['items'][0]['name']); ?></span>
 						<div id="notice" class="promo-ribbon">
 							<img src="<?php echo URL . 'public/img/discover/ribbon-notice.png'; ?>">
@@ -43,7 +43,7 @@
 					</div>
 				</td>
 				<td>
-					<div id="thumb3" class="promo-item">
+					<div id="thumb-chef's pick-<?php echo $items['chef\'s pick']['items'][0]['id']; ?>" class="promo-item">
 						<span class="promo-title" id="promo-title-right"><?php echo strtoupper($items["chef's pick"]['items'][0]['name']); ?></span>
 						<div id="chef" class="promo-ribbon">
 							<img src="<?php echo URL . 'public/img/discover/ribbon-chef.png'; ?>">

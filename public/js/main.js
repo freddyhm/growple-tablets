@@ -307,10 +307,28 @@ function discover(items){
         });
 
         $(".promo-item").click(function(event) {
+
+            var selectedId = $(this).attr("id").split("-");
+            var selectedName = selectedId[1];
+            var selectedItemId = selectedId[2];
+
              $(".spot-pop").modal({
                 position: ["5%"],
                 onShow: function (dialog){
                     var modal = this;
+                    $.each(items, function(index, val) {
+                        if(val.name == selectedName){
+                            var items = val.items;
+                            $.each(items, function(index, val) {
+                                if(val.id == selectedItemId){
+                                    $(".spot-pop .spot-title").html(val.name.toUpperCase());
+                                    $(".spot-pop .spot-pic").attr('src', URL + 'public/img/discover/spotlight/' +  val.big_pic);
+                                    $(".spot-pop .spot-price").html(val.price);
+                                    $(".spot-pop .spot-msg").html(val.description);
+                                }
+                            });
+                        }
+                    });
                     
                     $(".spot-pop .spot-quit").click(function(event) {
                         modal.close();
