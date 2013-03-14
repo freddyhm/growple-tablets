@@ -335,7 +335,7 @@ function discover(items){
                             $.each(items, function(index, val) {
                                 if(val.id == selectedItem){
                                     $(".spot-pop .spot-title").html(val.name.toUpperCase());
-                                    $(".spot-pop .spot-pic").html();
+                                    $(".spot-pop .spot-pic").attr('src', URL + 'public/img/discover/feature/' +  val.big_pic);
                                     $(".spot-pop .spot-price").html(val.price);
                                     $(".spot-pop .spot-msg").html(val.description);
                                 }

@@ -1340,11 +1340,8 @@ z-index: 1;
 
 .spot-pop .spot-pic
 {
-  width: 100%;
-  height: 450px;
-  background-image: url('../img/discover/example.png');
-  background-repeat: no-repeat;
   position: relative;
+  bottom: 133px;
 }
 
 .spot-pop .spot-info

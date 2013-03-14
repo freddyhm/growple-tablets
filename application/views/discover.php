@@ -10,7 +10,7 @@
             <div class="spot-quit"></div>
         </div>
     </div>
-    <div class="spot-pic"></div>
+    <img class="spot-pic" src=""> 
     <div class="spot-info">
         <p class="spot-msg">Our legendary chicken wings! Choose your flavour: honey / garlic / hot / sweet / suicide</p>
     </div>

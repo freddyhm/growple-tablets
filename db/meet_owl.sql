@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2013 at 03:18 PM
+-- Generation Time: Mar 14, 2013 at 03:29 PM
 -- Server version: 5.5.9
 -- PHP Version: 5.3.6
 
@@ -339,10 +339,10 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` VALUES(1, 'kamjatang', '감자탕', '7.99', 'Pork bone & potato soup, rice', 'chef-kamjatang-small.png', 'chef-kamjatang-big.png', '', '', 6);
-INSERT INTO `items` VALUES(2, 'bulgogi', '불고기', '10.99', 'Stir-fried beef, some vegetables, noodles with sweet soy sauce on the sizzling plate, rice', 'bulgogi-small.png', 'bulgogi-big.png', '', '', 3);
-INSERT INTO `items` VALUES(3, 'cutlet(kasu)', '돈까스/새우까스', '12.99', 'Deep-fried pork or shrimp cutlet with vegetable and rice', 'cutlet-small.png', 'cutlet-big.png', '`', '', 3);
-INSERT INTO `items` VALUES(4, 'japchae', '잡채', '9.99', 'Stir-fried beef, some vegetables, noodles with sweet soy sauce', 'japchae-small.png', 'japchae-big.png', '', '', 3);
+INSERT INTO `items` VALUES(1, 'kamjatang', '감자탕', '7.99', 'Pork bone & potato soup, rice', 'chef-kamjatang-small.png', 'chef-kamjatang-big.jpg', '', '', 6);
+INSERT INTO `items` VALUES(2, 'bulgogi', '불고기', '10.99', 'Stir-fried beef, some vegetables, noodles with sweet soy sauce on the sizzling plate, rice', 'bulgogi-small.png', 'bulgogi-big.jpg', '', '', 3);
+INSERT INTO `items` VALUES(3, 'cutlet(kasu)', '돈까스/새우까스', '12.99', 'Deep-fried pork or shrimp cutlet with vegetable and rice', 'cutlet-small.png', 'cutlet-big.jpg', '`', '', 3);
+INSERT INTO `items` VALUES(4, 'japchae', '잡채', '9.99', 'Stir-fried beef, some vegetables, noodles with sweet soy sauce', 'japchae-small.png', 'japchae-big.jpg', '', '', 3);
 INSERT INTO `items` VALUES(5, 'UFC Best KO 2011 - 2012', '', '', '', NULL, '', '1.mp4', 'StrikeForce', 2);
 INSERT INTO `items` VALUES(6, 'Blake Griffin 3 Pt Fail', '', '', '', NULL, '', '2.mp4', 'NBA', 2);
 INSERT INTO `items` VALUES(7, 'Cheating Boss Prank', '', '', '', NULL, '', '3.mp4', 'Just for Laughs', 2);
@@ -354,8 +354,8 @@ INSERT INTO `items` VALUES(12, 'Gangnam Style', '', '', '', NULL, '', '8.mp4', '
 INSERT INTO `items` VALUES(13, 'Into Darkness Trailer ', '', '', '', NULL, '', '9.mp4', 'Star Trek', 2);
 INSERT INTO `items` VALUES(14, 'White Couple Black Baby', '', '', '', NULL, '', '10.mp4', 'Just for Laughs', 2);
 INSERT INTO `items` VALUES(15, 'free appetizer', '', '', '', NULL, '', '', '', 4);
-INSERT INTO `items` VALUES(16, 'Growple! Tablets', '', '', '', 'notice-growple-small.png', 'notice-growple-big.png', '', '', 7);
-INSERT INTO `items` VALUES(17, 'The Owl of Minerva', '', '', '', 'about-owl-small.png', 'about-owl-big.png', '', '', 5);
+INSERT INTO `items` VALUES(16, 'Growple! Tablets', '', '', '', 'notice-growple-small.png', 'notice-growple-big.jpg', '', '', 7);
+INSERT INTO `items` VALUES(17, 'The Owl of Minerva', '', '', '', 'about-owl-small.png', 'about-owl-big.jpg', '', '', 5);
 
 -- --------------------------------------------------------
 
