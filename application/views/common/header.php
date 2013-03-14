@@ -22,6 +22,7 @@
     	<div id="sleepSlideshow">
             <div class="slides_container">
                 <?php 
+                /*
                 // extract promo slides and display
                 $promos = Promo::find_all_by_promotype_id(1);
                 if($promos){
@@ -29,7 +30,7 @@
                     <div>
                         <img id="<?php echo $promo->name; ?>" class="promoSlide" src="<?php echo URL . 'public/img/sleep/' .$promo->filename; ?>">
                     </div>
-                <?php } } ?>
+                <?php } } */?>
                 <div>
                     <img src="<?php echo URL . 'public/img/sleep/slide1.jpg'?>">;
                 </div>

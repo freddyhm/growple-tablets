@@ -410,7 +410,7 @@ function play(videos, venue){
         inactive_timer = clearTimeout(inactive_timer);
         inactive_timer = setTimeout(function(){
             is_inactive = true;
-        }, 2000)
+        }, 600000)
     }
             
     // analytics exit point when video ends - FHM
