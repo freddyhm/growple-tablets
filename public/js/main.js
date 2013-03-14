@@ -23,6 +23,32 @@ $(document).ready(function($) {
     });
 });
 
+function init(){
+
+    activateSleepTimer();    
+
+    // check if analytics are set (when cached) - FHM
+    var is_path = $.jStorage.get("path");
+    if(is_path == null){
+        startAnalytics();
+    }
+
+    startSleep();
+    resetNoFade();
+
+    $(".playbook").ajaxError(function(){
+        alert("Could not connect to server, please try again!");
+        sleep_timer = clearTimeout(sleep_timer);
+    }); 
+
+     // make start button clickable 
+    $("#start_screen").click(function(event) {
+      startAnalytics(function(){
+            $("body").load(URL + "discover");
+       });
+     });
+}
+
 // set new user cycle - FHM
 function reset(touch){
 
@@ -110,7 +136,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 180000);
+    sleep_timer = setTimeout(function() {sleep(); }, 5000);
 }
 
 // checks to see if no sleep video is playing after 3 min
@@ -211,9 +237,14 @@ function startSleep(){
     });  
 }
 
+function randombox(){
+    $(".box").click(function(){
+        $(this).attr("src", URL  + "public/img/game/randombox/box_pressed.png");
+    });
 
-// list of functions according to main pages - FHM
-function home(){
+ };
+
+function discover(items){
 
     var appCache = window.applicationCache;
     var one_user = 0;
@@ -249,205 +280,67 @@ function home(){
 
     $(document).ready(function() {
 
-        // check if analytics are set (when cached) - FHM
-        var is_path = $.jStorage.get("path");
-        if(is_path == null){
-            startAnalytics();
-        }
+        init();
 
-        startSleep();
-        resetNoFade();
-        
-        $(".playbook").ajaxError(function(){
-            alert("Could not connect to server, please try again!");
-            sleep_timer = clearTimeout(sleep_timer);
-        }); 
-
-         // make start button clickable 
-        $("#start_screen").click(function(event) {
-          startAnalytics(function(){
-                $("#loadPage").hide();
-                activateSleepTimer();
-           });
-         });
-
-        // nav links - FHM
-        $("#menuLink").click(function(){
-            $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
-             setTimeout(function(){ 
-                $("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
-                logUserStep("in", 1, function(){
-                    $("body").load(URL + "menu");
-                });
-             }, 300);
-        });
-
-        $("#videoLink").click(function(){
-            $(this).attr("src", URL  + "public/img/home/btn_video_pressed.png");
-             setTimeout(function(){ 
-                $("#videoLink").attr("src", URL  + "public/img/home/btn_video.png");
-                logUserStep("in", 2, function(){
-                    $("body").load(URL + "video");
-                 });
-             }, 300);
-        });
-
-
-        $("#gameLink").click(function(){
-            $(this).attr("src", URL  + "public/img/home/btn_game_pressed.png");
-             setTimeout(function(){ 
-                $("#gameLink").attr("src", URL  + "public/img/home/btn_game.png");
-                logUserStep("in", 3, function(){
-                    $("body").load(URL + "game");
-                });
-             }, 300);
-        });
-
-        // hidden functions for reset - FM
-        $("#menu_intmenu").click(function(){
+        $("#disc-hidden-left").click(function(event) {
             reset(3);
         });
 
-        $("#menu_games").click(function(){
+        $("#disc-hidden-center").click(function(event) {
             reset(6);
         });
 
-        $("#menu_videos").click(function(){
+        $("#disc-hidden-right").click(function(event) {
             reset(2);
         });
-    });
-    
-    // set new user cycle - FHM
-    function reset(touch){
 
-        touch_count += touch;
-        touch_try++;
-
-        // activation numbers - FHM
-        if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-             
-             if(touch_count == 6){
-                activate = 'a';
-             }else if(touch_count == 9){
-                activate += 'b';
-             }else if(touch_count == 11){
-                activate += 'c';
-             }
-        }
-
-        // after fourth step, check if all activation numbers have been hit - FHM
-        if(touch_try == 3){
-
-            if(touch_count == 11){
-
-                if(activate == 'abc'){
-                    $("#loadPage").show();
-                    endCycle(function(){
-                        // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
-                         $("#load_pic").hide();
-                         sleep_timer = clearTimeout(sleep_timer);
+        $(".promo-item").click(function(event) {
+             $(".spot-pop").modal({
+                position: ["5%"],
+                onShow: function (dialog){
+                    var modal = this;
+                    
+                    $(".spot-pop .spot-quit").click(function(event) {
+                        modal.close();
                     });
                 }
-            }
-
-            //reset variables
-            touch_count = 0;
-            activate = 0;
-            touch_try = 0;  
-        }
-    }
-}
-
- function randombox(){
-    $(".box").click(function(){
-        $(this).attr("src", URL  + "public/img/game/randombox/box_pressed.png");
-    });
-
- };
-
-function discover(items){
-
-    // check if analytics are set (when cached) - FHM
-    var is_path = $.jStorage.get("path");
-    if(is_path == null){
-        startAnalytics();
-    }
-
-    startSleep();
-    resetNoFade();
-    
-    $(".playbook").ajaxError(function(){
-        alert("Could not connect to server, please try again!");
-        sleep_timer = clearTimeout(sleep_timer);
-    }); 
-
-     // make start button clickable 
-    $("#start_screen").click(function(event) {
-      startAnalytics(function(){
-            $("#loadPage").hide();
-            activateSleepTimer();
-       });
-     });
-
-    $("#disc-hidden-left").click(function(event) {
-        reset(3);
-    });
-
-    $("#disc-hidden-center").click(function(event) {
-        reset(6);
-    });
-
-    $("#disc-hidden-right").click(function(event) {
-        reset(2);
-    });
-
-    $(".promo-item").click(function(event) {
-         $(".spot-pop").modal({
-            position: ["5%"],
-            onShow: function (dialog){
-                var modal = this;
-                
-                $(".spot-pop .spot-quit").click(function(event) {
-                    modal.close();
-                });
-            }
+            });
         });
-    });
 
-    $(".feature-item").click(function(event) {
+        $(".feature-item").click(function(event) {
 
-        var selectedItem = $(this).attr("id").substring(10); 
+            var selectedItem = $(this).attr("id").substring(10); 
 
-        $(".spot-pop").modal({
-            position: ["5%"],
-            onShow: function (dialog){
-               
-                var modal = this;
-            
-                $.each(items, function(index, val) {
-                    if(val.name == 'hot'){
-                        var items = val.items;
-                        $.each(items, function(index, val) {
-                            if(val.id == selectedItem){
-                                $(".spot-pop .spot-title").html(val.name.toUpperCase());
-                                $(".spot-pop .spot-pic").html();
-                                $(".spot-pop .spot-price").html(val.price);
-                                $(".spot-pop .spot-msg").html(val.description);
-                            }
-                        });
-                    }
-                });
+            $(".spot-pop").modal({
+                position: ["5%"],
+                onShow: function (dialog){
+                   
+                    var modal = this;
                 
-                $(".spot-pop .spot-quit").click(function(event) {
-                    modal.close();
-                });
-            }
+                    $.each(items, function(index, val) {
+                        if(val.name == 'hot'){
+                            var items = val.items;
+                            $.each(items, function(index, val) {
+                                if(val.id == selectedItem){
+                                    $(".spot-pop .spot-title").html(val.name.toUpperCase());
+                                    $(".spot-pop .spot-pic").html();
+                                    $(".spot-pop .spot-price").html(val.price);
+                                    $(".spot-pop .spot-msg").html(val.description);
+                                }
+                            });
+                        }
+                    });
+                    
+                    $(".spot-pop .spot-quit").click(function(event) {
+                        modal.close();
+                    });
+                }
+            });
         });
-    });   
+     });   
 }
 
 function play(videos, venue){
-
 
     // play random video when video ends, make button clickable and control video with click - FHM
     var currentVideo = document.getElementById("play-item");
@@ -461,7 +354,7 @@ function play(videos, venue){
     var finished_watching = "no";
     var first_vid = true;
 
-    startSleep();
+    init();
     startInactive();
 
     // clear no fade timer because pb can only play one vid at a time 
@@ -480,47 +373,6 @@ function play(videos, venue){
         reset(2);
     });
 
-    // set new user cycle - FHM
-    function reset(touch){
-
-        touch_count += touch;
-        touch_try++;
-
-        // activation numbers - FHM
-        if(touch_count == 6 || touch_count == 9 || touch_count == 11){
-             
-             if(touch_count == 6){
-                activate = 'a';
-             }else if(touch_count == 9){
-                activate += 'b';
-             }else if(touch_count == 11){
-                activate += 'c';
-             }
-        }
-
-        // after fourth step, check if all activation numbers have been hit - FHM
-        if(touch_try == 3){
-            if(touch_count == 11){
-                if(activate == 'abc'){
-                    $("#simplemodal-overlay").remove();
-                    $("#simplemodal-container").remove();
-                    $("#simplemodal-placeholder").remove();
-                    $("#loadPage").show();
-                  //  endCycle(function(){
-                        // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
-                         $("#load_pic").hide();
-                         sleep_timer = clearTimeout(sleep_timer);
-                   // });
-                }
-            }
-
-            //reset variables
-            touch_count = 0;
-            activate = 0;
-            touch_try = 0;  
-        }
-    }
-
     // goes to home after 10 min of inactivity 
     function startInactive(){
         // reset inactive variable
@@ -537,7 +389,7 @@ function play(videos, venue){
         logUserActivity("out", "finished_watching", curr_vid_id, "", function(){
              finished_watching = "yes";
              if(is_inactive == true){
-                $("body").load("home");
+                $("body").load(URL + "home");
              }else{
                  showRandomVideo();    
              }
