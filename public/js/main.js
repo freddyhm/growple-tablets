@@ -110,7 +110,6 @@ function reset(touch){
                 $("#simplemodal-placeholder").remove();
                 $("#loadPage").show(function(){
                      sleep_timer = clearTimeout(sleep_timer);
-
                      // ending last step (play or dicsover) 
                      logUserStep("out", currentModule,function(){
                          endCycle(function(){
@@ -447,9 +446,9 @@ function play(videos, venue){
             var curr_vid_id = curr_vid_id = $(currentVideo).attr("id");
             // check if first video for analytic - FHM
             var action = first_vid == true ? "first" :  "skipped_video";
-     //       logUserActivity("out", action, curr_vid_id, "", function(){
+            logUserActivity("out", action, curr_vid_id, "", function(){
                 showRandomVideo(false);
-       //      });
+             });
          }, 300);
     });
 
@@ -506,13 +505,13 @@ function play(videos, venue){
                 previous_position = 0;
         }
             
-      //  logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
+        logUserActivity("in", "started_watching_video", videos[random_num].id, "", function(){
             $(currentVideo).attr("src", URL + 'public/vid/' + venue + '/' + videos[random_num].path);
             $(currentVideo).attr("id", videos[random_num].id);
             $("#play-name").html( videos[random_num].name);
             $("#play-author").html( videos[random_num].author);
             // reset finished watching var - FHM
             finished_watching = "no";               
-       // });                         
+        });                         
     }
 }
