@@ -8,36 +8,64 @@ var bask_item_id = 0; // basket global var - FHM
 var server_active = false;
 var nofade_timer = "";
 var touch_try = 0;
+var currentModule = "";
 
-function init(){
+function init(module){
 
-     $("#menuLink").click(function(){
-            $(this).attr("src", URL  + "public/img/home/btn_intmenu_pressed.png");
-             setTimeout(function(){ 
-                $("#menuLink").attr("src", URL  + "public/img/home/btn_intmenu.png");
-                logUserStep("in", 1, function(){
-                    $("body").load(URL + "menu");
-                });
-             }, 300);
-        });
-
-     $("#discover-btn").click(function(event){
-       $("body").load(URL + 'discover', function(){
-            navSwitchTo("discover");
-       });
-    });
-
-    $("#play-btn").click(function(event) {
-        $("body").load(URL + 'play', function(){
-            navSwitchTo("play");
-        });
-    });
+    currentModule = module;
 
     // check if analytics are set (when cached) - FHM
     var is_path = $.jStorage.get("path");
-    if(is_path == null){
+    if(is_path == null && currentModule == "discover"){
         startAnalytics();
-    }
+        logUserStep("in", 1);
+    }else if(is_path == null){
+        startAnalytics();
+    }   
+
+    // since modules can be accessed equally, need to step out/in according to status
+    if(module == "discover"){
+        $("#discover-btn").click(function(event){
+            logUserStep("out", 1, function(){
+                logUserStep("in", 1, function(){
+                    $("body").load(URL + 'discover', function(){
+                         navSwitchTo("discover");
+                     });
+                });
+            });
+        });
+
+        $("#play-btn").click(function(event) {
+
+            logUserStep("out", 1, function(){
+                logUserStep("in", 2, function(){
+                    $("body").load(URL + 'play', function(){
+                        navSwitchTo("play");
+                    });
+                });
+            });
+        });
+     }else if(module == "play"){
+        $("#discover-btn").click(function(event){
+            logUserStep("out", 2, function(){
+                logUserStep("in", 1, function(){
+                    $("body").load(URL + 'discover', function(){
+                         navSwitchTo("discover");
+                    });
+                });
+            });
+        });
+
+        $("#play-btn").click(function(event) {
+            logUserStep("out", 2, function(){
+                logUserStep("in", 2, function(){
+                    $("body").load(URL + 'play', function(){
+                        navSwitchTo("play");
+                     });
+                });
+            });
+        });
+     }
 
     startSleep();
     resetNoFade();
@@ -49,11 +77,9 @@ function init(){
 
      // make start button clickable 
     $("#start_screen").click(function(event) {
-          startAnalytics(function(){
-                $("body").load(URL + "discover",function(){
-                    $("#loadPage").hide();
-                });
-           });
+        $("body").load(URL + "discover",function(){
+            $("#loadPage").hide();
+        });
      });
 }
 
@@ -84,11 +110,14 @@ function reset(touch){
                 $("#simplemodal-placeholder").remove();
                 $("#loadPage").show(function(){
                      sleep_timer = clearTimeout(sleep_timer);
-                //  endCycle(function(){
-                    // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
-                     $("#load_pic").hide();
-                    
-                    // });
+
+                     // ending last step (play or dicsover) 
+                     logUserStep("out", currentModule,function(){
+                         endCycle(function(){
+                        // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
+                         $("#load_pic").hide();
+                         });
+                     });
                 });
               
             }
@@ -292,7 +321,7 @@ function discover(items){
 
     $(document).ready(function() {
 
-        init();
+        init("discover");
 
         $("#disc-hidden-left").click(function(event) {
             reset(3);
@@ -384,7 +413,7 @@ function play(videos, venue){
     var finished_watching = "no";
     var first_vid = true;
 
-    init();
+    init("play");
     startInactive();
 
     // clear no fade timer because pb can only play one vid at a time 
