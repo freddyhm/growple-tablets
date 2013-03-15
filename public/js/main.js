@@ -36,7 +36,6 @@ function init(module){
         });
 
         $("#play-btn").click(function(event) {
-
             logUserStep("out", 1, function(){
                 logUserStep("in", 2, function(){
                     $("body").load(URL + 'play', function(){

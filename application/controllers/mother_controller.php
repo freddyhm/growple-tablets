@@ -89,8 +89,8 @@ class Mother extends Controller {
 					
 					$new_step = new Step();
 					$new_step->event_id = $new_event->id;
-					$new_step->start = isset($step['start']) ? date('Y-m-d H:i:s', strtotime($step['start'])) : "";
-					$new_step->end = isset($step['end']) ? date('Y-m-d H:i:s', strtotime($step['end'])) : date('Y-m-d H:i:s', strtotime($step['start']));
+					$new_step->start = isset($step['start']) && $step['start'] != ""  ? date('Y-m-d H:i:s', strtotime($step['start'])) : date('Y-m-d H:i:s');
+					$new_step->end = isset($step['end']) && $step['end'] != "" ? date('Y-m-d H:i:s', strtotime($step['end'])) : date('Y-m-d H:i:s');
 					$new_step->module_id = $step['module_id'];
 					$failure = $new_step->save() ? $failure : 'true';
 
@@ -99,8 +99,8 @@ class Mother extends Controller {
 						foreach ($step['activities'] as $activity) {	
 							$new_activity = new Activity();
 							$new_activity->name = $activity['action'];
-							$new_activity->start = isset($activity['start']) ? date('Y-m-d H:i:s', strtotime($activity['start'])) : "";
-							$new_activity->end = isset($activity['end']) ? date('Y-m-d H:i:s', strtotime($activity['end'])) : "";
+							$new_activity->start = isset($activity['start']) && $activity['start'] != ""  ? date('Y-m-d H:i:s', strtotime($activity['start'])) : date('Y-m-d H:i:s');
+							$new_activity->end = isset($activity['end']) && $activity['end'] != ""  ? date('Y-m-d H:i:s', strtotime($activity['end'])) :date('Y-m-d H:i:s');
 							$new_activity->step_id = $new_step->id;
 							$new_activity->item_id = isset($activity['item_id']) ? $activity['item_id'] : '';
 							$new_activity->test_id = isset($activity['test_id']) ? $activity['test_id'] : '';
