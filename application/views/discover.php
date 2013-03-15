@@ -5,14 +5,13 @@
     <div class='spot-header'>
         <div class="spot-header-info">
             <div class="spot-title">CHICKEN WINGS</div>
-            <div class="spot-bar"></div>
-            <div class="spot-price">9.99</div>
             <div class="spot-quit"></div>
         </div>
     </div>
     <img class="spot-pic" src=""> 
     <div class="spot-info">
         <p class="spot-msg">Our legendary chicken wings! Choose your flavour: honey / garlic / hot / sweet / suicide</p>
+         <div class="spot-price">9.99</div>
     </div>
 </div>
 <div id="discover-area">
