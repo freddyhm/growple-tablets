@@ -335,65 +335,40 @@ function discover(items){
             reset(2);
         });
 
-        $(".promo-item").click(function(event) {
+
+        $(".discover").click(function(event) {
 
             var selectedId = $(this).attr("id").split("-");
-            var selectedName = selectedId[1];
+            var selectedGrp = selectedId[0];
+            var selectedType = selectedId[1];
             var selectedItemId = selectedId[2];
 
-             $(".spot-pop").modal({
-                position: ["5%"],
-                onShow: function (dialog){
-                    var modal = this;
-                    $.each(items, function(index, val) {
-                        if(val.name == selectedName){
-                            var items = val.items;
-                            $.each(items, function(index, val) {
-                                if(val.id == selectedItemId){
-                                    $(".spot-pop .spot-title").html(val.name.toUpperCase());
-                                    $(".spot-pop .spot-pic").attr('src', URL + 'public/img/discover/spotlight/' +  val.big_pic);
-                                    $(".spot-pop .spot-price").html(val.price);
-                                    $(".spot-pop .spot-msg").html(val.description);
-                                }
+            logUserActivity("in", "viewed_item", selectedItemId, "", function(){
+                $(".spot-pop").modal({
+                    position: ["5%"],
+                    onShow: function (dialog){
+                        var modal = this;
+                        $.each(items, function(index, val) {
+                            if(val.name == selectedType){
+                                var items = val.items;
+                                $.each(items, function(index, val) {
+                                    if(val.id == selectedItemId){
+                                        $(".spot-pop .spot-title").html(val.name.toUpperCase());
+                                        $(".spot-pop .spot-pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
+                                        $(".spot-pop .spot-price").html(val.price);
+                                        $(".spot-pop .spot-msg").html(val.description);
+                                    }
+                                });
+                            }
+                        });
+                        
+                        $(".spot-pop .spot-quit").click(function(event) {
+                            logUserActivity("out", "viewed_item", selectedItemId, "", function(){
+                                modal.close();
                             });
-                        }
-                    });
-                    
-                    $(".spot-pop .spot-quit").click(function(event) {
-                        modal.close();
-                    });
-                }
-            });
-        });
-
-        $(".feature-item").click(function(event) {
-
-            var selectedItem = $(this).attr("id").substring(10); 
-
-            $(".spot-pop").modal({
-                position: ["5%"],
-                onShow: function (dialog){
-                   
-                    var modal = this;
-                
-                    $.each(items, function(index, val) {
-                        if(val.name == 'hot'){
-                            var items = val.items;
-                            $.each(items, function(index, val) {
-                                if(val.id == selectedItem){
-                                    $(".spot-pop .spot-title").html(val.name.toUpperCase());
-                                    $(".spot-pop .spot-pic").attr('src', URL + 'public/img/discover/feature/' +  val.big_pic);
-                                    $(".spot-pop .spot-price").html(val.price);
-                                    $(".spot-pop .spot-msg").html(val.description);
-                                }
-                            });
-                        }
-                    });
-                    
-                    $(".spot-pop .spot-quit").click(function(event) {
-                        modal.close();
-                    });
-                }
+                        });
+                    }
+                });
             });
         });
     });   
