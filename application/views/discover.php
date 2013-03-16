@@ -1,5 +1,5 @@
 <script>
-	discover(<?php echo json_encode($items); ?>);
+	discover(<?php echo json_encode($feature_items); ?>, <?php echo json_encode($spotlight_items); ?>);
 </script>
 <div class='spot-pop'>
     <div class='spot-header'>
@@ -19,36 +19,36 @@
 		<table class="promo-list">
 			<tr>
 				<td>
-					<div id="spotlight-about-<?php echo $items['about']['items'][0]['id']; ?>" class="discover">
-						<span class="promo-title" id="promo-title-left"><?php echo strtoupper($items['about']['items'][0]['name']); ?></span>
+					<div id="spotlight-about-<?php echo $spotlight_items['about']['items'][0]['id']; ?>" class="discover">
+						<span class="promo-title" id="promo-title-left"><?php echo strtoupper($spotlight_items['about']['items'][0]['name']); ?></span>
 						<div id="about" class="promo-ribbon">
 							<img src="<?php echo URL . 'public/img/discover/ribbon-about.png'; ?>">
 						</div>	
 						<div class="promo-thumb-overlay"></div>
-						<div id="about" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $items['about']['items'][0]['small_pic']; ?>"></div>
+						<div id="about" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $spotlight_items['about']['items'][0]['small_pic']; ?>"></div>
 						<div class="promo-name-overlay"></div>
 				
 					</div>
 				</td>
 				<td>
-					<div id="spotlight-notice-<?php echo $items['notice']['items'][0]['id']; ?>" class="discover">
-						<span class="promo-title" id="promo-title-center"><?php echo strtoupper($items['notice']['items'][0]['name']); ?></span>
+					<div id="spotlight-notice-<?php echo $spotlight_items['notice']['items'][0]['id']; ?>" class="discover">
+						<span class="promo-title" id="promo-title-center"><?php echo strtoupper($spotlight_items['notice']['items'][0]['name']); ?></span>
 						<div id="notice" class="promo-ribbon">
 							<img src="<?php echo URL . 'public/img/discover/ribbon-notice.png'; ?>">
 						</div>	
 						<div class="promo-thumb-overlay"></div>
-						<div id="notice" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $items['notice']['items'][0]['small_pic']; ?>"></div>
+						<div id="notice" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $spotlight_items['notice']['items'][0]['small_pic']; ?>"></div>
 						<div class="promo-name-overlay"></div>	
 					</div>
 				</td>
 				<td>
-					<div id="spotlight-chef's pick-<?php echo $items['chef\'s pick']['items'][0]['id']; ?>" class="discover">
-						<span class="promo-title" id="promo-title-right"><?php echo strtoupper($items["chef's pick"]['items'][0]['name']); ?></span>
+					<div id="spotlight-chef's pick-<?php echo $spotlight_items['chef\'s pick']['items'][0]['id']; ?>" class="discover">
+						<span class="promo-title" id="promo-title-right"><?php echo strtoupper($spotlight_items["chef's pick"]['items'][0]['name']); ?></span>
 						<div id="chef" class="promo-ribbon">
 							<img src="<?php echo URL . 'public/img/discover/ribbon-chef.png'; ?>">
 						</div>	
 						<div class="promo-thumb-overlay"></div>
-						<div id="chef" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $items['chef\'s pick']['items'][0]['small_pic']; ?>"></div>
+						<div id="chef" class="promo-pic"><img src="<?php echo URL . 'public/img/discover/spotlight/' . $spotlight_items['chef\'s pick']['items'][0]['small_pic']; ?>"></div>
 						<div class="promo-name-overlay"></div>	
 					</div>
 				</td>
@@ -65,7 +65,7 @@
 			<table class="feature-list">
 			<tr>
 				<?php 
-					foreach ($items['hot']['items'] as $item) {
+					foreach ($feature_items['hot']['items'] as $item) {
 				?>
 				<td>
 					<div id="feature-hot-<?php echo $item['id']; ?>"  class="discover">

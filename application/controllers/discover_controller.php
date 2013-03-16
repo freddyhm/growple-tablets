@@ -9,39 +9,45 @@ class Discover extends Controller {
 
 	public function index(){
 
+		$feature_list = Module::find_all_by_parent_id('4');
+		$spotlight_list = Module::find_all_by_parent_id('3');
 
-		try{
-			$module_list = Module::find_all_by_parent_id('1');
-		}catch(Exception $e){
-			$this->handleError('danger', get_class().'_controller.php', 'Problem pulling discover data database, ORM/DB problem.');
-		}
+		$feature_items = array();
+		$spotlight_items = array();
 
-		$discover_items = array();
-
-		if(!empty($module_list)){
+		if(!empty($feature_list)){
 			// go through list of all items & submodules for menu module - FHM
-			foreach ($module_list as $key => $submodule) {
-				
-				$discover_items[$submodule->name] = $submodule->to_array();
+			foreach ($feature_list as $key => $submodule) {
 
-				try{
-					$item_list = Item::find_all_by_module_id($submodule->id);	
-				}catch(Exception $e){
-					$this->handleError('danger', get_class().'_controller.php', 'Problem pulling item data from database, ORM/DB problem.');
-				}
-				
+				$feature_items[$submodule->name] = $submodule->to_array();
+				$item_list = Item::find_all_by_module_id($submodule->id);	
+
 				foreach ($item_list as $item) {
-					$discover_items[$submodule->name]['items'][] = $item->to_array(); 
+					$feature_items[$submodule->name]['items'][] = $item->to_array(); 
 				}
 			}
-
-			$info = array('items' => $discover_items, 'venue' => Session::get('venue'));
-			parent::$data = $info; 
-
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
 
-		parent::index();
+		if(!empty($spotlight_list)){
+			// go through list of all items & submodules for menu module - FHM
+			foreach ($spotlight_list as $key => $submodule) {
+				
+				$spotlight_items[$submodule->name] = $submodule->to_array();
+				$item_list = Item::find_all_by_module_id($submodule->id);	
+				
+				foreach ($item_list as $item) {
+					$spotlight_items[$submodule->name]['items'][] = $item->to_array(); 
+				}
+			}
+		}else{
+			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
+		}
+
+		$info = array('feature_items' => $feature_items, 'spotlight_items' => $spotlight_items, 'venue' => Session::get('venue'));
+		
+		parent::$data = $info;
+		parent::index(); 
 	}
 }

@@ -287,7 +287,7 @@ function randombox(){
 
  };
 
-function discover(items){
+function discover(featureItems, spotlightItems){
 
     var appCache = window.applicationCache;
     var one_user = 0;
@@ -344,6 +344,7 @@ function discover(items){
             var selectedGrp = selectedId[0];
             var selectedType = selectedId[1];
             var selectedItemId = selectedId[2];
+            var items = selectedGrp == 'spotlight' ? spotlightItems : featureItems;
 
             logUserActivity("in", "viewed_item", selectedItemId, "", function(){
                 $(".spot-pop").modal({
