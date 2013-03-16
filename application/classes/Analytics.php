@@ -106,6 +106,39 @@ class Analytics {
 
 				/* queries derived from engagement and sale  */
 
+
+				// !!!!!POPULARITY!!!!!
+
+
+				// TOTAL: SELECT COUNT(DISTINCT(activities.id)) + COUNT(DISTINCT(steps.id)) AS result FROM activities, steps 
+
+				/* this is for popularity - everything except disc & play */
+				/* SELECT activities.item_id, COUNT(activities.id) AS result FROM activities, items, modules 
+								  WHERE activities.item_id = items.id AND items.module_id = modules.id AND modules.parent_id = $mod_id AND activities.name != 'first' GROUP BY item_id ASC */
+
+				/* this is for pop - disc & play */
+				/* SELECT module_id, COUNT(id) AS result FROM steps
+								  WHERE module_id = $mod_id GROUP BY module_id ASC */
+
+				// !!! Interest, Exposure, Engagement !!!!!!!!!!
+
+				// TOTAL: select COUNT(id) AS result from events
+
+				/* !!!!INTEREST!!!!!! */
+
+				/* this is for intr */
+				/* SELECT module_id, COUNT(id) AS result FROM steps
+								  WHERE module_id = $mod_id GROUP BY module_id ASC */
+
+				/* !!!!EXPOSURE!!!!! */
+
+				/* this is for exp  */
+				/* don't have anything here for now (shows exposure of actionable elements) -> 0 */
+
+				/* !!!!ENGAGEMENT!!!! */
+				/* don't have anything here for now (shows use of action items) -> 0 */
+
+
 				$eng_pop_query = "SELECT activities.item_id, COUNT(activities.id) AS result FROM activities, items, modules 
 								  WHERE activities.item_id = items.id AND items.module_id = modules.id AND modules.parent_id = $mod_id AND activities.name != 'first'  
 								  GROUP BY item_id ASC";
