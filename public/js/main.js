@@ -118,6 +118,11 @@ function reset(touch){
                      });
                 });
             }
+        }else{
+            $("#confirm-x").show();
+            setTimeout(function(){
+                $("#confirm-x").hide();
+            }, 1000);
         }
 
         //reset variables

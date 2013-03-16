@@ -51,6 +51,7 @@
     </div>
 	<div class="playbook">
 		<div class="content">
+            <img id="confirm-x" src="<?php echo URL . 'public/img/confirm/x.png'; ?>">
             <!-- modal content -->
             <div id='confirm'>
                 <div class='header'></div>
