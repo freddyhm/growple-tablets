@@ -2,137 +2,65 @@
 
 class Analytics {
 
-	public function generateReport($type){
+	public function generateReport(){
 
 		$date = date('m/d/Y h:i:s a', time());
-		$sectionmodule_list = SectionModule::find('all');
-		$type_id = $type == 'internal' ? 1 : 2;
+		$module_list = Module::find('all');
+		$metric_list = Metric::find('all');
 
-		// create a new report - FHM
+		// create a new report 
 		$report = new Report();
 		$report->date = $date;
-		$report->reporttype_id = $type_id; // internal report
 		$report->save();
 
-		if($type == 'internal'){
+	//	$views_total = "SELECT COUNT(DISTINCT(activities.id)) + COUNT(DISTINCT(steps.id)) AS result FROM activities, steps";
+	//		$events_total = "SELECT COUNT(id) AS result from events";
 
-			foreach ($sectionmodule_list as $section_module) {
+		foreach ($metric_list as $metric) {
 
-				$dur_sql = "";
-				$eng_sql = "";
-				$mod_id = $section_module->module_id;
+			$mods_sql = "";
+			$items_sql = "";
+			$mods_list = "";
+			$items_list = "";
 
-				// list of all queries for our metrics - FHM
+			foreach ($module_list as $module) {
 
-				/* "overall" section queries */
-				$app_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM events WHERE eventcategory_id = 1";
-
-				$mod_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM steps";
-				$mod_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
-								   events.id = steps.event_id AND steps.module_id != 1 AND users.usertype_id = 2) / COUNT(users.id) AS result 
-								  FROM users WHERE users.usertype_id = 2";
-
-				$act_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM activities";
-				$act_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events, activities WHERE events.user_id = users.id AND 
-								  events.id = steps.event_id AND steps.id = activities.step_id AND steps.module_id != 1 AND users.usertype_id = 2 AND activities.name != 'first') / (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
-								  events.id = steps.event_id AND steps.module_id != 1 AND users.usertype_id = 2) AS result FROM users WHERE users.usertype_id = 2";
+				$snapshot = new Snapshot();
 				
-				/* module and activity section queries */
-				$mod_gen_dur_query = "SELECT AVG(TIMEDIFF(end, start)) AS result FROM steps WHERE module_id = $mod_id";
-				$mod_gen_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
-								  	  events.id = steps.event_id AND steps.module_id = $mod_id AND users.usertype_id = 2) / COUNT(users.id) AS result FROM users 
-								  	  WHERE users.usertype_id = 2";
+				if($module->id < 3){
+					$mods_sql = "SELECT module_id as id, COUNT(id) AS count FROM steps
+							 WHERE module_id = $module->id GROUP BY module_id ASC";
 
-				$act_gen_dur_query = "SELECT AVG(TIMEDIFF(activities.end, activities.start)) AS result FROM activities, steps 
-									  WHERE steps.id = activities.step_id AND steps.module_id = $mod_id";
-				$act_gen_eng_query = "SELECT (SELECT COUNT(DISTINCT users.id) FROM users, steps, events, activities WHERE events.user_id = users.id AND 
-									  events.id = steps.event_id AND steps.id = activities.step_id AND steps.module_id = $mod_id AND users.usertype_id = 2 AND activities.name != 'first') / 
-									  (SELECT COUNT(DISTINCT users.id) FROM users, steps, events WHERE events.user_id = users.id AND 
-									  events.id = steps.event_id AND steps.module_id = $mod_id AND users.usertype_id = 2) AS result FROM users WHERE users.usertype_id = 2";
-				
-				// handles "overall" sections and inserts proper query - FHM
-				if($section_module->module_id == ''){
-					switch ($section_module->section->name) {
-						case 'app':
-							$dur_sql = $app_dur_query;
-							$eng_sql = '';
-							break;
-						case 'module':
-							$dur_sql = $mod_dur_query;
-							$eng_sql = $mod_eng_query;
-							break;
-						case 'activity':
-							$dur_sql = $act_dur_query;
-							$eng_sql = $act_eng_query;
-							break;
+					$mods = Snapshot::find_by_sql($mods_sql);
+
+					for ($i=0; $i < count($mods); $i++) { 
+						$mods_list .= $mods[$i]->id . '/' . $mods[$i]->count;
+						if(($i + 1) != count($mods)){
+							$mods_list .= '/';
+						}
 					}
+
+					$snapshot->mods = $mods_list;
+
 				}else{
-					switch ($section_module->section->name) {
-						case 'module':
-							$dur_sql = $mod_gen_dur_query;
-							$eng_sql = $mod_gen_eng_query;
-							break;
-						case 'activity':
-							$dur_sql = $act_gen_dur_query;
-							$eng_sql = $act_gen_eng_query;
-							break;
+
+					$items_sql = "SELECT activities.item_id AS id, COUNT(activities.id) AS count FROM activities, items, modules WHERE 
+								  activities.item_id = items.id AND items.module_id = modules.id AND modules.parent_id = $mod_id 
+								  AND activities.name != 'first' GROUP BY item_id ASC";
+
+					$items = Snapshot::find_by_sql($items_sql);
+
+					for ($i=0; $i < count($items); $i++) { 
+						$items_list .= $items[$i]->id . '/' . $items[$i]->count;
+						if(($i + 1) != count($items)){
+							$items_list .= '/';
+						}
 					}
+
+					$snapshot->items = $items_list; 
 				}
 
-				//execute query
-				if($dur_sql != ""){
-					$dur = Snapshot::find_by_sql($dur_sql);
-				}
-
-				if($eng_sql != ""){
-					$eng = Snapshot::find_by_sql($eng_sql);	
-				}
-
-				$snapshot = new Snapshot();
-				$snapshot->duration = isset($dur[0]->result) ? floatval($dur[0]->result) : "";
-				$snapshot->engagement = isset($eng[0]->result) ? floatval($eng[0]->result) : "";
-				$snapshot->sectionmodule_id = $section_module->id;
-				$snapshot->report_id = $report->id; 
-				$snapshot->save();
-			}
-		}else if($type == 'venue'){
-
-			foreach ($sectionmodule_list as $section_module) {
-
-				$pop_sql = "";
-				$mod_id = $section_module->module_id;
-				
-				// list of all queries for our metrics - FHM
-
-				/* queries derived from engagement and sale  */
-
-				$eng_pop_query = "SELECT activities.item_id, COUNT(activities.id) AS result FROM activities, items, modules 
-								  WHERE activities.item_id = items.id AND items.module_id = modules.id AND modules.parent_id = $mod_id AND activities.name != 'first'  
-								  GROUP BY item_id ASC";
-
-				$sale_pop_query = "SELECT cart_items.item_id, COUNT(cart_items.item_id) AS result FROM cart_items, items, modules 
-								   WHERE cart_items.item_id = items.id AND items.module_id = modules.id AND modules.id = 8  
-								   GROUP BY cart_items.item_id ASC";
-
-				
-				// handles module name and inserts proper query - FHM
-				switch ($section_module->section->name) {
-					case 'menu':
-						$pop_sql = $sale_pop_query;
-						break;
-					case 'video':
-						$pop_sql = $eng_pop_query;
-						break;
-					case 'game':
-						$pop_sql = $eng_pop_query;
-						break;
-				}
-
-				// create snapshot - FHM
-				$snapshot = new Snapshot();
-				$snapshot->popularity = isset($pop_sql['result']);
-				$snapshot->sectionmodule_id = $section_module->id;
-				$snapshot->report_id = $report->id; 
+				$snapshot->metric_id = $metric->id;
 				$snapshot->save();
 			}
 		}
