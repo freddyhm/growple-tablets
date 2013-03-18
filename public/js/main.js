@@ -107,7 +107,7 @@ function reset(touch){
                 $("#simplemodal-overlay").remove();
                 $("#simplemodal-container").remove();
                 $("#simplemodal-placeholder").remove();
-                $("#loadPage").show(function(){
+                $("#loadPage").show(1, function(){
                      sleep_timer = clearTimeout(sleep_timer);
                      // ending last step (play or dicsover) 
                      logUserStep("out", currentModule,function(){
