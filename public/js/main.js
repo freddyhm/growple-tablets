@@ -9,6 +9,7 @@ var server_active = false;
 var nofade_timer = "";
 var touch_try = 0;
 var currentModule = "";
+var noSleepVidTag = "<video id='noSleepVid' loop='loop' autoplay='autoplay'><source src='" + URL + "public/vid/nosleep.mp4'></video>";
 
 function init(module){
 
@@ -25,6 +26,17 @@ function init(module){
 
     // since modules can be accessed equally, need to step out/in according to status
     if(module == "discover"){
+
+        $("#noSleep").html(noSleepVidTag);
+        sleepVid = document.getElementById("noSleepVid");
+
+        // make sure video is playing when added to div
+        setTimeout(function(){
+            if(sleepVid.paused == true){
+            sleepVid.play();    
+        }
+        }, 1000);
+
         $("#discover-btn").click(function(event){
             logUserStep("out", 1, function(){
                 logUserStep("in", 1, function(){
@@ -45,6 +57,9 @@ function init(module){
             });
         });
      }else if(module == "play"){
+
+        $("#noSleep").remove();
+        
         $("#discover-btn").click(function(event){
             logUserStep("out", 2, function(){
                 logUserStep("in", 1, function(){
@@ -67,7 +82,6 @@ function init(module){
      }
 
     startSleep();
-    resetNoFade();
 
     $(".playbook").ajaxError(function(){
         alert("Could not connect to server, please try again!");
@@ -178,21 +192,6 @@ function activateSleepTimer(){
     }
 
     sleep_timer = setTimeout(function() {sleep(); }, 180000);
-}
-
-// checks to see if no sleep video is playing after 3 min
-function resetNoFade(){
-    nofade_vid  = document.getElementById("noSleepVid");
-
-    if(nofade_timer != ""){
-        nofade_timer = clearInterval(nofade_timer);
-    }
-
-    nofade_timer = setInterval(function(){
-    if(nofade_vid.paused){
-        nofade_vid.play();
-     }
-    }, 180000);    
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
