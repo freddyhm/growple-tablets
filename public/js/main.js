@@ -58,7 +58,7 @@ function init(module){
         });
      }else if(module == "play"){
 
-        $("#noSleep").remove();
+        $("#noSleep").empty();
         
         $("#discover-btn").click(function(event){
             logUserStep("out", 2, function(){
@@ -122,7 +122,18 @@ function reset(touch){
                 $("#simplemodal-container").remove();
                 $("#simplemodal-placeholder").remove();
                 $("#loadPage").show(1, function(){
-                     sleep_timer = clearTimeout(sleep_timer);
+                    sleep_timer = clearTimeout(sleep_timer); 
+
+                    $("#noSleep").html(noSleepVidTag);
+                    sleepVid = document.getElementById("noSleepVid");
+
+                    // make sure video is playing when added to div
+                    setTimeout(function(){
+                        if(sleepVid.paused == true){
+                        sleepVid.play();    
+                    }
+                    }, 1000);
+
                      // ending last step (play or dicsover) 
                      logUserStep("out", currentModule,function(){
                          endCycle(function(){
