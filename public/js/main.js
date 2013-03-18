@@ -191,7 +191,6 @@ function resetNoFade(){
     nofade_timer = setInterval(function(){
     if(nofade_vid.paused){
         nofade_vid.play();
-        
      }
     }, 180000);    
 }
@@ -234,7 +233,7 @@ function startSleep(){
      // click is the main activity to derive idle user time or not so reset timer if click - FHM
      // exceptions are with nav links (home) and cart action (menu) where we don't want to activate timer - FHM
     $(".playbook").click(function(e){ 
-        if(e.target.className != "nav-link" && e.target.id != "start_screen" && server_active == false && e.target.className != "serverActive"){
+        if(e.target.className != "nav-link" && e.target.id != "start_screen" && server_active == false && e.target.className != "serverActive" && currentModule != "play"){
           activateSleepTimer();
         }else{
             sleep_timer = clearTimeout(sleep_timer);
@@ -386,7 +385,8 @@ function play(videos, venue){
     var status = 'play';
     var vid_timer = "";
     var inactive_timer = "";
-    var is_inactive = false;
+    var pauseInactiveTimer = "";
+    var is_paused = false;
     var curr_vid_id = "";
     var finished_watching = "no";
     var first_vid = true;
@@ -397,6 +397,8 @@ function play(videos, venue){
     // clear no fade timer because pb can only play one vid at a time 
     nofade_timer = clearInterval(nofade_timer);
 
+    // clear sleep timer because pb dims in play section
+    sleep_timer = clearTimeout(sleep_timer);
     
     $("#play-hidden-left").click(function(event) {
         reset(3);
@@ -417,7 +419,15 @@ function play(videos, venue){
         inactive_timer = clearTimeout(inactive_timer);
         inactive_timer = setTimeout(function(){
             is_inactive = true;
-        }, 600000)
+        }, 600000);
+    }
+
+    function pauseInactive(){
+        // reset inactive variable
+        pauseInactiveTimer = clearTimeout(pauseInactiveTimer);
+        pauseInactiveTimer = setTimeout(function(){
+            $("#discover-btn").trigger("click");
+        }, 180000)
     }
             
     // analytics exit point when video ends - FHM
@@ -426,7 +436,7 @@ function play(videos, venue){
         logUserActivity("out", "finished_watching", curr_vid_id, "", function(){
              finished_watching = "yes";
              if(is_inactive == true){
-                $("body").load(URL + "discover");
+                $("#discover-btn").trigger("click");
              }else{
                  showRandomVideo();    
              }
@@ -435,7 +445,11 @@ function play(videos, venue){
 
     // clear sleep timer when video is playing - FHM
     $(currentVideo).bind('play', function(event) {
-        sleep_timer = clearTimeout(sleep_timer);
+        pauseInactiveTimer = clearTimeout(pauseInactiveTimer);
+    });
+
+     $(currentVideo).bind('pause', function(event) {
+        pauseInactive();
     });
 
     showRandomVideo(true);      
@@ -461,7 +475,6 @@ function play(videos, venue){
 
         // reset inactive timer
         startInactive();
-
         if(status == 'play' && $("#play-menu").css("display") == "none"){
                 currentVideo.pause();
                 $("#play-menu").show();
