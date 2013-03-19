@@ -78,3 +78,21 @@ BUGS:
 #5: Removed last item becomes undefined condition
 #6: Fixed sleep/slide6.jpg
 #7: Fixed StartAnalytics being called twice
+
+
+********************************************
+Growple! v2.0.0 - Tuesday, March 19, 2013
+********************************************
+
+BOOSTS:
+
+#1 - Added warning sign when resetting didn't work due to wrong combo
+
+FIXES:
+
+#1 - Make sure app goes to discover screen after 2 min. of being paused & make sure nosleep video is rebooted or on
+
+FEATURES:
+
+#1 - New navigation: Discover & Play. Took out menu, merged video and games, made navigation flatter and simpler.
+
