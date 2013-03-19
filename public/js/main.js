@@ -10,19 +10,39 @@ var nofade_timer = "";
 var touch_try = 0;
 var currentModule = "";
 var noSleepVidTag = "<video id='noSleepVid' loop='loop' autoplay='autoplay'><source src='" + URL + "public/vid/nosleep.mp4'></video>";
+var inactive_timer = "";
+var vid_timer = "";
+var pauseInactiveTimer = "";
 
 function init(module){
+
+    // clear play module timers 
+    pauseInactiveTimer = clearTimeout(pauseInactiveTimer);
+    vid_timer = clearTimeout(vid_timer);
+    inactive_timer = clearTimeout(inactive_timer);
 
     currentModule = module;
 
     // check if analytics are set (when cached) - FHM
     var is_path = $.jStorage.get("path");
     if(is_path == null && currentModule == "discover"){
-        startAnalytics();
+        startAnalytics(); 
         logUserStep("in", 1);
     }else if(is_path == null){
         startAnalytics();
     }   
+
+    $(".playbook").ajaxError(function(){
+        alert("Could not connect to server, please try again!");
+        sleep_timer = clearTimeout(sleep_timer);
+    }); 
+
+     // make start button clickable 
+    $("#start_screen").click(function(event) {
+        $("body").load(URL + "discover",function(){
+            $("#loadPage").hide();
+        });
+    });
 
     // since modules can be accessed equally, need to step out/in according to status
     if(module == "discover"){
@@ -56,10 +76,13 @@ function init(module){
                 });
             });
         });
+
+        startSleep();
+
      }else if(module == "play"){
 
         $("#noSleep").empty();
-        
+    
         $("#discover-btn").click(function(event){
             logUserStep("out", 2, function(){
                 logUserStep("in", 1, function(){
@@ -79,21 +102,7 @@ function init(module){
                 });
             });
         });
-     }
-
-    startSleep();
-
-    $(".playbook").ajaxError(function(){
-        alert("Could not connect to server, please try again!");
-        sleep_timer = clearTimeout(sleep_timer);
-    }); 
-
-     // make start button clickable 
-    $("#start_screen").click(function(event) {
-        $("body").load(URL + "discover",function(){
-            $("#loadPage").hide();
-        });
-     });
+    }
 }
 
 // set new user cycle - FHM
@@ -134,8 +143,16 @@ function reset(touch){
                     }
                     }, 1000);
 
+                    var moduleNum = 0;
+
+                    if(currentModule == 'discovery'){
+                        moduleNum = 1;
+                    }else if(currentModule == 'play'){
+                        moduleNum = 2;
+                    }
+
                      // ending last step (play or dicsover) 
-                     logUserStep("out", currentModule,function(){
+                     logUserStep("out", moduleNum,function(){
                          endCycle(function(){
                         // hide the loading pic and clear sleep so slideshow doesn't appear until user clicks - FHM
                          $("#load_pic").hide();
@@ -254,6 +271,8 @@ function startSleep(){
 
         // get class of image clicked and redirect to menu if promo slide - FHM
         var is_promo = event.target.className == "promoSlide" ? true : false;
+
+        /*
         if(is_promo == true){
 
             var item_id = event.target.id.split("#")[0];
@@ -282,10 +301,10 @@ function startSleep(){
                 $("#hiddenPromo").trigger("click");
                 exitSleepSlideshow();
             }  
-            
         }else{
+            */
           exitSleepSlideshow();
-        }
+        //}
     });  
 }
 
@@ -393,9 +412,6 @@ function play(videos, venue){
     var previous_vid = new Array(0, 0 ,0 ,0 ,0);
     var previous_position = 0;
     var status = 'play';
-    var vid_timer = "";
-    var inactive_timer = "";
-    var pauseInactiveTimer = "";
     var is_paused = false;
     var curr_vid_id = "";
     var finished_watching = "no";
@@ -434,10 +450,9 @@ function play(videos, venue){
 
     function pauseInactive(){
         // reset inactive variable
-        pauseInactiveTimer = clearTimeout(pauseInactiveTimer);
         pauseInactiveTimer = setTimeout(function(){
             $("#discover-btn").trigger("click");
-        }, 180000)
+        }, 180000);
     }
             
     // analytics exit point when video ends - FHM
@@ -465,7 +480,6 @@ function play(videos, venue){
     showRandomVideo(true);      
 
     $("#next").click(function(event) {
-
         // reset inactive timer
         startInactive();
         $(this).attr("src", URL  + "public/img/play/btn-next-press.png");
@@ -499,20 +513,27 @@ function play(videos, venue){
     // displays a random video from list - FHM
     function showRandomVideo(position){
 
-        first_vid = position;
+        // show menu if hidden (occurs when playing next video auto)
+        if(vid_timer != ""){
+            vid_timer = clearTimeout(vid_timer);    
+        }
 
-        vid_timer  = clearTimeout(vid_timer);
-         vid_timer = setTimeout(function() {
+        if($("#play-menu").css("display") != "block"){
+            $("#play-menu").show(function(){
+                vid_timer = setTimeout(function(){
+                    $("#play-menu").hide();
+                 }, 5000);
+            });
+        }else{
+            vid_timer = setTimeout(function(){
                 $("#play-menu").hide();
-        }, 5000);
+            }, 5000);
+        }
+
+        first_vid = position;
 
         // reset status for new video - FHM
         status = 'play';
-
-        // show menu if hidden (occurs when playing next video auto) - FHM
-        if($("#play-menu").css("display") != "block"){
-            $("#play-menu").show();
-        }
 
         var random_num = Math.floor(Math.random()*(videos.length));
 
@@ -538,7 +559,7 @@ function play(videos, venue){
             $("#play-name").html( videos[random_num].name);
             $("#play-author").html( videos[random_num].author);
             // reset finished watching var - FHM
-            finished_watching = "no";               
+            finished_watching = "no";   
         });                         
     }
 }
