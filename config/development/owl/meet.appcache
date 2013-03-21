@@ -1,6 +1,8 @@
 CACHE MANIFEST
 
 # Owl Development
+NETWORK:
+/growple/meet/app/mother
 
 CACHE:
 /growple/meet/app/public/img/confirm/x.png
