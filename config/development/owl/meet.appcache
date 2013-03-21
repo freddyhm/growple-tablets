@@ -3,6 +3,7 @@ CACHE MANIFEST
 # Owl Development
 
 CACHE:
+/growple/meet/app/public/img/confirm/x.png
 /growple/meet/app/discover   
 /growple/meet/app/play
 /growple/meet/app/error
@@ -28,6 +29,8 @@ CACHE:
 /growple/meet/app/public/img/discover/unlock.png
 /growple/meet/app/public/img/discover/pop-bkgd.png
 /growple/meet/app/public/img/discover/pop-x.png
+/growple/meet/app/public/img/discover/btn-heart-pressed.png
+/growple/meet/app/public/img/discover/btn-heart-unpressed.png
 /growple/meet/app/public/img/discover/feature/bulgogi-big.jpg
 /growple/meet/app/public/img/discover/feature/bulgogi-small.png
 /growple/meet/app/public/img/discover/feature/cutlet-big.jpg

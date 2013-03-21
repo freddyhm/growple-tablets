@@ -9,6 +9,27 @@ class Mother extends Controller {
 		parent::__construct();
 	}
 
+	// add one to love count and return new count
+	public function giveLove(){
+
+		$item_id = $_POST['item_id'];
+		$item = Item::find($item_id);
+		$new_love = $item->love + 1;
+		$item->love = $new_love;
+		$item->save();
+
+		echo $new_love;
+	}
+
+	// return love count
+	public function getLove(){
+
+		$item_id = $_GET['item_id'];
+		$item = Item::find($item_id);
+
+		echo $item->love;
+	}
+
 	public function isOnline(){
 		echo "Success";
 	}

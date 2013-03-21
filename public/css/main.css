@@ -1278,14 +1278,14 @@ z-index: 1;
 
 /* pop - up */
 
-.good-heart
+.love
 {
   left: 696px;
   top: 313px;
   position: relative;
 }
 
-.count
+.love .count
 {
   color: white;
   text-align: center;

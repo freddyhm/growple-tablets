@@ -13,9 +13,9 @@
         <p class="msg"></p>
          <div class="price"></div>
     </div>
-    <div class="good-heart">
+    <div class="love">
     	<img src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
-		<div class="count">0</div>
+		<div class="count"></div>
 	</div>
 </div>
 <div id="discover-area">
