@@ -13,8 +13,29 @@ class Analytics {
 		$report->date = $date;
 		$report->save();
 
-	//	$views_total = "SELECT COUNT(DISTINCT(activities.id)) + COUNT(DISTINCT(steps.id)) AS result FROM activities, steps";
-	//		$events_total = "SELECT COUNT(id) AS result from events";
+		//	$views_total = "SELECT COUNT(DISTINCT(activities.id)) + COUNT(DISTINCT(steps.id)) AS result FROM activities, steps";
+		//	$events_total = "SELECT COUNT(id) AS result from events";
+
+
+Total Views // Total of views
+
+Total Events // Total of events
+
+Exposure / Popularity per parent module // Discovery -> 10000 steps 300 were play, 700 were discovery  /     Play
+//SELECT module_id as id, COUNT(id) AS count FROM steps WHERE module_id = $module->id GROUP BY module_id ASC
+
+Exposure / Popularity per child module (spotlight , feature) module		// Discovery -> 10000 -> 500 Featured +  500 Spotlight
+// SELECT modules.id AS id, COUNT(activities.id) AS count FROM activities, items, modules WHERE activities.item_id = items.id AND items.module_id = modules.id GROUP BY module_id ASC
+
+Exposure / Popularity per item 	// Discovery -> 100 -> 10 Kamjatang + 10 About Us  
+// SELECT item_id AS id, COUNT(id) AS count FROM activities GROUP BY item_id ASC
+
+Engagement // TBA
+
+
+
+
+		// SELECT COUNT()
 
 		foreach ($metric_list as $metric) {
 
@@ -29,7 +50,7 @@ class Analytics {
 				
 				if($module->id < 3){
 					$mods_sql = "SELECT module_id as id, COUNT(id) AS count FROM steps
-							 WHERE module_id = $module->id GROUP BY module_id ASC";
+							 	WHERE module_id = $module->id GROUP BY module_id ASC";
 
 					$mods = Snapshot::find_by_sql($mods_sql);
 
