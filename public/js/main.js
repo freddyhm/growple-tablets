@@ -376,46 +376,50 @@ function discover(featureItems, spotlightItems){
 
             // get proper item based on array, udpate page 
             logUserActivity("in", "viewed_item", selectedItemId, "", function(){
-                $(".pop").modal({
-                    position: ["5%"],
-                    onShow: function (dialog){
-                        var modal = this;
-                        $.each(items, function(index, val) {
-                            if(val.name == selectedType){
-                                var items = val.items;
-                                $.each(items, function(index, val) {
-                                    if(val.id == selectedItemId){
-                                        $(".pop .title").html(val.name.toUpperCase());
-                                        $(".pop .pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
-                                        $(".pop .price").html(val.price);
-                                        $(".pop .msg").html(val.description);
+                logUserActivity("out", "viewed_item", selectedItemId, "", function(){
+                    $(".pop").modal({
+                        position: ["5%"],
+                        onShow: function (dialog){
+                            var modal = this;
+                            $.each(items, function(index, val) {
+                                if(val.name == selectedType){
+                                    var items = val.items;
+                                    $.each(items, function(index, val) {
+                                        if(val.id == selectedItemId){
+                                            $(".pop .title").html(val.name.toUpperCase());
+                                            $(".pop .pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
+                                            $(".pop .price").html(val.price);
+                                            $(".pop .msg").html(val.description);
 
-                                        // get love count from server 
-                                        $.get(URL + 'mother/getLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                                            $(".love .count").html(data);
-                                        });
-                                    }
-                                });
-                            }
-                        });
-                        
-                        // exit button
-                        $(".pop .quit").click(function(event) {
-                            logUserActivity("out", "viewed_item", selectedItemId, "", function(){
+                                            // get love count from server 
+                                            $.get(URL + 'mother/getLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
+                                                $(".love .count").html(data);
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                            
+                            // exit button
+                            $(".pop .quit").click(function(event) {
                                 modal.close();
                             });
-                        });
 
-                        // love button, increment love
-                        $(".love").click(function(event) {
-                            $(".love img").attr("src", URL + "public/img/discover/btn-heart-pressed.png");
-                            $.post(URL + 'mother/giveLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                                $(".love img").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
-                                $(".love .count").html(data);
+                            // love button, increment love
+                            $(".love").click(function(event) {
+                                logUserActivity("in", "loved_item", selectedItemId, "", function(){
+                                    logUserActivity("out", "loved_item", selectedItemId, "", function(){
+                                        $(".love img").attr("src", URL + "public/img/discover/btn-heart-pressed.png");
+                                        $.post(URL + 'mother/giveLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
+                                            $(".love img").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
+                                            $(".love .count").html(data);
+                                        });
+                                    });
+                                });
                             });
-                        });
-                    }
-                });
+                        }
+                    });
+                }); 
             });
         });
     });   
