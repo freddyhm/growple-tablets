@@ -398,6 +398,13 @@ function discover(featureItems, spotlightItems){
                                 modal.close();
                             });
                         });
+
+                        $(".good-heart").click(function(event) {
+                            $(this).attr("src", URL + "public/img/discover/btn-heart-pressed.png");
+                            setTimeout(function(){
+                                $(".good-heart").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
+                            }, 500);
+                        });
                     }
                 });
             });
