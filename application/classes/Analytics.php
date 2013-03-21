@@ -15,7 +15,7 @@ class Analytics {
 
 		//	$views_total = "SELECT COUNT(DISTINCT(activities.id)) + COUNT(DISTINCT(steps.id)) AS result FROM activities, steps";
 		//	$events_total = "SELECT COUNT(id) AS result from events";
-
+/*
 
 Total Views // Total of views
 
@@ -31,6 +31,7 @@ Exposure / Popularity per item 	// Discovery -> 100 -> 10 Kamjatang + 10 About U
 // SELECT item_id AS id, COUNT(id) AS count FROM activities GROUP BY item_id ASC
 
 Engagement // TBA
+*/
 
 
 
