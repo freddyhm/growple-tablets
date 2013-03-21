@@ -12,8 +12,8 @@
     <div class="info">
         <p class="msg"></p>
          <div class="price"></div>
-         <img id="heart" src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
     </div>
+    <img class="good-heart" src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
 </div>
 <div id="discover-area">
 	<div id="discover-promo">
