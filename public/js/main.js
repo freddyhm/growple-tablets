@@ -400,9 +400,9 @@ function discover(featureItems, spotlightItems){
                         });
 
                         $(".good-heart").click(function(event) {
-                            $(this).attr("src", URL + "public/img/discover/btn-heart-pressed.png");
+                            $(".good-heart img").attr("src", URL + "public/img/discover/btn-heart-pressed.png");
                             setTimeout(function(){
-                                $(".good-heart").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
+                                $(".good-heart img").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
                             }, 500);
                         });
                     }

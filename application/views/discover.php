@@ -13,7 +13,10 @@
         <p class="msg"></p>
          <div class="price"></div>
     </div>
-    <img class="good-heart" src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
+    <div class="good-heart">
+    	<img src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
+		<div class="count">0</div>
+	</div>
 </div>
 <div id="discover-area">
 	<div id="discover-promo">
