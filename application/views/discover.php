@@ -1,17 +1,18 @@
 <script>
 	discover(<?php echo json_encode($feature_items); ?>, <?php echo json_encode($spotlight_items); ?>);
 </script>
-<div class='spot-pop'>
-    <div class='spot-header'>
-        <div class="spot-header-info">
-            <div class="spot-title"></div>
-            <div class="spot-quit"></div>
+<div class='pop'>
+    <div class='header'>
+        <div class="header-info">
+            <div class="title"></div>
+            <div class="quit"></div>
         </div>
     </div>
-    <img class="spot-pic" src=""> 
-    <div class="spot-info">
-        <p class="spot-msg"></p>
-         <div class="spot-price"></div>
+    <img class="pic" src=""> 
+    <div class="info">
+        <p class="msg"></p>
+         <div class="price"></div>
+         <img id="heart" src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
     </div>
 </div>
 <div id="discover-area">

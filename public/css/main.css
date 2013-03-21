@@ -1103,6 +1103,8 @@ margin: -150px 310px;
 {
   padding-left:10px;
 }
+
+
 .spot-item 
 {
   height:262px;
@@ -1276,7 +1278,13 @@ z-index: 1;
 
 /* pop - up */
 
-.spot-pop
+#pop-good-heart{
+  left: 672px;
+  bottom: 194px;
+  position: relative;
+}
+
+.pop
 {
   display: none;
   background:#fff;
@@ -1287,7 +1295,7 @@ z-index: 1;
   left: 39px;
 }
 
-.spot-pop .spot-header
+.pop .header
 {
   height: 70px;
   width: 100%;
@@ -1297,7 +1305,7 @@ z-index: 1;
 box-shadow: inner 0 0 5px #888;
 }
 
-.spot-pop .spot-title
+.pop .title
 {
   width: 520px;
   font-size: 43px;
@@ -1312,7 +1320,7 @@ box-shadow: inner 0 0 5px #888;
 
 }
 
-.spot-pop .spot-bar
+.pop .bar
 {
   width: 2px;
   height: 31px;
@@ -1323,7 +1331,7 @@ box-shadow: inner 0 0 5px #888;
    opacity: 0.2;
 }
 
-.spot-pop .spot-price
+.pop .price
 {
   width: 100px;
 position: relative;
@@ -1336,7 +1344,7 @@ left: 840px;
 padding: 10px;
 }
 
-.spot-pop .spot-quit
+.pop .quit
 {
   height: 70px;
   width: 116px;
@@ -1348,7 +1356,7 @@ padding: 10px;
   font-size: 61px;
 }
 
-.spot-pop .spot-pic
+.pop .pic
 {
   position: absolute;
   bottom: 0px;
@@ -1356,7 +1364,7 @@ padding: 10px;
 box-shadow: inset 0 0 5px 5px #888;
 }
 
-.spot-pop .spot-info
+.pop .info
 {
   width: 100%;
   height: 134px;
@@ -1367,7 +1375,7 @@ box-shadow: inset 0 0 5px 5px #888;
   bottom: 0px;
 }
 
-.spot-pop .spot-msg
+.pop .msg
 {
   color: white;
 font-size: 29px;

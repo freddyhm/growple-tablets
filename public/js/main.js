@@ -375,7 +375,7 @@ function discover(featureItems, spotlightItems){
             var items = selectedGrp == 'spotlight' ? spotlightItems : featureItems;
 
             logUserActivity("in", "viewed_item", selectedItemId, "", function(){
-                $(".spot-pop").modal({
+                $(".pop").modal({
                     position: ["5%"],
                     onShow: function (dialog){
                         var modal = this;
@@ -384,16 +384,16 @@ function discover(featureItems, spotlightItems){
                                 var items = val.items;
                                 $.each(items, function(index, val) {
                                     if(val.id == selectedItemId){
-                                        $(".spot-pop .spot-title").html(val.name.toUpperCase());
-                                        $(".spot-pop .spot-pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
-                                        $(".spot-pop .spot-price").html(val.price);
-                                        $(".spot-pop .spot-msg").html(val.description);
+                                        $(".pop .title").html(val.name.toUpperCase());
+                                        $(".pop .pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
+                                        $(".pop .price").html(val.price);
+                                        $(".pop .msg").html(val.description);
                                     }
                                 });
                             }
                         });
                         
-                        $(".spot-pop .spot-quit").click(function(event) {
+                        $(".pop .quit").click(function(event) {
                             logUserActivity("out", "viewed_item", selectedItemId, "", function(){
                                 modal.close();
                             });
