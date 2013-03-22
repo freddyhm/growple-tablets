@@ -14,7 +14,7 @@
         <p class="msg"></p>
     </div>
     <div class="heart unlove">
-		<img src="<?php echo URL . 'public/img/discover/unheart-unpressed.png'; ?>">
+		<img src="<?php echo URL . 'public/img/discover/btn-unheart-unpressed.png'; ?>">
 		<div class="count"></div>
 	</div>	
     <div class="heart love">

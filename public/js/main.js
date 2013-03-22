@@ -422,12 +422,20 @@ function discover(featureItems, spotlightItems){
 
                             // love button, increment love
                             $(".heart").click(function(event) {
-                                logUserActivity("in", "loved_item", selectedItemId, "", function(){
-                                    logUserActivity("out", "loved_item", selectedItemId, "", function(){
-                                        $(".love img").attr("src", URL + "public/img/discover/btn-heart-pressed.png");
-                                        $.post(URL + 'mother/giveLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                                            $(".love img").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
-                                            $(".love .count").html(data);
+
+                                var heartType = $(this).attr("class").substring(6);
+                                var url = heartType == 'love' ? URL + 'mother/giveLove/d/': URL + 'mother/giveUnLove/d/';
+                                var btnPressed = heartType == 'love' ? "btn-heart-pressed.png" : "btn-unheart-pressed.png";
+                                var btnUnpressed = heartType == 'love' ? "btn-heart-unpressed.png" : "btn-unheart-unpressed.png";
+                                var countClass = "." + heartType + " .count";  
+                                var imgClass = "." + heartType + " img";  
+                                
+                                logUserActivity("in", heartType + "d_item", selectedItemId, "", function(){
+                                    logUserActivity("out", heartType + "d_item", selectedItemId, "", function(){
+                                        $(imgClass).attr("src", URL + "public/img/discover/" + btnPressed);
+                                        $.post(url, {item_id: selectedItemId}, function(data, textStatus, xhr) {
+                                            $(imgClass).attr("src", URL + "public/img/discover/" + btnUnpressed);
+                                            $(countClass).html(data);
                                         });
                                     });
                                 });
