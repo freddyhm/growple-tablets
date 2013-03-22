@@ -1279,44 +1279,38 @@ z-index: 1;
 
 /* pop - up */
 
-.love
+.heart
 {
-left: 660px;
-top: 295px;
-position: relative;
+  top: 295px;
+  float: right;
+  position: relative;
+}
+
+.heart .love
+{
+  left: 660px;
+}
+
+.heart .unlove
+{
+  left: 810px;
+  z-index:1;
+}
+
+.heart .count
+{
+  color: white;
+  text-align: center;
+  bottom: 109px;
+  position: relative;
+  font-size: 60px;
+  width: 100px;
+  height: 66px;
 }
 
 .love .count
 {
-  color: white;
-  text-align: center;
-  bottom: 109px;
-  position: relative;
   left: 25px;
-  font-size: 60px;
-  width: 100px;
-  height: 66px;
-}
-
-.unlove
-{
-left: 810px;
-top: 385px;
-position: absolute;
-z-index:1;
-}
-
-.unlove .count
-{
-
-  color: white;
-  text-align: center;
-  bottom: 109px;
-  position: relative;
-  left: 25px;
-  font-size: 60px;
-  width: 100px;
-  height: 66px;
 }
 
 .pop li

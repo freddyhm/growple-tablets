@@ -13,15 +13,14 @@
     <div class="info">
         <p class="msg"></p>
     </div>
-    <div class="love">
+    <div class="heart love">
     	<img src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
 		<div class="count"></div>
 	</div>
-	<div class="unlove">
+	<div class="heart unlove">
 		<img src="<?php echo URL . 'public/img/discover/unheart-unpressed.png'; ?>">
 		<div class="count"></div>
 	</div>	
-
 	<div class="unlove-selection">
 		<div id="unlove-overlay"></div>
 		<div id="unlove-selection-pop">

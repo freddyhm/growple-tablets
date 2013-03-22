@@ -406,7 +406,7 @@ function discover(featureItems, spotlightItems){
                             });
 
                             // love button, increment love
-                            $(".love").click(function(event) {
+                            $(".heart").click(function(event) {
                                 logUserActivity("in", "loved_item", selectedItemId, "", function(){
                                     logUserActivity("out", "loved_item", selectedItemId, "", function(){
                                         $(".love img").attr("src", URL + "public/img/discover/btn-heart-pressed.png");
