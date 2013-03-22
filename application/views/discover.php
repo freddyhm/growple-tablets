@@ -24,11 +24,15 @@
 	<div class="unlove-selection">
 		<div id="unlove-overlay"></div>
 		<div id="unlove-selection-pop">
-			<button class="unlove-selection-btn" id="">Option #1 </button>
-			<button class="unlove-selection-btn" id="">Option #2 </button>
-			<button class="unlove-selection-btn" id="">Option #3 </button>
+			<div id='thanks-unlove'><p>Thanks for the feeback!</p></div>
+			<?php 
+				foreach ($comments as $comment) {
+			?>
+				<button class="unlove-selection-btn" id="<?php echo $comment['id']; ?>"><?php echo $comment['name']; ?></button>
+			<?php } ?>
+
 		</div>	
-	</div>	
+	</div>
 
 </div>
 <div id="discover-area">

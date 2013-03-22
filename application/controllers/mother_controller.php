@@ -30,6 +30,21 @@ class Mother extends Controller {
 		echo $item->love;
 	}
 
+	public function giveUnLove(){
+
+		$date = date('Y-m-d H:i:s');
+		$comment_id = $_POST['comment_id'];
+		$item_id = $_POST['item_id'];
+
+		$new_comment_item = new CommentItem();
+		$new_comment_item->date = $date;
+		$new_comment_item->comment_id = $comment_id;
+		$new_comment_item->item_id = $item_id;
+		$new_comment_item->save();
+
+		echo 'Success';
+	}
+
 	public function isOnline(){
 		echo "Success";
 	}

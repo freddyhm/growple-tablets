@@ -11,9 +11,11 @@ class Discover extends Controller {
 
 		$feature_list = Module::find_all_by_parent_id('4');
 		$spotlight_list = Module::find_all_by_parent_id('3');
+		$comment_list = Comment::find("all");
 
 		$feature_items = array();
 		$spotlight_items = array();
+		$comments = array();
 
 		if(!empty($feature_list)){
 			// go through list of all items & submodules for menu module - FHM
@@ -45,7 +47,14 @@ class Discover extends Controller {
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
 
-		$info = array('feature_items' => $feature_items, 'spotlight_items' => $spotlight_items, 'venue' => Session::get('venue'));
+		if(!empty($comment_list)){
+
+			foreach ($comment_list as $comment) {
+				$comments[] = $comment->to_array();
+			}
+		}
+		
+		$info = array('comments' => $comments, 'feature_items' => $feature_items, 'spotlight_items' => $spotlight_items, 'venue' => Session::get('venue'));
 		
 		parent::$data = $info;
 		parent::index(); 

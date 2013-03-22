@@ -374,13 +374,22 @@ function discover(featureItems, spotlightItems){
             var selectedItemId = selectedId[2];
             var items = selectedGrp == 'spotlight' ? spotlightItems : featureItems;
 
+            if(selectedGrp == 'feature'){
+                $(".unlove").css("display", "inline");
+            }else{
+                $(".unlove").css("display", "none");
+            }
+
             // get proper item based on array, udpate page 
             logUserActivity("in", "viewed_item", selectedItemId, "", function(){
                 logUserActivity("out", "viewed_item", selectedItemId, "", function(){
                     $(".pop").modal({
                         position: ["5%"],
                         onShow: function (dialog){
+
                             var modal = this;
+                         //   var cnt = $("#unlove-selection-pop").contents();
+
                             $.each(items, function(index, val) {
                                 if(val.name == selectedType){
                                     var items = val.items;
@@ -409,19 +418,28 @@ function discover(featureItems, spotlightItems){
                             $(".unlove").click(function(){
                                 $(".unlove-selection").show()
                             });
+
                             //Hiding the unlove button popup
                              $("#unlove-overlay").click(function(){
-                                $(".unlove-selection").hide()
+                               $(".unlove-selection").hide()
+                               $(".unlove-selection-btn").show();
                             });
 
                             //Selecting an Option and closing the popup
-                              $(".unlove-selection-btn").click(function(){
-                                $(".unlove-selection").hide()
+                            $(".unlove-selection-btn").click(function(){                                
+                                var comm_id = $(this).attr("id");
+                                $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
+                                    $(".unlove-selection-btn").hide();
+                                });
                             });
 
+                            $("#thanks-unlove").click(function(event) {
+                                 $(".unlove-selection").hide();
+                                 $(".unlove-selection-btn").show();
+                            });
 
                             // love button, increment love
-                            $(".heart").click(function(event) {
+                            $(".love").click(function(event) {
 
                                 var heartType = $(this).attr("class").substring(6);
                                 var url = heartType == 'love' ? URL + 'mother/giveLove/d/': URL + 'mother/giveUnLove/d/';
@@ -429,7 +447,7 @@ function discover(featureItems, spotlightItems){
                                 var btnUnpressed = heartType == 'love' ? "btn-heart-unpressed.png" : "btn-unheart-unpressed.png";
                                 var countClass = "." + heartType + " .count";  
                                 var imgClass = "." + heartType + " img";  
-                                
+
                                 logUserActivity("in", heartType + "d_item", selectedItemId, "", function(){
                                     logUserActivity("out", heartType + "d_item", selectedItemId, "", function(){
                                         $(imgClass).attr("src", URL + "public/img/discover/" + btnPressed);
