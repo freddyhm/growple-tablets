@@ -4,19 +4,27 @@
 <div class='pop'>
     <div class='header'>
         <div class="header-info">
-            <div class="title"></div>
-            <div class="quit"></div>
+        <ul>
+
+           <li> <div class="title"></div> </li>
+            <li> <div class="price"></div> </li>
+            <li><div class="quit"></div> </li>
+        </ul>
         </div>
     </div>
     <img class="pic" src=""> 
     <div class="info">
         <p class="msg"></p>
-         <div class="price"></div>
+         
     </div>
     <div class="love">
     	<img src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
 		<div class="count"></div>
 	</div>
+	<div class="unlove">
+		<img src="<?php echo URL . 'public/img/discover/unheart-unpressed.png'; ?>">
+		<div class="count"></div>
+	</div>	
 </div>
 <div id="discover-area">
 	<div id="discover-promo">

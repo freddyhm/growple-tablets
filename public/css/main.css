@@ -12,6 +12,7 @@ a {text-decoration: none; color:#fff;}
 a:visited {text-decoration: none; color:#fff;
 }
 
+
 .playbook
 {
   width: 1024px;
@@ -1280,9 +1281,9 @@ z-index: 1;
 
 .love
 {
-  left: 696px;
-  top: 313px;
-  position: relative;
+left: 660px;
+top: 295px;
+position: relative;
 }
 
 .love .count
@@ -1296,6 +1297,35 @@ z-index: 1;
   width: 100px;
   height: 66px;
 }
+
+.unlove
+{
+left: 810px;
+top: 91px;
+position: relative;
+}
+
+.unlove .count
+{
+
+  color: white;
+  text-align: center;
+  bottom: 109px;
+  position: relative;
+  left: 25px;
+  font-size: 60px;
+  width: 100px;
+  height: 66px;
+}
+
+.pop li
+{
+  list-style-type: none;
+  width:1024px;
+    display:inline;
+
+}
+
 
 .pop
 {
@@ -1320,10 +1350,9 @@ box-shadow: inner 0 0 5px #888;
 
 .pop .title
 {
-  width: 520px;
   font-size: 43px;
   padding-top: 10px;
-  display: block;
+  width:300px;
   padding-left: 10px;
   color:#5a5a5a;
   font-weight: bolder;
@@ -1344,7 +1373,7 @@ box-shadow: inner 0 0 5px #888;
    opacity: 0.2;
 }
 
-.pop .price
+.price
 {
   width: 100px;
 position: relative;
@@ -1355,6 +1384,7 @@ font-weight: bolder;
 text-shadow: 0px 1px 0px #e5e5ee;
 left: 840px;
 padding: 10px;
+
 }
 
 .pop .quit
@@ -1390,9 +1420,9 @@ padding: 10px;
 
 .pop .msg
 {
-  color: white;
-font-size: 29px;
-width: 670px;
+color: white;
+font-size: 26px;
+width: 610px;
 margin-left: 25px;
 }
 
