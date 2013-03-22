@@ -1286,14 +1286,8 @@ z-index: 1;
   position: relative;
 }
 
-.heart .love
+.unlove
 {
-  left: 660px;
-}
-
-.heart .unlove
-{
-  left: 810px;
   z-index:1;
 }
 
@@ -1312,15 +1306,6 @@ z-index: 1;
 {
   left: 25px;
 }
-
-.pop li
-{
-  list-style-type: none;
-  width:1024px;
-    display:inline;
-
-}
-
 
 .pop
 {
@@ -1345,11 +1330,11 @@ z-index: 1;
   height: 70px;
   width: 100%;
   bottom: 16px;
-position: relative;
+  position: relative;
   background: url('../img/discover/pop-bkgd.png');
   background-repeat: repeat-x;
   -webkit-box-shadow: inset 0 0 5px#888;
-box-shadow: inner 0 0 5px #888;
+  box-shadow: inner 0 0 5px #888;
 }
 
 .pop .bar
@@ -1386,7 +1371,7 @@ box-shadow: inner 0 0 5px #888;
 .pop .quit
 {
   height: 70px;
-width: 123px;
+  width: 123px;
   float: right;
   background-image: url('../img/discover/pop-x.png');
   text-align: center;
@@ -1414,21 +1399,21 @@ width: 123px;
 
 .pop .msg
 {
-color: white;
-font-size: 26px;
-width: 610px;
-margin-left: 25px;
+  color: white;
+  font-size: 26px;
+  width: 610px;
+  margin-left: 25px;
 }
 
 #unlove-overlay
 {
-width: 1024px;
-height: 600px;
-background-color: black;
-opacity: 0.8;
-position: absolute;
-top: -50px;
-left: -38px;
+  width: 1024px;
+  height: 600px;
+  background-color: black;
+  opacity: 0.8;
+  position: absolute;
+  top: -50px;
+  left: -38px;
 }
 
 .unlove-selection
@@ -1437,37 +1422,37 @@ left: -38px;
 }
 #unlove-selection-pop
 {
-width: 810px;
-height: 430px;
-background: url('../img/discover/unlove-popup.png');
-position: absolute;
-top: -25px;
-left: 60px;
+  width: 810px;
+  height: 430px;
+  background: url('../img/discover/unlove-popup.png');
+  position: absolute;
+  top: -25px;
+  left: 60px;
 }
 
 .unlove-selection-btn
 {
-width: 742px;
-height: 110px;
--webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-box-shadow: inset 0px 1px 0px 0px #ffffff;
-background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
-background-color: #ededed;
--webkit-border-radius: 6px;
-border-radius: 20px;
-border: 1px solid #dcdcdc;
-display: block;
-color: #777777;
-font-family: arial;
-font-size: 23px;
-font-weight: bold;
-padding: 10px 100px;
-text-decoration: none;
-text-shadow: 1px 1px 0px #ffffff;
-top: 30px;
-left: 33px;
-position: relative;
+  width: 742px;
+  height: 110px;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+  background-color: #ededed;
+  -webkit-border-radius: 6px;
+  border-radius: 20px;
+  border: 1px solid #dcdcdc;
+  display: block;
+  color: #777777;
+  font-family: arial;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 10px 100px;
+  text-decoration: none;
+  text-shadow: 1px 1px 0px #ffffff;
+  top: 30px;
+  left: 33px;
+  position: relative;
 }
 
 /*START - PLAY */
