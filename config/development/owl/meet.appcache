@@ -19,6 +19,9 @@ CACHE:
 /growple/meet/app/public/js/slides.min.jquery.js
 /growple/meet/app/public/js/jquery.simplemodal.js
 /growple/meet/app/config/development/settings.js
+/growple/meet/app/public/img/discover/btn-unheart-unpressed.png
+/growple/meet/app/public/img/discover/btn-unheart-pressed.png
+/growple/meet/app/public/img/discover/unlove-popup.png
 /growple/meet/app/public/img/discover/bckgdDiscover.png
 /growple/meet/app/public/img/discover/dividerDiscover.png
 /growple/meet/app/public/img/discover/icon_featured.png
