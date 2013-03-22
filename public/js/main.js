@@ -374,7 +374,7 @@ function discover(featureItems, spotlightItems){
             var selectedItemId = selectedId[2];
             var items = selectedGrp == 'spotlight' ? spotlightItems : featureItems;
 
-            if(selectedGrp == 'feature'){
+            if(selectedType == "chef's pick" || selectedGrp == 'feature'){
                 $(".unlove").css("display", "inline");
             }else{
                 $(".unlove").css("display", "none");
@@ -388,7 +388,6 @@ function discover(featureItems, spotlightItems){
                         onShow: function (dialog){
 
                             var modal = this;
-                         //   var cnt = $("#unlove-selection-pop").contents();
 
                             $.each(items, function(index, val) {
                                 if(val.name == selectedType){
