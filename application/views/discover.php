@@ -3,15 +3,15 @@
 </script>
 <div class='pop'>
     <div class='header'>
-        <div class="header-info">
-            <div class="title"></div>
-            <div class="quit"></div>
-        </div>
+        <ul class="header-info">
+            <li><span class="title"></span></li>
+            <li><span class="price"></span></li>
+            <li><span class="quit"></span></li>
+        </ul>
     </div>
     <img class="pic" src=""> 
     <div class="info">
         <p class="msg"></p>
-         <div class="price"></div>
     </div>
     <div class="love">
     	<img src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">

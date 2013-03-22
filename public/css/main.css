@@ -1308,28 +1308,23 @@ z-index: 1;
   left: 39px;
 }
 
+.header-info li
+{
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px
+}
+
 .pop .header
 {
   height: 70px;
   width: 100%;
+  bottom: 16px;
+position: relative;
   background: url('../img/discover/pop-bkgd.png');
   background-repeat: repeat-x;
   -webkit-box-shadow: inset 0 0 5px#888;
 box-shadow: inner 0 0 5px #888;
-}
-
-.pop .title
-{
-  width: 520px;
-  font-size: 43px;
-  padding-top: 10px;
-  display: block;
-  padding-left: 10px;
-  color:#5a5a5a;
-  font-weight: bolder;
- text-shadow: 0px 1px 0px #e5e5ee;
- margin-left:10px;
-
 
 }
 
@@ -1337,35 +1332,40 @@ box-shadow: inner 0 0 5px #888;
 {
   width: 2px;
   height: 31px;
-  bottom: 41px;
   background-color: black;
   position: relative;
-   margin-left:10px;
-   opacity: 0.2;
+  margin-left:10px;
+  opacity: 0.2;
+}
+
+.pop .title
+{
+  font-size: 43px;
+  padding-left: 10px;
+  color:#5a5a5a;
+  font-weight: bolder;
+  text-shadow: 0px 1px 0px #e5e5ee;
+  top: 9px;
+  position: relative;
 }
 
 .pop .price
 {
-  width: 100px;
-position: relative;
-font-size: 37px;
-bottom: 60px;
-color: #ffba00;
-font-weight: bolder;
-text-shadow: 0px 1px 0px #e5e5ee;
-left: 840px;
-padding: 10px;
+  font-size: 37px;
+  color: #ffba00;
+  font-weight: bolder;
+  text-shadow: 0px 1px 0px #e5e5ee;
+  top: 9px;
+  position: relative;
 }
 
 .pop .quit
 {
   height: 70px;
   width: 116px;
-  bottom: 60px;
   float: right;
   background-image: url('../img/discover/pop-x.png');
   text-align: center;
-  position: relative;
   font-size: 61px;
 }
 
