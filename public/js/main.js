@@ -416,7 +416,11 @@ function discover(featureItems, spotlightItems){
 
                             //Unlove button popup
                             $(".unlove").click(function(){
-                                $(".unlove-selection").show()
+                                logUserActivity("in", "unloved_item", selectedItemId, "", function(){
+                                    logUserActivity("out", "unloved_item", selectedItemId, "", function(){
+                                        $(".unlove-selection").show()
+                                    });
+                                });
                             });
 
                             //Hiding the unlove button popup
@@ -428,8 +432,12 @@ function discover(featureItems, spotlightItems){
                             //Selecting an Option and closing the popup
                             $(".unlove-selection-btn").click(function(){                                
                                 var comm_id = $(this).attr("id");
-                                $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
-                                    $(".unlove-selection-btn").hide();
+                                logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
+                                    logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
+                                        $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
+                                            $(".unlove-selection-btn").hide();
+                                        });
+                                    });
                                 });
                             });
 
