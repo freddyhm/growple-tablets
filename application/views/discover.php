@@ -21,6 +21,16 @@
 		<img src="<?php echo URL . 'public/img/discover/unheart-unpressed.png'; ?>">
 		<div class="count"></div>
 	</div>	
+
+	<div class="unlove-selection">
+		<div id="unlove-overlay"></div>
+		<div id="unlove-selection-pop">
+			<button class="unlove-selection-btn" id="">Option #1 </button>
+			<button class="unlove-selection-btn" id="">Option #2 </button>
+			<button class="unlove-selection-btn" id="">Option #3 </button>
+		</div>	
+	</div>	
+
 </div>
 <div id="discover-area">
 	<div id="discover-promo">
