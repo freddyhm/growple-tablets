@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2013 at 11:20 AM
+-- Generation Time: Mar 22, 2013 at 02:34 PM
 -- Server version: 5.5.9
 -- PHP Version: 5.3.6
 
@@ -36,22 +36,23 @@ CREATE TABLE `activities` (
   PRIMARY KEY (`id`),
   KEY `step_id` (`step_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `activities`
 --
 
-INSERT INTO `activities` VALUES(1, 'finished_watching', '2013-03-18 10:15:55', '2013-03-18 10:20:08', 5, 12, 0);
-INSERT INTO `activities` VALUES(2, 'started_watching_video', '2013-03-18 14:33:35', '2013-03-18 23:09:08', 20, 7, 0);
-INSERT INTO `activities` VALUES(3, 'started_watching_video', '2013-03-18 14:35:13', '2013-03-18 23:09:08', 22, 8, 0);
-INSERT INTO `activities` VALUES(4, 'finished_watching', '2013-03-18 23:07:09', '2013-03-18 23:07:37', 24, 6, 0);
-INSERT INTO `activities` VALUES(5, 'started_watching_video', '2013-03-18 23:07:37', '2013-03-18 23:09:08', 24, 11, 0);
-INSERT INTO `activities` VALUES(6, 'started_watching_video', '2013-03-19 18:07:19', '2013-03-20 18:19:25', 27, 9, 0);
-INSERT INTO `activities` VALUES(7, 'viewed_item', '2013-03-20 18:19:17', '2013-03-20 18:19:18', 28, 16, 0);
-INSERT INTO `activities` VALUES(8, 'viewed_item', '2013-03-20 18:19:19', '2013-03-20 18:19:20', 28, 3, 0);
-INSERT INTO `activities` VALUES(9, 'viewed_item', '2013-03-20 18:19:20', '2013-03-20 18:19:21', 28, 1, 0);
-INSERT INTO `activities` VALUES(10, 'viewed_item', '2013-03-20 18:19:21', '2013-03-20 18:19:22', 28, 2, 0);
+INSERT INTO `activities` VALUES(1, 'viewed_item', '2013-03-21 12:03:11', '2013-03-21 12:03:11', 34, 16, 0);
+INSERT INTO `activities` VALUES(2, 'loved_item', '2013-03-21 12:03:12', '2013-03-21 12:03:12', 34, 16, 0);
+INSERT INTO `activities` VALUES(3, 'viewed_item', '2013-03-21 12:03:13', '2013-03-21 12:03:13', 34, 1, 0);
+INSERT INTO `activities` VALUES(4, 'loved_item', '2013-03-21 12:03:14', '2013-03-21 12:03:14', 34, 1, 0);
+INSERT INTO `activities` VALUES(5, 'viewed_item', '2013-03-21 12:03:28', '2013-03-21 12:03:28', 35, 3, 0);
+INSERT INTO `activities` VALUES(6, 'viewed_item', '2013-03-21 12:03:30', '2013-03-21 12:03:30', 35, 4, 0);
+INSERT INTO `activities` VALUES(7, 'viewed_item', '2013-03-21 12:03:31', '2013-03-21 12:03:31', 35, 2, 0);
+INSERT INTO `activities` VALUES(8, 'viewed_item', '2013-03-21 12:03:33', '2013-03-21 12:03:33', 35, 17, 0);
+INSERT INTO `activities` VALUES(9, 'viewed_item', '2013-03-21 12:03:52', '2013-03-21 12:03:52', 36, 16, 0);
+INSERT INTO `activities` VALUES(10, 'viewed_item', '2013-03-21 12:03:55', '2013-03-21 12:03:55', 36, 3, 0);
+INSERT INTO `activities` VALUES(11, 'viewed_item', '2013-03-21 12:03:56', '2013-03-21 12:03:56', 36, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -97,6 +98,65 @@ CREATE TABLE `cart_items` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `commenttype_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` VALUES(1, 'Too salty and/or spicy', 2);
+INSERT INTO `comments` VALUES(2, 'Not enough, expecting more food', 2);
+INSERT INTO `comments` VALUES(3, 'Too expensive', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_items`
+--
+
+CREATE TABLE `comment_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `comment_items`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_types`
+--
+
+CREATE TABLE `comment_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `comment_types`
+--
+
+INSERT INTO `comment_types` VALUES(1, 'love');
+INSERT INTO `comment_types` VALUES(2, 'unlove');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `events`
 --
 
@@ -114,7 +174,7 @@ CREATE TABLE `events` (
   KEY `module_id` (`module_id`),
   KEY `user_id` (`user_id`),
   KEY `eventcategory_id` (`eventcategory_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `events`
@@ -133,6 +193,14 @@ INSERT INTO `events` VALUES(10, 'Path started', '2013-03-18 13:17:03', '2013-03-
 INSERT INTO `events` VALUES(11, 'Path started', '2013-03-18 13:18:13', '2013-03-18 13:18:15', NULL, NULL, 11, 1);
 INSERT INTO `events` VALUES(12, 'Path started', '2013-03-18 13:18:16', '2013-03-18 23:09:08', NULL, NULL, 12, 1);
 INSERT INTO `events` VALUES(13, 'Path started', '2013-03-19 18:07:17', '2013-03-20 18:19:25', NULL, NULL, 13, 1);
+INSERT INTO `events` VALUES(14, 'Path started', '2013-03-21 11:11:36', '2013-03-21 11:53:38', NULL, NULL, 14, 1);
+INSERT INTO `events` VALUES(15, 'Path started', '2013-03-21 11:54:03', '2013-03-21 11:54:10', NULL, NULL, 15, 1);
+INSERT INTO `events` VALUES(16, 'Path started', '2013-03-21 11:54:25', '2013-03-21 11:54:32', NULL, NULL, 16, 1);
+INSERT INTO `events` VALUES(17, 'Path started', '2013-03-21 11:54:47', '2013-03-21 11:54:56', NULL, NULL, 17, 1);
+INSERT INTO `events` VALUES(18, 'Path started', '2013-03-21 12:02:11', '2013-03-21 12:02:16', NULL, NULL, 18, 1);
+INSERT INTO `events` VALUES(19, 'Path started', '2013-03-21 12:03:10', '2013-03-21 12:03:17', NULL, NULL, 19, 1);
+INSERT INTO `events` VALUES(20, 'Path started', '2013-03-21 12:03:27', '2013-03-21 12:03:39', NULL, NULL, 20, 1);
+INSERT INTO `events` VALUES(21, 'Path started', '2013-03-21 12:03:52', '2013-03-21 12:04:00', NULL, NULL, 21, 1);
 
 -- --------------------------------------------------------
 
@@ -178,10 +246,10 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` VALUES(1, 'kamjatang', '감자탕', '7.99', 'Spicy soup made with pork bone, vegetables, green onion, hot peppers and ground wild sesame seeds', 'chef-kamjatang-small.png', 'chef-kamjatang-big.jpg', '', '', 18, 8);
-INSERT INTO `items` VALUES(2, 'bulgogi', '불고기', '10.99', 'Sweet marinated & grilled beef with vegetables, it was voted 23rd for world''s most delicious food', 'bulgogi-small.png', 'bulgogi-big.jpg', '', '', 0, 5);
-INSERT INTO `items` VALUES(3, 'cutlet(kasu)', '돈까스/새우까스', '12.99', 'Popular dish that consists of breaded, deep-fried pork cutlet & sliced into bite-sized pieces', 'cutlet-small.png', 'cutlet-big.jpg', '`', '', 0, 5);
-INSERT INTO `items` VALUES(4, 'japchae', '잡채', '9.99', 'Famous dish made from sweet potato noodles, beef and stir fried in sesame oil with various vegetables', 'japchae-small.png', 'japchae-big.jpg', '', '', 0, 5);
+INSERT INTO `items` VALUES(1, 'kamjatang', '감자탕', '7.99', 'Spicy soup made with pork bone, vegetables, green onion, hot peppers and ground wild sesame seeds', 'chef-kamjatang-small.png', 'chef-kamjatang-big.jpg', '', '', 22, 8);
+INSERT INTO `items` VALUES(2, 'bulgogi', '불고기', '10.99', 'Sweet marinated & grilled beef with vegetables, it was voted 23rd for world''s most delicious food', 'bulgogi-small.png', 'bulgogi-big.jpg', '', '', 7, 5);
+INSERT INTO `items` VALUES(3, 'cutlet(kasu)', '돈까스/새우까스', '12.99', 'Popular dish that consists of breaded, deep-fried pork cutlet & sliced into bite-sized pieces', 'cutlet-small.png', 'cutlet-big.jpg', '`', '', 47, 5);
+INSERT INTO `items` VALUES(4, 'japchae', '잡채', '9.99', 'Famous dish made from sweet potato noodles, beef and stir fried in sesame oil with various vegetables', 'japchae-small.png', 'japchae-big.jpg', '', '', 5, 5);
 INSERT INTO `items` VALUES(5, 'UFC Best KO 2011 - 2012', '', '', '', NULL, '', '1.mp4', 'StrikeForce', 0, 2);
 INSERT INTO `items` VALUES(6, 'Blake Griffin 3 Pt Fail', '', '', '', NULL, '', '2.mp4', 'NBA', 0, 2);
 INSERT INTO `items` VALUES(7, 'Cheating Boss Prank', '', '', '', NULL, '', '3.mp4', 'Just for Laughs', 0, 2);
@@ -192,8 +260,8 @@ INSERT INTO `items` VALUES(11, 'Lionel Messi Humiliates Great Players', '', '', 
 INSERT INTO `items` VALUES(12, 'Gangnam Style', '', '', '', NULL, '', '8.mp4', 'Psy', 0, 2);
 INSERT INTO `items` VALUES(13, 'Into Darkness Trailer ', '', '', '', NULL, '', '9.mp4', 'Star Trek', 0, 2);
 INSERT INTO `items` VALUES(14, 'White Couple Black Baby', '', '', '', NULL, '', '10.mp4', 'Just for Laughs', 0, 2);
-INSERT INTO `items` VALUES(16, 'Growple! Tablets', '', '', 'Growple''s a fun discovery tool that connects you with places you love. Find out more at growple.com', 'notice-growple-small.png', 'notice-growple-big.jpg', '', '', 5, 9);
-INSERT INTO `items` VALUES(17, 'The Owl of Minerva', '', '', 'Rated top among T.O''s best restaurants, we strive to offer the best in korean cuisine. Enjoy!', 'about-owl-small.png', 'about-owl-big.jpg', '', '', 0, 7);
+INSERT INTO `items` VALUES(16, 'Growple! Tablets', '', '', 'Growple''s a fun discovery tool that connects you with places you love. Find out more at growple.com', 'notice-growple-small.png', 'notice-growple-big.jpg', '', '', 31, 9);
+INSERT INTO `items` VALUES(17, 'The Owl of Minerva', '', '', 'Rated top among T.O''s best restaurants, we strive to offer the best in korean cuisine. Enjoy!', 'about-owl-small.png', 'about-owl-big.jpg', '', '', 9, 7);
 
 -- --------------------------------------------------------
 
@@ -431,7 +499,7 @@ CREATE TABLE `steps` (
   PRIMARY KEY (`id`),
   KEY `event_id` (`event_id`),
   KEY `module_id` (`module_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `steps`
@@ -465,6 +533,14 @@ INSERT INTO `steps` VALUES(25, '2013-03-18 23:09:04', '2013-03-18 23:09:08', 12,
 INSERT INTO `steps` VALUES(26, '2013-03-19 18:07:17', '2013-03-19 18:07:19', 13, 1);
 INSERT INTO `steps` VALUES(27, '2013-03-19 18:07:19', '2013-03-19 18:07:20', 13, 2);
 INSERT INTO `steps` VALUES(28, '2013-03-19 18:07:20', '2013-03-20 18:19:25', 13, 1);
+INSERT INTO `steps` VALUES(29, '2013-03-21 11:11:36', '2013-03-21 11:53:38', 14, 1);
+INSERT INTO `steps` VALUES(30, '2013-03-21 11:54:03', '2013-03-21 11:54:10', 15, 1);
+INSERT INTO `steps` VALUES(31, '2013-03-21 11:54:25', '2013-03-21 11:54:32', 16, 1);
+INSERT INTO `steps` VALUES(32, '2013-03-21 11:54:47', '2013-03-21 11:54:56', 17, 1);
+INSERT INTO `steps` VALUES(33, '2013-03-21 12:02:11', '2013-03-21 12:02:16', 18, 1);
+INSERT INTO `steps` VALUES(34, '2013-03-21 12:03:10', '2013-03-21 12:03:17', 19, 1);
+INSERT INTO `steps` VALUES(35, '2013-03-21 12:03:27', '2013-03-21 12:03:39', 20, 1);
+INSERT INTO `steps` VALUES(36, '2013-03-21 12:03:52', '2013-03-21 12:04:00', 21, 1);
 
 -- --------------------------------------------------------
 
@@ -523,7 +599,7 @@ CREATE TABLE `users` (
   KEY `venue_id` (`venue_id`),
   KEY `usertype_id` (`usertype_id`),
   KEY `tablet_id` (`tablet_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `users`
@@ -542,6 +618,14 @@ INSERT INTO `users` VALUES(10, 'JohnJane', 1, 2, NULL);
 INSERT INTO `users` VALUES(11, 'JohnJane', 1, 2, NULL);
 INSERT INTO `users` VALUES(12, 'JohnJane', 1, 2, NULL);
 INSERT INTO `users` VALUES(13, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(14, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(15, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(16, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(17, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(18, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(19, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(20, 'JohnJane', 1, 2, NULL);
+INSERT INTO `users` VALUES(21, 'JohnJane', 1, 2, NULL);
 
 -- --------------------------------------------------------
 
