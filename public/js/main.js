@@ -405,6 +405,21 @@ function discover(featureItems, spotlightItems){
                                 modal.close();
                             });
 
+                            //Unlove button popup
+                            $(".unlove").click(function(){
+                                $(".unlove-selection").show()
+                            });
+                            //Hiding the unlove button popup
+                             $("#unlove-overlay").click(function(){
+                                $(".unlove-selection").hide()
+                            });
+
+                            //Selecting an Option and closing the popup
+                              $(".unlove-selection-btn").click(function(){
+                                $(".unlove-selection").hide()
+                            });
+
+
                             // love button, increment love
                             $(".heart").click(function(event) {
                                 logUserActivity("in", "loved_item", selectedItemId, "", function(){

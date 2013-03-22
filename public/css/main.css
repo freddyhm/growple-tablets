@@ -1365,7 +1365,7 @@ box-shadow: inner 0 0 5px #888;
 .pop .title
 {
   font-size: 43px;
-  padding-left: 10px;
+  padding-left: 0px;
   color:#5a5a5a;
   font-weight: bolder;
   text-shadow: 0px 1px 0px #e5e5ee;
@@ -1379,14 +1379,14 @@ box-shadow: inner 0 0 5px #888;
   color: #ffba00;
   font-weight: bolder;
   text-shadow: 0px 1px 0px #e5e5ee;
-  top: 9px;
+  top: 6px;
   position: relative;
 }
 
 .pop .quit
 {
   height: 70px;
-  width: 116px;
+width: 123px;
   float: right;
   background-image: url('../img/discover/pop-x.png');
   text-align: center;
@@ -1431,6 +1431,10 @@ top: -50px;
 left: -38px;
 }
 
+.unlove-selection
+{
+  display:none;
+}
 #unlove-selection-pop
 {
 width: 810px;
