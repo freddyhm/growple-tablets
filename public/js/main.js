@@ -9,7 +9,6 @@ var server_active = false;
 var nofade_timer = "";
 var touch_try = 0;
 var currentModule = "";
-var noSleepVidTag = "<video id='noSleepVid' loop='loop' autoplay='autoplay'><source src='" + URL + "public/vid/nosleep.mp4'></video>";
 var inactive_timer = "";
 var vid_timer = "";
 var pauseInactiveTimer = "";
@@ -20,6 +19,7 @@ function init(module){
     pauseInactiveTimer = clearTimeout(pauseInactiveTimer);
     vid_timer = clearTimeout(vid_timer);
     inactive_timer = clearTimeout(inactive_timer);
+    var noSleepVid = document.getElementById("noSleepVid");
 
     currentModule = module;
 
@@ -47,15 +47,7 @@ function init(module){
     // since modules can be accessed equally, need to step out/in according to status
     if(module == "discover"){
 
-        $("#noSleep").html(noSleepVidTag);
-        sleepVid = document.getElementById("noSleepVid");
-
-        // make sure video is playing when added to div
-        setTimeout(function(){
-            if(sleepVid.paused == true){
-            sleepVid.play();    
-        }
-        }, 1000);
+        noSleepVid.play();
 
         $("#discover-btn").click(function(event){
             logUserStep("out", 1, function(){
@@ -81,7 +73,7 @@ function init(module){
 
      }else if(module == "play"){
 
-        $("#noSleep").empty();
+        noSleepVid.pause();
     
         $("#discover-btn").click(function(event){
             logUserStep("out", 2, function(){
@@ -108,6 +100,8 @@ function init(module){
 // set new user cycle - FHM
 function reset(touch){
 
+    var noSleepVid = document.getElementById("noSleepVid");
+
     touch_count += touch;
     touch_try++;
 
@@ -133,15 +127,7 @@ function reset(touch){
                 $("#loadPage").show(1, function(){
                     sleep_timer = clearTimeout(sleep_timer); 
 
-                    $("#noSleep").html(noSleepVidTag);
-                    sleepVid = document.getElementById("noSleepVid");
-
-                    // make sure video is playing when added to div
-                    setTimeout(function(){
-                        if(sleepVid.paused == true){
-                        sleepVid.play();    
-                    }
-                    }, 1000);
+                    noSleepVid.play();
 
                     var moduleNum = 0;
 
@@ -219,7 +205,7 @@ function activateSleepTimer(){
         sleep_timer = clearTimeout(sleep_timer);
     }
 
-    sleep_timer = setTimeout(function() {sleep(); }, 5000);
+    sleep_timer = setTimeout(function() {sleep(); }, 600000);
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
@@ -237,6 +223,11 @@ function sleep(){
 
        $("#sleepSlideshow").show();
     };
+
+    // set limit on slideshow duration, exit after some time
+    setTimeout(function() {
+        $("#sleepSlideshow").trigger("click");
+    }, 900000); 
 }
 
 function exitSleepSlideshow(){

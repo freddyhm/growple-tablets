@@ -18,7 +18,9 @@
 </head>	
 <body>
     <div id="setup">
-    	<div id="noSleep" style="display:none;"></div>
+    	<div id="noSleep" style="display:none;">
+            <video id='noSleepVid' loop='loop' autoplay='autoplay' src="<?php echo URL . 'public/vid/nosleep.mp4'; ?>"></video>
+        </div>
     	<div id="sleepSlideshow">
             <div class="slides_container">
                 <?php 
