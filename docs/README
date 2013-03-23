@@ -116,3 +116,16 @@ FEATURES:
 FIXES:
 
 #1 - CSS fixes on pop up header + close button  
+
+********************************************
+Growple! Ivysaur v2.1.1 - Saturday, March 23, 2013
+********************************************
+
+FIXES:
+
+#1 - Fixed sleep slideshow behid pop up
+#2 - Replaced no sleep video adding / removing tag with stop & play
+
+BOOSTS:
+
+#1 - Change analytics/sleep cycle so slideshow appears only after certain intervals, goes back to discovery page
