@@ -59,6 +59,7 @@
                 <div class='header'></div>
             </div>
             <!--Navbar-->
+            <!--
             <div id="navbar">
                 <div class="nav-btn" id="discover-btn">
                     <img class="nav-link" id="discover-title" src="<?php echo URL . 'public/img/common/discover-pressed.png'; ?>">
@@ -66,7 +67,8 @@
                 <div class="nav-btn" id="play-btn">
                   <img class="nav-link" id="play-title" src="<?php echo URL . 'public/img/common/play-nonpressed.png'; ?>">
                 </div>
-             </div> 
+             </div>
+         -->
              <div id="loadPage">
                 <img src="<?php echo URL . 'public/img/common/start_bg1.jpg'; ?>">
                 <!-- START LOGO BUTTON -->
