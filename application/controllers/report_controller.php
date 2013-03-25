@@ -34,7 +34,6 @@ class Report extends Controller {
 		 				 WHERE activities.item_id = items.id AND items.id = $item->id 
 		 				 AND (activities.name = 'loved_item'OR activities.name = 'unloved_item' OR activities.name = 'loved_comments')";
 
-		 	
 
 		 	$item_act_sql = "SELECT COUNT(activities.id) AS result FROM items, activities 
 		 				 WHERE activities.item_id = items.id AND items.id = $item->id";

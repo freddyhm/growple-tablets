@@ -1,4 +1,9 @@
 
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
 <table border="1px">	
 	<tr>
 		<td>Total Views: <?php echo $metrics['total activity']; ?></td>
