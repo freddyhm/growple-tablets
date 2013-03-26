@@ -12,6 +12,8 @@ var currentModule = "";
 var inactive_timer = "";
 var vid_timer = "";
 var pauseInactiveTimer = "";
+var heartCount = 0;
+var heartTimer = "";
 
 function init(module){
 
@@ -19,6 +21,7 @@ function init(module){
     pauseInactiveTimer = clearTimeout(pauseInactiveTimer);
     vid_timer = clearTimeout(vid_timer);
     inactive_timer = clearTimeout(inactive_timer);
+
     var noSleepVid = document.getElementById("noSleepVid");
 
     currentModule = module;
@@ -449,22 +452,36 @@ function discover(featureItems, spotlightItems){
                             // love button, increment love
                             $(".love").click(function(event) {
 
-                                var heartType = $(this).attr("class").substring(6);
-                                var url = heartType == 'love' ? URL + 'mother/giveLove/d/': URL + 'mother/giveUnLove/d/';
-                                var btnPressed = heartType == 'love' ? "btn-heart-pressed.png" : "btn-unheart-pressed.png";
-                                var btnUnpressed = heartType == 'love' ? "btn-heart-unpressed.png" : "btn-unheart-unpressed.png";
-                                var countClass = "." + heartType + " .count";  
-                                var imgClass = "." + heartType + " img";  
+                                // clear lingering heart timer
+                                heartTimer = clearTimeout(heartTimer);
 
-                                logUserActivity("in", heartType + "d_item", selectedItemId, "", function(){
-                                    logUserActivity("out", heartType + "d_item", selectedItemId, "", function(){
-                                        $(imgClass).attr("src", URL + "public/img/discover/" + btnPressed);
-                                        $.post(url, {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                                            $(imgClass).attr("src", URL + "public/img/discover/" + btnUnpressed);
-                                            $(countClass).html(data);
+                                if(heartCount < 10){
+
+                                    heartCount++;
+
+                                    var heartType = $(this).attr("class").substring(6);
+                                    var url = heartType == 'love' ? URL + 'mother/giveLove/d/': URL + 'mother/giveUnLove/d/';
+                                    var btnPressed = heartType == 'love' ? "btn-heart-pressed.png" : "btn-unheart-pressed.png";
+                                    var btnUnpressed = heartType == 'love' ? "btn-heart-unpressed.png" : "btn-unheart-unpressed.png";
+                                    var countClass = "." + heartType + " .count";  
+                                    var imgClass = "." + heartType + " img";  
+
+                                    logUserActivity("in", heartType + "d_item", selectedItemId, "", function(){
+                                        logUserActivity("out", heartType + "d_item", selectedItemId, "", function(){
+                                            $(imgClass).attr("src", URL + "public/img/discover/" + btnPressed);
+                                            $.post(url, {item_id: selectedItemId}, function(data, textStatus, xhr) {
+                                                $(imgClass).attr("src", URL + "public/img/discover/" + btnUnpressed);
+                                                $(countClass).html(data);
+                                            });
                                         });
                                     });
-                                });
+                                }else{
+                                   
+                                    // reset heart timer after 10 min of touching heart button  
+                                    heartTimer = setTimeout(function(){
+                                        heartCount = 0;
+                                    }, 600000);
+                                }
                             });
                         }
                     });
