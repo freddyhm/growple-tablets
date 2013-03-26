@@ -50,6 +50,8 @@ function init(module){
     // since modules can be accessed equally, need to step out/in according to status
     if(module == "discover"){
 
+        // reset heart count due to caching
+        heartCount = 0;
         noSleepVid.play();
 
         $("#discover-btn").click(function(event){
@@ -481,10 +483,10 @@ function discover(featureItems, spotlightItems){
                                     });
                                 }else{
                                    
-                                    // reset heart timer after 10 min of touching heart button  
+                                    // reset heart timer after 5 min of touching heart button  
                                     heartTimer = setTimeout(function(){
                                         heartCount = 0;
-                                    }, 600000);
+                                    }, 300000);
                                 }
                             });
                         }
