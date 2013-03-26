@@ -419,6 +419,11 @@ function discover(featureItems, spotlightItems){
                                $(".unlove-selection-btn").show();
                             });
 
+                             //Hiding on Cancel
+                             $(".overlay-close").click(function(){
+                                $(".unlove-selection").hide()
+                             });
+
                             //Selecting an Option and closing the popup
                             $(".unlove-selection-btn").click(function(){                                
                                 var comm_id = $(this).attr("id");

@@ -30,7 +30,7 @@
 			?>
 				<button class="unlove-selection-btn" id="<?php echo $comment['id']; ?>"><?php echo $comment['name']; ?></button>
 			<?php } ?>
-
+				<button class="overlay-close"> Cancel </button>
 		</div>	
 	</div>
 
