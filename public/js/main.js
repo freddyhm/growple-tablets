@@ -382,6 +382,7 @@ function discover(featureItems, spotlightItems){
                         onShow: function (dialog){
 
                             var modal = this;
+                            var popUpTimer = "";
 
                             $.each(items, function(index, val) {
                                 if(val.name == selectedType){
@@ -409,22 +410,20 @@ function discover(featureItems, spotlightItems){
 
                             //Unlove button popup
                             $(".unlove").click(function(){
+                                
+                                popUpTimer = clearTimeout(popUpTimer);
+
                                 logUserActivity("in", "unloved_item", selectedItemId, "", function(){
                                     logUserActivity("out", "unloved_item", selectedItemId, "", function(){
                                         $(".unlove-selection").show();
                                         $(".unlove-selection-btn").show();
-
-                                        // dismiss pop up after 5 seconds 
-                                        setTimeout(function(){
-                                            $(".unlove-selection").hide();
-                                        }, 5000);
                                     });
                                 });
                             });
 
                             //Hiding the unlove button popup
                              $("#unlove-overlay").click(function(){
-                               $(".unlove-selection").hide()
+                               $(".unlove-selection").hide();
                             });
 
                              //Hiding on Cancel
@@ -439,6 +438,10 @@ function discover(featureItems, spotlightItems){
                                     logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
                                         $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
                                             $(".unlove-selection-btn").hide();
+                                             // dismiss pop up after 5 seconds 
+                                            popUpTimer = setTimeout(function(){
+                                                $(".unlove-selection").hide();
+                                            }, 5000);
                                         });
                                     });
                                 });
@@ -446,6 +449,7 @@ function discover(featureItems, spotlightItems){
 
                             //Hide when touching thanks msg
                             $("#thanks-unlove").click(function(event) {
+                                 popUpTimer = clearTimeout(popUpTimer);
                                  $(".unlove-selection").hide();
                             });
 
