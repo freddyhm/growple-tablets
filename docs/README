@@ -129,3 +129,13 @@ FIXES:
 BOOSTS:
 
 #1 - Change analytics/sleep cycle so slideshow appears only after certain intervals, goes back to discovery page
+
+
+********************************************
+Growple! Ivysaur v2.1.5 - Tuesday, March 26, 2013
+********************************************
+
+BOOSTS:
+
+#1 - CSS: changed unlove button, added cancel button to comments, font smaller for count on love button
+#2 - limit the number loves given
