@@ -1471,25 +1471,10 @@ left: 80px;
 
 .overlay-close
 {
-  width: 742px;
-  height: 80px;
-  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-  box-shadow: inset 0px 1px 0px 0px #ffffff;
   background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgb(133, 133, 133)), color-stop(1, rgb(73, 73, 73)) );
   background-color: #efa31f;
-  -webkit-border-radius: 6px;
-  border-radius: 20px;
-  border: 1px solid rgb(141, 141, 141);
-  display: block;
+  text-shadow: none;
   color: #fff;
-  font-family: arial;
-  font-size: 23px;
-  font-weight: bold;
-  padding: 10px 100px;
-  text-decoration: none;
-  top: 30px;
-  left: 33px;
-  position: relative;
 }
 
 /*START - PLAY */

@@ -408,7 +408,13 @@ function discover(featureItems, spotlightItems){
                             $(".unlove").click(function(){
                                 logUserActivity("in", "unloved_item", selectedItemId, "", function(){
                                     logUserActivity("out", "unloved_item", selectedItemId, "", function(){
-                                        $(".unlove-selection").show()
+                                        $(".unlove-selection").show();
+                                        $(".unlove-selection-btn").show();
+
+                                        // dismiss pop up after 5 seconds 
+                                        setTimeout(function(){
+                                            $(".unlove-selection").hide();
+                                        }, 5000);
                                     });
                                 });
                             });
@@ -416,12 +422,11 @@ function discover(featureItems, spotlightItems){
                             //Hiding the unlove button popup
                              $("#unlove-overlay").click(function(){
                                $(".unlove-selection").hide()
-                               $(".unlove-selection-btn").show();
                             });
 
                              //Hiding on Cancel
                              $(".overlay-close").click(function(){
-                                $(".unlove-selection").hide()
+                                $(".unlove-selection").hide();
                              });
 
                             //Selecting an Option and closing the popup
@@ -436,9 +441,9 @@ function discover(featureItems, spotlightItems){
                                 });
                             });
 
+                            //Hide when touching thanks msg
                             $("#thanks-unlove").click(function(event) {
                                  $(".unlove-selection").hide();
-                                 $(".unlove-selection-btn").show();
                             });
 
                             // love button, increment love
