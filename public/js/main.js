@@ -434,19 +434,25 @@ function discover(featureItems, spotlightItems){
                              });
 
                             //Selecting an Option and closing the popup
-                            $(".unlove-selection-btn").click(function(){                                
-                                var comm_id = $(this).attr("id");
-                                logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
-                                    logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
-                                        $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
-                                            $(".unlove-selection-btn").hide();
-                                             // dismiss pop up after 5 seconds 
-                                            popUpTimer = setTimeout(function(){
-                                                $(".unlove-selection").hide();
-                                            }, 5000);
+                            $(".unlove-selection-btn").click(function(){           
+
+                                // check for child class 
+                                var childClass = $(this).attr("class").substring(21);
+                                
+                                if(childClass != 'overlay-close'){  
+                                    var comm_id = $(this).attr("id");
+                                    logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
+                                        logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
+                                            $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
+                                                $(".unlove-selection-btn").hide();
+                                                 // dismiss pop up after 5 seconds 
+                                                popUpTimer = setTimeout(function(){
+                                                    $(".unlove-selection").hide();
+                                                }, 5000);
+                                            });
                                         });
                                     });
-                                });
+                                }
                             });
 
                             //Hide when touching thanks msg
