@@ -1682,43 +1682,49 @@ left: 80px;
 
 #play-menu
 {
+  
+  height:70px;
   width:1024px;
-  height:111px;
+  background-repeat:repeat-x;
+  background-image: url('../img/discover/discover-submenu-bkgd.png');
   position: absolute;
   z-index: 1;
-  top:489px;
-  background: url('../img/play/bkgd-play-navbar.png');
+  top:530px;
 }
 
 #btn-play-next
 {
  float: right;
-  position: absolute;
-  z-index: 1;
-  top: 7px;
-  left: 762px;
+position: absolute;
+z-index: 1;
+top: -2px;
+left: 845px;
 
 }
 
+#btn-play-next
+{
+width:180px;
+}
 #play-name
 {
-  font-size: 35px;
-  color: #595959;
-  font-weight: bolder;
-  position: absolute;
-  z-index: 1;
-  top: 28px;
-  left: 10px;
+  font-size: 30px;
+color: #595959;
+font-weight: bolder;
+position: absolute;
+z-index: 1;
+top: 5px;
+left: 10px;
 
 }
 
 #play-author
 {
-  font-size: 20px;
+ font-size: 18px;
 color: #595959;
 position: absolute;
 z-index: 1;
-top: 75px;
+top: 40px;
 left: 13px;
 }
 /* START NAVBAR */
