@@ -3,6 +3,121 @@
 </script>
 
 <div id="carousel">
+			<div class = 'iosSlider'>
+			
+			<div class = 'slider'>
+			
+				<div class = 'item' id = 'item1'>
+					
+					<div class = 'image'>
+						<div class = 'bg'></div>
+					</div>
+					
+					<div class = 'text'>
+						
+						<div class = 'bg'></div>
+						
+						<div class = 'title'>
+							<span>Touch Me.</span>
+						</div>
+						
+						<div class = 'desc'>
+							<span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span>
+						</div>
+						
+						<div class = 'button'>
+							<span>Read More &rsaquo;</span>
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<div class = 'item' id = 'item2'>
+				
+					<div class = 'image'>
+						<div class = 'bg'></div>
+					</div>
+					
+					<div class = 'text'>
+					
+						<div class = 'bg'></div>
+					
+						<div class = 'title'>
+							<span>Respond.</span>
+						</div>
+						
+						<div class = 'desc'>
+							<span>Responsive to change in browser width and adjust automatically</span>
+						</div>
+						
+						<div class = 'button'>
+							<span>Read More &rsaquo;</span>
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<div class = 'item' id = 'item3'>
+				
+					<div class = 'image'>
+						<div class = 'bg'></div>
+					</div>
+					
+					<div class = 'text'>
+						
+						<div class = 'bg'></div>
+						
+						<div class = 'title'>
+							<span>Flexible.</span>
+						</div>
+						
+						<div class = 'desc'>
+							<span>Run multiple sliders on the same web page</span>
+						</div>
+						
+						<div class = 'button'>
+							<span>Read More &rsaquo;</span>
+						</div>
+						
+					</div>
+				
+				</div>
+				
+				<div class = 'item' id = 'item4'>
+				
+					<div class = 'image'>
+						<div class = 'bg'></div>
+					</div>
+					
+					<div class = 'text'>
+						
+						<div class = 'bg'></div>
+	
+						<div class = 'title'>
+							<span>Custom.</span>
+						</div>
+						
+						<div class = 'desc'>
+							<span>Set momentum, elasticity, scrollbars and more...</span>
+						</div>
+						
+						<div class = 'button'>
+							<span>Read More &rsaquo;</span>
+						</div>
+						
+					</div>
+				
+				</div>
+			
+			</div>
+			
+			<div class = 'prevButton'></div>
+		
+			<div class = 'nextButton'></div>
+			
+		</div>
 </div>	
 <div id="discover-submenu">
 </div>	

@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="<?php echo URL . 'public/css/confirm.css'; ?>">
     <!-- SCRIPTS -->
     <script src="<?php echo URL . 'public/js/jquery-1.8.3.min.js'; ?>"></script>
+    <script src="<?php echo URL . 'public/js/jquery.iosslider.min.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/jstorage.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/slides.min.jquery.js';?>"></script>
     <script src="<?php echo URL . 'public/js/jquery.simplemodal.js'; ?>"></script>
     <script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/analytics.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
-    <script src="<?php echo URL . 'public/js/jquery.iosslider.min.js'; ?>"></script>
 </head>	
 <body>
     <div id="setup">

@@ -349,6 +349,21 @@ function discover(featureItems, spotlightItems){
 
         init("discover");
 
+        /* touch slider */
+        $('.iosSlider').iosSlider({
+            scrollbar: true,
+            snapToChildren: true,
+            desktopClickDrag: true,
+            scrollbarMargin: '5px 40px 0 40px',
+            scrollbarBorderRadius: 0,
+            scrollbarHeight: '2px',
+            navPrevSelector: $('.prevButton'),
+            navNextSelector: $('.nextButton')
+        });
+
+        // position slider
+        $(".iosSlider").css("top", "100px");
+
         $("#disc-hidden-left").click(function(event) {
             reset(3);
         });
