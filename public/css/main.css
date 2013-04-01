@@ -1030,6 +1030,22 @@ margin: -150px 310px;
 
 /* START - DISCOVER */
 
+#carousel
+{
+  width:1024px;
+  height:530px;
+  background-color: black;
+  background-image: url('../img/discover/bkgdDiscover.png');
+  background-repeat: repeat;
+}
+
+#discover-submenu
+{
+  height:70px;
+  width:1024px;
+  background-repeat:repeat-x;
+  background-image: url('../img/discover/discover-submenu-bkgd.png');
+}
 .disc-hidden-area
 {
   height: 49px;
