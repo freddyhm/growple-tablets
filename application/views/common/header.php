@@ -15,6 +15,7 @@
     <script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/analytics.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
+    <script src="<?php echo URL . 'public/js/jquery.iosslider.min.js'; ?>"></script>
 </head>	
 <body>
     <div id="setup">
