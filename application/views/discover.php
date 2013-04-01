@@ -1,7 +1,12 @@
 <script>
 	discover(<?php echo json_encode($feature_items); ?>, <?php echo json_encode($spotlight_items); ?>);
 </script>
-<div class='pop'>
+
+<div id="carousel">
+</div>	
+<div id="discover-submenu">
+</div>	
+<!--<div class='pop'>
     <div class='header'>
         <ul class="header-info">
             <li><span class="title"></span></li>
@@ -103,4 +108,4 @@
 			</tr>
 		</table> 
 	</div>	
-</div>	
+</div>	-->
