@@ -361,6 +361,51 @@ function discover(featureItems, spotlightItems){
             navNextSelector: $('.nextButton')
         });
 
+        function addSlideItems(featureItems){
+
+//             $.each(items, function(index, val) {
+                
+          //      var items = val.items;
+                $.each(items, function(index, val) {
+                    if(val.id == selectedItemId){
+                        $(".pop .title").html(val.name.toUpperCase());
+                        $(".pop .pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
+                        $(".pop .price").html(val.price);
+                        $(".pop .msg").html(val.description);
+
+                        // get love count from server 
+                        $.get(URL + 'mother/getLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
+                            $(".love .count").html(data);
+                        });
+                    }
+            //    });
+  //          });
+
+
+             var item =  "<div class='item' id='item1'>
+                            <div class='image'>
+                                <img src=" + ">
+                                <div class='bg'></div>
+                            </div>
+                            <div class='text'>
+                                <div class='bg'></div>
+                                <div class='title'>
+                                    <span>Touch Me.</span>
+                                </div>
+                                <div class='desc'>
+                                    <span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span>
+                                </div>
+                                <div class='button'>
+                                    <span>Read More &rsaquo;</span>
+                                </div>
+                            </div>
+                         </div>";
+
+          //  $(".slider").append(item);
+        }
+
+       
+
         // position slider
         $(".iosSlider").css("top", "100px");
 
