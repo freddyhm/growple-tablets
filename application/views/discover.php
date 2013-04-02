@@ -28,6 +28,9 @@
 	</div>
 </div>	
 <div id="discover-submenu">
+	<img id="hot" src="<?php echo URL . 'public/img/discover/btn-hot-on.png'; ?>">
+	<img id="specials" src="<?php echo URL . 'public/img/discover/btn-specials-off.png'; ?>">
+	<img id="info" src="<?php echo URL . 'public/img/discover/btn-info-off.png'; ?>">
 </div>	
 <!--<div class='pop'>
     <div class='header'>

@@ -1175,6 +1175,25 @@ margin: -150px 310px;
   background-repeat:repeat-x;
   background-image: url('../img/discover/discover-submenu-bkgd.png');
 }
+
+#hot
+{
+position: relative;
+
+}
+
+#specials
+{
+position: relative;
+
+}
+#info
+{
+position: relative;
+top: -74px;
+left: 684px;
+}
+
 .disc-hidden-area
 {
   height: 49px;
