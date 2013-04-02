@@ -411,6 +411,18 @@ function discover(hotItems, infoItems){
         });
 
         // pop up in discover module 
+        $("#hot").click(function({
+            $("#hot").attr("src", URL + 'public/img/discover/btn-hot-off.png');
+        });
+
+        $("#specials").click(function({
+            $("#specials").attr("src", URL + 'public/img/discover/btn-specials-on.png');
+        });
+
+         $("#info").click(function({
+            $("#info").attr("src", URL + 'public/img/discover/btn-info-on.png');
+        });
+
         $(".discover").click(function(event) {
 
             var selectedId = $(this).attr("id").split("-");
