@@ -9,39 +9,27 @@ class Discover extends Controller {
 
 	public function index(){
 
-		$feature_list = Module::find_all_by_parent_id('4');
-		$spotlight_list = Module::find_all_by_parent_id('3');
+		$hot_list = Item::find_all_by_module_id('5');
+		$info_list = Item::find_all_by_module_id('7');
 		$comment_list = Comment::find("all");
 
-		$feature_items = array();
-		$spotlight_items = array();
+		$hot_items = array();
+		$info_items = array();
 		$comments = array();
 
-		if(!empty($feature_list)){
+		if(!empty($hot_list)){
 			// go through list of all items & submodules for menu module - FHM
-			foreach ($feature_list as $key => $submodule) {
-
-				$feature_items[$submodule->name] = $submodule->to_array();
-				$item_list = Item::find_all_by_module_id($submodule->id);	
-
-				foreach ($item_list as $item) {
-					$feature_items[$submodule->name]['items'][] = $item->to_array(); 
-				}
+			foreach ($hot_list as $item) {
+				$hot_items['hot']['items'][] = $item->to_array(); 
 			}
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
 
-		if(!empty($spotlight_list)){
+		if(!empty($info_list)){
 			// go through list of all items & submodules for menu module - FHM
-			foreach ($spotlight_list as $key => $submodule) {
-				
-				$spotlight_items[$submodule->name] = $submodule->to_array();
-				$item_list = Item::find_all_by_module_id($submodule->id);	
-				
-				foreach ($item_list as $item) {
-					$spotlight_items[$submodule->name]['items'][] = $item->to_array(); 
-				}
+			foreach ($info_list as $item) {
+				$info_items['info']['items'][] = $item->to_array(); 
 			}
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
@@ -54,7 +42,7 @@ class Discover extends Controller {
 			}
 		}
 		
-		$info = array('comments' => $comments, 'feature_items' => $feature_items, 'spotlight_items' => $spotlight_items, 'venue' => Session::get('venue'));
+		$info = array('comments' => $comments, 'hot_items' => $hot_items, 'info_items' => $info_items, 'venue' => Session::get('venue'));
 		
 		parent::$data = $info;
 		parent::index(); 
