@@ -348,8 +348,8 @@ function discover(hotItems, infoItems){
     $(document).ready(function() {
 
         init("discover");
-        
-        addSlideItems();
+
+        addSlideItems(hotItems, "hot");
 
         /* touch slider */
         $('.iosSlider').iosSlider({
@@ -362,41 +362,13 @@ function discover(hotItems, infoItems){
             navPrevSelector: $('.prevButton'),
             navNextSelector: $('.nextButton')
         });
-
         
-
-        function addSlideItems(){
-
-            $.each(hotItems.items, function(index, val) {
-
-                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + 'public/img/discover/hot/' + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>Touch Me.</span></div><div class='desc'><span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span></div><div class='button'><span>Read More &rsaquo;</span></div></div></div>";
+        function addSlideItems(itemList, submod){
+            $.each(itemList.items, function(index, val) {
+                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>Touch Me.</span></div><div class='desc'><span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span></div><div class='button'><span>Read More &rsaquo;</span></div></div></div>";
 
                 $(".slider").append(item);
-            });  
-            /*
-                $.each(items, function(index, val) {
-                    if(val.id == selectedItemId){
-                        $(".pop .title").html(val.name.toUpperCase());
-                        $(".pop .pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
-                        $(".pop .price").html(val.price);
-                        $(".pop .msg").html(val.description);
-
-                        // get love count from server 
-                        $.get(URL + 'mother/getLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                            $(".love .count").html(data);
-                        });
-                    }
-            */
-                
-            //    });
-  //          });
-
-
-
-
-           
-
-          //  $(".slider").append(item);
+            });
         }
 
         // position slider
@@ -417,6 +389,7 @@ function discover(hotItems, infoItems){
   
         // pop up in discover module 
         $("#hot").click(function(event){
+            addSlideItems(hotItems, "hot");
             $("#hot").attr("src", URL + 'public/img/discover/btn-hot-off.png');
         });
 
@@ -425,6 +398,7 @@ function discover(hotItems, infoItems){
         });
 
          $("#info").click(function(event){
+            addSlideItems(infoItems, "info");
             $("#info").attr("src", URL + 'public/img/discover/btn-info-on.png');
         });
 
