@@ -5,9 +5,9 @@
 	<div class = 'iosSlider'>
 		<div class = 'slider'>
 		</div>
-		<div class = 'prevButton'></div>
-		<div class = 'nextButton'></div>
 	</div>
+	<div class = 'prevButton'></div>
+		<div class = 'nextButton'></div>
 </div>	
 <div id="discover-submenu">
 	<img id="hot" src="<?php echo URL . 'public/img/discover/btn-hot-on.png'; ?>">
