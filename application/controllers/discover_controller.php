@@ -20,7 +20,7 @@ class Discover extends Controller {
 		if(!empty($hot_list)){
 			// go through list of all items & submodules for menu module - FHM
 			foreach ($hot_list as $item) {
-				$hot_items['hot']['items'][] = $item->to_array(); 
+				$hot_items['items'][] = $item->to_array(); 
 			}
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
@@ -29,7 +29,7 @@ class Discover extends Controller {
 		if(!empty($info_list)){
 			// go through list of all items & submodules for menu module - FHM
 			foreach ($info_list as $item) {
-				$info_items['info']['items'][] = $item->to_array(); 
+				$info_items['items'][] = $item->to_array(); 
 			}
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');

@@ -348,6 +348,8 @@ function discover(hotItems, infoItems){
     $(document).ready(function() {
 
         init("discover");
+        
+        addSlideItems();
 
         /* touch slider */
         $('.iosSlider').iosSlider({
@@ -361,13 +363,17 @@ function discover(hotItems, infoItems){
             navNextSelector: $('.nextButton')
         });
 
-        function addSlideItems(hotItems, infoItems){
+        
 
-//             $.each(items, function(index, val) {
-                
-          //      var items = val.items;
-          
-          /*
+        function addSlideItems(){
+
+            $.each(hotItems.items, function(index, val) {
+
+                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + 'public/img/discover/hot/' + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>Touch Me.</span></div><div class='desc'><span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span></div><div class='button'><span>Read More &rsaquo;</span></div></div></div>";
+
+                $(".slider").append(item);
+            });  
+            /*
                 $.each(items, function(index, val) {
                     if(val.id == selectedItemId){
                         $(".pop .title").html(val.name.toUpperCase());
@@ -380,7 +386,7 @@ function discover(hotItems, infoItems){
                             $(".love .count").html(data);
                         });
                     }
-                    */
+            */
                 
             //    });
   //          });
@@ -388,12 +394,10 @@ function discover(hotItems, infoItems){
 
 
 
-             var item =  "<div class='item' id='item1'><div class='image'><img src=><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>Touch Me.</span></div><div class='desc'><span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span></div><div class='button'><span>Read More &rsaquo;</span></div></div></div>";
+           
 
           //  $(".slider").append(item);
         }
-
-       
 
         // position slider
         $(".iosSlider").css("top", "100px");
@@ -410,16 +414,17 @@ function discover(hotItems, infoItems){
             reset(2);
         });
 
+  
         // pop up in discover module 
-        $("#hot").click(function({
+        $("#hot").click(function(event){
             $("#hot").attr("src", URL + 'public/img/discover/btn-hot-off.png');
         });
 
-        $("#specials").click(function({
+        $("#specials").click(function(event){
             $("#specials").attr("src", URL + 'public/img/discover/btn-specials-on.png');
         });
 
-         $("#info").click(function({
+         $("#info").click(function(event){
             $("#info").attr("src", URL + 'public/img/discover/btn-info-on.png');
         });
 
