@@ -1043,7 +1043,7 @@ margin: -150px 310px;
   position: relative;
   left: 10px;
   overflow: hidden;
-  width: 900px;
+  width: 915px;
   height: 415px;
 }
 
@@ -1059,7 +1059,7 @@ margin: -150px 310px;
 .nextButton {
   position: absolute;
   top: 275px;
-  right: 20px;
+  right: 18px;
   width: 20px;
   height: 40px;
   background: url(../img/carousel/slider-buttons.png) no-repeat 100% 0;
@@ -1101,11 +1101,11 @@ margin: -150px 310px;
 
 .iosSlider .slider .item .text {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 180px;
-  height: 260px;
-  padding: 0px;
+bottom: -90px;
+right: 0;
+width: 270px;
+height: 370px;
+padding: 0px;
 }
 
 .iphoneUI .iosSlider .slider .item .text {
@@ -1113,9 +1113,9 @@ margin: -150px 310px;
 }
 
 .iosSlider .slider .item .text .bg {
-  position: absolute;
-top: -40px;
-right: -101px;
+position: absolute;
+top: -20px;
+right: -50px;
 width: 360px;
 height: 415px;
 background: #000;
