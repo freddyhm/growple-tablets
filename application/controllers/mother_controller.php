@@ -139,7 +139,6 @@ class Mother extends Controller {
 							$new_activity->end = isset($activity['end']) && $activity['end'] != ""  ? date('Y-m-d H:i:s', strtotime($activity['end'])) :date('Y-m-d H:i:s');
 							$new_activity->step_id = $new_step->id;
 							$new_activity->item_id = isset($activity['item_id']) ? $activity['item_id'] : '';
-							$new_activity->test_id = isset($activity['test_id']) ? $activity['test_id'] : '';
 							$failure = $new_activity->save() ? $failure : 'true';
 						}
 					}

@@ -369,7 +369,6 @@ function discover(hotItems, infoItems, specialsItems, commentList){
         // position slider
         $(".iosSlider").css("top", "100px").css("left" , "50px");
         
-        
         $("#disc-hidden-left").click(function(event) {
             reset(3);
         });
@@ -382,54 +381,49 @@ function discover(hotItems, infoItems, specialsItems, commentList){
             reset(2);
         });
 
-        
-
          //Unlove button popup
         $(document).on('click', ".unlove", function(){
 
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
 
-         //   logUserActivity("in", "unloved_item", selectedItemId, "", function(){
-              //  logUserActivity("out", "unloved_item", selectedItemId, "", function(){
-                    
-                    // Show comment selections
-                    $(itemSelector + " .unlove-selection").show();
-                    $(itemSelector + " .unlove-selection-btn").show();
+            // Show comment selections
+            $(itemSelector + " .unlove-selection").show();
+            $(itemSelector + " .unlove-selection-btn").show();
 
-                    //Hiding on Cancel
-                    $(itemSelector + " .overlay-close").click(function(){
-                        $("#item1 .unlove-selection").hide();
-                    });
+            //Hiding on Cancel
+            $(itemSelector + " .overlay-close").click(function(){
+                $(itemSelector + " .unlove-selection").hide();
+            });
 
-                   //Hide when touching thanks msg
-                    $(itemSelector + " .unlove-selection-pop").click(function(event) {
-                        if($(".unlove-selection-btn").css("display") == 'none'){
-                            $(".unlove-selection").hide();
-                        }
-                    });
+           //Hide when touching thanks msg
+            $(itemSelector + " .unlove-selection-pop").click(function(event) {
+                if($(".unlove-selection-btn").css("display") == 'none'){
+                    $(".unlove-selection").hide();
+                }
+            });
 
-                    //Selecting an Option and closing the popup
-                    $(itemSelector + " .unlove-selection-btn").click(function(){           
-                              var comm_id = $(this).attr("id");
-                         //   logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
-                           //     logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
-                                    $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
-                                        $(itemSelector + " .unlove-selection-btn").hide();
-                                         // clear old timer + dismiss pop up after 5 seconds if selections aren't displayed (thanks msg is displayed)
-                                        popUpTimer = clearTimeout(popUpTimer);
-                                        popUpTimer = setTimeout(function(){
-                                            if($(itemSelector + " .unlove-selection-btn").css("display") == 'none'){
-                                                $(itemSelector + " .unlove-selection").hide();
-                                            }
-                                        }, 5000);
-                                    });
-                             //   });
-                           // });
-                    });
+            //Selecting an option and closing the popup
+            $(itemSelector + " .unlove-selection-btn").click(function(){           
+                
+                var comm_id = $(this).attr("id");
 
-               // });
-           // });
+                // analytics for comment
+                logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
+                    logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
+                        $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
+                            $(itemSelector + " .unlove-selection-btn").hide();
+                             // clear old timer + dismiss pop up after 5 seconds if selections aren't displayed (thanks msg is displayed)
+                            popUpTimer = clearTimeout(popUpTimer);
+                            popUpTimer = setTimeout(function(){
+                                if($(itemSelector + " .unlove-selection-btn").css("display") == 'none'){
+                                    $(itemSelector + " .unlove-selection").hide();
+                                }
+                            }, 5000);
+                        });
+                   });
+                });
+            });
         });
 
         // love button, increment love
@@ -444,15 +438,16 @@ function discover(hotItems, infoItems, specialsItems, commentList){
             if(heartCount < 10){
                 heartCount++;
 
-           //     logUserActivity("in", "loved_item", selectedItemId, "", function(){
-             //       logUserActivity("out", "loved_item", selectedItemId, "", function(){
+                // analytics for loved item
+                logUserActivity("in", "loved_item", selectedItemId, "", function(){
+                    logUserActivity("out", "loved_item", selectedItemId, "", function(){
                         $(itemSelector + " .love img").attr("src", URL + "public/img/discover/btn-heart-pressed.png");
                         $.post(URL + 'mother/giveLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
                             $(itemSelector + " .love img").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
                             $(itemSelector + " .count").html(data);
                         });
-               //     });
-                //});
+                    });
+                });
             }else{
                
                 // reset heart timer after 5 min of touching heart button  
