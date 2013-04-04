@@ -362,19 +362,11 @@ function discover(hotItems, infoItems){
             navPrevSelector: $('.prevButton'),
             navNextSelector: $('.nextButton')
         });
-        
-        function addSlideItems(itemList, submod){
-            $.each(itemList.items, function(index, val) {
-                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>Touch Me.</span></div><div class='desc'><span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span></div><div class='button'><span>Read More &rsaquo;</span></div></div></div>";
-
-                $(".slider").append(item);
-            });
-        }
 
         // position slider
         $(".iosSlider").css("top", "100px").css("left" , "50px");
-
-
+        
+        
         $("#disc-hidden-left").click(function(event) {
             reset(3);
         });
@@ -387,21 +379,57 @@ function discover(hotItems, infoItems){
             reset(2);
         });
 
-  
-        // pop up in discover module 
-        $("#hot").click(function(event){
-            addSlideItems(hotItems, "hot");
-            $("#hot").attr("src", URL + 'public/img/discover/btn-hot-off.png');
+        $(".submod").click(function(event) {
+            
+            // get variables needed to change items 
+            var selectedType = $(this).attr("id");
+            var selectedTypeId = "#" + selectedType;
+            var selectedTypeItems = selectedType + "Items";
+            var selectedItems;
+
+            // switch string to actual variable 
+            if(selectedTypeItems == 'hotItems'){
+                selectedItems = hotItems; 
+            }else if(selectedTypeItems == 'infoItems'){
+                selectedItems = infoItems; 
+            }else if(selectedTypeItems == 'specialItems'){
+                selectedItems = specialItems; 
+            }
+
+            // add items, on & off behavior
+            addSlideItems(selectedItems, selectedType, function(){
+                $(selectedTypeId).attr("src", URL + 'public/img/discover/btn-' + selectedType + '-on.png');
+                // turn off other options by switching images except for selected
+                $(".submod").each(function(index, val){
+                    var type = $(this).attr("id"); 
+                    if(type != selectedType){
+                        $(this).attr("src", URL + 'public/img/discover/btn-' + type + '-off.png');
+                    }
+                });
+            }); 
         });
 
-        $("#specials").click(function(event){
-            $("#specials").attr("src", URL + 'public/img/discover/btn-specials-on.png');
-        });
+        function addSlideItems(itemList, submod, callback){
+            
+            // empty out current items 
+            $(".slider").empty();
 
-         $("#info").click(function(event){
-            addSlideItems(infoItems, "info");
-            $("#info").attr("src", URL + 'public/img/discover/btn-info-on.png');
-        });
+            // go through list, append new items
+            $.each(itemList.items, function(index, val) {
+                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span class='description'>" + val.description + "</span></div><div class='button'></div></div></div>";
+
+                $(".slider").append(item);
+            });
+
+            // update & change position of slider 
+            $('.iosSlider').iosSlider('update').css("top", "100px").css("left" , "50px");
+            // go back to first slide;
+            $('.iosSlider').iosSlider('goToSlide', 1);
+
+            if(callback != undefined){
+                callback();
+            }   
+        }
 
         $(".discover").click(function(event) {
 
