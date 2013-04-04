@@ -346,6 +346,9 @@ function discover(hotItems, infoItems, commentList){
     });
 
     $(document).ready(function() {
+        
+        // timer for unloved pop up
+        var popUpTimer = "";
 
         init("discover");
 
@@ -387,12 +390,12 @@ function discover(hotItems, infoItems, commentList){
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
 
-          //  popUpTimer = clearTimeout(popUpTimer);
-
          //   logUserActivity("in", "unloved_item", selectedItemId, "", function(){
               //  logUserActivity("out", "unloved_item", selectedItemId, "", function(){
+                    
+                    // Show comment selections
                     $(itemSelector + " .unlove-selection").show();
-                    $("#item1 .unlove-selection-btn").show();
+                    $(itemSelector + " .unlove-selection-btn").show();
 
                     //Hiding on Cancel
                     $(itemSelector + " .overlay-close").click(function(){
@@ -401,8 +404,6 @@ function discover(hotItems, infoItems, commentList){
 
                    //Hide when touching thanks msg
                     $(itemSelector + " .unlove-selection-pop").click(function(event) {
-
-                         //popUpTimer = clearTimeout(popUpTimer);
                         if($(".unlove-selection-btn").css("display") == 'none'){
                             $(".unlove-selection").hide();
                         }
@@ -410,15 +411,17 @@ function discover(hotItems, infoItems, commentList){
 
                     //Selecting an Option and closing the popup
                     $(itemSelector + " .unlove-selection-btn").click(function(){           
-
-                            var comm_id = $(this).attr("id");
+                              var comm_id = $(this).attr("id");
                          //   logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
                            //     logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
                                     $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
                                         $(itemSelector + " .unlove-selection-btn").hide();
-                                         // dismiss pop up after 5 seconds 
+                                         // clear old timer + dismiss pop up after 5 seconds if selections aren't displayed (thanks msg is displayed)
+                                        popUpTimer = clearTimeout(popUpTimer);
                                         popUpTimer = setTimeout(function(){
-                                            $(itemSelector + " .unlove-selection").hide();
+                                            if($(itemSelector + " .unlove-selection-btn").css("display") == 'none'){
+                                                $(itemSelector + " .unlove-selection").hide();
+                                            }
                                         }, 5000);
                                     });
                              //   });
