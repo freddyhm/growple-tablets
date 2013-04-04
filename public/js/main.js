@@ -12,7 +12,6 @@ var currentModule = "";
 var inactive_timer = "";
 var vid_timer = "";
 var pauseInactiveTimer = "";
-var heartCount = 0;
 var heartTimer = "";
 
 function init(module){
@@ -349,6 +348,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
  
         // timer for unloved pop up
         var popUpTimer = "";
+        var heartCount = 0;
 
         init("discover");
 
@@ -398,8 +398,8 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
            //Hide when touching thanks msg
             $(itemSelector + " .unlove-selection-pop").click(function(event) {
-                if($(".unlove-selection-btn").css("display") == 'none'){
-                    $(".unlove-selection").hide();
+                if ($(itemSelector + ".unlove-selection-btn").css("display") == 'none'){
+                     $(itemSelector + ".unlove-selection").hide();
                 }
             });
 
