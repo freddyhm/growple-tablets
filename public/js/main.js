@@ -311,7 +311,7 @@ function randombox(){
 
  };
 
-function discover(hotItems, infoItems){
+function discover(hotItems, infoItems, commentList){
 
     var appCache = window.applicationCache;
     var one_user = 0;
@@ -379,18 +379,60 @@ function discover(hotItems, infoItems){
             reset(2);
         });
 
+        
+
          //Unlove button popup
-        $(".unlove").click(function(){
-            
+        $(document).on('click', ".unlove", function(){
+
+            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
+
           //  popUpTimer = clearTimeout(popUpTimer);
 
          //   logUserActivity("in", "unloved_item", selectedItemId, "", function(){
               //  logUserActivity("out", "unloved_item", selectedItemId, "", function(){
                     $(".unlove-selection").show();
                     $(".unlove-selection-btn").show();
+
+                    //Hiding on Cancel
+                    $(".overlay-close").click(function(){
+                        $(".unlove-selection").hide();
+                    });
+
+                   //Hide when touching thanks msg
+                    $("#unlove-selection-pop").click(function(event) {
+
+                         //popUpTimer = clearTimeout(popUpTimer);
+                        if($(".unlove-selection-btn").css("display") == 'none'){
+                            $(".unlove-selection").hide();
+                        }
+                    });
+
+                    //Selecting an Option and closing the popup
+                    $(".unlove-selection-btn").click(function(){           
+
+                            var comm_id = $(this).attr("id");
+                         //   logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
+                           //     logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
+                                    $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
+                                        $(".unlove-selection-btn").hide();
+                                         // dismiss pop up after 5 seconds 
+                                        popUpTimer = setTimeout(function(){
+                                            $(".unlove-selection").hide();
+                                        }, 5000);
+                                    });
+                             //   });
+                           // });
+                    });
+
                // });
            // });
         });
+
+        
+
+
+
+
 
         /*
 
@@ -461,6 +503,8 @@ function discover(hotItems, infoItems){
 
         function addSlideItems(itemList, submod, callback){
 
+            var comments = "";
+
 /*
             <div class="heart unlove">
                 <img src="<?php echo URL . 'public/img/discover/btn-unheart-unpressed.png'; ?>">
@@ -487,9 +531,15 @@ function discover(hotItems, infoItems){
             // empty out current items 
             $(".slider").empty();
 
+            $.each(commentList, function(index, val) {
+                comments += "<button class='unlove-selection-btn' id=" + val.id + ">" + val.name + "</button>";
+            });
+
+            comments += "<button class='unlove-selection-btn overlay-close'>Cancel</button>";
+
             // go through list, append new items
             $.each(itemList.items, function(index, val) {
-                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div><div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'><div class='count'></div></div><div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div><div class='unlove-selection'><div id='unlove-overlay'></div><div id='unlove-selection-pop'><div id='thanks-unlove'><p>Thanks for the feeback!</p></div><button class='unlove-selection-btn' id=''></button><button class='unlove-selection-btn overlay-close'></button></div></div></div>";
+                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div><div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'><div class='count'></div></div><div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div><div class='unlove-selection'><div id='unlove-selection-pop'><div id='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
 
                 $(".slider").append(item);
             });
