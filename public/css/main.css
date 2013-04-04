@@ -1464,7 +1464,7 @@ z-index: 1;
   float: left;
 }
 
-#thanks-unlove
+.thanks-unlove
 {
   left: 28px;
   font-size: 50px;
@@ -1475,10 +1475,10 @@ z-index: 1;
   text-align: center;
 }
 
-#thanks-unlove p
+.thanks-unlove p
 {
-top: 50px;
-left: 80px;
+  top: 50px;
+  left: 80px;
   position: relative;
 }
 
@@ -1608,7 +1608,7 @@ left: 80px;
 {
   display:none;
 }
-#unlove-selection-pop
+.unlove-selection-pop
 {
   width: 810px;
   height: 430px;

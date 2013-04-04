@@ -385,21 +385,22 @@ function discover(hotItems, infoItems, commentList){
         $(document).on('click', ".unlove", function(){
 
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
+            var itemSelector = "#item" + selectedItemId;
 
           //  popUpTimer = clearTimeout(popUpTimer);
 
          //   logUserActivity("in", "unloved_item", selectedItemId, "", function(){
               //  logUserActivity("out", "unloved_item", selectedItemId, "", function(){
-                    $(".unlove-selection").show();
-                    $(".unlove-selection-btn").show();
+                    $(itemSelector + " .unlove-selection").show();
+                    $("#item1 .unlove-selection-btn").show();
 
                     //Hiding on Cancel
-                    $(".overlay-close").click(function(){
-                        $(".unlove-selection").hide();
+                    $(itemSelector + " .overlay-close").click(function(){
+                        $("#item1 .unlove-selection").hide();
                     });
 
                    //Hide when touching thanks msg
-                    $("#unlove-selection-pop").click(function(event) {
+                    $(itemSelector + " .unlove-selection-pop").click(function(event) {
 
                          //popUpTimer = clearTimeout(popUpTimer);
                         if($(".unlove-selection-btn").css("display") == 'none'){
@@ -408,16 +409,16 @@ function discover(hotItems, infoItems, commentList){
                     });
 
                     //Selecting an Option and closing the popup
-                    $(".unlove-selection-btn").click(function(){           
+                    $(itemSelector + " .unlove-selection-btn").click(function(){           
 
                             var comm_id = $(this).attr("id");
                          //   logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
                            //     logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
                                     $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
-                                        $(".unlove-selection-btn").hide();
+                                        $(itemSelector + " .unlove-selection-btn").hide();
                                          // dismiss pop up after 5 seconds 
                                         popUpTimer = setTimeout(function(){
-                                            $(".unlove-selection").hide();
+                                            $(itemSelector + " .unlove-selection").hide();
                                         }, 5000);
                                     });
                              //   });
@@ -539,7 +540,7 @@ function discover(hotItems, infoItems, commentList){
 
             // go through list, append new items
             $.each(itemList.items, function(index, val) {
-                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div><div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'><div class='count'></div></div><div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div><div class='unlove-selection'><div id='unlove-selection-pop'><div id='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
+                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div><div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'><div class='count'></div></div><div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div><div class='unlove-selection'><div class='unlove-selection-pop'><div class='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
 
                 $(".slider").append(item);
             });
