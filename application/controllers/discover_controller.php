@@ -11,10 +11,12 @@ class Discover extends Controller {
 
 		$hot_list = Item::find_all_by_module_id('5');
 		$info_list = Item::find_all_by_module_id('7');
+		$specials_list = Item::find_all_by_module_id('8');
 		$comment_list = Comment::find("all");
 
 		$hot_items = array();
 		$info_items = array();
+		$specials_items = array();
 		$comments = array();
 
 		if(!empty($hot_list)){
@@ -35,6 +37,17 @@ class Discover extends Controller {
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
 
+
+		if(!empty($specials_list)){
+			// go through list of all items & submodules for menu module - FHM
+			foreach ($specials_list as $item) {
+				$specials_items['items'][] = $item->to_array(); 
+			}
+		}else{
+			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
+		}
+
+
 		if(!empty($comment_list)){
 
 			foreach ($comment_list as $comment) {
@@ -42,7 +55,7 @@ class Discover extends Controller {
 			}
 		}
 		
-		$info = array('comments' => $comments, 'hot_items' => $hot_items, 'info_items' => $info_items, 'venue' => Session::get('venue'));
+		$info = array('comments' => $comments, 'hot_items' => $hot_items, 'info_items' => $info_items, 'specials_items' => $specials_items);
 		
 		parent::$data = $info;
 		parent::index(); 

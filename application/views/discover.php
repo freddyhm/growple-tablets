@@ -1,5 +1,5 @@
 <script>
-	discover(<?php echo json_encode($hot_items); ?>, <?php echo json_encode($info_items); ?>, <?php echo json_encode($comments); ?>);
+	discover(<?php echo json_encode($hot_items); ?>, <?php echo json_encode($info_items); ?>,<?php echo json_encode($specials_items) ?>, <?php echo json_encode($comments); ?>);
 </script>
 <div id="carousel">
 	<div class='iosSlider'>

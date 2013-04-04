@@ -311,7 +311,7 @@ function randombox(){
 
  };
 
-function discover(hotItems, infoItems, commentList){
+function discover(hotItems, infoItems, specialsItems, commentList){
 
     var appCache = window.applicationCache;
     var one_user = 0;
@@ -475,8 +475,8 @@ function discover(hotItems, infoItems, commentList){
                 selectedItems = hotItems; 
             }else if(selectedTypeItems == 'infoItems'){
                 selectedItems = infoItems; 
-            }else if(selectedTypeItems == 'specialItems'){
-                selectedItems = specialItems; 
+            }else if(selectedTypeItems == 'specialsItems'){
+                selectedItems = specialsItems; 
             }
 
             // add items, on & off behavior
