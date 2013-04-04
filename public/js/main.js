@@ -346,7 +346,7 @@ function discover(hotItems, infoItems, commentList){
     });
 
     $(document).ready(function() {
-        
+ 
         // timer for unloved pop up
         var popUpTimer = "";
 
@@ -432,39 +432,27 @@ function discover(hotItems, infoItems, commentList){
            // });
         });
 
-        
-
-
-
-
-
-        /*
-
         // love button, increment love
-        $(".love").click(function(event) {
+        $(document).on("click", ".love", function(event) {
 
-            var selectedId = $(this).attr("id").split("-");
-            var selectedItemId = selectedId[2];
+            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
+            var itemSelector = "#item" + selectedItemId;
 
             // clear lingering heart timer
             heartTimer = clearTimeout(heartTimer);
 
             if(heartCount < 10){
-
                 heartCount++;
 
-                var countClass = ".love.count";  
-                var imgClass = ".love img";  
-
-                logUserActivity("in", "loved_item", selectedItemId, "", function(){
-                    logUserActivity("out", "loved_item", selectedItemId, "", function(){
-                        $(imgClass).attr("src", URL + "public/img/discover/btn-heart-pressed");
+           //     logUserActivity("in", "loved_item", selectedItemId, "", function(){
+             //       logUserActivity("out", "loved_item", selectedItemId, "", function(){
+                        $(itemSelector + " .love img").attr("src", URL + "public/img/discover/btn-heart-pressed.png");
                         $.post(URL + 'mother/giveLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                            $(imgClass).attr("src", URL + "public/img/discover/btn-heart-unpressed");
-                            $(countClass).html(data);
+                            $(itemSelector + " .love img").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
+                            $(itemSelector + " .count").html(data);
                         });
-                    });
-                });
+               //     });
+                //});
             }else{
                
                 // reset heart timer after 5 min of touching heart button  
@@ -473,7 +461,6 @@ function discover(hotItems, infoItems, commentList){
                 }, 300000);
             }
         });
-*/
 
         $(".submod").click(function(event) {
             
@@ -508,30 +495,7 @@ function discover(hotItems, infoItems, commentList){
         function addSlideItems(itemList, submod, callback){
 
             var comments = "";
-
-/*
-            <div class="heart unlove">
-                <img src="<?php echo URL . 'public/img/discover/btn-unheart-unpressed.png'; ?>">
-                <div class="count"></div>
-            </div>  
-            <div class="heart love">
-                <img src="<?php echo URL . 'public/img/discover/btn-heart-unpressed.png'; ?>">
-                <div class="count"></div>
-            </div>
-            <div class="unlove-selection">
-                <div id="unlove-overlay"></div>
-                <div id="unlove-selection-pop">
-                    <div id='thanks-unlove'><p>Thanks for the feeback!</p></div>
-                    <?php 
-                        foreach ($comments as $comment) {
-                    ?>
-                        <button class="unlove-selection-btn" id="<?php echo $comment['id']; ?>"><?php echo $comment['name']; ?></button>
-                    <?php } ?>
-                        <button class="unlove-selection-btn overlay-close"> Cancel </button>
-                </div>  
-            </div>
-    */
-            
+  
             // empty out current items 
             $(".slider").empty();
 
@@ -543,18 +507,18 @@ function discover(hotItems, infoItems, commentList){
 
             // go through list, append new items
             $.each(itemList.items, function(index, val) {
-                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div><div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'><div class='count'></div></div><div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div><div class='unlove-selection'><div class='unlove-selection-pop'><div class='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
+
+                var itemSelector = "#item" + val.id;
+
+                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div><div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'></div><div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div><div class='unlove-selection'><div class='unlove-selection-pop'><div class='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
 
                 $(".slider").append(item);
-            });
 
-            /*
-
-            // get love count from server 
-            $.get(URL + 'mother/getLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                $(".love .count").html(data);
+                // get love count from server
+                $.get(URL + 'mother/getLove/d/', {item_id: val.id}, function(data, textStatus, xhr) {
+                    $(itemSelector + " .count").html(data);
+                });
             });
-*/
 
             // update & change position of slider 
             $('.iosSlider').iosSlider('update').css("top", "100px").css("left" , "50px");
