@@ -1447,14 +1447,21 @@ z-index: 1;
 
 .heart
 {
-  top: 297px;
+  bottom: 92px;
   float: right;
   position: relative;
 }
 
 .heart.unlove
 {
-  z-index:1;
+  z-index: 1;
+  top: 118px;
+  left: 56px;
+}
+
+.heart.love
+{
+  float: left;
 }
 
 #thanks-unlove
