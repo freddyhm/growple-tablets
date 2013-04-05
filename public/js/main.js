@@ -384,7 +384,6 @@ function discover(hotItems, infoItems, specialsItems, commentList){
          //Unlove button popup
         $(document).on('click', ".unlove", function(){
 
-
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
  
@@ -406,7 +405,6 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
             //Selecting an option and closing the popup
             $(itemSelector + " .unlove-selection-btn").click(function(){   
-
                 var comm_id = $(this).attr("id").substring(7);
                 var childClass = $(this).attr("class").substring(21);
 
@@ -508,7 +506,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
                 var itemSelector = "#item" + val.id;
 
-                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div><div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'></div><div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div><div class='unlove-selection'><div class='unlove-selection-pop'><div class='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
+                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img class='one' src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div><div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'></div><div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div><div class='unlove-selection'><div class='unlove-selection-pop'><div class='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
 
                 $(".slider").append(item);
 
