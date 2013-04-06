@@ -366,7 +366,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
             navNextSelector: $('.nextButton')
         });
 
-        // position slider
+        // change slider position
         $(".iosSlider").css("top", "100px").css("left" , "50px");
         
         $("#disc-hidden-left").click(function(event) {
@@ -381,55 +381,70 @@ function discover(hotItems, infoItems, specialsItems, commentList){
             reset(2);
         });
 
-         //Unlove button popup
-        $(document).on('click', ".unlove", function(){
+        //Selecting an option and closing the popup
+        $(".unlove-selection-btn").click(function(){   
 
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
- 
+            var childClass = $(this).attr("class").substring(21);
+
+             if(childClass != 'overlay-close'){  
+
+                var comm_id = $(this).attr("id").substring(7);
+
+                // analytics for comment
+                logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
+                    logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
+                        $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
+                            $(itemSelector + " .unlove-selection-btn").hide();
+                             // clear old timer + dismiss pop up after 5 seconds if selections aren't displayed (thanks msg is displayed)
+                            popUpTimer = clearTimeout(popUpTimer);
+                            popUpTimer = setTimeout(function(){
+                                if($(itemSelector + " .unlove-selection-btn").css("display") == 'none'){
+                                    $(itemSelector + " .unlove-selection").hide();
+                                }
+                            }, 5000);
+                        });
+                   });
+                });
+            }
+        });
+       
+       // unlove button, show pop-up
+       $(".unlove").click(function(event) {
+            
+            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
+            var itemSelector = "#item" + selectedItemId;
+
             // Show comment selections
             $(itemSelector + " .unlove-selection").show();
             $(itemSelector + " .unlove-selection-btn").show();
+       });
+       
 
-            //Hide selection on Cancel
-            $(itemSelector + " .overlay-close").click(function(){
+        //Hide selection on Cancel
+        $(".overlay-close").click(function(){
+
+            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
+            var itemSelector = "#item" + selectedItemId;
+
+            $(itemSelector + " .unlove-selection").hide();
+        });
+
+
+        //Hide selection when touching thanks msg
+        $(".unlove-selection-pop").click(function(event) {
+
+            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
+            var itemSelector = "#item" + selectedItemId;
+
+            if ($(itemSelector + " .unlove-selection-btn").css("display") == 'none'){
                 $(itemSelector + " .unlove-selection").hide();
-            });
-
-           //Hide selection when touching thanks msg
-            $(itemSelector + " .unlove-selection-pop").click(function(event) {
-                if ($(itemSelector + ".unlove-selection-btn").css("display") == 'none'){
-                     $(itemSelector + ".unlove-selection").hide();
-                }
-            });
-
-            //Selecting an option and closing the popup
-            $(itemSelector + " .unlove-selection-btn").click(function(){   
-                var comm_id = $(this).attr("id").substring(7);
-                var childClass = $(this).attr("class").substring(21);
-
-                 if(childClass != 'overlay-close'){  
-                    // analytics for comment
-                    logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
-                        logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
-                            $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
-                                $(itemSelector + " .unlove-selection-btn").hide();
-                                 // clear old timer + dismiss pop up after 5 seconds if selections aren't displayed (thanks msg is displayed)
-                                popUpTimer = clearTimeout(popUpTimer);
-                                popUpTimer = setTimeout(function(){
-                                    if($(itemSelector + " .unlove-selection-btn").css("display") == 'none'){
-                                        $(itemSelector + " .unlove-selection").hide();
-                                    }
-                                }, 5000);
-                            });
-                       });
-                    });
-                }
-            });
+            }
         });
 
         // love button, increment love
-        $(document).on("click", ".love", function(event) {
+        $(".love").click(function(event) {
 
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
@@ -512,6 +527,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
                 var item = "<div class='item' id='item" + val.id + "'><div class='image'><img class='one' src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div>" + love;
 
+                // add unlove part if submod is food related
                 if(submod == 'hot'){
                     item += unlove;
                 }
@@ -533,145 +549,6 @@ function discover(hotItems, infoItems, specialsItems, commentList){
                 callback();
             }   
         }
-
-        $(".discover").click(function(event) {
-
-            var selectedId = $(this).attr("id").split("-");
-            var selectedGrp = selectedId[0];
-            var selectedType = selectedId[1];
-            var selectedItemId = selectedId[2];
-            var items = selectedGrp == 'spotlight' ? spotlightItems : featureItems;
-
-            if(selectedType == "chef's pick" || selectedGrp == 'feature'){
-                $(".unlove").css("display", "inline");
-            }else{
-                $(".unlove").css("display", "none");
-            }
-
-            // get proper item based on array, udpate page 
-            logUserActivity("in", "viewed_item", selectedItemId, "", function(){
-                logUserActivity("out", "viewed_item", selectedItemId, "", function(){
-                    $(".pop").modal({
-                        position: ["5%"],
-                        onShow: function (dialog){
-
-                            var modal = this;
-                            var popUpTimer = "";
-
-                            $.each(items, function(index, val) {
-                                if(val.name == selectedType){
-                                    var items = val.items;
-                                    $.each(items, function(index, val) {
-                                        if(val.id == selectedItemId){
-                                            $(".pop .title").html(val.name.toUpperCase());
-                                            $(".pop .pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
-                                            $(".pop .price").html(val.price);
-                                            $(".pop .msg").html(val.description);
-
-                                            // get love count from server 
-                                            $.get(URL + 'mother/getLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                                                $(".love .count").html(data);
-                                            });
-                                        }
-                                    });
-                                }
-                            });
-                            
-                            // exit button
-                            $(".pop .quit").click(function(event) {
-                                modal.close();
-                            });
-
-                            //Unlove button popup
-                            $(".unlove").click(function(){
-                                
-                                popUpTimer = clearTimeout(popUpTimer);
-
-                                logUserActivity("in", "unloved_item", selectedItemId, "", function(){
-                                    logUserActivity("out", "unloved_item", selectedItemId, "", function(){
-                                        $(".unlove-selection").show();
-                                        $(".unlove-selection-btn").show();
-                                    });
-                                });
-                            });
-
-                            //Hiding the unlove button popup
-                             $("#unlove-overlay").click(function(){
-                               $(".unlove-selection").hide();
-                            });
-
-                             //Hiding on Cancel
-                             $(".overlay-close").click(function(){
-                                $(".unlove-selection").hide();
-                             });
-
-                            //Selecting an Option and closing the popup
-                            $(".unlove-selection-btn").click(function(){           
-
-                                // check for child class 
-                                var childClass = $(this).attr("class").substring(21);
-                                
-                                if(childClass != 'overlay-close'){  
-                                    var comm_id = $(this).attr("id");
-                                    logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
-                                        logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
-                                            $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
-                                                $(".unlove-selection-btn").hide();
-                                                 // dismiss pop up after 5 seconds 
-                                                popUpTimer = setTimeout(function(){
-                                                    $(".unlove-selection").hide();
-                                                }, 5000);
-                                            });
-                                        });
-                                    });
-                                }
-                            });
-
-                            //Hide when touching thanks msg
-                            $("#thanks-unlove").click(function(event) {
-                                 popUpTimer = clearTimeout(popUpTimer);
-                                 $(".unlove-selection").hide();
-                            });
-
-                            // love button, increment love
-                            $(".love").click(function(event) {
-
-                                // clear lingering heart timer
-                                heartTimer = clearTimeout(heartTimer);
-
-                                if(heartCount < 10){
-
-                                    heartCount++;
-
-                                    var heartType = $(this).attr("class").substring(6);
-                                    var url = heartType == 'love' ? URL + 'mother/giveLove/d/': URL + 'mother/giveUnLove/d/';
-                                    var btnPressed = heartType == 'love' ? "btn-heart-pressed.png" : "btn-unheart-pressed.png";
-                                    var btnUnpressed = heartType == 'love' ? "btn-heart-unpressed.png" : "btn-unheart-unpressed.png";
-                                    var countClass = "." + heartType + " .count";  
-                                    var imgClass = "." + heartType + " img";  
-
-                                    logUserActivity("in", heartType + "d_item", selectedItemId, "", function(){
-                                        logUserActivity("out", heartType + "d_item", selectedItemId, "", function(){
-                                            $(imgClass).attr("src", URL + "public/img/discover/" + btnPressed);
-                                            $.post(url, {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                                                $(imgClass).attr("src", URL + "public/img/discover/" + btnUnpressed);
-                                                $(countClass).html(data);
-                                            });
-                                        });
-                                    });
-                                }else{
-                                   
-                                    // reset heart timer after 5 min of touching heart button  
-                                    heartTimer = setTimeout(function(){
-                                        heartCount = 0;
-                                    }, 300000);
-                                }
-                            });
-                        }
-                    });
-                }); 
-            });
-        });
     });   
 }
 
