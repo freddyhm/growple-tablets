@@ -1199,26 +1199,26 @@ left: 684px;
 
 .disc-hidden-area
 {
-  height: 49px;
+  width: 48px;
   position: absolute;
 }
 
 #disc-hidden-left
 {
-  width: 154px; 
-  left: 198px;
+  height: 96px;
+  bottom: 75px;
 }
 
 #disc-hidden-center
 {
-  width: 333px;
-  left: 367px;
+  height: 96px;
+  bottom: 172px;
 }
 
 #disc-hidden-right
 {
-  width: 292px;
-  left: 716px;
+  height: 159px;
+  bottom: 342px;
 }
 
 #discover-area

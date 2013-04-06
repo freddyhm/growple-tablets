@@ -9,6 +9,9 @@
 	<div class='prevButton'></div>
 	<div class='nextButton'></div>
 </div>	
+<div class="disc-hidden-area" id="disc-hidden-left"></div>
+<div class="disc-hidden-area" id="disc-hidden-center"></div>
+<div class="disc-hidden-area" id="disc-hidden-right"></div>
 <div id="discover-submenu">
 	<img class="submod" id="hot" src="<?php echo URL . 'public/img/discover/btn-hot-on.png'; ?>">
 	<img class="submod" id="specials" src="<?php echo URL . 'public/img/discover/btn-specials-off.png'; ?>">
