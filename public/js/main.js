@@ -349,17 +349,11 @@ function discover(hotItems, infoItems, specialsItems, commentList){
         // timer for unloved pop up
         var popUpTimer = "";
         var heartCount = 0;
-        var t = true;
+        var itemTouched = false;
 
         init("discover");
 
         addSlideItems(hotItems, "hot");
-
-        $(document).on('click', '.item', function(event){
-
-            t = false;
-            console.log(event);
-        });
 
         /* touch slider */
         $('.iosSlider').iosSlider({
@@ -373,6 +367,12 @@ function discover(hotItems, infoItems, specialsItems, commentList){
             navNextSelector: $('.nextButton'),
             onSlideComplete: trackItemView,
             onSliderUpdate: trackItemView
+        });
+
+        // to flag if there's a click event on item, if so analytics is bypassed
+        $(".iosSlider").click(function(event){
+            console.log('clicked');
+            itemTouched = true;
         });
 
         // change slider position
@@ -511,19 +511,22 @@ function discover(hotItems, infoItems, specialsItems, commentList){
                 });
             }); 
         });
-
+    
+        // track which items have been viewed besides the first one
+        // check if coming from a click event versus swipe
         function trackItemView(args) {
 
+            if(itemTouched == false){
+                var currentSlideObject = $(args.currentSlideObject).attr("id");
 
-            var currentSlideObject = $(args.currentSlideObject).attr("id");
-
-            if(currentSlideObject != undefined){
-                var selectedItemId = currentSlideObject.substring(4);
-                console.log(selectedItemId);
+                if(currentSlideObject != undefined){
+                    var selectedItemId = currentSlideObject.substring(4);
+                    console.log(selectedItemId);
+                }
+            }else{
+                itemTouched = false;    
             }
-
-            
-
+        
             /*
 
             logUserActivity("in", "viewed_item", selectedItemId, "", function(){
