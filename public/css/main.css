@@ -1041,9 +1041,8 @@ margin: -150px 310px;
 
 .iosSlider {
   position: relative;
-  left: 10px;
   overflow: hidden;
-  width: 817px;
+  width: 962px;
   height: 415px;
 }
 
@@ -1074,10 +1073,9 @@ margin: -150px 310px;
 .iosSlider .slider .item {
   position: relative;
   top: 0;
-  left: -8px;
-  width: 820px;
+  width: 890px;
   height: 300px;
-  margin: 0 40px 0 -22px;
+  margin: 0 40px 0 40px;
 }
 
 .iosSlider .slider .item .image {

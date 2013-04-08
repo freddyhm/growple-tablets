@@ -349,25 +349,34 @@ function discover(hotItems, infoItems, specialsItems, commentList){
         // timer for unloved pop up
         var popUpTimer = "";
         var heartCount = 0;
+        var t = true;
 
         init("discover");
 
         addSlideItems(hotItems, "hot");
+
+        $(document).on('click', '.item', function(event){
+
+            t = false;
+            console.log(event);
+        });
 
         /* touch slider */
         $('.iosSlider').iosSlider({
             scrollbar: true,
             snapToChildren: true,
             desktopClickDrag: true,
-            scrollbarMargin: '5px 40px 0 40px',
+            scrollbarMargin: '0 40px 0 40px',
             scrollbarBorderRadius: 0,
             scrollbarHeight: '2px',
             navPrevSelector: $('.prevButton'),
-            navNextSelector: $('.nextButton')
+            navNextSelector: $('.nextButton'),
+            onSlideComplete: trackItemView,
+            onSliderUpdate: trackItemView
         });
 
         // change slider position
-        $(".iosSlider").css("top", "100px").css("left" , "50px");
+        $(".iosSlider").css("top", "100px").css("left" , "-13px");
         
         $("#disc-hidden-left").click(function(event) {
             reset(3);
@@ -503,6 +512,29 @@ function discover(hotItems, infoItems, specialsItems, commentList){
             }); 
         });
 
+        function trackItemView(args) {
+
+
+            var currentSlideObject = $(args.currentSlideObject).attr("id");
+
+            if(currentSlideObject != undefined){
+                var selectedItemId = currentSlideObject.substring(4);
+                console.log(selectedItemId);
+            }
+
+            
+
+            /*
+
+            logUserActivity("in", "viewed_item", selectedItemId, "", function(){
+                logUserActivity("out", "viewed_item", selectedItemId, "", function(){
+                });
+            });
+*/
+        }
+
+
+
         function addSlideItems(itemList, submod, callback){
 
             var comments = "";
@@ -525,7 +557,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
                 var love = "<div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div>";
 
-                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img class='one' src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div>" + love;
+                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div>" + love;
 
                 // add unlove part if submod is food related
                 if(submod == 'hot'){
@@ -541,7 +573,8 @@ function discover(hotItems, infoItems, specialsItems, commentList){
             });
 
             // update & change position of slider 
-            $('.iosSlider').iosSlider('update').css("top", "100px").css("left" , "50px");
+            $('.iosSlider').iosSlider('update').css("top", "100px").css("left" , "-10px");
+
             // go back to first slide;
             $('.iosSlider').iosSlider('goToSlide', 1);
 
