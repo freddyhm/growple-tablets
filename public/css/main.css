@@ -1081,11 +1081,9 @@ margin: -150px 310px;
 .iosSlider .slider .item .image {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 30px;
   width: 889px;
   height: 415px;
-  padding-left:30px;
-
 }
 
 .iosSlider .slider .item .image .bg {
@@ -1198,6 +1196,7 @@ left: 684px;
 .disc-hidden-area
 {
   width: 48px;
+  z-index: 2;
   position: absolute;
 }
 

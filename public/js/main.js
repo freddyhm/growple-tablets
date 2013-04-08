@@ -522,21 +522,15 @@ function discover(hotItems, infoItems, specialsItems, commentList){
                 if(currentSlideObject != undefined){
                     var selectedItemId = currentSlideObject.substring(4);
                     console.log(selectedItemId);
+                    logUserActivity("in", "viewed_item", selectedItemId, "", function(){
+                        logUserActivity("out", "viewed_item", selectedItemId, "", function(){
+                        });
+                    });
                 }
             }else{
                 itemTouched = false;    
             }
-        
-            /*
-
-            logUserActivity("in", "viewed_item", selectedItemId, "", function(){
-                logUserActivity("out", "viewed_item", selectedItemId, "", function(){
-                });
-            });
-*/
         }
-
-
 
         function addSlideItems(itemList, submod, callback){
 
