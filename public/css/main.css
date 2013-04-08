@@ -1191,7 +1191,7 @@ position: relative;
 #info
 {
 position: relative;
-top: -74px;
+top: -73px;
 left: 684px;
 }
 
@@ -1445,16 +1445,15 @@ z-index: 1;
 
 .heart
 {
-  bottom: 92px;
+  bottom: -95px;
   float: right;
   position: relative;
 }
 
 .heart.unlove
 {
-  z-index: 1;
-  top: 118px;
-  left: 56px;
+  top: 268px;
+left: 30px;
 }
 
 .heart.love
