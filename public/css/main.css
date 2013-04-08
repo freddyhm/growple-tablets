@@ -1058,7 +1058,7 @@ margin: -150px 310px;
 .nextButton {
   position: absolute;
   top: 275px;
-  right: 18px;
+  right: 25px;
   width: 20px;
   height: 40px;
   background: url(../img/carousel/slider-buttons.png) no-repeat 100% 0;
@@ -1115,7 +1115,7 @@ right: -50px;
 width: 360px;
 height: 415px;
 background: #000;
-opacity: 0.5;
+opacity: 0.7;
 }
 
 .iphoneUI .iosSlider .slider .item .text .bg {
@@ -1131,20 +1131,20 @@ opacity: 0.5;
 
 .iosSlider .slider .item .title span {
   color: #fff;
-  font: bold 40px/40px "Helvetica Neue",Helvetica,Arial,sans-serif;
+ font: bold 46px/40px "Helvetica Neue",Helvetica,Arial,sans-serif;
   text-shadow: 0 -1px 1px #000;
 }
 
 .iosSlider .slider .item .desc {
   position: relative;
-  top: 0;
+  top: 10px;
   left: 0;
   margin: 10px 0 0 0;
 }
 
 .iosSlider .slider .item .desc span {
   color: #fff;
-  font: normal 16px/22px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font: normal 20px/25px "Helvetica Neue",Helvetica,Arial,sans-serif;
   text-shadow: 0 -1px 1px #000;
 }
 
@@ -1444,15 +1444,15 @@ z-index: 1;
 
 .heart
 {
-  bottom: -95px;
-  float: right;
-  position: relative;
+  bottom: -85px;
+  left: -20px;
+  position: absolute;
 }
 
 .heart.unlove
 {
-  top: 268px;
-left: 30px;
+  top: 265px;
+left: 750px;
 }
 
 .heart.love
@@ -1474,7 +1474,7 @@ left: 30px;
 .thanks-unlove p
 {
   top: 50px;
-  left: 80px;
+  left: 38px;
   position: relative;
 }
 
@@ -1606,18 +1606,18 @@ left: 30px;
 }
 .unlove-selection-pop
 {
-  width: 810px;
-  height: 430px;
+  width: 690px;
+  height: 380px;
   background: url('../img/discover/unlove-popup.png');
   position: absolute;
-  top: -25px;
-  left: 60px;
+  top: 10px;
+left: 120px;
 }
 
 .unlove-selection-btn
 {
-  width: 742px;
-  height: 80px;
+  width: 650px;
+  height: 78px;
   -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
   box-shadow: inset 0px 1px 0px 0px #ffffff;
   background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
@@ -1634,8 +1634,8 @@ left: 30px;
   padding: 10px 100px;
   text-decoration: none;
   text-shadow: 1px 1px 0px #ffffff;
-  top: 30px;
-  left: 33px;
+  top: 35px;
+  left: 20px;
   position: relative;
 }
 

@@ -376,7 +376,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
         });
 
         // change slider position
-        $(".iosSlider").css("top", "100px").css("left" , "-13px");
+        $(".iosSlider").css("top", "100px").css("left" , "-10px");
         
         $("#disc-hidden-left").click(function(event) {
             reset(3);
