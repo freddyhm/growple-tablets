@@ -366,8 +366,12 @@ function discover(hotItems, infoItems, specialsItems, commentList){
             navPrevSelector: $('.prevButton'),
             navNextSelector: $('.nextButton'),
             onSlideComplete: trackItemView,
-            onSliderUpdate: trackItemView
+            onSliderUpdate: trackItemView,
+            onSlideChange: switchArrows
         });
+
+        // switch arrows on load 
+        switchArrows($('.iosSlider').data('args'));
 
         // to flag if there's a click event on item, if so analytics is bypassed
         $(".iosSlider").click(function(event){
@@ -516,6 +520,8 @@ function discover(hotItems, infoItems, specialsItems, commentList){
         // check if coming from a click event versus swipe
         function trackItemView(args) {
 
+            switchArrows(args);
+
             if(itemTouched == false){
                 var currentSlideObject = $(args.currentSlideObject).attr("id");
 
@@ -529,6 +535,30 @@ function discover(hotItems, infoItems, specialsItems, commentList){
                 }
             }else{
                 itemTouched = false;    
+            }
+        }
+
+        // hide/show side arrows based on current slide
+        // called when slide changes + updates + completes 
+        function switchArrows(args){
+            if(args.currentSlideNumber == 1 || args.currentSlideNumber == args.data.numberOfSlides){
+                if(args.currentSlideNumber == 1){
+                    $(".prevButton").hide();
+                    $(".nextButton").show();
+                }
+
+                if(args.currentSlideNumber == args.data.numberOfSlides){
+                    $(".nextButton").hide();
+                    $(".prevButton").show();
+                }
+
+                if(args.currentSlideNumber == 1 && args.currentSlideNumber == args.data.numberOfSlides){
+                    $(".nextButton").hide();
+                    $(".prevButton").hide();
+                }
+            }else{
+                $(".prevButton").show();
+                $(".nextButton").show();
             }
         }
 
@@ -550,7 +580,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
                 var itemSelector = "#item" + val.id;
 
-                var unlove = "<div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'></div><div class='unlove-selection'><div class='unlove-selection-pop'><div class='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
+                var unlove = "<div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'></div><div class='unlove-selection'><div id='unlove-overlay'></div><div class='unlove-selection-pop'><div class='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
 
                 var love = "<div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div>";
 
@@ -574,6 +604,8 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
             // go back to first slide;
             $('.iosSlider').iosSlider('goToSlide', 1);
+
+            
 
             if(callback != undefined){
                 callback();
