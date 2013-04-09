@@ -395,7 +395,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
         });
 
         //Selecting an option and closing the popup
-        $(".unlove-selection-btn").click(function(){   
+        $(document).on('click', '.unlove-selection-btn', function(event) {
 
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
@@ -424,7 +424,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
         });
        
        // unlove button, show pop-up
-       $(".unlove").click(function(event) {
+       $(document).on('click', '.unlove', function(event) {
             
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
@@ -436,7 +436,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
        
 
         //Hide selection on Cancel
-        $(".overlay-close").click(function(){
+         $(document).on('click', '.overlay-close', function(event) {
 
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
@@ -446,7 +446,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
 
         //Hide selection when touching thanks msg
-        $(".unlove-selection-pop").click(function(event) {
+        $(document).on('click', '.unlove-selection-pop', function(event) {
 
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
@@ -457,7 +457,7 @@ function discover(hotItems, infoItems, specialsItems, commentList){
         });
 
         // love button, increment love
-        $(".love").click(function(event) {
+        $(document).on('click', '.love', function(event) {
 
             var selectedItemId = $(this).closest(".item").attr("id").substring(4);
             var itemSelector = "#item" + selectedItemId;
