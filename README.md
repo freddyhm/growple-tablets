@@ -1,2 +1,2 @@
 # growple-tablets
-A restaurant tablet that offers rich menus, fun videos, and helpful reviews to patrons
+A restaurant tablet that showcases menus, specials, and live reviews
