@@ -5,7 +5,12 @@ date_default_timezone_set('America/Toronto');
  
 
 // set environment - development / staging / production - FHM
+<<<<<<< HEAD
+$environment = 'production'; 
+
+=======
 $environment = 'development'; 
+>>>>>>> staging
 
 // loading necessary files (order of loading is important!) - FHM
 foreach (glob("config/*.php") as $filename)

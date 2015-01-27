@@ -44,7 +44,7 @@ a:visited {text-decoration: none; color:#fff;
   width: 1024px;
   height: 600px;
   position: absolute;
-  z-index:2000;
+  z-index: 1004;
   display: none;
   
 }
@@ -1030,192 +1030,28 @@ margin: -150px 310px;
 
 /* START - DISCOVER */
 
-#carousel
-{
-  width:1024px;
-  height:530px;
-  background-color: black;
-  background-image: url('../img/discover/bkgdDiscover.png');
-  background-repeat: repeat;
-}
-
-.iosSlider {
-  position: relative;
-  overflow: hidden;
-  width: 962px;
-  height: 415px;
-}
-
-.prevButton {
-  position: absolute;
-  top: 275px;
-  left: 15px;
-  width: 20px;
-  height: 40px;
-  background: url(../img/carousel/slider-buttons.png) no-repeat 0 0;
-  z-index: 2;
-}
-.nextButton {
-  position: absolute;
-  top: 275px;
-  right: 25px;
-  width: 20px;
-  height: 40px;
-  background: url(../img/carousel/slider-buttons.png) no-repeat 100% 0;
-  z-index: 2;
-}
-
-.iosSlider .slider {
-  width: 100%;
-  height: 100%;
-}
-
-.iosSlider .slider .item {
-  position: relative;
-  top: 0;
-  width: 890px;
-  height: 300px;
-  margin: 0 40px 0 40px;
-}
-
-.iosSlider .slider .item .image {
-  position: absolute;
-  top: 0;
-  left: 30px;
-  width: 889px;
-  height: 415px;
-}
-
-.iosSlider .slider .item .image .bg {
-  border: 10px solid #000;
-  border-right: 0;
-  height: 180px;
-  width: 340px;
-  opacity: 0.5;
-  display: none;
-}
-
-.iosSlider .slider .item .text {
-  position: absolute;
-bottom: -90px;
-right: 0;
-width: 270px;
-height: 370px;
-padding: 0px;
-}
-
-.iphoneUI .iosSlider .slider .item .text {
-  display: none;
-}
-
-.iosSlider .slider .item .text .bg {
-position: absolute;
-top: -20px;
-right: -50px;
-width: 360px;
-height: 415px;
-background: #000;
-opacity: 0.7;
-}
-
-.iphoneUI .iosSlider .slider .item .text .bg {
-  display: none;
-}
-
-.iosSlider .slider .item .title {
-  position: relative;
-  top: 0;
-  left: 0;
-  text-indent: -1px;
-}
-
-.iosSlider .slider .item .title span {
-  color: #fff;
- font: bold 46px/40px "Helvetica Neue",Helvetica,Arial,sans-serif;
-  text-shadow: 0 -1px 1px #000;
-}
-
-.iosSlider .slider .item .desc {
-  position: relative;
-  top: 10px;
-  left: 0;
-  margin: 10px 0 0 0;
-}
-
-.iosSlider .slider .item .desc span {
-  color: #fff;
-  font: normal 20px/25px "Helvetica Neue",Helvetica,Arial,sans-serif;
-  text-shadow: 0 -1px 1px #000;
-}
-
-.iosSlider .slider .item .button {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  padding: 0 10px 0 10px;
-  margin: 10px 0 0 0;
-  background: #aaa;
-  border: 1px solid #000;
-  cursor: pointer;
-}
-
-.iosSlider .slider .item .button span {
-  color: #000;
-  font: normal 14px/30px "Helvetica Neue",Helvetica,Arial,sans-serif;
-  text-shadow: 0 1px 1px #fff;
-}
-
-
-
-#discover-submenu
-{
-  height:70px;
-  width:1024px;
-  background-repeat:repeat-x;
-  background-image: url('../img/discover/discover-submenu-bkgd.png');
-}
-
-#hot
-{
-position: relative;
-
-}
-
-#specials
-{
-position: relative;
-
-}
-#info
-{
-position: relative;
-top: -73px;
-left: 684px;
-}
-
 .disc-hidden-area
 {
-  width: 48px;
-  z-index: 2;
+  height: 49px;
   position: absolute;
 }
 
 #disc-hidden-left
 {
-  height: 96px;
-  bottom: 75px;
+  width: 154px; 
+  left: 198px;
 }
 
 #disc-hidden-center
 {
-  height: 96px;
-  bottom: 172px;
+  width: 333px;
+  left: 367px;
 }
 
 #disc-hidden-right
 {
-  height: 159px;
-  bottom: 342px;
+  width: 292px;
+  left: 716px;
 }
 
 #discover-area
@@ -1444,23 +1280,17 @@ z-index: 1;
 
 .heart
 {
-  bottom: -85px;
-  left: -20px;
-  position: absolute;
+  top: 297px;
+  float: right;
+  position: relative;
 }
 
 .heart.unlove
 {
-  top: 265px;
-left: 750px;
+  z-index:1;
 }
 
-.heart.love
-{
-  float: left;
-}
-
-.thanks-unlove
+.thanks-msg
 {
   left: 28px;
   font-size: 50px;
@@ -1471,10 +1301,10 @@ left: 750px;
   text-align: center;
 }
 
-.thanks-unlove p
+.thanks-msg p
 {
-  top: 50px;
-  left: 38px;
+top: 50px;
+left: 80px;
   position: relative;
 }
 
@@ -1584,12 +1414,13 @@ left: 750px;
 .pop .msg
 {
   color: white;
-  font-size: 26px;
+  font-size: 29px;
   width: 610px;
   margin-left: 25px;
+  margin-top:15px;
 }
 
-#unlove-overlay
+.pop-overlay
 {
   width: 1024px;
   height: 600px;
@@ -1600,24 +1431,66 @@ left: 750px;
   left: -38px;
 }
 
+.pop-qna
+{
+  z-index: 1005;
+  position: absolute;
+  top: 50px;
+  left: 38px;
+  display: none;
+}
+
+.answers
+{
+  top: 55px;
+  position: relative;
+}
+
+.owl-logo
+{
+  position: absolute;
+top: 365px;
+left: 820px;
+  z-index: 1;
+}
+.question
+{
+  position: relative;
+  top: 25px;
+  font-size: 40px;
+  color: #7b7b7b;
+  left: 28px;
+  width: 756px;
+  text-align: center;
+  font-weight:bold;
+}
+
 .unlove-selection
 {
   display:none;
 }
-.unlove-selection-pop
+
+.selection-pop
 {
-  width: 690px;
-  height: 380px;
+  width: 810px;
+  height: 430px;
   background: url('../img/discover/unlove-popup.png');
   position: absolute;
-  top: 10px;
-left: 120px;
+  top: -25px;
+  left: 60px;
 }
 
-.unlove-selection-btn
+.selection-btn.qna-answer{
+  height: 90px;
+margin: 3px;
+top: -23px;
+left: 30px;
+}
+
+.selection-btn
 {
-  width: 650px;
-  height: 78px;
+  width: 744px;
+  height: 80px;
   -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
   box-shadow: inset 0px 1px 0px 0px #ffffff;
   background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
@@ -1634,12 +1507,12 @@ left: 120px;
   padding: 10px 100px;
   text-decoration: none;
   text-shadow: 1px 1px 0px #ffffff;
-  top: 35px;
-  left: 20px;
+  top: 30px;
+  left: 33px;
   position: relative;
 }
 
-.overlay-close
+.pop-close
 {
   background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgb(133, 133, 133)), color-stop(1, rgb(73, 73, 73)) );
   background-color: #efa31f;
@@ -1690,49 +1563,43 @@ left: 120px;
 
 #play-menu
 {
-  
-  height:70px;
   width:1024px;
-  background-repeat:repeat-x;
-  background-image: url('../img/discover/discover-submenu-bkgd.png');
+  height:111px;
   position: absolute;
   z-index: 1;
-  top:530px;
+  top:489px;
+  background: url('../img/play/bkgd-play-navbar.png');
 }
 
 #btn-play-next
 {
  float: right;
-position: absolute;
-z-index: 1;
-top: -2px;
-left: 845px;
+  position: absolute;
+  z-index: 1;
+  top: 7px;
+  left: 762px;
 
 }
 
-#btn-play-next
-{
-width:180px;
-}
 #play-name
 {
-  font-size: 30px;
-color: #595959;
-font-weight: bolder;
-position: absolute;
-z-index: 1;
-top: 5px;
-left: 10px;
+  font-size: 35px;
+  color: #595959;
+  font-weight: bolder;
+  position: absolute;
+  z-index: 1;
+  top: 28px;
+  left: 10px;
 
 }
 
 #play-author
 {
- font-size: 18px;
+  font-size: 20px;
 color: #595959;
 position: absolute;
 z-index: 1;
-top: 40px;
+top: 75px;
 left: 13px;
 }
 /* START NAVBAR */

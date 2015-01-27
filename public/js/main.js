@@ -1,6 +1,6 @@
-/* GLOGBAL VARIABLES */
+/* GLOGBAL VARIABLES  */ 
 var touch_count = 0; // reset global vars - FHM
-var activate = "";       // reset global vars - FHM
+var activate = "";       // reset global vars - FHM`
 var basket = new Array(); // menu global vars - FHM
 var user_basket = {};   // menu global vars - FHM
 var sleep_timer = "";   // sleep global vars - FHM
@@ -12,16 +12,133 @@ var currentModule = "";
 var inactive_timer = "";
 var vid_timer = "";
 var pauseInactiveTimer = "";
+var heartCount = 0;
 var heartTimer = "";
+var isPeriod = false;
+var currentVideo = "";
+var periodTimer = "";
+var savePeriodTime = 0;
+var nextTriggerTime = 0;
+ 
+// sets a new table period, triggering appropriate timers
+function newTablePeriod(period, callback){
+
+    // check if there's remaining time till next trigger
+    var remainingTime = $.jStorage.get("remainingTimeQnA");
+
+    // sets time till trigger, set remaining time to 0
+    if(remainingTime == null){
+         switch(period)
+        {
+            case 1: nextTriggerTime = 4500000; // 1.25 hrs in millisecs 
+        }
+    }else{
+        nextTriggerTime = remainingTime;
+        $.jStorage.deleteKey("remainingTimeQnA");
+    }
+
+    // get time when timer was started
+    savePeriodTime = new Date().getTime();
+
+    periodTimer = setInterval(function(){
+        callback();
+    }, nextTriggerTime);
+}
+
+// set up first table period
+function initFirstTablePeriod(){
+
+    //if($.jStorage.get("tablePeriod") == null || $.jStorage.get("tablePeriodProof") == null){
+     //   $.jStorage.set("tablePeriod", 0);
+       // $.jStorage.set("tablePeriodProof", 0);
+          
+    //}
+}
+
+// stores remaining time 'till next trigger
+function saveTablePeriod(){
+    
+    // get time now  
+    var currentTime = new Date().getTime();
+
+    // get elapsed time
+    var elapsedTime = currentTime - savePeriodTime;
+
+    // calc remaining time 
+    var remainingTime = nextTriggerTime - elapsedTime;
+
+    // store remaining time greater than zero 
+    // timers aren't super accurate, neg or 0 value can occur
+    if(elapsedTime > 0){
+        $.jStorage.set("remainingTimeQnA", remainingTime);
+    }
+}
+
+
+
+// add a period check and show qna when enough proof
+function addTablePeriodCheck(proof, period){
+
+    // need to remove later on 
+    //initFirstTablePeriod();
+
+  //  var totalProof = $.jStorage.get("tablePeriodProof") != null ? $.jStorage.get("tablePeriodProof") : 0;
+    //totalProof += proof;
+
+    // need to change for future period placement
+    // start a new period if proof is equal to two or increment proof
+    if(proof == 2){
+        newTablePeriod(period, function(){
+            if(period == 1){
+                showQnA();
+            }
+        });
+    }
+}
+
+// show qna if internet is present
+function showQnA(){
+    
+    // check if slideshow on, if so hide and clear sleep timer 
+    if($("#sleepSlideshow").css("display") == 'block'){
+        $("#sleepSlideshow").trigger("click");
+        sleep_timer = clearTimeout(sleep_timer);
+    }
+
+    // clear timer
+    periodTimer = clearInterval(periodTimer); 
+
+    $.jStorage.set("tablePeriodProof", 0);
+    //  $.jStorage.set("questionOn", 'yes');
+    
+    testServerConnection(function(){
+        $(".pop-qna").show();
+        $(".qna").show();
+    });   
+}
+
+// checks if internet is present and can connect to server 
+function testServerConnection(callback){
+
+   $.get('mother/isOnline/d/', function(data, textStatus, xhr) {  
+        if(data == 'Success'){
+            callback();
+        }
+   });
+}
+
+// sends item viewed to server if internet is alive
+function sendItemAnalytics(item_id){
+    testServerConnection(function(){
+        $.post('mother/saveItemAnalytics/d/', {id: item_id});
+    });
+}
 
 function init(module){
 
-    // clear play module timers 
-    pauseInactiveTimer = clearTimeout(pauseInactiveTimer);
-    vid_timer = clearTimeout(vid_timer);
-    inactive_timer = clearTimeout(inactive_timer);
-
     var noSleepVid = document.getElementById("noSleepVid");
+
+   // var isQuestionOn = $.jStorage.get("questionOn");
 
     currentModule = module;
 
@@ -34,8 +151,8 @@ function init(module){
         startAnalytics();
     }   
 
+    // clear sleep slideshow timer when user presses anywhere
     $(".playbook").ajaxError(function(){
-        alert("Could not connect to server, please try again!");
         sleep_timer = clearTimeout(sleep_timer);
     }); 
 
@@ -43,7 +160,45 @@ function init(module){
     $("#start_screen").click(function(event) {
         $("body").load(URL + "discover",function(){
             $("#loadPage").hide();
+            showQnA();
         });
+    });
+
+    // show question if it's set to on (was triggered in other module)
+    /*
+    if(isQuestionOn == "yes"){
+        showQnA();
+    }
+    */
+
+    // question and answer pop up
+    $(".qna-answer").click(function(event) {
+
+        var comm_id = $(this).attr("id");
+
+        logUserActivity("in", "answered_question", "", "", function(){
+            logUserActivity("out", "answered_question", "", "", function(){
+                $.post(URL + 'mother/giveComment/d/', {comment_id: comm_id}, function(data, textStatus, xhr) { 
+                    $(".qna").hide();
+                     // dismiss pop up after 5 seconds 
+                    popUpTimer = setTimeout(function(){
+                        $(".pop-qna").hide();
+
+                        // resets question interval
+                        addTablePeriodCheck(2, 1);
+
+                        //$.jStorage.set("questionOn", 'no');
+                    }, 1800);
+                });
+            });
+        });
+    });
+
+    $(".qna-bckgd").click(function(event) {
+
+        $(".pop-qna").hide();
+        // resets question interval        
+        addTablePeriodCheck(2, 1);
     });
 
     // since modules can be accessed equally, need to step out/in according to status
@@ -54,20 +209,36 @@ function init(module){
         noSleepVid.play();
 
         $("#discover-btn").click(function(event){
+
+            // save remaining time for QnA
+            saveTablePeriod();
+
+            // clear any lingering period timers before leaving module
+            periodTimer = clearInterval(periodTimer); 
+
             logUserStep("out", 1, function(){
                 logUserStep("in", 1, function(){
                     $("body").load(URL + 'discover', function(){
                          navSwitchTo("discover");
+                         addTablePeriodCheck(2, 1);    
                      });
                 });
             });
         });
 
-        $("#play-btn").click(function(event) {
+        $("#play-btn").click(function(event){
+
+            // save remaining time for QnA
+            saveTablePeriod();
+
+            // clear any lingering period timers before leaving module
+            periodTimer = clearInterval(periodTimer); 
+
             logUserStep("out", 1, function(){
                 logUserStep("in", 2, function(){
                     $("body").load(URL + 'play', function(){
                         navSwitchTo("play");
+                        addTablePeriodCheck(2, 1);
                     });
                 });
             });
@@ -77,23 +248,43 @@ function init(module){
 
      }else if(module == "play"){
 
+        
         noSleepVid.pause();
+
+        // clear sleep timer because pb dims in play section
+        sleep_timer = clearTimeout(sleep_timer);
     
         $("#discover-btn").click(function(event){
+
+            // save remaining time for QnA
+            saveTablePeriod();
+
+            // clear sleep timer because pb dims in play section
+            periodTimer = clearInterval(periodTimer); 
+            
             logUserStep("out", 2, function(){
                 logUserStep("in", 1, function(){
                     $("body").load(URL + 'discover', function(){
                          navSwitchTo("discover");
+                         addTablePeriodCheck(2, 1);
                     });
                 });
             });
         });
 
         $("#play-btn").click(function(event) {
+
+            // save remaining time for QnA
+            saveTablePeriod();
+
+            // clear sleep timer because pb dims in play section
+            periodTimer = clearInterval(periodTimer); 
+            
             logUserStep("out", 2, function(){
                 logUserStep("in", 2, function(){
                     $("body").load(URL + 'play', function(){
                         navSwitchTo("play");
+                        addTablePeriodCheck(2, 1);
                      });
                 });
             });
@@ -204,34 +395,39 @@ function navSwitchTo(page){
 
 // kick-start sleep timer - FHM
 function activateSleepTimer(){
+
     // check if a timer is already present, if yes than clear and init - FHM 
     if(sleep_timer != ""){
         sleep_timer = clearTimeout(sleep_timer);
     }
-
-    sleep_timer = setTimeout(function() {sleep(); }, 600000);
+    sleep_timer = setTimeout(function() {sleep(); }, 600000); // 10 minutes
 }
 
 //put the app to sleep mode after a certain time has elapsed - FHM
 function sleep(){
 
-    // make sure that the slideshow hasn't started yet 
-    if($(".slides_control")[0] == undefined){
-        // init slideshow  - FHM
-        $("#sleepSlideshow").slides({
-            play: 5000,
-            effect: 'slide',
-            crossfade: true,
-            generatePagination: false
-        });
+     // don't kick-start sleep if qna pop up is displayed
+     // can't add to other exceptions since it lies outside of content  
+    if($(".pop-qna").css("display") != "block"){
 
-       $("#sleepSlideshow").show();
-    };
+        // make sure that the slideshow hasn't started yet 
+        if($(".slides_control")[0] == undefined){
+            // init slideshow  - FHM
+            $("#sleepSlideshow").slides({
+                play: 5000,
+                effect: 'slide',
+                crossfade: true,
+                generatePagination: false
+            });
 
-    // set limit on slideshow duration, exit after some time
-    setTimeout(function() {
-        $("#sleepSlideshow").trigger("click");
-    }, 900000); 
+           $("#sleepSlideshow").show();
+        };
+
+        // set limit on slideshow duration, exit after some time
+        setTimeout(function() {
+            $("#sleepSlideshow").trigger("click");
+        }, 900000); 
+    }
 }
 
 function exitSleepSlideshow(){
@@ -254,8 +450,9 @@ function startSleep(){
 
      // click is the main activity to derive idle user time or not so reset timer if click - FHM
      // exceptions are with nav links (home) and cart action (menu) where we don't want to activate timer - FHM
-    $(".playbook").click(function(e){ 
-        if(e.target.className != "nav-link" && e.target.id != "start_screen" && server_active == false && e.target.className != "serverActive" && currentModule != "play"){
+    $(".playbook").hammer().on("touch", function(event){ 
+
+        if(event.target.className != "nav-link" && event.target.id != "start_screen" && server_active == false && event.target.className != "serverActive" && currentModule != "play"){
           activateSleepTimer();
         }else{
             sleep_timer = clearTimeout(sleep_timer);
@@ -304,13 +501,13 @@ function startSleep(){
 }
 
 function randombox(){
-    $(".box").click(function(){
+    $(".box").hammer().on("touch", function(event){
         $(this).attr("src", URL  + "public/img/game/randombox/box_pressed.png");
     });
 
  };
 
-function discover(hotItems, infoItems, specialsItems, commentList){
+function discover(featureItems, spotlightItems){
 
     var appCache = window.applicationCache;
     var one_user = 0;
@@ -318,8 +515,9 @@ function discover(hotItems, infoItems, specialsItems, commentList){
 
     // on checking for both refresh and loading, reset the app - FHM        
     $(appCache).bind('checking', function(event) {
-        // kick-start analytics & clear sleep - FHM
+        // clear sleep / clear period timer - FHM
         sleep_timer = clearTimeout(sleep_timer);
+        periodTimer = clearInterval(periodTimer);
         $("#loadPage").show();
     });
 
@@ -345,280 +543,175 @@ function discover(hotItems, infoItems, specialsItems, commentList){
     });
 
     $(document).ready(function() {
- 
-        // timer for unloved pop up
-        var popUpTimer = "";
-        var heartCount = 0;
-        var itemTouched = false;
 
         init("discover");
 
-        addSlideItems(hotItems, "hot");
-
-        /* touch slider */
-        $('.iosSlider').iosSlider({
-            scrollbar: true,
-            snapToChildren: true,
-            desktopClickDrag: true,
-            scrollbarMargin: '0 40px 0 40px',
-            scrollbarBorderRadius: 0,
-            scrollbarHeight: '2px',
-            navPrevSelector: $('.prevButton'),
-            navNextSelector: $('.nextButton'),
-            onSlideComplete: trackItemView,
-            onSliderUpdate: trackItemView,
-            onSlideChange: switchArrows
-        });
-
-        // switch arrows on load 
-        switchArrows($('.iosSlider').data('args'));
-
-        // to flag if there's a click event on item, if so analytics is bypassed
-        $(".iosSlider").click(function(event){
-            console.log('clicked');
-            itemTouched = true;
-        });
-
-        // change slider position
-        $(".iosSlider").css("top", "100px").css("left" , "-10px");
-        
-        $("#disc-hidden-left").click(function(event) {
+        $("#disc-hidden-left").hammer().on("touch", function(event) {
             reset(3);
         });
 
-        $("#disc-hidden-center").click(function(event) {
+        $("#disc-hidden-center").hammer().on("touch", function(event) {
             reset(6);
         });
 
-        $("#disc-hidden-right").click(function(event) {
+        $("#disc-hidden-right").hammer().on("touch", function(event) {
             reset(2);
         });
 
-        //Selecting an option and closing the popup
-        $(document).on('click', '.unlove-selection-btn', function(event) {
+        // pop up in discover module 
+        $(".discover").click(function(event) {
 
-            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
-            var itemSelector = "#item" + selectedItemId;
-            var childClass = $(this).attr("class").substring(21);
+            var selectedId = $(this).attr("id").split("-");
+            var selectedGrp = selectedId[0];
+            var selectedType = selectedId[1];
+            var selectedItemId = selectedId[2];
+            var items = selectedGrp == 'spotlight' ? spotlightItems : featureItems;
 
-             if(childClass != 'overlay-close'){  
+            // send item viewed to server
+            sendItemAnalytics(selectedItemId);
 
-                var comm_id = $(this).attr("id").substring(7);
+            if(selectedType == "chef's pick" || selectedGrp == 'feature'){
+                $(".unlove").css("display", "inline");
+            }else{
+                $(".unlove").css("display", "none");
+            }
 
-                // analytics for comment
-                logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
-                    logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
-                        $.post(URL + 'mother/giveUnLove/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
-                            $(itemSelector + " .unlove-selection-btn").hide();
-                             // clear old timer + dismiss pop up after 5 seconds if selections aren't displayed (thanks msg is displayed)
-                            popUpTimer = clearTimeout(popUpTimer);
-                            popUpTimer = setTimeout(function(){
-                                if($(itemSelector + " .unlove-selection-btn").css("display") == 'none'){
-                                    $(itemSelector + " .unlove-selection").hide();
+            // get proper item based on array, udpate page 
+            logUserActivity("in", "viewed_item", selectedItemId, "", function(){
+                logUserActivity("out", "viewed_item", selectedItemId, "", function(){
+                    $(".pop").modal({
+                        position: ["5%"],
+                        onShow: function (dialog){
+
+                            var modal = this;
+                            var popUpTimer = "";
+
+                            $.each(items, function(index, val) {
+                                if(val.name == selectedType){
+                                    var items = val.items;
+                                    $.each(items, function(index, val) {
+                                        if(val.id == selectedItemId){
+                                            $(".pop .title").html(val.name.toUpperCase());
+                                            $(".pop .pic").attr('src', URL + 'public/img/discover/' + selectedGrp + '/' + val.big_pic);
+                                            $(".pop .price").html(val.price);
+                                            $(".pop .msg").html(val.description);
+
+                                            // get love count from server 
+                                            $.get(URL + 'mother/getLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
+                                                $(".love .count").html(data);
+                                            });
+                                        }
+                                    });
                                 }
-                            }, 5000);
-                        });
-                   });
-                });
-            }
-        });
-       
-       // unlove button, show pop-up
-       $(document).on('click', '.unlove', function(event) {
-            
-            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
-            var itemSelector = "#item" + selectedItemId;
+                            });
+                            
+                            // exit button
+                            $(".pop .quit").click(function(event) {
+                                modal.close();
+                            });
 
-            // Show comment selections
-            $(itemSelector + " .unlove-selection").show();
-            $(itemSelector + " .unlove-selection-btn").show();
-       });
-       
+                            //Unlove button popup
+                            $(".unlove").hammer().on("touch", function(event){
+                                
+                                popUpTimer = clearTimeout(popUpTimer);
 
-        //Hide selection on Cancel
-         $(document).on('click', '.overlay-close', function(event) {
+                                logUserActivity("in", "unloved_item", selectedItemId, "", function(){
+                                    logUserActivity("out", "unloved_item", selectedItemId, "", function(){
+                                        $(".unlove-selection").show();
+                                        $(".item-answer").show();
+                                        $(".pop-close").show();
+                                    });
+                                });
+                            });
 
-            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
-            var itemSelector = "#item" + selectedItemId;
+                            //Hiding the unlove button popup
+                             $("#unlove-overlay").hammer().on("touch", function(event){
+                               $(".unlove-selection").hide();
+                            });
 
-            $(itemSelector + " .unlove-selection").hide();
-        });
+                             //Hiding on Cancel
+                             $(".pop-close").hammer().on("touch", function(event){
+                                $(".unlove-selection").hide();
+                             });
 
+                            //Selecting an Option and closing the popup
+                            $(".item-answer").hammer().on("touch", function(event){           
 
-        //Hide selection when touching thanks msg
-        $(document).on('click', '.unlove-selection-pop', function(event) {
+                                // check for child class 
+                                var childClass = $(this).attr("class").substring(21);
+                                
+                                if(childClass != 'pop-close'){  
+                                    var comm_id = $(this).attr("id");
+                                    logUserActivity("in", "unloved_commented_item", selectedItemId, "", function(){
+                                        logUserActivity("out", "unloved_commented_item", selectedItemId, "", function(){
+                                            $.post(URL + 'mother/giveComment/d/', {item_id: selectedItemId, comment_id: comm_id}, function(data, textStatus, xhr) { 
+                                                $(".item-answer").hide();
+                                                $(".pop-close").hide();
+                                                 // dismiss pop up after 5 seconds 
+                                                popUpTimer = setTimeout(function(){
+                                                    $(".unlove-selection").hide();
+                                                }, 1800);
+                                            });
+                                        });
+                                    });
+                                }
+                            });
 
-            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
-            var itemSelector = "#item" + selectedItemId;
+                            //Hide when touching thanks msg
+                            $(".thanks-msg").hammer().on("touch", function(event) {
+                                 popUpTimer = clearTimeout(popUpTimer);
+                                 $(".unlove-selection").hide();
+                            });
 
-            if ($(itemSelector + " .unlove-selection-btn").css("display") == 'none'){
-                $(itemSelector + " .unlove-selection").hide();
-            }
-        });
+                            // love button, increment love
+                            $(".love").hammer().on("touch", function(event) {
 
-        // love button, increment love
-        $(document).on('click', '.love', function(event) {
+                                // clear lingering heart timer
+                                heartTimer = clearTimeout(heartTimer);
 
-            var selectedItemId = $(this).closest(".item").attr("id").substring(4);
-            var itemSelector = "#item" + selectedItemId;
-            
-            // clear lingering heart timer
-            heartTimer = clearTimeout(heartTimer);
+                                if(heartCount < 10){
 
-            if(heartCount < 10){
-                heartCount++;
-                // analytics for loved item
-                logUserActivity("in", "loved_item", selectedItemId, "", function(){
-                    logUserActivity("out", "loved_item", selectedItemId, "", function(){
-                        $(itemSelector + " .love img").attr("src", URL + "public/img/discover/btn-heart-pressed.png");
-                        $.post(URL + 'mother/giveLove/d/', {item_id: selectedItemId}, function(data, textStatus, xhr) {
-                            $(itemSelector + " .love img").attr("src", URL + "public/img/discover/btn-heart-unpressed.png");
-                            $(itemSelector + " .count").html(data);
-                        });
+                                    heartCount++;
+
+                                    var heartType = $(this).attr("class").substring(6);
+                                    var url = heartType == 'love' ? URL + 'mother/giveLove/d/': URL + 'mother/giveUnLove/d/';
+                                    var btnPressed = heartType == 'love' ? "btn-heart-pressed.png" : "btn-unheart-pressed.png";
+                                    var btnUnpressed = heartType == 'love' ? "btn-heart-unpressed.png" : "btn-unheart-unpressed.png";
+                                    var countClass = "." + heartType + " .count";  
+                                    var imgClass = "." + heartType + " img";  
+
+                                    logUserActivity("in", heartType + "d_item", selectedItemId, "", function(){
+                                        logUserActivity("out", heartType + "d_item", selectedItemId, "", function(){
+                                            $(imgClass).attr("src", URL + "public/img/discover/" + btnPressed);
+                                            $.post(url, {item_id: selectedItemId}, function(data, textStatus, xhr) {
+                                                $(imgClass).attr("src", URL + "public/img/discover/" + btnUnpressed);
+                                                $(countClass).html(data);
+                                            });
+                                        });
+                                    });
+                                }else{
+                                   
+                                    // reset heart timer after 5 min of touching heart button  
+                                    heartTimer = setTimeout(function(){
+                                        heartCount = 0;
+                                    }, 300000);
+                                }
+                            });
+                        }
                     });
-                });
-            }else{
-               
-                // reset heart timer after 5 min of touching heart button  
-                heartTimer = setTimeout(function(){
-                    heartCount = 0;
-                }, 300000);
-            }
+                }); 
+            });
         });
 
-        $(".submod").click(function(event) {
-            
-            // get variables needed to change items 
-            var selectedType = $(this).attr("id");
-            var selectedTypeId = "#" + selectedType;
-            var selectedTypeItems = selectedType + "Items";
-            var selectedItems;
+    });  
 
-            // switch string to actual variable 
-            if(selectedTypeItems == 'hotItems'){
-                selectedItems = hotItems; 
-            }else if(selectedTypeItems == 'infoItems'){
-                selectedItems = infoItems; 
-            }else if(selectedTypeItems == 'specialsItems'){
-                selectedItems = specialsItems; 
-            }
-
-            // add items, on & off behavior
-            addSlideItems(selectedItems, selectedType, function(){
-                $(selectedTypeId).attr("src", URL + 'public/img/discover/btn-' + selectedType + '-on.png');
-                // turn off other options by switching images except for selected
-                $(".submod").each(function(index, val){
-                    var type = $(this).attr("id"); 
-                    if(type != selectedType){
-                        $(this).attr("src", URL + 'public/img/discover/btn-' + type + '-off.png');
-                    }
-                });
-            }); 
-        });
-    
-        // track which items have been viewed besides the first one
-        // check if coming from a click event versus swipe
-        function trackItemView(args) {
-
-            switchArrows(args);
-
-            if(itemTouched == false){
-                var currentSlideObject = $(args.currentSlideObject).attr("id");
-
-                if(currentSlideObject != undefined){
-                    var selectedItemId = currentSlideObject.substring(4);
-                    console.log(selectedItemId);
-                    logUserActivity("in", "viewed_item", selectedItemId, "", function(){
-                        logUserActivity("out", "viewed_item", selectedItemId, "", function(){
-                        });
-                    });
-                }
-            }else{
-                itemTouched = false;    
-            }
-        }
-
-        // hide/show side arrows based on current slide
-        // called when slide changes + updates + completes 
-        function switchArrows(args){
-            if(args.currentSlideNumber == 1 || args.currentSlideNumber == args.data.numberOfSlides){
-                if(args.currentSlideNumber == 1){
-                    $(".prevButton").hide();
-                    $(".nextButton").show();
-                }
-
-                if(args.currentSlideNumber == args.data.numberOfSlides){
-                    $(".nextButton").hide();
-                    $(".prevButton").show();
-                }
-
-                if(args.currentSlideNumber == 1 && args.currentSlideNumber == args.data.numberOfSlides){
-                    $(".nextButton").hide();
-                    $(".prevButton").hide();
-                }
-            }else{
-                $(".prevButton").show();
-                $(".nextButton").show();
-            }
-        }
-
-        function addSlideItems(itemList, submod, callback){
-
-            var comments = "";
-  
-            // empty out current items 
-            $(".slider").empty();
-
-            $.each(commentList, function(index, val) {
-                comments += "<button class='unlove-selection-btn' id=comment" + val.id + ">" + val.name + "</button>";
-            });
-
-            comments += "<button class='unlove-selection-btn overlay-close'>Cancel</button>";
-
-            // go through list, append new items
-            $.each(itemList.items, function(index, val) {
-
-                var itemSelector = "#item" + val.id;
-
-                var unlove = "<div class='heart unlove'><img src='" + URL + "public/img/discover/btn-unheart-unpressed.png'></div><div class='unlove-selection'><div id='unlove-overlay'></div><div class='unlove-selection-pop'><div class='thanks-unlove'><p>Thanks for the feeback!</p></div>" + comments + "</div></div></div>";
-
-                var love = "<div class='heart love'><img src='" + URL + "public/img/discover/btn-heart-unpressed.png'><div class='count'></div></div></div>";
-
-                var item = "<div class='item' id='item" + val.id + "'><div class='image'><img src='" + URL + "public/img/discover/" + submod + "/" + val.big_pic + "'><div class='bg'></div></div><div class='text'><div class='bg'></div><div class='title'><span>" + val.name.toUpperCase() + "</span><br><span class='prices'>" + val.price + "</span></div><div class='desc'><span>" + val.description + "</span></div>" + love;
-
-                // add unlove part if submod is food related
-                if(submod == 'hot'){
-                    item += unlove;
-                }
-
-                $(".slider").append(item);
-
-                // get love count from server
-                $.get(URL + 'mother/getLove/d/', {item_id: val.id}, function(data, textStatus, xhr) {
-                    $(itemSelector + " .count").html(data);
-                });
-            });
-
-            // update & change position of slider 
-            $('.iosSlider').iosSlider('update').css("top", "100px").css("left" , "-10px");
-
-            // go back to first slide;
-            $('.iosSlider').iosSlider('goToSlide', 1);
-
-            
-
-            if(callback != undefined){
-                callback();
-            }   
-        }
-    });   
 }
 
 function play(videos, venue){
 
     // play random video when video ends, make button clickable and control video with click - FHM
     var currentVideo = document.getElementById("play-item");
-    var previous_vid = new Array(0, 0 ,0 ,0 ,0);
+    var previous_vid = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
     var previous_position = 0;
     var status = 'play';
     var is_paused = false;
@@ -629,21 +722,15 @@ function play(videos, venue){
     init("play");
     startInactive();
 
-    // clear no fade timer because pb can only play one vid at a time 
-    nofade_timer = clearInterval(nofade_timer);
-
-    // clear sleep timer because pb dims in play section
-    sleep_timer = clearTimeout(sleep_timer);
-    
-    $("#play-hidden-left").click(function(event) {
+    $("#play-hidden-left").hammer().on("touch", function(event) {
         reset(3);
     });
 
-    $("#play-hidden-center").click(function(event) {
+    $("#play-hidden-center").hammer().on("touch", function(event) {
         reset(6);
     });
 
-    $("#play-hidden-right").click(function(event) {
+    $("#play-hidden-right").hammer().on("touch", function(event) {
         reset(2);
     });
 
@@ -654,10 +741,11 @@ function play(videos, venue){
         inactive_timer = clearTimeout(inactive_timer);
         inactive_timer = setTimeout(function(){
             is_inactive = true;
-        }, 600000);
+        }, 600000); // 10 mins
     }
 
     function pauseInactive(){
+
         // reset inactive variable
         pauseInactiveTimer = setTimeout(function(){
             $("#discover-btn").trigger("click");
@@ -670,6 +758,8 @@ function play(videos, venue){
         logUserActivity("out", "finished_watching", curr_vid_id, "", function(){
              finished_watching = "yes";
              if(is_inactive == true){
+                // ended vid triggers paused event, clear timer before redirecting 
+                pauseInactiveTimer = clearTimeout(pauseInactiveTimer);
                 $("#discover-btn").trigger("click");
              }else{
                  showRandomVideo();    
@@ -688,7 +778,7 @@ function play(videos, venue){
 
     showRandomVideo(true);      
 
-    $("#next").click(function(event) {
+    $("#next").hammer().on("touch", function(event) {
         // reset inactive timer
         startInactive();
         $(this).attr("src", URL  + "public/img/play/btn-next-press.png");
@@ -704,7 +794,7 @@ function play(videos, venue){
     });
 
     // check menu and video status, stop or play accordingly - FHM
-    $(currentVideo).click(function(event) {
+    $(currentVideo).hammer().on("touch", function(event) {
 
         // reset inactive timer
         startInactive();
@@ -747,7 +837,7 @@ function play(videos, venue){
         var random_num = Math.floor(Math.random()*(videos.length));
 
         // make sure our new random number is not the same as last five ones - FHM
-        while(previous_vid[0] == random_num || previous_vid[1] == random_num || previous_vid[2] == random_num || previous_vid[3] == random_num || previous_vid[4] == random_num || previous_vid[5] == random_num || previous_vid[6] == random_num){
+        while(previous_vid[0] == random_num || previous_vid[1] == random_num || previous_vid[2] == random_num || previous_vid[3] == random_num || previous_vid[4] == random_num || previous_vid[5] == random_num || previous_vid[6] == random_num || previous_vid[7] == random_num || previous_vid[8] == random_num || previous_vid[9] == random_num || previous_vid[10] == random_num || previous_vid[11] == random_num || previous_vid[12] == random_num || previous_vid[13] == random_num || previous_vid[14] == random_num || previous_vid[15] == random_num){
                 random_num = Math.floor(Math.random()*(videos.length));
         }
 

@@ -1,28 +1,46 @@
 <!DOCTYPE html>
- <html>  
+<head>
 <!-- <html manifest="<?php //echo URL . 'config/' . ENVIRONMENT . '/owl/meet.appcache' ?>"> -->
 <head>
-	<!-- Don't ever take this out, never, ever, ever -> this makes the korean symbols magically appear in the browser - FHM -->
-	<meta http-equiv="Content-Type" content="text/html;charset=utf8">
+    <!-- Don't ever take this out, never, ever, ever -> this makes the korean symbols magically appear in the browser - FHM -->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf8">
     <!-- STYLESHEET-->
     <link rel="stylesheet" href="<?php echo URL . 'public/css/main.css'; ?>">
     <link rel="stylesheet" href="<?php echo URL . 'public/css/confirm.css'; ?>">
     <!-- SCRIPTS -->
     <script src="<?php echo URL . 'public/js/jquery-1.8.3.min.js'; ?>"></script>
-    <script src="<?php echo URL . 'public/js/jquery.iosslider.min.js'; ?>"></script>
+    <script src="<?php echo URL . 'public/js/jquery.hammer.min.js';?>"></script>
     <script src="<?php echo URL . 'public/js/jstorage.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/slides.min.jquery.js';?>"></script>
     <script src="<?php echo URL . 'public/js/jquery.simplemodal.js'; ?>"></script>
     <script src="<?php echo URL . 'config/' . ENVIRONMENT . '/settings.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/analytics.js'; ?>"></script>
     <script src="<?php echo URL . 'public/js/main.js'; ?>"></script>
-</head>	
+</head> 
 <body>
     <div id="setup">
-    	<div id="noSleep" style="display:none;">
+        <div id="noSleep" style="display:none;">
             <video id='noSleepVid' loop='loop' autoplay='autoplay' src="<?php echo URL . 'public/vid/nosleep.mp4'; ?>"></video>
         </div>
-    	<div id="sleepSlideshow">
+         <div class="pop-qna">
+            <div class="pop-overlay qna-bckgd"></div>
+            <div class="owl-logo"><img src="<?php echo URL . 'public/img/qna/owl.png'?>"></div>
+            <div class="selection-pop">
+                    <div class="thanks-msg"><p>Thanks for the feeback!</p></div>
+                    <div class="qna">
+                        <div class="question">How often do you come to Owl?</div>
+                        <div class="answers">
+                            <?php 
+                            $qna_comment_list = Comment::find_all_by_commenttype_id('3');
+                            foreach ($qna_comment_list as $comment) {
+                            ?>
+                            <button class="selection-btn qna-answer" id="<?php echo $comment->id; ?>"><?php echo $comment->name; ?></button>
+                        <?php } ?>
+                        </div>
+                    </div>
+            </div>  
+        </div>
+        <div id="sleepSlideshow">
             <div class="slides_container">
                 <?php 
                 /*
@@ -52,8 +70,9 @@
             </div>
         </div>
     </div>
-	<div class="playbook">
-		<div class="content">
+
+    <div class="playbook">
+        <div class="content">
             <img id="confirm-x" src="<?php echo URL . 'public/img/confirm/x.png'; ?>">
             <!-- modal content -->
             <div id='confirm'>

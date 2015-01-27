@@ -1,6 +1,6 @@
-    
+       
 ********************************************
-Growple! Bulbasaur v1.1.3 - Saturday, January 26, 2013
+Growple! Bulba v1.1.3 - Saturday, January 26, 2013
 ********************************************
  
  
@@ -12,7 +12,7 @@ Growple! Bulbasaur v1.1.3 - Saturday, January 26, 2013
 -Disabled sleep when waiting for server 
 
 ********************************************
-Growple! Bulbasaur v1.1.4 - Tuesday, January 29, 2013
+Growple! Bulba v1.1.4 - Tuesday, January 29, 2013
 ********************************************
 
 BOOSTS:
@@ -30,7 +30,7 @@ BOOSTS:
 #1.11 - Make ribbon more visible
 
 ********************************************
-Growple! Bulbasaur v1.1.5 - Monday, February 4, 2013
+Growple! Bulba v1.1.5 - Monday, February 4, 2013
 ********************************************
 
 BOOSTS:
@@ -47,7 +47,7 @@ BOOSTS:
 
 
 ********************************************
-Growple! Bulbasaur v1.1.6 - Wednesday, February 6, 2013
+Growple! Bulba v1.1.6 - Wednesday, February 6, 2013
 ********************************************
 
 BOOSTS:
@@ -63,7 +63,7 @@ BUGS:
  
 
 ********************************************
-Growple! Bulbasaur v1.1.7 - Saturday, February 9, 2013
+Growple! Bulba v1.1.7 - Saturday, February 9, 2013
 ********************************************
 
 FEATURES:
@@ -82,7 +82,7 @@ BUGS:
 
 
 ********************************************
-Growple! Ivysaur v2.0.0 - Tuesday, March 19, 2013
+Growple! Ivy v2.0.0 - Tuesday, March 19, 2013
 ********************************************
 
 BOOSTS:
@@ -98,7 +98,7 @@ FEATURES:
 #1 - New navigation: Discover & Play. Took out menu, merged video and games, made navigation flatter and simpler.
 
 ********************************************
-Growple! Ivysaur v2.0.5 - Thursday, March 21, 2013
+Growple! Ivy v2.0.5 - Thursday, March 21, 2013
 ********************************************
 
 FEATURES:
@@ -106,7 +106,7 @@ FEATURES:
 #1 - Love button for all items in discover 
 
 ********************************************
-Growple! Ivysaur v2.1.0 - Friday, March 22, 2013
+Growple! Ivy v2.1.0 - Friday, March 22, 2013
 ********************************************
 
 FEATURES:
@@ -118,7 +118,7 @@ FIXES:
 #1 - CSS fixes on pop up header + close button  
 
 ********************************************
-Growple! Ivysaur v2.1.1 - Saturday, March 23, 2013
+Growple! Ivy v2.1.1 - Saturday, March 23, 2013
 ********************************************
 
 FIXES:
@@ -132,10 +132,66 @@ BOOSTS:
 
 
 ********************************************
-Growple! Ivysaur v2.1.5 - Tuesday, March 26, 2013
+Growple! Ivy v2.1.5 - Tuesday, March 26, 2013
 ********************************************
 
 BOOSTS:
 
 #1 - CSS: changed unlove button, added cancel button to comments, font smaller for count on love button
 #2 - limit the number loves given
+
+
+********************************************
+Growple! Ivy v2.2.0 - Tuesday, April 2, 2013
+********************************************
+
+FIXES:
+
+- clear vid paused timer before redirecting to discover
+
+BOOSTS:
+
+- Replaced click events with touch gestures
+- Refactored analytics
+- Sent view analytics of discover items live
+
+**********************************************
+Growple! Ivy v2.2.6 - Saturday, April 27, 2013
+**********************************************
+
+FEATURES:
+
+- Q & A pop up
+
+FIXES:
+
+- Turn off alert when internet has no connection
+
+
+
+**********************************************
+Growple! Ivy v2.2.7 - Thursday, May 2, 2013
+**********************************************
+
+FIXES:
+
+- Change inactive timer for vid back to 10 min
+
+BOOSTS:
+
+- Segment analytics by time (add ability to get reports for certain times) (app + biz)
+- Merge popularity and loves together in analytics (add 2x weight for hearts)
+- Add questions to analytics
+
+
+
+**********************************************
+Growple! Ivy v2.2.8 - Thursday, May 2, 2013
+**********************************************
+
+BOOSTS:
+
+- Start off tablet with Q&A but clear sleep timer (clear sleep when feedback on)
+- Change items to less popular ones
+
+

@@ -184,6 +184,8 @@ function resetAnalytics(callback){
 	$.jStorage.deleteKey("user_carts");
 	$.jStorage.deleteKey("user_basket");
 	$.jStorage.deleteKey("promo_item");
+	$.jStorage.deleteKey("tablePeriod");
+	$.jStorage.deleteKey("tablePeriodProof");
 
 	if(callback != undefined){
 	 	callback();

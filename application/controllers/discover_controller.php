@@ -9,53 +9,53 @@ class Discover extends Controller {
 
 	public function index(){
 
-		$hot_list = Item::find_all_by_module_id('5');
-		$info_list = Item::find_all_by_module_id('7');
-		$specials_list = Item::find_all_by_module_id('8');
-		$comment_list = Comment::find("all");
+		$feature_list = Module::find_all_by_parent_id('4');
+		$spotlight_list = Module::find_all_by_parent_id('3');
+		$item_comment_list = Comment::find_all_by_commenttype_id('2');
+	
+		$feature_items = array();
+		$spotlight_items = array();
+		$item_comments = array();
+		$qna_comments = array();
 
-		$hot_items = array();
-		$info_items = array();
-		$specials_items = array();
-		$comments = array();
-
-		if(!empty($hot_list)){
+		if(!empty($feature_list)){
 			// go through list of all items & submodules for menu module - FHM
-			foreach ($hot_list as $item) {
-				$hot_items['items'][] = $item->to_array(); 
+			foreach ($feature_list as $key => $submodule) {
+
+				$feature_items[$submodule->name] = $submodule->to_array();
+				$item_list = Item::find_all_by_module_id($submodule->id);	
+
+				foreach ($item_list as $item) {
+					$feature_items[$submodule->name]['items'][] = $item->to_array(); 
+				}
 			}
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
 
-		if(!empty($info_list)){
+		if(!empty($spotlight_list)){
 			// go through list of all items & submodules for menu module - FHM
-			foreach ($info_list as $item) {
-				$info_items['items'][] = $item->to_array(); 
+			foreach ($spotlight_list as $key => $submodule) {
+				
+				$spotlight_items[$submodule->name] = $submodule->to_array();
+				$item_list = Item::find_all_by_module_id($submodule->id);	
+				
+				foreach ($item_list as $item) {
+					$spotlight_items[$submodule->name]['items'][] = $item->to_array(); 
+				}
 			}
 		}else{
 			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
 		}
 
+		if(!empty($item_comment_list)){
 
-		if(!empty($specials_list)){
-			// go through list of all items & submodules for menu module - FHM
-			foreach ($specials_list as $item) {
-				$specials_items['items'][] = $item->to_array(); 
-			}
-		}else{
-			$this->handleError('danger', get_class().'_controller.php', 'Problem displaying menus and items.');
-		}
-
-
-		if(!empty($comment_list)){
-
-			foreach ($comment_list as $comment) {
-				$comments[] = $comment->to_array();
+			foreach ($item_comment_list as $comment) {
+				$item_comments[] = $comment->to_array();
 			}
 		}
 		
-		$info = array('comments' => $comments, 'hot_items' => $hot_items, 'info_items' => $info_items, 'specials_items' => $specials_items);
+		$info = array('item_comments' => $item_comments, 'feature_items' => $feature_items, 'spotlight_items' => $spotlight_items, 'venue' => Session::get('venue'));
 		
 		parent::$data = $info;
 		parent::index(); 

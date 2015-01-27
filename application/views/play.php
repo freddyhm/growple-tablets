@@ -17,7 +17,7 @@
 		<span id="play-author"></span>
 	</div>	
 	<div id="btn-play-next">
-		<img id="next" width="180px" src="<?php echo URL . 'public/img/play/btn-next.png'; ?>">
+		<img id="next" src="<?php echo URL . 'public/img/play/btn-next.png'; ?>">
 	</div>
 
 </div>

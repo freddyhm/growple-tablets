@@ -9,260 +9,208 @@ class Report extends Controller {
 
 	public function index(){
 		
-		$metric_list = Metric::find("all");
-		$metrics = array();
+		// convert to mysql format 
+		$start_date = isset($_GET['start']) && $_GET['start'] != "" ? date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $_GET['start']))) : "";
+		$end_date = isset($_GET['end']) && $_GET['end'] != "" ? date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $_GET['end']))) : "";
+		$sql_start = $start_date != "" ? " AND start >= '" . $start_date . "' " : " ";
+		$sql_end = $end_date != "" ? " AND end <= '" . $end_date . "' " : " ";
+		$sql_date = $sql_start . $sql_end;
+
+		$item_list = Item::find("all");
+		$biz_items = array();
+		$biz_items["views"] = array();
+
+		// BIZ RESULTS
+
+		/* VIEWS */
+
+		$view_sql = "SELECT COUNT(activities.id) as total FROM activities WHERE activities.name = 'viewed_item'" . $sql_date;
+
+		//print_r($view_sql);
+		$views = Item::find_by_sql($view_sql);
+		$view_result = $views[0]->total;
+		$biz_items["views"] = $view_result;
 		
+		/* POP */
 
-		$total_act_sql = "SELECT COUNT(DISTINCT(activities.id)) AS result FROM activities";
-		$total_act_result = Metric::find_by_sql($total_act_sql);
-		$total_act = $total_act_result[0]->result;
+		$pop_list = array();
+		$biz_items["pop"] = array();
 
-		$total_eng_sql = "SELECT COUNT(DISTINCT(activities.id)) AS result FROM activities 
-						  WHERE activities.name = 'loved_item' OR activities.name = 'unloved_item' 
-						  OR activities.name = 'unloved_comments'";
-		$total_eng_result = Metric::find_by_sql($total_eng_sql);
-		$total_eng = $total_eng_result[0]->result;
+		$pop_sql = "SELECT items.name as name, items.id as id, COUNT(activities.id) as view_total FROM activities, items WHERE activities.name =  'viewed_item' 
+					AND activities.item_id = items.id" . $sql_date . "GROUP BY items.name ORDER BY view_total DESC";
 
-		$act = 
+		$pop_list = Item::find_by_sql($pop_sql);
 
-		$items_list = Item::find("all");
+		
+		if(!empty($pop_list)){
+			foreach ($pop_list as $key => $item) {
 
+				$heart_total = 0;
+				$new_total = 0;
 
-		foreach ($items_list as $key => $item) {
-		 		
-		 	$item_eng_sql = "SELECT COUNT(activities.id) AS result FROM items, activities 
-		 				 WHERE activities.item_id = items.id AND items.id = $item->id 
-		 				 AND (activities.name = 'loved_item'OR activities.name = 'unloved_item' OR activities.name = 'loved_comments')";
+				$loved_sql = "SELECT COUNT(activities.id) as heart_total FROM activities WHERE activities.name = 'loved_item' AND activities.item_id = $item->id";
 
+				$loved_result = Item::find_by_sql($loved_sql);
 
-		 	$item_act_sql = "SELECT COUNT(activities.id) AS result FROM items, activities 
-		 				 WHERE activities.item_id = items.id AND items.id = $item->id";
+				if(!empty($loved_result)){
+					$heart_total = $loved_result[0]->heart_total * 2;
+					$new_total = $heart_total + $item->view_total;
+				}
 
-		 	$item_eng_result = Metric::find_by_sql($item_eng_sql);
-			$item_eng = $item_eng_result[0]->result;
-			$item_act_result = Metric::find_by_sql($item_act_sql);
-			$item_act = $item_act_result[0]->result;
-			$item_conv = $item_act != 0 ? ($item_eng / $item_act * 100) : 0;	
-		 
-		 	$metrics['act and eng'][$key]['name'] = $item->name; 
-		 	$metrics['act and eng'][$key]['eng'] = $item_eng; 
-		 	$metrics['act and eng'][$key]['act'] = $item_act; 
-		 	$metrics['act and eng'][$key]['conv'] = $item_conv; 
-		} 
-
-
-		foreach ($metric_list as $metric) {
-
-			if($metric->name == 'exposure'){
-
-
-				$top_mod_act_sql = "SELECT modules.name as name, COUNT(activities.id) AS total, 
-										COUNT(activities.id) / " . $total_act . " * 100 AS conv FROM items, 
-										modules, activities WHERE activities.item_id = items.id AND items.module_id = modules.id 
-							 	 		GROUP BY modules.name ORDER BY conv DESC";
-				$top_act_sql = "SELECT items.name AS name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_act . 
-								" * 100 AS conv FROM activities, items WHERE activities.item_id = items.id 
-								GROUP BY items.id ORDER BY conv DESC";
-
-			 	$result_top_mod = Metric::find_by_sql($top_mod_act_sql);
-			 	$result_top_act = Metric::find_by_sql($top_act_sql);
-			 	
-			 	foreach ($result_top_mod as $result) {
-			 		$top_mod_act[] = $result->to_array();
-			 	}
-
-			 	foreach ($result_top_act as $result) {
-			 		$top_act[] = $result->to_array();
-			 	}
-			}else if($metric->name == 'engagement'){
-
-
-				$top_mod_eng_sql = "SELECT modules.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_act . " * 100 AS conv 
-							 		FROM activities, items, modules WHERE activities.item_id = items.id AND items.module_id = modules.id 
-							 		AND (activities.name = 'loved_item' OR activities.name = 'unloved_item' OR activities.name = 'unloved_comments') 
-							 		GROUP BY modules.name
-							 		ORDER BY conv DESC";
-
-				$top_eng_sql = "SELECT items.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_act . " * 100 AS conv 
-						 		FROM activities, items WHERE activities.item_id = items.id AND (activities.name = 'loved_item' OR 
-						 	    activities.name = 'unloved_item' OR activities.name = 'unloved_comments') 
-						 		GROUP BY items.name ORDER BY conv DESC";
 				
-				$top_loved_sql = "SELECT items.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_eng . " * 100 AS conv 
-						  	  FROM activities, items, modules WHERE activities.item_id = items.id AND items.module_id = modules.id 
-						  	  AND activities.name = 'loved_item' 
-						  	  GROUP BY items.name 
-						  	  ORDER BY conv DESC";
+				$updated_item = Utility::obj_to_array($item, array('heart_total' => $heart_total, 'new_total' => $new_total));
+				$biz_items["pop"][$key] = $updated_item; 
 
-				$top_unloved_sql = "SELECT items.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_eng . " * 100 AS conv 
-						  	   FROM activities, items, modules WHERE activities.item_id = items.id AND items.module_id = modules.id 
-						  	   AND activities.name = 'unloved_item' 
-						  	   GROUP BY items.name
-						  	   ORDER BY conv DESC";
-
-
-				$top_unloved_comments_sql = "SELECT items.name AS item, comments.name AS comment, COUNT(comment_items.id) AS total 
-									     FROM comment_items, items, comments WHERE comment_items.item_id = items.id 
-									     AND comment_items.comment_id = comments.id 
-									     GROUP BY items.name 
-									     ORDER BY total DESC";
-
-			 	$result_top_mod = Metric::find_by_sql($top_mod_eng_sql);
-			 	$result_top_loved = Metric::find_by_sql($top_loved_sql);
-			 	$result_top_unloved = Metric::find_by_sql($top_unloved_sql);
-			 	$result_top_unloved_comments = Metric::find_by_sql($top_unloved_comments_sql);
-			 	
-			 	foreach ($result_top_mod as $result) {
-			 		$top_mod_eng[] = $result->to_array();
-			 	}
-
-			 	foreach ($result_top_eng as $result) {
-			 		$top_eng[] = $result->to_array();
-			 	}
-
-			 	foreach ($result_top_loved as $result) {
-			 		$top_loved[] = $result->to_array();
-			 	}
-
-			 	foreach ($result_top_unloved as $result) {
-			 		$top_unloved[] = $result->to_array();
-			 	}
-
-			 	foreach ($result_top_unloved_comments as $result) {
-			 		$top_unloved_comments[] = $result->to_array();
-			 	}
 			}
+		}
+	
+		/* LOVED  */
+
+		if(!empty($loved_list)){
+			foreach ($loved_list as $key => $item) {
+				$biz_items["loved"][$key] = $item->to_array();
+			}
+		}else{
+			$biz_items["loved"][0]['name'] = '';
+			$biz_items["loved"][0]['total'] = 0;
+		}
+
+		/* UNLOVED COMMENTS - COMMENTS ABOVE 5 */
+
+		$unloved_list  = array();
+		$biz_items["unloved"] = array();
+
+
+		foreach ($item_list as $parent_key => $parent_item) {
+
+			$unloved_sql = "SELECT items.name AS item_name, comments.name AS comment_name, COUNT(comments.name) AS total 
+							FROM comment_sources, items, comments WHERE comment_sources.item_id = items.id  AND comment_sources.comment_id = comments.id 
+							AND items.id = $parent_item->id" . $sql_date . "GROUP BY comments.name HAVING COUNT(comments.name) >= 5 ORDER BY total DESC";
+
+			$unloved_list = Item::find_by_sql($unloved_sql);
+
+			if(!empty($unloved_list)){
+				foreach ($unloved_list as $child_key => $child_item) {
+
+					if(!empty($child_item)){
+						$biz_items["unloved"][$parent_item->name][$child_key] = $child_item->to_array();	
+					}else{
+						$biz_items["unloved"][$parent_item->name][$child_key] = "";
+					}
+				}
+			}	
+			
+		}
+
+		// APP RESULTS
+
+		$biz_items["engagement"] = 0;
+		$biz_items["conversion"] = 0;
+
+		/* OVERALL VIEWS/ENGAGEMENT */
+		$total_viewed_items = $view_result;
+
+		$total_eng_sql = "SELECT COUNT(activities.id) AS result FROM activities 
+						  WHERE activities.name = 'loved_item' OR activities.name = 'unloved_commented_item'" . $sql_date;
+		$total_eng = Metric::find_by_sql($total_eng_sql);
+		$total_eng_result = $total_eng[0]->result;
+
+		if($total_viewed_items != 0){
+			$total_conversion =  $total_eng_result / $total_viewed_items * 100;
+			$biz_items["engagement"] = $total_eng_result;
+			$biz_items["conversion"] = $total_conversion;
 		}
 
 
-		$metrics['top activity'] = $top_act;
-		$metrics['total activity'] = $total_act;
+		$biz_items["modules"] = array();
+
+		$module_list = Module::find("all");
+		$item_list = Item::find("all");
 		
-		$metrics['total engaged'] = $total_eng;
-		$metrics['top loved'] = $top_loved;
-		$metrics['top unloved'] = $top_unloved;
-		$metrics['top unloved comments'] = $top_unloved_comments;
-
-/*
-
-		$total_discovery_sql = "SELECT COUNT(activities.id) AS result FROM activities, items WHERE activities.item_id = items.id AND items.module_id != 2";
-		$total_discovery_result = Metric::find_by_sql($total_discovery_sql);
-		$total_discovery = $total_discovery_result[0]->result;
-
-		$total_play = $total_act - $total_discovery;
-
-		print_r($total_discovery);
-		print_r($total_play);
-		*/
-		/*
-
-		foreach ($metric_list as $metric) {
-
-			$mods = array();
-			$sub_mods = array();
-			$items = array();
-			$custom = array();
-
-			$mods_sql = "";
-			$sub_mods_sql = "";
-			$items_sql = "";
-			$custom_sql = "";
+		foreach ($module_list as $key => $module) {
+		 		
+		 	$mod_view_sql = "SELECT COUNT(activities.id) AS result FROM activities, items WHERE activities.name = 'viewed_item' 
+		 					AND activities.item_id = items.id AND items.module_id = $module->id" . $sql_date;;
 
 
-			/*
+		 	$mod_eng_sql = "SELECT COUNT(activities.id) AS result FROM activities, items 
+							WHERE (activities.name = 'loved_item' OR activities.name = 'unloved_commented_item') AND activities.item_id = items.id AND items.module_id = $module->id" . $sql_date;
 
-			if($metric->name == 'exposure'){
+		 	$mod_view = Metric::find_by_sql($mod_view_sql);
+			$mod_view_result = $mod_view[0]->result;
 
-				$sub_mods_sql = "SELECT modules.parent_id as id, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_act . " * 100 AS conv 
-							 	 FROM items, modules, activities WHERE activities.item_id = items.id AND items.module_id = modules.id 
-							 	 AND (modules.parent_id = 3 OR modules.parent_id = 4) 
-							 	 GROUP BY modules.parent_id ASC";
+			$mod_eng = Metric::find_by_sql($mod_eng_sql);
+			$mod_eng_result = $mod_eng[0]->result;
 
-				$items_sql = "SELECT items.name AS name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_act . " * 100 AS conv 
-							  FROM activities, items  WHERE activities.item_id = items.id GROUP BY items.name ASC";
+			if($mod_view_result != 0){
 
-			}else if($metric->name == 'engagement'){
+				$mod_conversion = $mod_eng_result / $mod_view_result * 100;
 
-				$mods_sql = "SELECT modules.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_act . " * 100 AS conv 
-							 FROM steps, activities, modules WHERE activities.step_id = steps.id AND steps.module_id = modules.id 
-							 AND (activities.name = 'loved_item' OR activities.name = 'unloved_item' OR activities.name = 'unloved_comments') 
-							 GROUP BY modules.name ASC";
-	
-				$sub_mods_sql = "SELECT modules.parent_id as id, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_act . " * 100 AS conv 
-								 FROM activities, items, modules WHERE activities.item_id = items.id AND items.module_id = modules.id 
-								 AND (modules.parent_id = 3 OR modules.parent_id = 4) 
-								 AND (activities.name = 'loved_item' OR activities.name = 'unloved_item' OR activities.name = 'unloved_comments') 
-								 GROUP BY modules.parent_id ASC";
-	
-				$items_sql = "SELECT items.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_eng . " * 100 AS conv 
-							  FROM activities, items, modules WHERE activities.item_id = items.id AND items.module_id = modules.id 
-							  AND (activities.name = 'loved_item' OR activities.name = 'unloved_item' OR activities.name = 'unloved_comments') 
-							  GROUP BY items.name ASC";
+				$biz_items["modules"][$key]["name"] = $module->name;
+				$biz_items["modules"][$key]["views"] = $mod_view_result;
+				$biz_items["modules"][$key]["engagement"] = $mod_eng_result;
+				$biz_items["modules"][$key]["conversion"] = $mod_conversion;
+			}
+		} 
 
-			}else if($metric->name != 'unlove_comments'){
+		$biz_items["items"] = array();
 
-				if($metric->name == 'unlove'){
+		foreach ($item_list as $key => $item) {
 
-					$mods_sql = "SELECT modules.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_eng . " * 100 AS conv 
-							     FROM steps, activities, modules WHERE steps.module_id = modules.id AND activities.step_id = steps.id
-							     AND activities.name = 'unloved_item' GROUP BY modules.name ASC";
-	
-					$sub_mods_sql = "SELECT modules.parent_id AS name, COUNT(activities.id) AS total, COUNT(activities.id) / ". $total_eng . " * 100 as 			 conv FROM activities, items, modules WHERE activities.item_id = items.id AND activities.name = 'unloved_item'
-									 AND items.module_id = modules.id
-									 AND (modules.parent_id = 3 OR modules.parent_id = 4) 
-									 GROUP BY modules.parent_id ASC";
-		
-					$items_sql = "SELECT items.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_eng . " * 100 AS conv 
-							  	  FROM activities, items, modules WHERE activities.item_id = items.id AND items.module_id = modules.id 
-							  	  AND activities.name = 'unloved_item' 
-							  	  GROUP BY items.name ASC";
-
-				}else if($metric->name == 'love'){
-
-					$mods_sql = "SELECT modules.name as name, COUNT(activities.id) AS count, COUNT(activities.id) / " . $total_eng . " * 100 AS conv 
-							     FROM steps, activities, modules WHERE steps.module_id = modules.id AND activities.step_id = steps.id
-							     AND activities.name = 'loved_item' GROUP BY modules.name ASC";
-	
-					$sub_mods_sql = "SELECT modules.parent_id AS name, COUNT(activities.id) AS total, COUNT(activities.id) / ". $total_eng . " * 100 as 			 conv FROM activities, items, modules WHERE activities.item_id = items.id AND activities.name = 'loved_item'
-									 AND items.module_id = modules.id
-									 AND (modules.parent_id = 3 OR modules.parent_id = 4) 
-									 GROUP BY modules.parent_id ASC";
-		
-					$items_sql = "SELECT items.name as name, COUNT(activities.id) AS total, COUNT(activities.id) / " . $total_eng . " * 100 AS conv 
-							  	  FROM activities, items, modules WHERE activities.item_id = items.id AND items.module_id = modules.id 
-							  	  AND activities.name = 'loved_item' 
-							  	  GROUP BY items.name ASC";
-				}
-
-			}else if($metric->name == 'unlove_comments'){
-
-				$custom_sql = "SELECT items.name AS item_name, comments.name AS comment_name, COUNT(comment_items.id) AS total 
-							   FROM comment_items, items, comments WHERE comment_items.item_id = items.id 
-							   AND comment_items.comment_id = comments.id 
-							   GROUP BY items.name 
-							   ORDER BY total DESC";
-			}	
+			$item_view_sql = "SELECT COUNT(activities.id) AS result FROM activities WHERE activities.name = 'viewed_item' 
+		 					AND activities.item_id = $item->id" . $sql_date;
 
 
-			if($mods_sql != ""){
-				$mod_result = Metric::find_by_sql($mods_sql);
-				foreach ($mod_result as $result) {
-					$metrics[$metric->name]['mods'][] = $result->to_array();
+		 	$item_eng_sql = "SELECT COUNT(activities.id) AS result FROM activities
+							WHERE (activities.name = 'loved_item' OR activities.name = 'unloved_commented_item') AND activities.item_id = $item->id" . $sql_date;
+			
+			$item_view = Metric::find_by_sql($item_view_sql);
+			$item_view_result = $item_view[0]->result;
+
+			$item_eng = Metric::find_by_sql($item_eng_sql);
+			$item_eng_result = $item_eng[0]->result;
+
+			if($item_view_result != 0){
+
+				$item_conversion = $item_eng_result / $item_view_result * 100;
+
+				$biz_items["items"][$key]["name"] = $item->name;
+				$biz_items["items"][$key]["views"] = $item_view_result;
+				$biz_items["items"][$key]["engagement"] = $item_eng_result;
+				$biz_items["items"][$key]["conversion"] = $item_conversion;
+			}
+		}
+
+		$qna_comments_sql = "SELECT questions.id AS id, questions.name AS name FROM comment_sources, comments, comment_types, questions 
+							  WHERE comment_sources.comment_id = comments.id 
+							  AND comments.commenttype_id = comment_types.id 
+							  AND comments.question_id = questions.id
+							  AND comment_types.name =  'qna'" . $sql_date . "GROUP BY questions.id";
+
+		$qna_comments_list = CommentSource::find_by_sql($qna_comments_sql);
+		$qna_questions = array();
+		$biz_items["questions"] = array();
+
+		foreach ($qna_comments_list as $parent_key => $qna_comment) {
+			
+			$biz_items["questions"][$parent_key]['name'] = $qna_comment->name;
+
+			$qna_comment_sql = "SELECT comments.name AS name, COUNT(comments.name) AS total FROM comment_sources, comments, questions 
+								WHERE comment_sources.comment_id = comments.id 
+								AND comments.question_id = questions.id
+								AND questions.id = $qna_comment->id" . $sql_date . "GROUP BY comments.name ORDER BY total DESC";
+
+			$qna_questions = Question::find_by_sql($qna_comment_sql);	
+
+			if(!empty($qna_questions))
+			{	
+				foreach ($qna_questions as $child_key => $question) {
+					$biz_items["questions"][$parent_key]['answers'][] = $question->to_array();
 				}
 			}
+		}
 
-			if($sub_mods_sql != ""){
-				$sub_mod_result = Metric::find_by_sql($sub_mods_sql);
-				foreach ($sub_mod_result as $result) {
-					$metrics[$metric->name]['sub_mods'][] = $result->to_array();
-				}
-			}
-
-			*/
-
-
-		//}
-		parent::$data = array('metrics' => $metrics);
+		parent::$data = array('metrics' => $biz_items);
 		parent::index();
 	}
 }

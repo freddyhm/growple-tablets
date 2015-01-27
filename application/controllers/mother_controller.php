@@ -9,6 +9,20 @@ class Mother extends Controller {
 		parent::__construct();
 	}
 
+
+	public function saveItemAnalytics(){
+
+		$item_id = $_POST['id'];
+		$item = Item::find($item_id);
+		$date_time = date('Y-m-d H:i:s');
+		$content = "\n\n Item: " . $item->name . " Date: " . $date_time; 
+		$filename = 'item-check.txt';
+
+		$fp = fopen('item-check.txt', 'a');
+		fwrite($fp, $content);
+		fclose($fp);
+	}
+
 	// add one to love count and return new count
 	public function giveLove(){
 
@@ -30,17 +44,18 @@ class Mother extends Controller {
 		echo $item->love;
 	}
 
-	public function giveUnLove(){
+	public function giveComment(){
 
 		$date = date('Y-m-d H:i:s');
 		$comment_id = $_POST['comment_id'];
-		$item_id = $_POST['item_id'];
+		$item_id = isset($_POST['item_id']) ? $_POST['item_id'] : "" ;
 
-		$new_comment_item = new CommentItem();
-		$new_comment_item->date = $date;
-		$new_comment_item->comment_id = $comment_id;
-		$new_comment_item->item_id = $item_id;
-		$new_comment_item->save();
+		$new_comment_source = new CommentSource();
+		$new_comment_source->start = $date;
+		$new_comment_source->end = $date;
+		$new_comment_source->comment_id = $comment_id;
+		$new_comment_source->item_id = $item_id;
+		$new_comment_source->save();
 
 		echo 'Success';
 	}

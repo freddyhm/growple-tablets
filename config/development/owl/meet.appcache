@@ -1,8 +1,8 @@
-CACHE MANIFEST
-  
-# Owl Development
+# Owl Development 
+
 NETWORK:
 /growple/meet/app/mother
+/growple/meet/app/report
 
 CACHE:
 /growple/meet/app/public/img/confirm/x.png
@@ -13,12 +13,14 @@ CACHE:
 /growple/meet/app/public/css/main.css
 /growple/meet/app/public/css/confirm.css
 /growple/meet/app/public/js/main.js
+/growple/meet/app/public/js/jquery.hammer.min.js
 /growple/meet/app/public/js/analytics.js
 /growple/meet/app/public/js/jquery-1.8.3.min.js
 /growple/meet/app/public/js/jstorage.js
 /growple/meet/app/public/js/slides.min.jquery.js
 /growple/meet/app/public/js/jquery.simplemodal.js
 /growple/meet/app/config/development/settings.js
+/growple/meet/app/public/img/qna/owl.png
 /growple/meet/app/public/img/discover/btn-unheart-unpressed.png
 /growple/meet/app/public/img/discover/btn-unheart-pressed.png
 /growple/meet/app/public/img/discover/unlove-popup.png
@@ -36,6 +38,14 @@ CACHE:
 /growple/meet/app/public/img/discover/pop-x.png
 /growple/meet/app/public/img/discover/btn-heart-pressed.png
 /growple/meet/app/public/img/discover/btn-heart-unpressed.png
+/growple/meet/app/public/img/discover/feature/bulgogibap-small.png
+/growple/meet/app/public/img/discover/feature/bulgogibap-big.png
+/growple/meet/app/public/img/discover/feature/jeyook-small.png
+/growple/meet/app/public/img/discover/feature/jeyook-big.png
+/growple/meet/app/public/img/discover/feature/ricecake-big.png
+/growple/meet/app/public/img/discover/feature/ricecake-small.png
+/growple/meet/app/public/img/discover/spotlight/chef-hite-small.png
+/growple/meet/app/public/img/discover/spotlight/chef-hite-big.png
 /growple/meet/app/public/img/discover/feature/bulgogi-big.jpg
 /growple/meet/app/public/img/discover/feature/bulgogi-small.png
 /growple/meet/app/public/img/discover/feature/cutlet-big.jpg
